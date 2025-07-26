@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+Artisan::command('dev:download_db', function () {
+    $dumper = new \App\Lote\Services\DevDBSync\Dumper();
+
+    $this->info($dumper->dumpDb(true));
+    $this->info($dumper->download(true));
+    $this->info($dumper->deleteDumpFile(true));
+
+})->describe('Download database from production');

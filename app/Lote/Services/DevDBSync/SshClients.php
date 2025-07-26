@@ -14,7 +14,7 @@ class SshClients
 
     protected string $prod_user;
     protected mixed $prod_port;
-    protected mixed $stagging_port;
+    protected mixed $staging_port;
 
     public function __construct()
     {
@@ -26,7 +26,7 @@ class SshClients
         [$this->prod_user, $this->prod_host] = explode('@', $_ENV['DEPLOY_PRODUCTION_SERVER']);
 
         $this->prod_port = $_ENV['DEPLOY_PRODUCTION_PORT'];
-        $this->stagging_port = $_ENV['DEPLOY_STAGE_PORT'];
+        $this->staging_port = $_ENV['DEPLOY_STAGE_PORT'];
 
     }
 
@@ -34,7 +34,7 @@ class SshClients
     {
         $client = new SshClients();
 
-        return Ssh::create($client->staging_user, $client->staging_host, $client->stagging_port);
+        return Ssh::create($client->staging_user, $client->staging_host, $client->staging_port);
     }
 
     public static function getProduction(): Ssh

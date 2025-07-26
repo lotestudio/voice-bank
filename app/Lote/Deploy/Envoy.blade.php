@@ -8,7 +8,7 @@ test to load bash on server: source ~/.bash_profile
 
 @setup
 require __DIR__.'/vendor/autoload.php';
-$setup = new App\Lote\Deploy\SetupConfiguration($branch ?? 'staging');
+$setup = new App\Lote\Deploy\SetupConfiguration($branch ?? 'main');
 extract($setup->all());
 @endsetup
 

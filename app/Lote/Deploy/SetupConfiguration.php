@@ -12,8 +12,7 @@ class SetupConfiguration
 
     private array $config = [];
 
-//    public function __construct(private readonly string $branch = 'staging')
-    public function __construct(private readonly string $branch = 'main')
+    public function __construct(private readonly string $branch = 'staging')
     {
         $this->loadEnvironment();
         $this->setupServerConfig();

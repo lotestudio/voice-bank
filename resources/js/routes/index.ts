@@ -1,6 +1,7 @@
 import { queryParams, type QueryParams } from './../wayfinder'
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\MainController::home
+* @see app/Http/Controllers/MainController.php:9
 * @route '/'
 */
 export const home = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -17,7 +18,8 @@ home.definition = {
 }
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\MainController::home
+* @see app/Http/Controllers/MainController.php:9
 * @route '/'
 */
 home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -25,7 +27,8 @@ home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 }
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\MainController::home
+* @see app/Http/Controllers/MainController.php:9
 * @route '/'
 */
 home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -37,7 +40,8 @@ home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\MainController::home
+* @see app/Http/Controllers/MainController.php:9
 * @route '/'
 */
 home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -49,7 +53,7 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see routes/web.php:10
+* @see routes/web.php:15
 * @route '/dashboard'
 */
 export const dashboard = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -66,7 +70,7 @@ dashboard.definition = {
 }
 
 /**
-* @see routes/web.php:10
+* @see routes/web.php:15
 * @route '/dashboard'
 */
 dashboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -74,7 +78,7 @@ dashboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) =>
 }
 
 /**
-* @see routes/web.php:10
+* @see routes/web.php:15
 * @route '/dashboard'
 */
 dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -86,7 +90,7 @@ dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see routes/web.php:10
+* @see routes/web.php:15
 * @route '/dashboard'
 */
 dashboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -99,7 +103,7 @@ dashboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): 
 
 /**
 * @see routes/settings.php:18
-* @route '/settings/appearance'
+* @route '/admin/settings/appearance'
 */
 export const appearance = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -111,12 +115,12 @@ export const appearance = (options?: { query?: QueryParams, mergeQuery?: QueryPa
 
 appearance.definition = {
     methods: ['get','head'],
-    url: '/settings/appearance',
+    url: '/admin/settings/appearance',
 }
 
 /**
 * @see routes/settings.php:18
-* @route '/settings/appearance'
+* @route '/admin/settings/appearance'
 */
 appearance.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return appearance.definition.url + queryParams(options)
@@ -124,7 +128,7 @@ appearance.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) =
 
 /**
 * @see routes/settings.php:18
-* @route '/settings/appearance'
+* @route '/admin/settings/appearance'
 */
 appearance.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -136,7 +140,7 @@ appearance.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): 
 
 /**
 * @see routes/settings.php:18
-* @route '/settings/appearance'
+* @route '/admin/settings/appearance'
 */
 appearance.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import SiteLayout from '@/layouts/SiteLayout.vue';
+import { useLocale } from '@/composables/useLocale';
+const locale = usePage().props.locale;
+const { T } = useLocale()
 </script>
 
 <template>
     <Head title="Welcome">
-
     </Head>
-
     <SiteLayout>
-        <div class="container mx-auto max-w-sm text-center mt-20">
+        <div class="container mx-auto mt-10 px-8">
             <h1 class="mb-1 font-bold text-3xl">Voice Bank</h1>
-            <p class="text-sm">The site is under construction!</p>
-            <p class="text-sm">Сайта е в процес на разработка!</p>
+            <p class="text-sm">{{ T('The site is under construction!',locale) }}</p>
         </div>
     </SiteLayout>
 </template>

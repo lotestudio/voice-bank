@@ -2,7 +2,7 @@ import { queryParams, type QueryParams } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::edit
 * @see app/Http/Controllers/Settings/PasswordController.php:18
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 export const edit = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -14,13 +14,13 @@ export const edit = (options?: { query?: QueryParams, mergeQuery?: QueryParams }
 
 edit.definition = {
     methods: ['get','head'],
-    url: '/settings/password',
+    url: '/admin/settings/password',
 }
 
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::edit
 * @see app/Http/Controllers/Settings/PasswordController.php:18
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 edit.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return edit.definition.url + queryParams(options)
@@ -29,7 +29,7 @@ edit.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::edit
 * @see app/Http/Controllers/Settings/PasswordController.php:18
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 edit.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -42,7 +42,7 @@ edit.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::edit
 * @see app/Http/Controllers/Settings/PasswordController.php:18
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 edit.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -55,7 +55,7 @@ edit.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::update
 * @see app/Http/Controllers/Settings/PasswordController.php:26
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 export const update = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -67,13 +67,13 @@ export const update = (options?: { query?: QueryParams, mergeQuery?: QueryParams
 
 update.definition = {
     methods: ['put'],
-    url: '/settings/password',
+    url: '/admin/settings/password',
 }
 
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::update
 * @see app/Http/Controllers/Settings/PasswordController.php:26
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 update.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return update.definition.url + queryParams(options)
@@ -82,7 +82,7 @@ update.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::update
 * @see app/Http/Controllers/Settings/PasswordController.php:26
-* @route '/settings/password'
+* @route '/admin/settings/password'
 */
 update.put = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

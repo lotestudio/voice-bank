@@ -39,7 +39,7 @@ class VoiceFilterService
 
         // Filter by specific features
         foreach ($filters as $key => $value) {
-            if (strpos($key, 'feature_') === 0 && !empty($value)) {
+            if (str_starts_with($key, 'feature_') && !empty($value)) {
                 $featureId = substr($key, 8); // Remove 'feature_' prefix
 
                 if (is_array($value)) {

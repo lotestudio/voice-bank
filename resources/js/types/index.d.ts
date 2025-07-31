@@ -17,12 +17,25 @@ export interface NavItem {
     isActive?: boolean;
 }
 
+export interface SharedData extends PageProps {
+    name: string;
+    quote: { message: string; author: string };
+    auth: Auth;
+    //ziggy: Config & { location: string };
+    sidebarOpen: boolean;
+    locale:string;
+    flash:{ message: string};
+}
+
+
 export type AppPageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
-    ziggy: Config & { location: string };
+    //ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    locale:string;
+    flash:{ message: string};
 };
 
 export interface User {

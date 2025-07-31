@@ -2,7 +2,7 @@ import { queryParams, type QueryParams } from './../../../wayfinder'
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 const RedirectController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -14,13 +14,13 @@ const RedirectController = (options?: { query?: QueryParams, mergeQuery?: QueryP
 
 RedirectController.definition = {
     methods: ['get','head','post','put','patch','delete','options'],
-    url: '/settings',
+    url: '/admin/settings',
 }
 
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return RedirectController.definition.url + queryParams(options)
@@ -29,7 +29,7 @@ RedirectController.url = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -42,7 +42,7 @@ RedirectController.get = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -55,7 +55,7 @@ RedirectController.head = (options?: { query?: QueryParams, mergeQuery?: QueryPa
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -68,7 +68,7 @@ RedirectController.post = (options?: { query?: QueryParams, mergeQuery?: QueryPa
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.put = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -81,7 +81,7 @@ RedirectController.put = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.patch = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -94,7 +94,7 @@ RedirectController.patch = (options?: { query?: QueryParams, mergeQuery?: QueryP
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.delete = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -107,7 +107,7 @@ RedirectController.delete = (options?: { query?: QueryParams, mergeQuery?: Query
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
 * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19
-* @route '/settings'
+* @route '/admin/settings'
 */
 RedirectController.options = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

@@ -25,10 +25,12 @@ const items: NavItem[] = [
     }
 ];
 
+
+
 const footerNavItems: NavItem[] = [
     {
-        title: 'LapVoiceOver',
-        href: 'https://lap.test',
+        title: import.meta.env.VITE_APP_NAME || 'Voice Bank',
+        href: import.meta.env.VITE_APP_URL || 'https://lap.test',
         icon: Folder,
     }
 ];

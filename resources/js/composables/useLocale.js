@@ -7,7 +7,6 @@ export const locales = {
         'voices':'voices',
         'home': 'home',
         'about': 'about',
-        'under_development': 'under development',
         'sex':'gender',
         'locale':'language',
 
@@ -18,7 +17,7 @@ export const locales = {
         'voices':'гласове',
         'home': 'начало',
         'about': 'за нас',
-        'under_development': 'в процес на разработка',
+        'The site is under construction!': 'Сайтът е в процес на разработка!',
         'male':'мъжки',
         'female':'женски',
         'all': 'всички',

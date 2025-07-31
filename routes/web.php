@@ -3,9 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+
+
+Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+    Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
+    Route::get('/voices', [\App\Http\Controllers\MainController::class, 'voices']);
+    Route::get('/about', [\App\Http\Controllers\MainController::class, 'about']);
+    Route::get('/contacts', [\App\Http\Controllers\MainController::class, 'contacts']);
+});
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');

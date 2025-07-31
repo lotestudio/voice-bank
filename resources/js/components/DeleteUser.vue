@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import profile from '@/routes/profile';
 
 const passwordInput = ref<HTMLInputElement | null>(null);
 
@@ -28,7 +29,7 @@ const form = useForm({
 const deleteUser = (e: Event) => {
     e.preventDefault();
 
-    form.delete(route('profile.destroy'), {
+    form.delete(profile.destroy.url(), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: () => passwordInput.value?.focus(),
@@ -75,7 +76,9 @@ const closeModal = () => {
                                 <Button variant="secondary" @click="closeModal"> Cancel </Button>
                             </DialogClose>
 
-                            <Button type="submit" variant="destructive" :disabled="form.processing"> Delete account </Button>
+                            <Button variant="destructive" :disabled="form.processing">
+                                <button type="submit">Delete account</button>
+                            </Button>
                         </DialogFooter>
                     </form>
                 </DialogContent>

@@ -30,7 +30,7 @@ const items: NavItem[] = [
 const footerNavItems: NavItem[] = [
     {
         title: import.meta.env.VITE_APP_NAME || 'Voice Bank',
-        href: import.meta.env.VITE_APP_URL || 'https://lap.test',
+        href: import.meta.env.VITE_APP_URL || 'https://voice.test',
         icon: Folder,
     }
 ];

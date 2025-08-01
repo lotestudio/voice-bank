@@ -15,10 +15,10 @@ class MenuService
     public static function get():array
     {
         return [
-            ['title'=>__('site.home'), 'href'=>LaravelLocalization::localizeUrl('/'), 'isActive'=>true],
-            ['title'=>__('site.voices'), 'href'=>LaravelLocalization::localizeUrl('/voices'), 'isActive'=>false],
-            ['title'=>__('site.about'), 'href'=>LaravelLocalization::localizeUrl('/about'), 'isActive'=>false],
-            ['title'=>__('site.contacts'), 'href'=>LaravelLocalization::localizeUrl('/contacts'), 'isActive'=>false],
+            ['title'=>__('site.home'), 'href'=>LaravelLocalization::localizeUrl('/')],
+            ['title'=>__('site.voices'), 'href'=>LaravelLocalization::localizeUrl('/voices')],
+            ['title'=>__('site.about'), 'href'=>LaravelLocalization::localizeUrl('/about')],
+            ['title'=>__('site.contacts'), 'href'=>LaravelLocalization::localizeUrl('/contacts')],
         ];
     }
 }

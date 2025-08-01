@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { usePage } from '@inertiajs/vue3';
-import type { NavItem } from '@/types';
+import type { NavItem, SharedData } from '@/types';
 import LangSwitcher from '@/components/Site/LangSwitcher.vue';
 const { isMobile } = useSidebar();
 const items: NavItem[] = usePage().props.menu as NavItem[];
+
+
+const page = usePage<SharedData>();
+const base_url = import.meta.env.VITE_APP_URL || 'https://voice.test';
+const page_url = base_url+page.url;
+
+
 </script>
 <template>
     <header
@@ -17,7 +24,10 @@ const items: NavItem[] = usePage().props.menu as NavItem[];
         <div class="flex flex-1 justify-center md:justify-end">
             <div v-if="isMobile">Voice Bank</div>
             <div v-else class="flex items-center gap-3">
-                <a :key="index" :href="item.href" v-for="(item,index) in items">{{item.title}}</a>
+                <a :key="index" :href="item.href" v-for="(item,index) in items"
+                   :class="item.href === page_url ? 'opacity-100' : 'opacity-50 hover:opacity-100'"
+
+                >{{item.title}}</a>
                 <LangSwitcher/>
             </div>
         </div>

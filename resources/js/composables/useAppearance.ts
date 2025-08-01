@@ -85,8 +85,18 @@ export function useAppearance() {
         updateTheme(value);
     }
 
+    function isDark() {
+
+        if (appearance.value === 'system') {
+            return mediaQuery()?.matches === true;
+        }
+        return appearance.value === 'dark';
+    }
+
     return {
         appearance,
         updateAppearance,
+        isDark,
     };
+
 }

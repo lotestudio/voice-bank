@@ -32,9 +32,8 @@
 
     <title inertia>{{ config('app.name', 'Voice Bank') }}</title>
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    {{--        <link rel="icon" href="/favicon.svg" type="image/svg+xml">--}}
-    {{--        <link rel="apple-touch-icon" href="/apple-touch-icon.png">--}}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://use.typekit.net/" />
     <link rel="stylesheet" href="https://use.typekit.net/irj7vhx.css">
     {{--        @routes--}}

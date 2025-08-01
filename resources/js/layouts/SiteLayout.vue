@@ -1,7 +1,7 @@
 <template>
 <SiteShell>
-    <MobileSidebar/>
-    <Header/>
+    <MobileSidebar v-if="!simple"/>
+    <Header v-if="!simple"/>
     <main class="mx-auto flex h-full w-full max-w-7xl flex-1 flex-col gap-4 rounded-xl">
         <slot />
     </main>
@@ -15,4 +15,11 @@
 import SiteShell from '@/components/Site/SiteShell.vue';
 import MobileSidebar from '@/components/Site/MobileSidebar.vue';
 import Header from '@/components/Site/Header.vue';
+
+
+defineProps({
+    simple:{Boolean, default:false}
+});
+
+
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
-import { usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import type { NavItem, SharedData } from '@/types';
 import LangSwitcher from '@/components/Site/LangSwitcher.vue';
 const { isMobile } = useSidebar();
@@ -24,10 +24,10 @@ const page_url = base_url+page.url;
         <div class="flex flex-1 justify-center md:justify-end">
             <div v-if="isMobile">Voice Bank</div>
             <div v-else class="flex items-center gap-3">
-                <a :key="index" :href="item.href" v-for="(item,index) in items"
+                <Link :key="index" :href="item.href" v-for="(item,index) in items"
                    :class="item.href === page_url ? 'opacity-100' : 'opacity-50 hover:opacity-100'"
 
-                >{{item.title}}</a>
+                >{{item.title}}</Link>
                 <LangSwitcher/>
             </div>
         </div>

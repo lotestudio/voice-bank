@@ -58,7 +58,12 @@ extract($setup->all());
 
 @task('up', ['on' => 'web'])
     cd {{$deploy_path}}
-    {{ $php }} artisan up
+
+    @if($secret)
+        {{ $php }} artisan down --secret="{{ $secret }}"
+    @else
+        {{ $php }} artisan up
+    @endif
 @endtask
 
 @task('git-pull', ['on' => 'web'])

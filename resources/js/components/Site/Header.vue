@@ -6,12 +6,15 @@ import LangSwitcher from '@/components/Site/LangSwitcher.vue';
 const { isMobile } = useSidebar();
 const items: NavItem[] = usePage().props.menu as NavItem[];
 
-
 const page = usePage<SharedData>();
 const base_url = import.meta.env.VITE_APP_URL || 'https://voice.test';
-const page_url = base_url+page.url;
+const locale = page.props.locale;
+const page_url = page.url === '/' ? '/' + locale : new URL(base_url+page.url).pathname;
 
-
+const isActive = (href: string): boolean => {
+    console.log(new URL(href).pathname, page_url);
+    return new URL(href).pathname === page_url;
+};
 </script>
 <template>
     <header
@@ -24,15 +27,18 @@ const page_url = base_url+page.url;
         <div class="flex flex-1 justify-center md:justify-end">
             <div v-if="isMobile">Voice Bank</div>
             <div v-else class="flex items-center gap-3">
-                <Link :key="index" :href="item.href" v-for="(item,index) in items"
-                   :class="item.href === page_url ? 'opacity-100' : 'opacity-50 hover:opacity-100'"
-
-                >{{item.title}}</Link>
-                <LangSwitcher/>
+                <Link
+                    :key="index"
+                    :href="item.href"
+                    v-for="(item, index) in items"
+                    :class="isActive(item.href) ? 'opacity-100' : 'opacity-50 hover:opacity-100'"
+                    >{{ item.title }}</Link
+                >
+                <LangSwitcher />
             </div>
         </div>
         <div class="flex items-center gap-2" v-if="isMobile">
-            <LangSwitcher/>
+            <LangSwitcher />
         </div>
     </header>
 </template>

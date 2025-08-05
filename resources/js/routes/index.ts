@@ -53,7 +53,8 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see routes/web.php:15
+* @see \App\Http\Controllers\Admin\DashboardController::dashboard
+* @see app/Http/Controllers/Admin/DashboardController.php:10
 * @route '/dashboard'
 */
 export const dashboard = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -70,7 +71,8 @@ dashboard.definition = {
 }
 
 /**
-* @see routes/web.php:15
+* @see \App\Http\Controllers\Admin\DashboardController::dashboard
+* @see app/Http/Controllers/Admin/DashboardController.php:10
 * @route '/dashboard'
 */
 dashboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -78,7 +80,8 @@ dashboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) =>
 }
 
 /**
-* @see routes/web.php:15
+* @see \App\Http\Controllers\Admin\DashboardController::dashboard
+* @see app/Http/Controllers/Admin/DashboardController.php:10
 * @route '/dashboard'
 */
 dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -90,7 +93,8 @@ dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see routes/web.php:15
+* @see \App\Http\Controllers\Admin\DashboardController::dashboard
+* @see app/Http/Controllers/Admin/DashboardController.php:10
 * @route '/dashboard'
 */
 dashboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -98,6 +102,59 @@ dashboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): 
     method: 'head',
 } => ({
     url: dashboard.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\Admin\TemplateController::template
+* @see app/Http/Controllers/Admin/TemplateController.php:10
+* @route '/template'
+*/
+export const template = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'get',
+} => ({
+    url: template.url(options),
+    method: 'get',
+})
+
+template.definition = {
+    methods: ['get','head'],
+    url: '/template',
+}
+
+/**
+* @see \App\Http\Controllers\Admin\TemplateController::template
+* @see app/Http/Controllers/Admin/TemplateController.php:10
+* @route '/template'
+*/
+template.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+    return template.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\TemplateController::template
+* @see app/Http/Controllers/Admin/TemplateController.php:10
+* @route '/template'
+*/
+template.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'get',
+} => ({
+    url: template.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Admin\TemplateController::template
+* @see app/Http/Controllers/Admin/TemplateController.php:10
+* @route '/template'
+*/
+template.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'head',
+} => ({
+    url: template.url(options),
     method: 'head',
 })
 

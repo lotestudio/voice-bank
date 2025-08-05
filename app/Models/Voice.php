@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -69,7 +70,9 @@ class Voice extends Model
     /**
      * Scope a query to only include voices with specific feature values.
      */
-    public function scopeWithFeatureValues($query, array $featureValueIds)
+
+    #[Scope]
+    protected function withFeatureValues($query, array $featureValueIds)
     {
         foreach ($featureValueIds as $featureValueId) {
             $query->whereHas('featureValues', function ($query) use ($featureValueId) {

@@ -84,6 +84,10 @@ abstract class DataTableResource
 
     public function getTableData(): array
     {
+
+
+        $this->getPaginator();
+
         try {
             $paginator = $this->getPaginator();
         } catch (\Exception $e) {

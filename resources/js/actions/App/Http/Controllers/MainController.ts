@@ -53,61 +53,8 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\MainController::voices
-* @see app/Http/Controllers/MainController.php:13
-* @route '/voices'
-*/
-export const voices = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
-    url: voices.url(options),
-    method: 'get',
-})
-
-voices.definition = {
-    methods: ['get','head'],
-    url: '/voices',
-}
-
-/**
-* @see \App\Http\Controllers\MainController::voices
-* @see app/Http/Controllers/MainController.php:13
-* @route '/voices'
-*/
-voices.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
-    return voices.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\MainController::voices
-* @see app/Http/Controllers/MainController.php:13
-* @route '/voices'
-*/
-voices.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
-    url: voices.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\MainController::voices
-* @see app/Http/Controllers/MainController.php:13
-* @route '/voices'
-*/
-voices.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
-    url: voices.url(options),
-    method: 'head',
-})
-
-/**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:16
+* @see app/Http/Controllers/MainController.php:13
 * @route '/about'
 */
 export const about = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -125,7 +72,7 @@ about.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:16
+* @see app/Http/Controllers/MainController.php:13
 * @route '/about'
 */
 about.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -134,7 +81,7 @@ about.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:16
+* @see app/Http/Controllers/MainController.php:13
 * @route '/about'
 */
 about.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -147,7 +94,7 @@ about.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:16
+* @see app/Http/Controllers/MainController.php:13
 * @route '/about'
 */
 about.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -160,7 +107,7 @@ about.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:19
+* @see app/Http/Controllers/MainController.php:16
 * @route '/contacts'
 */
 export const contacts = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -178,7 +125,7 @@ contacts.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:19
+* @see app/Http/Controllers/MainController.php:16
 * @route '/contacts'
 */
 contacts.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -187,7 +134,7 @@ contacts.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => 
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:19
+* @see app/Http/Controllers/MainController.php:16
 * @route '/contacts'
 */
 contacts.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -200,7 +147,7 @@ contacts.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:19
+* @see app/Http/Controllers/MainController.php:16
 * @route '/contacts'
 */
 contacts.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -211,6 +158,6 @@ contacts.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     method: 'head',
 })
 
-const MainController = { index, voices, about, contacts }
+const MainController = { index, about, contacts }
 
 export default MainController

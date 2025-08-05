@@ -10,9 +10,6 @@ class MainController extends Controller
         return Inertia::render('Welcome');
     }
 
-    public function voices(){
-        return Inertia::render('Voices');
-    }
     public function about(){
         return Inertia::render('About');
     }

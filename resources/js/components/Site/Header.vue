@@ -1,20 +1,14 @@
 <script setup lang="ts">
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { Link, usePage } from '@inertiajs/vue3';
-import type { NavItem, SharedData } from '@/types';
+import type { NavItem } from '@/types';
 import LangSwitcher from '@/components/Site/LangSwitcher.vue';
-const { isMobile } = useSidebar();
+import { useActive } from '@/composables/useActive';
+
 const items: NavItem[] = usePage().props.menu as NavItem[];
+const { isMobile } = useSidebar();
+const { isActive } = useActive();
 
-const page = usePage<SharedData>();
-const base_url = import.meta.env.VITE_APP_URL || 'https://voice.test';
-const locale = page.props.locale;
-const page_url = page.url === '/' ? '/' + locale : new URL(base_url+page.url).pathname;
-
-const isActive = (href: string): boolean => {
-    console.log(new URL(href).pathname, page_url);
-    return new URL(href).pathname === page_url;
-};
 </script>
 <template>
     <header

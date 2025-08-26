@@ -31,9 +31,7 @@ const seek = (e: PointerEvent) => {
 
     const duration = player.state.duration;
     const seconds = (percent / 100) * duration;
-
-    console.log(seconds,percent,duration);
-
+    
     if (player.state.current?.id === props.voice?.id) {
         player.seek(seconds);
     }

@@ -4,6 +4,7 @@ import { Link, usePage } from '@inertiajs/vue3';
 import type { NavItem } from '@/types';
 import LangSwitcher from '@/components/Site/LangSwitcher.vue';
 import { useActive } from '@/composables/useActive';
+import Logo from '@/components/Site/Logo.vue';
 
 const items: NavItem[] = usePage().props.menu as NavItem[];
 const { isMobile } = useSidebar();
@@ -16,10 +17,18 @@ const { isActive } = useActive();
     >
         <div class="flex items-center gap-2">
             <SidebarTrigger class="-ml-1" v-if="isMobile" />
-            <div v-else>Voice Bank</div>
+            <div v-else>
+                <Link href="/">
+                    <Logo/>
+                </Link>
+            </div>
         </div>
         <div class="flex flex-1 justify-center md:justify-end">
-            <div v-if="isMobile">Voice Bank</div>
+            <div v-if="isMobile">
+                <Link href="/">
+                    <Logo width="120px"/>
+                </Link>
+            </div>
             <div v-else class="flex items-center gap-3">
                 <Link
                     :key="index"

@@ -50,6 +50,9 @@
             //return $item->toArray();
             $res['id']=$item->id;
             $res['title']=$item->title;
+            $res['user']=$item->user;
+            $res['user_initials']=$item->user->initials;
+            $res['sample']=$item->featuredSample();
             $res['features']=$item->featureValues?->groupBy('feature_id')->map(function($item,$key){
                 return [
                     'id'=>$key,

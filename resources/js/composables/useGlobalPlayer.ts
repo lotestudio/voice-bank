@@ -158,6 +158,39 @@ const progress = computed(() => {
     return state.currentTime / state.duration;
 });
 
+const progress_percent = computed(()=>(id:string|number|undefined) => {
+    if (!state.duration) return 0;
+
+    if (state.current?.id === id || id === undefined) {
+        return (state.currentTime / state.duration) * 100;
+    }
+
+    return 0;
+});
+
+const progress_formatted = computed(()=>(id:string|number|undefined) => {
+    if (state.current?.id === id || id === undefined) {
+        const minutes = Math.floor(state.currentTime / 60);
+        const seconds = Math.floor(state.currentTime % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+    return '00:00';
+});
+
+const seek_click = (e: PointerEvent,id:string|number|undefined) => {
+
+    if (state.current?.id === id) {
+        const target = e.currentTarget as HTMLElement;
+        const rect = target.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const percent = (offsetX / rect.width) * 100;
+        const seconds = (percent / 100) * state.duration;
+        seek(seconds);
+    }
+};
+
+
+
 function useGlobalAudioPlayer() {
     ensureAudio();
 
@@ -169,10 +202,13 @@ function useGlobalAudioPlayer() {
     return {
         state,
         progress,
+        progress_percent,
+        progress_formatted,
         play,
         pause,
         stop,
         seek,
+        seek_click,
         setVolume,
         toggleMute,
     };

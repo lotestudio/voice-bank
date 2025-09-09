@@ -53,9 +53,8 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\Admin\DashboardController::dashboard
-* @see app/Http/Controllers/Admin/DashboardController.php:10
-* @route '/dashboard'
+* @see routes/web.php:25
+* @route '/admin/dashboard'
 */
 export const dashboard = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -67,22 +66,20 @@ export const dashboard = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 
 dashboard.definition = {
     methods: ['get','head'],
-    url: '/dashboard',
+    url: '/admin/dashboard',
 }
 
 /**
-* @see \App\Http\Controllers\Admin\DashboardController::dashboard
-* @see app/Http/Controllers/Admin/DashboardController.php:10
-* @route '/dashboard'
+* @see routes/web.php:25
+* @route '/admin/dashboard'
 */
 dashboard.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return dashboard.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\Admin\DashboardController::dashboard
-* @see app/Http/Controllers/Admin/DashboardController.php:10
-* @route '/dashboard'
+* @see routes/web.php:25
+* @route '/admin/dashboard'
 */
 dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -93,9 +90,8 @@ dashboard.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\Admin\DashboardController::dashboard
-* @see app/Http/Controllers/Admin/DashboardController.php:10
-* @route '/dashboard'
+* @see routes/web.php:25
+* @route '/admin/dashboard'
 */
 dashboard.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

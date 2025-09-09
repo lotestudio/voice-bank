@@ -53,6 +53,8 @@
             $res['user']=$item->user;
             $res['user_initials']=$item->user->initials;
             $res['sample']=$item->featuredSample();
+            $res['favorites_count']=$item->favorites_count;
+            $res['orders_count']=$item->orders_count;
             $res['features']=$item->featureValues?->groupBy('feature_id')->map(function($item,$key){
                 return [
                     'id'=>$key,

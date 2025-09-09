@@ -6,18 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Translatable\HasTranslations;
 
 class Order extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
-    /**
-     * The attributes that are translatable.
-     *
-     * @var array<int, string>
-     */
-    public $translatable = ['title', 'description', 'notes', 'artist_notes'];
 
     /**
      * The attributes that are mass assignable.

@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { Head, usePage } from '@inertiajs/vue3';
 import SiteLayout from '@/layouts/SiteLayout.vue';
-import { useLocale } from '@/composables/useLocale';
 import VoiceGrid from '@/components/Site/VoiceGrid.vue';
 
 const page = usePage();
-const locale = page.props.locale;
-const { T } = useLocale()
 </script>
 
 <template>

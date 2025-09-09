@@ -11,14 +11,11 @@ import { dashboard } from '@/routes';
 
 const items: NavItem[] = [
     {
-        title: 'Demos',
-        href: '/admin/demo',
-        icon: Folder,
-    },{
         title: 'Voices',
         href: '/admin/voice',
         icon: Folder,
-    },{
+    },
+    {
         title: 'Posts',
         href: '/admin/post',
         icon: BookOpen,

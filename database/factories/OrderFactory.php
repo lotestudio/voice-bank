@@ -44,14 +44,8 @@ class OrderFactory extends Factory
             'user_id' => User::factory()->client(),
             'voice_id' => Voice::factory(),
             'order_number' => Order::generateOrderNumber(),
-            'title' => [
-                'en' => $englishTitle,
-                'bg' => 'БГ: ' . $englishTitle // Placeholder for Bulgarian translation
-            ],
-            'description' => [
-                'en' => $englishDescription,
-                'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
-            ],
+            'title' =>  $englishTitle,
+            'description' => $englishDescription,
             'amount' => $amount,
             'currency' => $currencies[array_rand($currencies)],
             'status' => $status,
@@ -59,14 +53,8 @@ class OrderFactory extends Factory
             'word_count' => fake()->numberBetween(100, 5000),
             'script_url' => fake()->boolean(80) ? 'https://example.com/scripts/' . fake()->uuid() . '.pdf' : null,
             'result_url' => $status === 'completed' ? 'https://example.com/results/' . fake()->uuid() . '.mp3' : null,
-            'notes' => $englishNotes ? [
-                'en' => $englishNotes,
-                'bg' => 'БГ: ' . $englishNotes // Placeholder for Bulgarian translation
-            ] : null,
-            'artist_notes' => $artistNotes ? [
-                'en' => $artistNotes,
-                'bg' => 'БГ: ' . $artistNotes // Placeholder for Bulgarian translation
-            ] : null,
+            'notes' => $englishNotes ?? null,
+            'artist_notes' => $artistNotes ?? null,
             'accepted_at' => $acceptedAt,
             'completed_at' => $completedAt,
         ];

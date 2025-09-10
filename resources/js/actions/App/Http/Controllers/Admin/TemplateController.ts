@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\TemplateController::__invoke
 * @see app/Http/Controllers/Admin/TemplateController.php:10
 * @route '/template'
 */
-const TemplateController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const TemplateController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: TemplateController.url(options),
     method: 'get',
 })
 
 TemplateController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/template',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\Admin\TemplateController::__invoke
 * @see app/Http/Controllers/Admin/TemplateController.php:10
 * @route '/template'
 */
-TemplateController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+TemplateController.url = (options?: RouteQueryOptions) => {
     return TemplateController.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ TemplateController.url = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 * @see app/Http/Controllers/Admin/TemplateController.php:10
 * @route '/template'
 */
-TemplateController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+TemplateController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: TemplateController.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ TemplateController.get = (options?: { query?: QueryParams, mergeQuery?: QueryPar
 * @see app/Http/Controllers/Admin/TemplateController.php:10
 * @route '/template'
 */
-TemplateController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+TemplateController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: TemplateController.url(options),
     method: 'head',
 })

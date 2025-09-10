@@ -1,8 +1,8 @@
 <script setup>
-import {inject, onMounted, ref} from "vue";
+import {inject} from "vue";
 import {useColumns} from "@/components/DataTable2/composables/useColumns";
 
-const props = defineProps({
+defineProps({
     column: [Number,String],
 })
 const state=inject('state');

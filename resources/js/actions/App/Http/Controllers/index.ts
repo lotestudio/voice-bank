@@ -2,20 +2,18 @@ import UI from './UI'
 import MainController from './MainController'
 import VoicesController from './VoicesController'
 import SampleDownloaderController from './SampleDownloaderController'
-import Lap from './Lap'
 import Admin from './Admin'
 import Settings from './Settings'
 import Auth from './Auth'
 
 const Controllers = {
-    UI,
-    MainController,
-    VoicesController,
-    SampleDownloaderController,
-    Lap,
-    Admin,
-    Settings,
-    Auth,
+    UI: Object.assign(UI, UI),
+    MainController: Object.assign(MainController, MainController),
+    VoicesController: Object.assign(VoicesController, VoicesController),
+    SampleDownloaderController: Object.assign(SampleDownloaderController, SampleDownloaderController),
+    Admin: Object.assign(Admin, Admin),
+    Settings: Object.assign(Settings, Settings),
+    Auth: Object.assign(Auth, Auth),
 }
 
 export default Controllers

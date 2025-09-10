@@ -4,6 +4,8 @@ import path from 'path';
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from 'vite';
 import { run } from "vite-plugin-run";
+import vueDevTools from 'vite-plugin-vue-devtools'
+
 
 
 export default defineConfig({
@@ -28,6 +30,10 @@ export default defineConfig({
                 pattern: ["routes/**/*.php", "app/**/Http/**/*.php"],
             },
         ]),
+        vueDevTools({
+            componentInspector: true,
+            launchEditor: 'phpstorm',
+        })
     ],
     resolve: {
         alias: {

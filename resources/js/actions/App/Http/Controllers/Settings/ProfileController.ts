@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
 * @see app/Http/Controllers/Settings/ProfileController.php:19
 * @route '/admin/settings/profile'
 */
-export const edit = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const edit = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(options),
     method: 'get',
 })
 
 edit.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/admin/settings/profile',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
 * @see app/Http/Controllers/Settings/ProfileController.php:19
 * @route '/admin/settings/profile'
 */
-edit.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+edit.url = (options?: RouteQueryOptions) => {
     return edit.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ edit.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see app/Http/Controllers/Settings/ProfileController.php:19
 * @route '/admin/settings/profile'
 */
-edit.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ edit.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see app/Http/Controllers/Settings/ProfileController.php:19
 * @route '/admin/settings/profile'
 */
-edit.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(options),
     method: 'head',
 })
@@ -57,25 +48,22 @@ edit.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see app/Http/Controllers/Settings/ProfileController.php:30
 * @route '/admin/settings/profile'
 */
-export const update = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'patch',
-} => ({
+export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(options),
     method: 'patch',
 })
 
 update.definition = {
-    methods: ['patch'],
+    methods: ["patch"],
     url: '/admin/settings/profile',
-}
+} satisfies RouteDefinition<["patch"]>
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::update
 * @see app/Http/Controllers/Settings/ProfileController.php:30
 * @route '/admin/settings/profile'
 */
-update.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+update.url = (options?: RouteQueryOptions) => {
     return update.definition.url + queryParams(options)
 }
 
@@ -84,10 +72,7 @@ update.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see app/Http/Controllers/Settings/ProfileController.php:30
 * @route '/admin/settings/profile'
 */
-update.patch = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'patch',
-} => ({
+update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(options),
     method: 'patch',
 })
@@ -97,25 +82,22 @@ update.patch = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see app/Http/Controllers/Settings/ProfileController.php:46
 * @route '/admin/settings/profile'
 */
-export const destroy = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'delete',
-} => ({
+export const destroy = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(options),
     method: 'delete',
 })
 
 destroy.definition = {
-    methods: ['delete'],
+    methods: ["delete"],
     url: '/admin/settings/profile',
-}
+} satisfies RouteDefinition<["delete"]>
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::destroy
 * @see app/Http/Controllers/Settings/ProfileController.php:46
 * @route '/admin/settings/profile'
 */
-destroy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+destroy.url = (options?: RouteQueryOptions) => {
     return destroy.definition.url + queryParams(options)
 }
 
@@ -124,10 +106,7 @@ destroy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see app/Http/Controllers/Settings/ProfileController.php:46
 * @route '/admin/settings/profile'
 */
-destroy.delete = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'delete',
-} => ({
+destroy.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(options),
     method: 'delete',
 })

@@ -15,9 +15,9 @@ import {
     SelectViewport,
 } from 'reka-ui';
 
-import {ChevronsDownUp} from 'lucide-vue-next';
+import { ChevronsUpDown } from 'lucide-vue-next';
 
-import { onMounted, ref, computed, nextTick, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
 const props = defineProps({
     options: {
@@ -43,20 +43,20 @@ const props = defineProps({
     },
     notFoundValueLabel: {
         type: String,
-        default: 'N/A'
+        default: 'N/A',
     },
     notFoundValueClass: {
         type: String,
         default: 'text-danger-500',
     },
-    doNotShowChevrons:{
+    doNotShowChevrons: {
         type: Boolean,
-        default: false
+        default: false,
     },
     listBoxButtonClass: {
         type: String,
-        default: 'defaultListBoxButtonClass'
-    }
+        default: 'defaultListBoxButtonClass',
+    },
 });
 
 // Reactive reference for the selected value
@@ -66,12 +66,11 @@ const emit = defineEmits(['change']);
 const update = (event) => {
     nextTick(() => {
         emit('change', event ?? '');
-    })
-}
+    });
+};
 
 // Preprocess the option array: remove empty value
 const filteredOptions = computed(() => {
-
     return props.options.map((option) => {
         if (option.value === '') {
             option.value = null;
@@ -84,50 +83,40 @@ const isMounted = ref(false);
 
 // Set the initial value for selectedRef on mount
 onMounted(() => {
-    selectedRef.value = filteredOptions.value.find(
-        (option) => option.value === props.selected
-    )?.value ?? null;
+    selectedRef.value = filteredOptions.value.find((option) => option.value === props.selected)?.value ?? null;
 
     isMounted.value = true;
 });
 
 const selectedLabel = computed(() => {
-    let sl= filteredOptions.value.find(option => option.value === selectedRef.value)?.label ?? props.notFoundValueLabel
+    let sl = filteredOptions.value.find((option) => option.value === selectedRef.value)?.label ?? props.notFoundValueLabel;
     return sl;
-})
-
-//Chek if props.selected is changed after mounting. TODO::NOT TESTED
-watch(() => props.selected, (newVal, oldVal) => {
-    if (isMounted.value) {
-        selectedRef.value = props.selected==='' ? null : props.selected;
-    }
 });
 
+//Chek if props.selected is changed after mounting. TODO::NOT TESTED
+watch(
+    () => props.selected,
+    (newVal, oldVal) => {
+        if (isMounted.value) {
+            selectedRef.value = props.selected === '' ? null : props.selected;
+        }
+    },
+);
 </script>
 <template>
-    <SelectRoot
-        v-model="selectedRef"
-        :name="name"
-        @update:modelValue="update"
-    >
-
-        <SelectTrigger
-            :class="[props.width_class,props.listBoxButtonClass]"
-        >
+    <SelectRoot v-model="selectedRef" :name="name" @update:modelValue="update">
+        <SelectTrigger :class="[props.width_class, props.listBoxButtonClass]">
             <SelectValue class="block truncate">
                 {{ selectedLabel }}
             </SelectValue>
             <SelectIcon v-if="!props.doNotShowChevrons" as-child>
-                <ChevronsDownUp size="16"/>
+                <ChevronsUpDown size="16" />
             </SelectIcon>
         </SelectTrigger>
 
         <SelectPortal>
-            <SelectContent
-                class="bg-background text-sm p-2 border rounded-lg shadow-sm min-w-[160px] z-[100]"
-            >
-                <SelectScrollUpButton
-                    class="flex items-center justify-center rounded-b-lg h-[25px] bg-background cursor-default">
+            <SelectContent class="z-[100] min-w-[160px] rounded-lg border bg-background p-2 text-sm shadow-sm">
+                <SelectScrollUpButton class="flex h-[25px] cursor-default items-center justify-center rounded-b-lg bg-background">
                     <span class="i-angleUp"></span>
                 </SelectScrollUpButton>
                 <SelectViewport class="p-1">
@@ -135,35 +124,28 @@ watch(() => props.selected, (newVal, oldVal) => {
                         v-for="(option, index) in filteredOptions"
                         :key="option.value"
                         :value="option.value"
-                        class="cursor-pointer outline-none block hover:bg-accent p-2 rounded"
+                        class="block cursor-pointer rounded p-2 outline-none hover:bg-accent"
                         :title="option.label"
                     >
-                        <SelectItemIndicator
-                            class="absolute left-0 w-[25px] inline-flex items-center justify-center">
+                        <SelectItemIndicator class="absolute left-0 inline-flex w-[25px] items-center justify-center">
                             <span class="i-check"></span>
                         </SelectItemIndicator>
                         <SelectItemText>{{ option.label }}</SelectItemText>
                     </SelectItem>
                 </SelectViewport>
-                <SelectScrollDownButton
-                    class="flex items-center justify-center rounded-b-lg h-[25px] bg-background cursor-default">
+                <SelectScrollDownButton class="flex h-[25px] cursor-default items-center justify-center rounded-b-lg bg-background">
                     <span class="i-angleDown"></span>
                 </SelectScrollDownButton>
-                <SelectArrow/>
+                <SelectArrow />
             </SelectContent>
         </SelectPortal>
     </SelectRoot>
 </template>
 
 <style scoped>
-
 @reference "@@/app.css";
 
-.defaultListBoxButtonClass{
-    @apply relative py-2 px-3 flex items-center justify-between
-    bg-background rounded-lg shadow-md
-    cursor-default
-    focus:outline-none
-    border text-sm
+.defaultListBoxButtonClass {
+    @apply relative flex cursor-default items-center justify-between rounded-md bg-background px-3 py-2 text-sm outline outline-offset-[-1px] outline-border focus:outline-none;
 }
 </style>

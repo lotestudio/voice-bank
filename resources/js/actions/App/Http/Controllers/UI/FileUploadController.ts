@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\UI\FileUploadController::process
 * @see app/Http/Controllers/UI/FileUploadController.php:16
 * @route '/api/uploads/process'
 */
-export const process = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const process = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: process.url(options),
     method: 'post',
 })
 
 process.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/api/uploads/process',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\UI\FileUploadController::process
 * @see app/Http/Controllers/UI/FileUploadController.php:16
 * @route '/api/uploads/process'
 */
-process.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+process.url = (options?: RouteQueryOptions) => {
     return process.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ process.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see app/Http/Controllers/UI/FileUploadController.php:16
 * @route '/api/uploads/process'
 */
-process.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+process.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: process.url(options),
     method: 'post',
 })
@@ -44,25 +38,22 @@ process.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see app/Http/Controllers/UI/FileUploadController.php:60
 * @route '/api/uploads/remove'
 */
-export const remove = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const remove = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: remove.url(options),
     method: 'post',
 })
 
 remove.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/api/uploads/remove',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\UI\FileUploadController::remove
 * @see app/Http/Controllers/UI/FileUploadController.php:60
 * @route '/api/uploads/remove'
 */
-remove.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+remove.url = (options?: RouteQueryOptions) => {
     return remove.definition.url + queryParams(options)
 }
 
@@ -71,10 +62,7 @@ remove.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see app/Http/Controllers/UI/FileUploadController.php:60
 * @route '/api/uploads/remove'
 */
-remove.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+remove.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: remove.url(options),
     method: 'post',
 })

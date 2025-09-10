@@ -16,8 +16,35 @@ const items: NavItem[] = [
         icon: Folder,
     },
     {
-        title: 'Posts',
-        href: '/admin/post',
+        title: 'Features',
+        href: '/admin/feature',
+        icon: Folder,
+    },
+    {
+        title: 'Feature Values',
+        href: '/admin/feature-value',
+        icon: Folder,
+    },
+    {
+        title: 'Samples',
+        href: '/admin/sample',
+        icon: Folder,
+    },{
+        title: 'Reviews',
+        href: '/admin/review',
+        icon: Folder,
+    },{
+        title: 'Orders',
+        href: '/admin/order',
+        icon: Folder,
+    },{
+        title: 'Payments',
+        href: '/admin/payment',
+        icon: Folder,
+    },
+    {
+        title: 'Users',
+        href: '/admin/user',
         icon: BookOpen,
     }
 ];

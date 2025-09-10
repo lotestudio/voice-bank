@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import DtHeader from "./DataTable2/dtHeader.vue"
 import DtRow from "./DataTable2/dtRow.vue"
-import {computed, onMounted, ref, watch, provide, onBeforeUnmount, shallowRef} from "vue"
+import {computed, onMounted, ref, watch, provide, shallowRef} from "vue"
 import Pager from "./DataTable2/Pager.vue"
 import {useDebounceFn} from "@vueuse/core"
 import {useFilters} from "./DataTable2/composables/useFilters";
@@ -164,14 +164,17 @@ const getRowActions=(id)=>{
 }
 
 
+defineExpose({'refresh':ajax});
+
 </script>
 
 <template>
     <div>
         <div
+            v-if="$slots.filters"
             :class="filtersContainerClasses"
             class="block
-                md:flex md:items-center space-y-2 md:space-y-0 md:space-x-2 py-2 border-t border-b border-light-500 bg-light-500 px-4 my-4">
+§                md:flex md:items-center space-y-2 md:space-y-0 md:space-x-2 p-2 bg-muted/50 rounded-xl my-4 mx-1">
             <slot name="filters"
                   :columns="state.columns"
                   :urlParams="state.urlParams"

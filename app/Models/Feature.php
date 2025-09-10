@@ -69,8 +69,30 @@ class Feature extends Model
     /**
      * Set the feature's name as a slug.
      */
-    public function setNameAttribute($value)
+    public function setNameAttribute($value): void
     {
         $this->attributes['name'] = Str::slug($value);
     }
+
+    public static function forSelect($prepend_label='Choose feature')
+    {
+
+        $res = Feature::query()
+            ->orderBy('name')
+            ->pluck('display_name','id')
+            ->map(function($name,$key){
+                return [
+                    'label' => $name,
+                    'value' => $key
+                ];
+            });
+
+
+        if($prepend_label){
+            $res=$res->prepend(['label'=>$prepend_label,'value'=>null]);
+        }
+
+        return $res;
+    }
+
 }

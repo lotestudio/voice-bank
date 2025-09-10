@@ -1,7 +1,7 @@
 import FileUploadController from './FileUploadController'
 
 const UI = {
-    FileUploadController,
+    FileUploadController: Object.assign(FileUploadController, FileUploadController),
 }
 
 export default UI

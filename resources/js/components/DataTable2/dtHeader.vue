@@ -41,9 +41,9 @@
                         {{ column.tooltip }}
                     </span>
                     </span>
-                    <span class="i-sort" v-if="state.urlParams.s!==column.sort"></span>
-                    <span class="i-angleUp" v-if="state.urlParams.s===column.sort && state.urlParams.o==='asc'"></span>
-                    <span class="i-angleDown" v-if="state.urlParams.s===column.sort && state.urlParams.o==='desc'"></span>
+                    <ChevronsUpDown size="16" v-if="state.urlParams.s!==column.sort" class="inline-block" />
+                    <ChevronDown size="16" v-if="state.urlParams.s===column.sort && state.urlParams.o==='desc'" class="inline-block" />
+                    <ChevronUp size="16" v-if="state.urlParams.s===column.sort && state.urlParams.o==='asc'" class="inline-block" />
                 </div>
             </th>
         </template>
@@ -55,6 +55,8 @@
 import {useSort} from "../DataTable2/composables/useSort";
 import LoteToggle from "@/components/LoteToggle.vue";
 import {inject} from "vue";
+
+import {ChevronsUpDown,ChevronDown, ChevronUp} from 'lucide-vue-next';
 
 const state = inject('state');
 

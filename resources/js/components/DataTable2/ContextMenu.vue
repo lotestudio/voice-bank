@@ -1,19 +1,10 @@
-<script setup >
+<script setup lang="ts">
 
 import {
-    ContextMenuCheckboxItem,
     ContextMenuContent,
     ContextMenuItem,
-    ContextMenuItemIndicator,
-    ContextMenuLabel,
     ContextMenuPortal,
-    ContextMenuRadioGroup,
-    ContextMenuRadioItem,
     ContextMenuRoot,
-    ContextMenuSeparator,
-    ContextMenuSub,
-    ContextMenuSubContent,
-    ContextMenuSubTrigger,
     ContextMenuTrigger,
 } from 'reka-ui'
 
@@ -40,7 +31,7 @@ const copyCell=()=>{
     //toaster.success('Копирано!');
 }
 const copyRow=()=>{
-    let visible_columns_labels = state.value.columns.filter((column, index) => state.value.columnsVisibility[index]).map((column) => {
+    const visible_columns_labels = state.value.columns.filter((column, index) => state.value.columnsVisibility[index]).map((column) => {
         return column.label;
     });
 
@@ -105,7 +96,7 @@ const filteredActions = computed(() => {
 
     const rowTransformedActions = [];
     rowActions.value.forEach(action => {
-        let transformedAction={
+        const transformedAction={
             label: action.label,
             callback: 'openLink',
             href:action.href,

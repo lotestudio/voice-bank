@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\SampleDownloaderController::__invoke
 * @see app/Http/Controllers/SampleDownloaderController.php:12
 * @route '/sample/download/{id}'
 */
-const SampleDownloaderController = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const SampleDownloaderController = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: SampleDownloaderController.url(args, options),
     method: 'get',
 })
 
 SampleDownloaderController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/sample/download/{id}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\SampleDownloaderController::__invoke
 * @see app/Http/Controllers/SampleDownloaderController.php:12
 * @route '/sample/download/{id}'
 */
-SampleDownloaderController.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+SampleDownloaderController.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -32,6 +29,8 @@ SampleDownloaderController.url = (args: { id: string | number } | [id: string | 
             id: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         id: args.id,
@@ -47,10 +46,7 @@ SampleDownloaderController.url = (args: { id: string | number } | [id: string | 
 * @see app/Http/Controllers/SampleDownloaderController.php:12
 * @route '/sample/download/{id}'
 */
-SampleDownloaderController.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+SampleDownloaderController.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: SampleDownloaderController.url(args, options),
     method: 'get',
 })
@@ -60,10 +56,7 @@ SampleDownloaderController.get = (args: { id: string | number } | [id: string | 
 * @see app/Http/Controllers/SampleDownloaderController.php:12
 * @route '/sample/download/{id}'
 */
-SampleDownloaderController.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+SampleDownloaderController.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: SampleDownloaderController.url(args, options),
     method: 'head',
 })

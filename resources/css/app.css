@@ -5,7 +5,24 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+@plugin "../../tailwindcss_plugins/icons/icons.js";
+
 @custom-variant dark (&:is(.dark *));
+
+
+@theme {
+    --color-gold-50: oklch(0.957 0.041 88.78);
+    --color-gold-100: oklch(0.922 0.084 91.05);
+    --color-gold-200: oklch(0.844 0.13 93.64);
+    --color-gold-300: oklch(0.761 0.117 93.84);
+    --color-gold-400: oklch(0.673 0.103 94.08);
+    --color-gold-500: oklch(0.586 0.09 93.62);
+    --color-gold-600: oklch(0.492 0.075 93.93);
+    --color-gold-700: oklch(0.404 0.062 93.51);
+    --color-gold-800: oklch(0.319 0.049 93.29);
+    --color-gold-900: oklch(0.224 0.035 92.96);
+    --color-gold-950: oklch(0.178 0.027 94.25);
+}
 
 @theme inline {
     /*--font-sans: neue-haas-unica,Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';*/

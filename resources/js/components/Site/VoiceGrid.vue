@@ -15,7 +15,6 @@
         <Voice v-for="voice in data?.data" :key="voice.id" :voice="voice" />
     </div>
 
-
 </template>
 
 <style scoped>

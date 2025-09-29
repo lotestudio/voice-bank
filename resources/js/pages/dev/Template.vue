@@ -32,6 +32,10 @@ const { T } = useLocale()
                 <Button variant="default" disabled>Click me</Button>
             </div>
             <hr>
+                <div class="flex gap-4 py-8">
+                    <span class="i-circleMenu text-xl"></span>
+                </div>
+            <hr>
 
             <main class="max-w-[65ch] mt-8 space-y-4">
                 <h2 class="mb-1 font-bold text-3xl tracking-tighter uppercase">What is Lorem Ipsum?</h2>

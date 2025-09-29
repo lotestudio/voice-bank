@@ -70,7 +70,7 @@ const progress = computed(() => {
             </div>
         </div>
 
-        <div v-else class="p-2 text-destructive text-xs border rounded">{{T('no available demo dile')}}</div>
+        <div v-else class="p-2 text-destructive text-xs border rounded">{{T('no available demo file')}}</div>
 
 
 

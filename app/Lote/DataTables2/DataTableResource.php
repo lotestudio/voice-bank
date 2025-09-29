@@ -109,7 +109,7 @@ abstract class DataTableResource
     /**
      * Overwrite this
      */
-    protected function transform($item): array
+    public function transform($item): array
     {
         return $item->toArray();
     }

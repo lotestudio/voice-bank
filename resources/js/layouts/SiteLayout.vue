@@ -2,10 +2,10 @@
 <SiteShell>
     <MobileSidebar v-if="!simple"/>
     <Header v-if="!simple"/>
-    <main class="mx-auto flex h-full w-full max-w-7xl flex-1 flex-col gap-4 rounded-xl">
+    <main class="mx-auto flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <slot />
     </main>
-    <footer class="sticky bg-transparent p-4" style="top:100vh;top:100dvh;">
+    <footer class="sticky bg-gold-400 text-gold-50 mt-10 p-4" style="top:100vh;top:100dvh;">
         <p class="text-center text-xs">Voice Bank {{ new Date().getFullYear() }}</p>
     </footer>
 </SiteShell>

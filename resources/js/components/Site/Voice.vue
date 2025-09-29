@@ -35,7 +35,7 @@ const progress = computed(() => {
 </script>
 
 <template>
-    <div class="space-y-2 rounded border p-2">
+    <div class="space-y-2 rounded border dark:border-primary/10 dark:bg-primary/5 p-2">
         <div class="flex gap-2">
             <Avatar class="flex h-10 w-10 items-center justify-center bg-sidebar-accent">
                 <!--            <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />-->

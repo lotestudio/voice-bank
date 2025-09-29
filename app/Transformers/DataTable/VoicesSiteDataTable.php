@@ -44,10 +44,13 @@
         }
 
 
-        public function transform($item): array
+        protected function transform($item): array
         {
+            return self::itemTransform($item);
+        }
 
-            //return $item->toArray();
+        public static function itemTransform($item):array
+        {
             $res['id']=$item->id;
             $res['title']=$item->title;
             $res['user']=$item->user;
@@ -66,6 +69,7 @@
 
 
             return $res;
+
         }
 
         //info or caption comes with data to table

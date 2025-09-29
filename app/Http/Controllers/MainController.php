@@ -13,10 +13,8 @@ class MainController extends Controller
      */
     public function index(){
 
-
-        $voiceResource =  VoicesSiteDataTable::make();
         $voices['data'] = Voice::query()->withFeatureValues([])->with(['featureValues.feature','user','samples'])
-            ->take(6)->get()->map(fn($item)=>$voiceResource->transform($item));
+            ->take(6)->get()->map(fn($item)=>VoicesSiteDataTable::itemTransform($item));
 
         return Inertia::render('Home',[
             'voices' => $voices

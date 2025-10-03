@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../wayfinder'
 /**
 * @see \App\Http\Controllers\MainController::home
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ home.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::home
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ home.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MainController::home
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::home
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/web.php:55
+* @see routes/web.php:56
 * @route '/admin/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -58,7 +58,7 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:55
+* @see routes/web.php:56
 * @route '/admin/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -66,7 +66,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:55
+* @see routes/web.php:56
 * @route '/admin/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -75,7 +75,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:55
+* @see routes/web.php:56
 * @route '/admin/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

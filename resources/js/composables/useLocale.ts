@@ -9,7 +9,9 @@ export const locales: LocaleStrings = {
     'bg': {
         'price':'цена',
         'order':'запази',
-        'no available demo dile':'няма наличен демо файл'
+        'no available demo dile':'няма наличен демо файл',
+        'name':'Име',
+        'message':'Съобщение'
     }
 };
 

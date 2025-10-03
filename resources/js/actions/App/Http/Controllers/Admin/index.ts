@@ -6,6 +6,7 @@ import SampleController from './SampleController'
 import ReviewController from './ReviewController'
 import OrderController from './OrderController'
 import PaymentController from './PaymentController'
+import PostController from './PostController'
 import TemplateController from './TemplateController'
 
 const Admin = {
@@ -17,6 +18,7 @@ const Admin = {
     ReviewController: Object.assign(ReviewController, ReviewController),
     OrderController: Object.assign(OrderController, OrderController),
     PaymentController: Object.assign(PaymentController, PaymentController),
+    PostController: Object.assign(PostController, PostController),
     TemplateController: Object.assign(TemplateController, TemplateController),
 }
 

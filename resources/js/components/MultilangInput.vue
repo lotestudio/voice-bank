@@ -4,7 +4,13 @@ import { Input } from '@/components/ui/input';
 import InputError from '@/components/InputError.vue';
 import { TranslatableField } from '@/types/model';
 import { Textarea } from '@/components/ui/textarea';
-import RichText from '@/components/RichText.vue';
+import { defineAsyncComponent } from 'vue';
+
+
+const RichText = defineAsyncComponent(() =>
+    import('@/components/RichText.vue')
+)
+
 // import InputError from '@/components/InputError.vue';
 const props = defineProps({
     defaultLang: {
@@ -39,9 +45,15 @@ const field = defineModel<TranslatableField>({
 
 const languages = ['bg', 'en'];
 
-const getErrorKey = (lang: string): string => {
+const getError = (lang: string): string|undefined => {
     const fieldName = props.fieldName || props.label.toLowerCase();
-    return `${fieldName}.${lang}`;
+
+    if(props.errors[fieldName]){
+        return props.errors[fieldName];
+    }
+
+    return props.errors[`${fieldName}.${lang}`] ?? undefined;
+
 };
 
 const InputComponent = {
@@ -66,7 +78,7 @@ const InputComponent = {
                             : 'border-b-2 border-transparent text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white',
                     ]"
                 >
-                    <span class="uppercase" :class="{ 'text-destructive': errors[getErrorKey(lang)] }">{{ lang }}</span>
+                    <span class="uppercase" :class="{ 'text-destructive': getError(lang) }">{{ lang }}</span>
                 </button>
             </TabsTrigger>
             <TabsTrigger class="outline-none" :value="languages.length">
@@ -88,9 +100,9 @@ const InputComponent = {
                 :is="InputComponent"
                 class="mt-1 block w-full"
                 v-model="field[lang]"
-                :placeholder="label"
+                :placeholder="label+' '+lang"
             />
-            <InputError class="mt-2" :message="errors[getErrorKey(lang)]" />
+            <InputError class="mt-2" :message="getError(lang)" />
         </TabsContent>
         <TabsContent :hidden="modelValue !== languages.length" force-mount key="all" value="all">
             <div class="space-y-2" v-for="lang in languages" :key="lang">
@@ -98,9 +110,9 @@ const InputComponent = {
                     :is="InputComponent"
                     class="mt-1 block w-full"
                     v-model="field[lang]"
-                    :placeholder="label"
+                    :placeholder="label+' '+lang"
                 />
-                <InputError class="mt-2" :message="errors[getErrorKey(lang)]" />
+                <InputError class="mt-2" :message="getError(lang)" />
             </div>
         </TabsContent>
     </TabsRoot>

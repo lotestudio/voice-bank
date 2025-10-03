@@ -5,7 +5,6 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import DataTable2 from '@/components/DataTable2.vue'
 import DtTd from '@/components/DataTable2/dtTd.vue'
 import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
-import Icon from '@/components/Icon.vue';
 import ResetButton from '@/components/DataTable2/Inertia/ResetButton.vue';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -56,8 +55,8 @@ const deleteVoice = (id: number) => {
           </dt-td>
           <dt-td column="1">
               <div class="flex justify-end gap-2">
-                  <Button variant="secondary" @click="router.visit(VoiceController.edit(trProps.row.id).url)">
-                      <Icon name="edit" />
+                  <Button variant="secondary" size="icon" @click="router.visit(VoiceController.edit(trProps.row.id).url)">
+                      <span class="i-edit"></span>
                   </Button>
                   <LoteAlertDialog
                       trigger-variant="destructive"
@@ -68,6 +67,9 @@ const deleteVoice = (id: number) => {
                       confirm-label="Delete"
                       @confirm="deleteVoice(trProps.row.id)"
                   >
+                      <Button variant="destructive" size="icon">
+                          <span class="i-trash"></span>
+                      </Button>
                   </LoteAlertDialog>
               </div>
           </dt-td>

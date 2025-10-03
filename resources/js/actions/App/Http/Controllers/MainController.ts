@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\MainController::index
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::index
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MainController::index
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::index
-* @see app/Http/Controllers/MainController.php:14
+* @see app/Http/Controllers/MainController.php:17
 * @route '/'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:24
+* @see app/Http/Controllers/MainController.php:41
 * @route '/about'
 */
 export const about = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ about.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:24
+* @see app/Http/Controllers/MainController.php:41
 * @route '/about'
 */
 about.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ about.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:24
+* @see app/Http/Controllers/MainController.php:41
 * @route '/about'
 */
 about.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ about.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::about
-* @see app/Http/Controllers/MainController.php:24
+* @see app/Http/Controllers/MainController.php:41
 * @route '/about'
 */
 about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:27
+* @see app/Http/Controllers/MainController.php:47
 * @route '/contacts'
 */
 export const contacts = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +104,7 @@ contacts.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:27
+* @see app/Http/Controllers/MainController.php:47
 * @route '/contacts'
 */
 contacts.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ contacts.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:27
+* @see app/Http/Controllers/MainController.php:47
 * @route '/contacts'
 */
 contacts.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -123,7 +123,7 @@ contacts.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:27
+* @see app/Http/Controllers/MainController.php:47
 * @route '/contacts'
 */
 contacts.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -131,6 +131,40 @@ contacts.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-const MainController = { index, about, contacts }
+/**
+* @see \App\Http\Controllers\MainController::send
+* @see app/Http/Controllers/MainController.php:51
+* @route '/send'
+*/
+export const send = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: send.url(options),
+    method: 'post',
+})
+
+send.definition = {
+    methods: ["post"],
+    url: '/send',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\MainController::send
+* @see app/Http/Controllers/MainController.php:51
+* @route '/send'
+*/
+send.url = (options?: RouteQueryOptions) => {
+    return send.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\MainController::send
+* @see app/Http/Controllers/MainController.php:51
+* @route '/send'
+*/
+send.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: send.url(options),
+    method: 'post',
+})
+
+const MainController = { index, about, contacts, send }
 
 export default MainController

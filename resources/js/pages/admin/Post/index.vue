@@ -9,21 +9,21 @@ import ResetButton from '@/components/DataTable2/Inertia/ResetButton.vue';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'vue-sonner'
-import SampleController from '@/actions/App/Http/Controllers/Admin/SampleController';
+import PostController from '@/actions/App/Http/Controllers/Admin/PostController';
 
 const breadcrumbItems = [
-  { title: 'Sample List', href: '/admin/sample' },
+  { title: 'Post List', href: '/admin/post' },
 ]
 
 const dataTable = ref<InstanceType<typeof DataTable2>>();
 
-const deleteSample = (id: number) => {
-    router.delete(SampleController.destroy(id).url, {
+const deletePost = (id: number) => {
+    router.delete(PostController.destroy(id).url, {
         preserveScroll: true,
         onSuccess: () => {
             if (!dataTable.value) return;
             dataTable.value.refresh();
-            toast.success('The Sample has been deleted successfully.')
+            toast.success('The Post has been deleted successfully.')
         },
     });
 };
@@ -32,9 +32,9 @@ const deleteSample = (id: number) => {
 
 <template>
   <AppLayout :breadcrumbs="breadcrumbItems">
-    <Head :title="`Sample List`" />
+    <Head :title="`Post List`" />
     <div class="p-4">
-      <data-table2 :default-url="'/admin/sample'" ref="dataTable">
+      <data-table2 :default-url="'/admin/post'" ref="dataTable">
           <template #filters="filterProps">
             <div class="flex gap-2 w-full">
               <Input
@@ -45,27 +45,27 @@ const deleteSample = (id: number) => {
               ></Input>
               <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>
             </div>
-            <Link :href="SampleController.create.url()">
-              <Button>New Sample</Button>
+            <Link :href="PostController.create.url()">
+              <Button>New Post</Button>
             </Link>
           </template>
         <template v-slot:tr="trProps">
           <dt-td column="0">
-            {{ trProps.row.title.bg }}
+            {{ trProps.row.title }}
+          </dt-td>
+            <dt-td column="1">
+            {{ trProps.row.section }}
           </dt-td>
           <dt-td column="1">
               <div class="flex justify-end gap-2">
-                  <Button variant="secondary" size="icon" @click="router.visit(SampleController.edit(trProps.row.id).url)">
-                      <span class="i-edit"></span>
+                  <Button variant="secondary" size="icon" @click="router.visit(PostController.edit(trProps.row.id).url)">
+                      <div class="i-edit"></div>
                   </Button>
                   <LoteAlertDialog
-                      trigger-variant="destructive"
-                      trigger-label="trash"
-                      is-icon
-                      dialog-title="Delete Sample"
-                      dialog-description="Are you sure you want to delete this Sample?"
+                      dialog-title="Delete Post"
+                      dialog-description="Are you sure you want to delete this Post?"
                       confirm-label="Delete"
-                      @confirm="deleteSample(trProps.row.id)"
+                      @confirm="deletePost(trProps.row.id)"
                   >
                       <Button variant="destructive" size="icon">
                           <span class="i-trash"></span>

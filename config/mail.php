@@ -112,5 +112,5 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
-
+    'admin_email' => ['fireball70@gmail.com','lote.audio.project@gmail.com']
 ];

@@ -13,6 +13,9 @@ import LatestOrders from '@/pages/Home/LatestOrders.vue';
 import Collaboration from '@/pages/Home/Collaboration.vue';
 import OrderCalculator from '@/pages/Home/OrderCalculator.vue';
 
+const page = usePage();
+const contents=page.props.contents;
+const features=page.props.features;
 
 </script>
 
@@ -32,11 +35,11 @@ import OrderCalculator from '@/pages/Home/OrderCalculator.vue';
                 />
             </div>
         </div>
-        <Hero class="z-10"></Hero>
-        <Features class="z-10"></Features>
+        <Hero class="z-10" :content="contents['home.hero']"></Hero>
+        <Features class="z-10" :features="features"></Features>
         <FeaturedVoices></FeaturedVoices>
-        <LatestOrders></LatestOrders>
-        <Collaboration></Collaboration>
-        <OrderCalculator></OrderCalculator>
+        <LatestOrders :content="contents['home.latest_orders']"></LatestOrders>
+        <Collaboration :content="contents['home.get_involved']"></Collaboration>
+        <OrderCalculator :content="contents['home.order_calculator']"></OrderCalculator>
     </SiteLayout>
 </template>

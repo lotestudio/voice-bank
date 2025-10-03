@@ -55,7 +55,6 @@ const submit = () => {
                     />
                     <InputError :message="form.errors.email" />
                 </div>
-
                 <div class="grid gap-2">
                     <div class="flex items-center justify-between">
                         <Label for="password">Password</Label>

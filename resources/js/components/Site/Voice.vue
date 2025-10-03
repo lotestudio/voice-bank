@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import Icon from '@/components/Icon.vue';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import { Progress } from '@/components/ui/progress';
 import { computed } from 'vue';
-
 import { useLocale } from '@/composables/useLocale';
 
 const props = defineProps({
@@ -45,10 +43,10 @@ const progress = computed(() => {
                 <p>{{ voice.user.name }} {{voice.user.id}}</p>
                 <p class="text-xs">{{ voice.title }}</p>
                 <p class="flex items-center gap-1 text-xs">
-                    <Icon name="star" color="orange" />
+                    <span class="i-star text-orange-400"></span>
                     {{ voice.features[10].values }} {{t('from')}} {{voice.orders_count }} {{t('orders')}}
 
-                    <Icon name="heart" color="red" />
+                    <span class="i-heart text-red-500"></span>
                     {{ voice.favorites_count }}
                 </p>
             </div>
@@ -56,8 +54,9 @@ const progress = computed(() => {
 
         <div class="flex items-center gap-2" v-if="voice.sample">
             <Button :key="voice.id" type="button" variant="ghost" size="icon" @click="onPlayPause()" class="rounded-full border px-2 py-1">
-                <Icon v-if="player.state.current?.id === voice.id && player.state.isPlaying" name="pause" />
-                <Icon v-else name="play" />
+
+                <span class="i-pause" v-if="player.state.current?.id === voice.id && player.state.isPlaying"></span>
+                <span v-else class="i-play"/>
             </Button>
             <p class="text-xs text-gray-500">{{ player.progress_formatted.value(voice.id) }}</p>
 
@@ -65,7 +64,7 @@ const progress = computed(() => {
 
             <div>
                 <Button as="a" :href="'/sample/download/'+voice.sample.id" variant="ghost" size="icon" class="rounded-full border px-2 py-1 text-foreground">
-                    <Icon name="download" />
+                    <span class="i-download"></span>
                 </Button>
             </div>
         </div>

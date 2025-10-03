@@ -12,6 +12,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/contacts', [\App\Http\Controllers\MainController::class, 'contacts']);
 });
 
+Route::post('/send',[\App\Http\Controllers\MainController::class,'send']);
 Route::get('sample/download/{id}',\App\Http\Controllers\SampleDownloaderController::class)->name('sample.download');
 
 Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
@@ -48,9 +49,9 @@ Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
         ->except('show')
         ->names('payment');
 
-//    Route::resource('post', \App\Http\Controllers\Lap\PostsController::class )
-//        ->except('show')
-//        ->names('post');
+    Route::resource('post', \App\Http\Controllers\Admin\PostController::class )
+        ->except('show')
+        ->names('post');
 
     Route::get('dashboard', function () {
         return Inertia::render('admin/Dashboard');

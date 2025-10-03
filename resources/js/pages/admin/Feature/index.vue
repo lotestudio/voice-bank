@@ -3,7 +3,6 @@ import FeatureController from '@/actions/App/Http/Controllers/Admin/FeatureContr
 import DataTable2 from '@/components/DataTable2.vue';
 import DtTd from '@/components/DataTable2/dtTd.vue';
 import ResetButton from '@/components/DataTable2/Inertia/ResetButton.vue';
-import Icon from '@/components/Icon.vue';
 import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -67,18 +66,18 @@ const deleteFeature = (id: number) => {
                     </dt-td>
                     <dt-td column="5">
                         <div class="flex justify-end gap-2">
-                            <Button variant="secondary" @click="router.visit(FeatureController.edit(trProps.row.id).url)">
-                                <Icon name="edit" />
+                            <Button variant="secondary" size="icon" @click="router.visit(FeatureController.edit(trProps.row.id).url)">
+                                <span class="is-edit"></span>
                             </Button>
                             <LoteAlertDialog
-                                trigger-variant="destructive"
-                                trigger-label="trash"
-                                is-icon
                                 dialog-title="Delete Feature"
                                 dialog-description="Are you sure you want to delete this Feature?"
                                 confirm-label="Delete"
                                 @confirm="deleteFeature(trProps.row.id)"
                             >
+                                <Button variant="destructive" size="icon">
+                                    <span class="i-trash"></span>
+                                </Button>
                             </LoteAlertDialog>
                         </div>
                     </dt-td>

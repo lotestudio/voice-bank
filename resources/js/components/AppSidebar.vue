@@ -11,6 +11,10 @@ import { dashboard } from '@/routes';
 
 const items: NavItem[] = [
     {
+        title: 'Posts',
+        href: '/admin/post',
+        icon: Folder,
+    }, {
         title: 'Voices',
         href: '/admin/voice',
         icon: Folder,

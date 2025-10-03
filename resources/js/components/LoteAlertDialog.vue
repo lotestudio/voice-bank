@@ -14,18 +14,6 @@ import { Button } from '@/components/ui/button';
 import Icon from '@/components/Icon.vue';
 
 defineProps({
-    triggerLabel: {
-        type: String,
-        default: 'Show Dialog',
-    },
-    triggerVariant: {
-        type: Button['variant'],
-        default: 'outline',
-    },
-    isIcon: {
-        type: Boolean,
-        default: false,
-    },
     cancelLabel: {
         type: String,
         default: 'Cancel',
@@ -54,10 +42,7 @@ const emit = defineEmits(['confirm', 'cancel']);
 <template>
     <AlertDialog>
         <AlertDialogTrigger as-child>
-            <Button :variant="triggerVariant">
-                <Icon :name="triggerLabel" v-if="isIcon"/>
-                <span v-else>{{ triggerLabel }}</span>
-            </Button>
+            <slot/>
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>

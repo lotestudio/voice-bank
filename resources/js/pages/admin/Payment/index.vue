@@ -5,7 +5,6 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import DataTable2 from '@/components/DataTable2.vue'
 import DtTd from '@/components/DataTable2/dtTd.vue'
 import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
-import Icon from '@/components/Icon.vue';
 import ResetButton from '@/components/DataTable2/Inertia/ResetButton.vue';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -57,17 +56,17 @@ const deletePayment = (id: number) => {
           <dt-td column="1">
               <div class="flex justify-end gap-2">
                   <Button variant="secondary" @click="router.visit(PaymentController.edit(trProps.row.id).url)">
-                      <Icon name="edit" />
+                      <span class="i-edit"></span>
                   </Button>
                   <LoteAlertDialog
-                      trigger-variant="destructive"
-                      trigger-label="trash"
-                      is-icon
-                      dialog-title="Delete Payment"
-                      dialog-description="Are you sure you want to delete this Payment?"
-                      confirm-label="Delete"
+                      dialog-title="Delete User"
+                      dialog-description="Are you sure you want to delete this User?"
+                      confirm-label="Delete Payment"
                       @confirm="deletePayment(trProps.row.id)"
                   >
+                      <Button variant="destructive" size="icon">
+                          <span class="i-trash"></span>
+                      </Button>
                   </LoteAlertDialog>
               </div>
           </dt-td>

@@ -31,6 +31,12 @@ export function useDataTableStorage(defaultUrl,defaultUrlParams){
         setDefaultUrlParams();
     }
 
+    const hardReset = ()=>{
+        resetState();
+        //reload without query params
+        window.location.href = window.location.pathname;
+    }
+
     const setDefaultUrlParams = () => {
         defaultUrlParams.forEach((param) => {
             let key = (Object.keys(param)[0]);
@@ -42,6 +48,7 @@ export function useDataTableStorage(defaultUrl,defaultUrlParams){
     return {
         state,
         resetState,
+        hardReset,
         setDefaultUrlParams
     }
 }

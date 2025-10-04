@@ -7,7 +7,6 @@ import ReviewController from './ReviewController'
 import OrderController from './OrderController'
 import PaymentController from './PaymentController'
 import PostController from './PostController'
-import TemplateController from './TemplateController'
 
 const Admin = {
     VoiceController: Object.assign(VoiceController, VoiceController),
@@ -19,7 +18,6 @@ const Admin = {
     OrderController: Object.assign(OrderController, OrderController),
     PaymentController: Object.assign(PaymentController, PaymentController),
     PostController: Object.assign(PostController, PostController),
-    TemplateController: Object.assign(TemplateController, TemplateController),
 }
 
 export default Admin

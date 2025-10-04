@@ -14,6 +14,7 @@
 
         public ?string $model = Voice::class;
 
+        protected int $perPage = 6;
         public ?string $searchable = 'title';
 
     //  public string $defaultOrderField = 'order';

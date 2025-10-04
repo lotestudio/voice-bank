@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import DtHeader from "./DataTable2/dtHeader.vue"
 import DtRow from "./DataTable2/dtRow.vue"
-import {computed, onMounted, ref, watch, provide, shallowRef} from "vue"
+import {computed, onMounted, ref, watch, provide} from "vue"
 import Pager from "./DataTable2/Pager.vue"
-import {useDebounceFn} from "@vueuse/core"
 import {useFilters} from "./DataTable2/composables/useFilters";
 import {useDataTableStorage} from "./DataTable2/composables/useDataTableStorage";
 import {useColumns} from "./DataTable2/composables/useColumns";
@@ -13,6 +12,7 @@ import {useActions} from "./DataTable2/composables/useActions";
 import {useDragScroll} from "@/components/DataTable2/composables/useDragScroll";
 import ContextMenu from "@/components/DataTable2/ContextMenu.vue";
 import '@@/admin/_loteDataTable2.css';
+import { useAjax } from '@/components/DataTable2/composables/useAjax';
 
 
 const props = defineProps({
@@ -30,7 +30,7 @@ const props = defineProps({
     },
     defaultUrlParams: {
         type: Array,
-        default: []
+        default: ()=>[]
     },
     selectable: {
         type: Boolean,
@@ -46,32 +46,16 @@ const props = defineProps({
     }
 })
 
-//refs
-const data = shallowRef(null) //can't see some performance issue, but let's try!
-const loading = ref(false)
-const errorMessage = ref(null)
-const tableWrapper=ref(null)
-
-const {state, resetState, setDefaultUrlParams} = useDataTableStorage(props.defaultUrl, props.defaultUrlParams);
-
+const {state, resetState, hardReset, setDefaultUrlParams} = useDataTableStorage(props.defaultUrl, props.defaultUrlParams);
 const {filtersCount, setFilter, getFilter} = useFilters(state);
-
 const {toggleColumnVisibility, resetColumnVisibility} = useColumns(state);
-
 const {toggleHiddenRow, selectedHiddenRowsIndexes} = useHiddenRows();
-
+const {ajax, errorMessage, data, loading} = useAjax(state, resetColumnVisibility, props);
 const {toggle, selectAll, deselectAll, selected} = useSelectableRows(data, props.selectable)
-
-
-const hardReset = () => {
-    resetState();
-    //reload without query params
-    window.location.href = window.location.pathname;
-
-}
-
-
+const {setAction} = useActions(state, ajax, props.defaultUrl);
 provide('state', state);
+
+const tableWrapper=ref(null)
 
 //computed
 const rows = computed(() => {
@@ -83,7 +67,7 @@ const rows = computed(() => {
         return data.value.data;
     }
 
-    let res = [];
+    const res = [];
     for (let i = 0; i < data.value.data.length; i++) {   // for each element in the array arr
         res.push(data.value.data[i]);                  // add the current element from arr
         res.push({'hidden': true, 'data': data.value.data[i]});                     // add the new element to res
@@ -91,58 +75,12 @@ const rows = computed(() => {
     return res;
 })
 
-
-const ajax = useDebounceFn(() => {
-    loading.value = true;
-    axios.get(props.defaultUrl, {
-        params: state.value.urlParams
-    }).then(response => {
-
-        if (state.value.columns.length === 0) {
-            state.value.columns = response.data.columns;
-        }
-
-        if (state.value.columnsVisibility === undefined || state.value.columnsVisibility.length === 0) {
-            resetColumnVisibility();
-        }
-
-        data.value = response.data;
-
-        loading.value = false;
-        errorMessage.value = null;
-    }, error => {
-
-        if (error.response) {
-            // The request was made, and the server responded with a status code
-            // that falls out of the range of 2xx
-            //console.log(error.response.data);
-            //console.log(error.response.status);
-            //console.log(error.response.headers);
-
-
-            errorMessage.value = error.response.data.message;
-        } else if (error.request) {
-            // The request was made, but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            //console.log(error.request);
-            errorMessage.value = 'No response from server';
-        } else {
-            // Something happened in setting up the request that triggered an Error
-            //console.log('Error', error.message);
-            errorMessage.value = error.message;
-        }
-
-        loading.value = false;
-    });
-}, 100)
-
 watch(() => state.value.urlParams, () => {
     ajax();
 }, {deep: true})
 
 
-const {setAction} = useActions(state, ajax, props.defaultUrl);
+
 
 const setTrClass = (index, trClass) => {
     rows.value[index].tr_class = trClass;
@@ -159,7 +97,7 @@ onMounted(() => {
 
 })
 
-const getRowActions=(id)=>{
+const getRowActions=(id:number)=>{
     return rows.value.find(row => Number(row.id) === Number(id))?.actions ?? [];
 }
 
@@ -173,8 +111,7 @@ defineExpose({'refresh':ajax});
         <div
             v-if="$slots.filters"
             :class="filtersContainerClasses"
-            class="block
-§                md:flex md:items-center space-y-2 md:space-y-0 md:space-x-2 p-2 bg-muted/50 rounded-xl my-4 mx-1">
+            class="block md:flex md:items-center space-y-2 md:space-y-0 md:space-x-2 p-2 bg-muted/50 rounded-xl my-4 mx-1">
             <slot name="filters"
                   :columns="state.columns"
                   :urlParams="state.urlParams"

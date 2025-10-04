@@ -44,7 +44,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/web.php:56
+* @see routes/web.php:55
 * @route '/admin/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -58,7 +58,7 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:56
+* @see routes/web.php:55
 * @route '/admin/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -66,7 +66,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:56
+* @see routes/web.php:55
 * @route '/admin/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -75,7 +75,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:56
+* @see routes/web.php:55
 * @route '/admin/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -84,9 +84,9 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\Admin\TemplateController::__invoke
-* @see app/Http/Controllers/Admin/TemplateController.php:10
-* @route '/template'
+* @see \App\Http\Controllers\Dev\TemplateController::__invoke
+* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @route '/dev/template'
 */
 export const template = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: template.url(options),
@@ -95,22 +95,22 @@ export const template = (options?: RouteQueryOptions): RouteDefinition<'get'> =>
 
 template.definition = {
     methods: ["get","head"],
-    url: '/template',
+    url: '/dev/template',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\Admin\TemplateController::__invoke
-* @see app/Http/Controllers/Admin/TemplateController.php:10
-* @route '/template'
+* @see \App\Http\Controllers\Dev\TemplateController::__invoke
+* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @route '/dev/template'
 */
 template.url = (options?: RouteQueryOptions) => {
     return template.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\Admin\TemplateController::__invoke
-* @see app/Http/Controllers/Admin/TemplateController.php:10
-* @route '/template'
+* @see \App\Http\Controllers\Dev\TemplateController::__invoke
+* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @route '/dev/template'
 */
 template.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: template.url(options),
@@ -118,12 +118,56 @@ template.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\Admin\TemplateController::__invoke
-* @see app/Http/Controllers/Admin/TemplateController.php:10
-* @route '/template'
+* @see \App\Http\Controllers\Dev\TemplateController::__invoke
+* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @route '/dev/template'
 */
 template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: template.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\Dev\DataListTestController::__invoke
+* @see app/Http/Controllers/Dev/DataListTestController.php:20
+* @route '/dev/data-list-test'
+*/
+export const dataListTest = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: dataListTest.url(options),
+    method: 'get',
+})
+
+dataListTest.definition = {
+    methods: ["get","head"],
+    url: '/dev/data-list-test',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Dev\DataListTestController::__invoke
+* @see app/Http/Controllers/Dev/DataListTestController.php:20
+* @route '/dev/data-list-test'
+*/
+dataListTest.url = (options?: RouteQueryOptions) => {
+    return dataListTest.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dev\DataListTestController::__invoke
+* @see app/Http/Controllers/Dev/DataListTestController.php:20
+* @route '/dev/data-list-test'
+*/
+dataListTest.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: dataListTest.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Dev\DataListTestController::__invoke
+* @see app/Http/Controllers/Dev/DataListTestController.php:20
+* @route '/dev/data-list-test'
+*/
+dataListTest.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: dataListTest.url(options),
     method: 'head',
 })
 

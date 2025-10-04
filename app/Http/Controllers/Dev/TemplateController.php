@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dev;
 
-use Inertia\Inertia;
 use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 
 class TemplateController extends Controller
 {

@@ -7,6 +7,7 @@
            required:true,
        }
     });
+
 </script>
 
 <template>

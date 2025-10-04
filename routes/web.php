@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
     Route::get('/voices', [\App\Http\Controllers\VoicesController::class, 'index']);
@@ -60,8 +59,11 @@ Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
 });
 
 
-Route::get('template', \App\Http\Controllers\Admin\TemplateController::class)
-    ->middleware(['auth', 'verified'])->name('template');
+Route::group(['middleware'=>['auth'],'prefix' => 'dev'], function () {
+    Route::get('template', \App\Http\Controllers\Dev\TemplateController::class)->name('template');
+    Route::get('data-list-test', \App\Http\Controllers\Dev\DataListTestController::class)->name('data-list-test');
+});
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

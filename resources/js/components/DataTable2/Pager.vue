@@ -59,7 +59,9 @@ const changePage = (page) => {
             size="sm"
             :variant="data.current_page===page ?  'default' : 'outline'"
              v-on:click.prevent="changePage(page)"
-             v-for="page in pageNumbers">
+             v-for="page in pageNumbers"
+            :key="page"
+        >
             {{ page }}
         </Button>
         <Button

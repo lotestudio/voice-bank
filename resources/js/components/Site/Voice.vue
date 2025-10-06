@@ -5,6 +5,7 @@ import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import { Progress } from '@/components/ui/progress';
 import { computed } from 'vue';
 import { useLocale } from '@/composables/useLocale';
+import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
     voice: {
@@ -33,14 +34,16 @@ const progress = computed(() => {
 </script>
 
 <template>
-    <div class="space-y-2 rounded border dark:border-primary/10 dark:bg-primary/5 p-2">
+    <div class="space-y-2 rounded border dark:border-primary/10 dark:bg-primary/5 p-4">
         <div class="flex gap-2">
-            <Avatar class="flex h-10 w-10 items-center justify-center bg-sidebar-accent">
-                <!--            <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />-->
+
+            <Avatar class="flex h-10 w-10 items-center justify-center bg-sidebar-accent cursor-pointer" @click="router.visit('artist/'+voice.user.id)">
+<!--                <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />-->
                 <AvatarFallback class="text-xs font-bold">{{ voice.user_initials }}</AvatarFallback>
             </Avatar>
+
             <div class="space-y-1">
-                <p>{{ voice.user.name }} {{voice.user.id}}</p>
+                <a :href="'artist/'+voice.user.id">{{ voice.user.name }}</a>
                 <p class="text-xs">{{ voice.title }}</p>
                 <p class="flex items-center gap-1 text-xs">
                     <span class="i-star text-orange-400"></span>

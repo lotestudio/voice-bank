@@ -21,7 +21,8 @@ defineProps({
         validator: (value: string): value is SheetSide => {
             return ['top', 'bottom', 'left', 'right'].includes(value)
         }
-    }
+    },
+    content_classes:String,
 })
 
 
@@ -38,7 +39,7 @@ const close = ()=>{
         <SheetTrigger as-child>
             <slot name="trigger"/>
         </SheetTrigger>
-        <SheetContent :side="side">
+        <SheetContent :side="side" :class="content_classes">
             <SheetHeader>
                 <SheetTitle><slot name="title"/></SheetTitle>
                 <SheetDescription>

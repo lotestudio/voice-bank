@@ -9,6 +9,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/voices', [\App\Http\Controllers\VoicesController::class, 'index']);
     Route::get('/about', [\App\Http\Controllers\MainController::class, 'about']);
     Route::get('/contacts', [\App\Http\Controllers\MainController::class, 'contacts']);
+    Route::get('/artist/{id}', [\App\Http\Controllers\ArtistController::class, 'show']);
 });
 
 Route::post('/send',[\App\Http\Controllers\MainController::class,'send']);

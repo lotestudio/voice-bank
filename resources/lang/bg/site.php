@@ -5,4 +5,5 @@ return [
     'contacts' => 'Контакти',
     'voices' => 'Гласове',
     'about' => 'За нас',
+    'choose'=>'избери'
 ];

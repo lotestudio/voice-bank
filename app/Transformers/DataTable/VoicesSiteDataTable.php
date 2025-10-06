@@ -78,4 +78,56 @@
         {
             return null;
         }
+
+        protected function filter(): void
+        {
+            $filtersInput = request()->get('filters') ?? [];
+
+            if (! empty($filtersInput)) {
+
+                foreach ($filtersInput as $field => $value) {
+
+                    if (in_array($field, $this->excludedFilters)) {
+                        continue;
+                    }
+
+                    if (str_starts_with($field, 'feature_') && !empty($value)) {
+                        $featureId = substr($field, 8); // Remove 'feature_' prefix
+
+                        if (is_array($value)) {
+                            // Multiple values for the same feature (OR condition)
+                            $this->builder->whereHas('featureValues', function ($query) use ($featureId, $value) {
+                                $query->whereIn('feature_values.id', $value)
+                                    ->whereHas('feature', function ($query) use ($featureId) {
+                                        $query->where('id', $featureId);
+                                    });
+                            });
+                        } else {
+                            // Single value for the feature
+                            $this->builder->whereHas('featureValues', function ($query) use ($value) {
+                                $query->where('feature_values.id', $value);
+                            });
+                        }
+                        continue;
+                    }
+
+
+
+                    $filterQueryMethod = 'filterQuery'.ucfirst($field);
+
+                    if (method_exists($this, $filterQueryMethod)) {
+                        $this->$filterQueryMethod($value);
+                    } else {
+                        if ($value === self::NULL_VALUE) {
+                            $this->builder->whereNull($this->setDatabasePrefixToField($field));
+                        } else {
+                            $this->builder->where($this->setDatabasePrefixToField($field), $value);
+                        }
+                    }
+                }
+
+            }
+
+        }
+
     }

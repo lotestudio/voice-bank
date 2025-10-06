@@ -95,4 +95,25 @@ class Feature extends Model
         return $res;
     }
 
+    public function valuesForSelect($prepend=true)
+    {
+
+        $res = $this->values
+            ->pluck('display_value','id')
+            ->map(function($name,$key){
+                return [
+                    'label' => $name,
+                    'value' => $key
+                ];
+            });
+
+
+        if($prepend){
+            $prepend_label = Str::ucfirst(\Lang::get('site.choose')).' '.$this->display_name;
+            $res=$res->prepend(['label'=>$prepend_label,'value'=>null]);
+        }
+
+        return $res;
+    }
+
 }

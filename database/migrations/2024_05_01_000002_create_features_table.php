@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->json('display_name');
             $table->json('description')->nullable();
-            $table->boolean('is_filterable')->default(true); // Whether this feature can be used for filtering
+            $table->boolean('is_featured')->default(true); // Whether this feature is shown in the featured section
             $table->integer('sort_order')->default(0); // For controlling the display order
             $table->timestamps();
         });

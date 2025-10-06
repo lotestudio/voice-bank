@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoiceFormRequest;
+use App\Models\Feature;
 use App\Models\Voice;
 use App\Transformers\DataTable\VoiceDataTable;
 use Illuminate\Http\Request;

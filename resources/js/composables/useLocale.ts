@@ -11,7 +11,8 @@ export const locales: LocaleStrings = {
         'order':'запази',
         'no available demo dile':'няма наличен демо файл',
         'name':'Име',
-        'message':'Съобщение'
+        'message':'Съобщение',
+        'become an artist': 'Стани диктор',
     }
 };
 

@@ -25,7 +25,7 @@ function submit() {
   <AppLayout :breadcrumbs="[]">
     <Head :title="isEdit ? 'Edit Order' : 'Create Order'" />
     <div class="max-w-xl p-4">
-      <form @submit.prevent="submit" class="space-y-4">
+      <form @submit.prevent="submit" class="space-y-8">
         <div class="flex items-center gap-2">
           <label for="order_number" class="block text-sm font-medium">Order_number:</label>
           <Input id="order_number" class="block w-full" v-model="form.order_number" />

@@ -25,7 +25,7 @@ class FeatureDataTable extends DataTableResource
         ['label' => 'Title', 'sort' => 'display_name'],
         ['label' => 'Slug(name)', 'sort' => 'name'],
         ['label' => 'Values count', 'sort' => 'values_count'],
-        ['label' => 'Filterable', 'sort' => 'is_filterable'],
+        ['label' => 'Featured', 'sort' => 'is_featured'],
         ['label' => 'Order', 'sort' => 'sort_order'],
         ['label' => 'Actions'],
     ];

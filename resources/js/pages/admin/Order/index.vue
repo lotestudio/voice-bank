@@ -10,6 +10,7 @@ import ResetButton from '@/components/DataTable2/Inertia/ResetButton.vue';
 import { Button } from '@/components/ui/button';
 import { toast } from 'vue-sonner'
 import OrderController from '@/actions/App/Http/Controllers/Admin/OrderController';
+import { Input } from '@/components/ui/input';
 
 const breadcrumbItems = [
   { title: 'Order List', href: '/admin/order' },

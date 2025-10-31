@@ -25,7 +25,7 @@ function submit() {
   <AppLayout :breadcrumbs="[]">
     <Head :title="isEdit ? 'Edit User' : 'Create User'" />
     <div class="max-w-xl p-4">
-      <form @submit.prevent="submit" class="space-y-4">
+      <form @submit.prevent="submit" class="space-y-8">
         <div class="flex items-center gap-2">
           <label for="name" class="block text-sm font-medium">Name:</label>
           <Input id="name" class="block w-full" v-model="form.name" />

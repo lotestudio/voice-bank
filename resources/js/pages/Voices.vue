@@ -9,9 +9,13 @@ import LoteSelect from '@/components/LoteSelect.vue';
 import LoteSheet from '@/components/ui/sheet/LoteSheet.vue';
 import { Button } from '@/components/ui/button';
 import LoteToggleGroup from '@/components/LoteToggleGroup.vue';
+import { useLocale } from '@/composables/useLocale';
+
 
 const page = usePage();
 const locale = page.props.locale;
+
+const {T,t} = useLocale()
 
 
 </script>
@@ -28,7 +32,7 @@ const locale = page.props.locale;
                             <div>
                                 <Input
                                     class="w-full border shadow-none"
-                                    placeholder="търси"
+                                    :placeholder="t('search')"
                                     v-model="filterProps.urlParams.search"
                                     @keyup.enter="filterProps.setFilter()">
                                     ></Input>
@@ -52,7 +56,7 @@ const locale = page.props.locale;
                                                 class="absolute -top-3 -right-2 bg-destructive text-white rounded-full size-6 text-xs grid place-content-center"
                                             >{{filterProps.filtersCount}}
                                             </div>
-                                            <Button class="flex-1" variant="secondary">Всички филтри</Button>
+                                            <Button class="flex-1" variant="secondary">{{T('all filters')}}</Button>
                                         </div>
                                     </template>
                                     <div class="w-full max-h-[calc(100vh-100px)] overflow-y-auto">

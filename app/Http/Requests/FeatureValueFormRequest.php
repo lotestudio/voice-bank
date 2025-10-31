@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class FeatureValueFormRequest extends FormRequest
 {
@@ -13,8 +14,15 @@ class FeatureValueFormRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
-            'display_value' => ['required', 'string', 'max:255'],
+        $rules = [
+            'display_value' => ['required', 'array'],
         ];
+
+        foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
+            $rules["display_value.{$locale}"] = ['required', 'string', 'max:255', 'min:2'];
+        }
+
+        return  $rules;
+
     }
 }

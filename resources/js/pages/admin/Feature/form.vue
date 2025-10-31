@@ -11,7 +11,7 @@ const page = usePage();
 const isEdit = !!page.props.model;
 const form = useForm({
     display_name: page.props.model?.display_name ?? '',
-    is_filterable: page.props.model?.is_filterable ?? true,
+    is_featured: page.props.model?.is_featured ?? true,
     sort_order: page.props.model?.sort_order ?? null,
 });
 
@@ -28,7 +28,7 @@ function submit() {
     <AppLayout :breadcrumbs="[]">
         <Head :title="isEdit ? 'Edit Feature' : 'Create Feature'" />
         <div class="max-w-xl p-4">
-            <form @submit.prevent="submit" class="space-y-4">
+            <form @submit.prevent="submit" class="space-y-8">
                 <MultilangInput v-model="form.display_name" :errors="form.errors" label="Display name" as="Input" />
 
                 <div class="flex items-center gap-2">
@@ -36,8 +36,8 @@ function submit() {
                     <Input id="sort_order" type="number" class="block w-full" v-model="form.sort_order" />
                 </div>
                 <div class="flex items-center gap-2">
-                    <label class="block text-sm font-medium">Filterable:</label>
-                    <LoteSwitch :default-state="form.is_filterable" @change="form.is_filterable = $event" />
+                    <label class="block text-sm font-medium">Featured:</label>
+                    <LoteSwitch :default-state="form.is_featured" @change="form.is_featured = $event" />
                 </div>
                 <InputError class="mt-2" :message="form.errors.order" />
 

@@ -28,7 +28,7 @@ class Feature extends Model
         'name',
         'display_name',
         'description',
-        'is_filterable',
+        'is_featured',
         'sort_order',
     ];
 
@@ -38,7 +38,7 @@ class Feature extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'is_filterable' => 'boolean',
+        'is_featured' => 'boolean',
         'sort_order' => 'integer',
     ];
 
@@ -53,9 +53,9 @@ class Feature extends Model
     /**
      * Scope a query to only include filterable features.
      */
-    public function scopeFilterable($query)
+    public function scopeFeatured($query)
     {
-        return $query->where('is_filterable', true);
+        return $query->where('is_featured', true);
     }
 
     /**

@@ -30,12 +30,24 @@ class VoiceDataTable extends DataTableResource
         return $columns->toArray();
     }
 
+
+    public function preBuild(): void
+    {
+        $this->builder->with(['user']);
+    }
+
     protected function transform($item): array
     {
         $res = $item->toArray();
+        $res['user_name'] = $item->user->name;
         $res['actions'] = [
             [
-                'label' => 'Редакция',
+                'label' => 'View',
+                'href' => route('voice.show', $item->id),
+                'icon' => 'i-eye',
+                'class' => 'btn btn-warning btn-xs',
+            ],[
+                'label' => 'Edit',
                 'href' => route('voice.edit', $item->id),
                 'icon' => 'i-edit',
                 'class' => 'btn btn-warning btn-xs',

@@ -10,6 +10,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
+import LoteSwitch from '@/components/LoteSwitch.vue';
 
 const breadcrumbItems = [{ title: 'Feature List', href: '/admin/feature' }];
 
@@ -59,7 +60,7 @@ const deleteFeature = (id: number) => {
                         {{ trProps.row.values_count}}
                     </dt-td>
                     <dt-td column="3">
-                        {{ trProps.row.is_filterable}}
+                        <LoteSwitch :default-state="trProps.row.is_featured" :url="'/admin/feature/' + trProps.row.id + '/toggle-featured'" />
                     </dt-td>
                     <dt-td column="4">
                         {{ trProps.row.sort_order}}
@@ -67,7 +68,7 @@ const deleteFeature = (id: number) => {
                     <dt-td column="5">
                         <div class="flex justify-end gap-2">
                             <Button variant="secondary" size="icon" @click="router.visit(FeatureController.edit(trProps.row.id).url)">
-                                <span class="is-edit"></span>
+                                <span class="i-edit"></span>
                             </Button>
                             <LoteAlertDialog
                                 dialog-title="Delete Feature"

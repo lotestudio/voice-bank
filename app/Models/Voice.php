@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 use Spatie\Translatable\HasTranslations;
 
 class Voice extends Model
@@ -202,5 +203,22 @@ class Voice extends Model
     public function getTotalEarningsAttribute(): float
     {
         return $this->orders()->completed()->sum('amount');
+    }
+
+    public static function forSelect($prepend = true, $prepend_label = 'Choose voice'): Collection
+    {
+        $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item) {
+            return [
+                'label' => $item->title,
+                'value' => $item->id
+            ];
+        });
+
+        if ($prepend) {
+            $items = $items->prepend(['label' => $prepend_label, 'value' => null]);
+        }
+
+        return $items;
+
     }
 }

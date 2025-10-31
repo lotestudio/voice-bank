@@ -25,7 +25,7 @@ function submit() {
   <AppLayout :breadcrumbs="[]">
     <Head :title="isEdit ? 'Edit Payment' : 'Create Payment'" />
     <div class="max-w-xl p-4">
-      <form @submit.prevent="submit" class="space-y-4">
+      <form @submit.prevent="submit" class="space-y-8">
         <div class="flex items-center gap-2">
           <label for="payment_id" class="block text-sm font-medium">Payment_id:</label>
           <Input id="payment_id" class="block w-full" v-model="form.payment_id" />

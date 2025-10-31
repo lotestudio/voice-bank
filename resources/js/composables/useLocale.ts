@@ -13,6 +13,8 @@ export const locales: LocaleStrings = {
         'name':'Име',
         'message':'Съобщение',
         'become an artist': 'Стани диктор',
+        'all filters': 'Всички филтри',
+        'search': 'Търси'
     }
 };
 

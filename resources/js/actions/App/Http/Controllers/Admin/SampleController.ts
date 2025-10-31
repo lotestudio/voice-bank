@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\SampleController::index
-* @see app/Http/Controllers/Admin/SampleController.php:16
+* @see app/Http/Controllers/Admin/SampleController.php:17
 * @route '/admin/sample'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::index
-* @see app/Http/Controllers/Admin/SampleController.php:16
+* @see app/Http/Controllers/Admin/SampleController.php:17
 * @route '/admin/sample'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::index
-* @see app/Http/Controllers/Admin/SampleController.php:16
+* @see app/Http/Controllers/Admin/SampleController.php:17
 * @route '/admin/sample'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::index
-* @see app/Http/Controllers/Admin/SampleController.php:16
+* @see app/Http/Controllers/Admin/SampleController.php:17
 * @route '/admin/sample'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::create
-* @see app/Http/Controllers/Admin/SampleController.php:25
+* @see app/Http/Controllers/Admin/SampleController.php:26
 * @route '/admin/sample/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::create
-* @see app/Http/Controllers/Admin/SampleController.php:25
+* @see app/Http/Controllers/Admin/SampleController.php:26
 * @route '/admin/sample/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::create
-* @see app/Http/Controllers/Admin/SampleController.php:25
+* @see app/Http/Controllers/Admin/SampleController.php:26
 * @route '/admin/sample/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::create
-* @see app/Http/Controllers/Admin/SampleController.php:25
+* @see app/Http/Controllers/Admin/SampleController.php:26
 * @route '/admin/sample/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::store
-* @see app/Http/Controllers/Admin/SampleController.php:30
+* @see app/Http/Controllers/Admin/SampleController.php:33
 * @route '/admin/sample'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::store
-* @see app/Http/Controllers/Admin/SampleController.php:30
+* @see app/Http/Controllers/Admin/SampleController.php:33
 * @route '/admin/sample'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::store
-* @see app/Http/Controllers/Admin/SampleController.php:30
+* @see app/Http/Controllers/Admin/SampleController.php:33
 * @route '/admin/sample'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::edit
-* @see app/Http/Controllers/Admin/SampleController.php:46
+* @see app/Http/Controllers/Admin/SampleController.php:54
 * @route '/admin/sample/{sample}/edit'
 */
 export const edit = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::edit
-* @see app/Http/Controllers/Admin/SampleController.php:46
+* @see app/Http/Controllers/Admin/SampleController.php:54
 * @route '/admin/sample/{sample}/edit'
 */
 edit.url = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ edit.url = (args: { sample: number | { id: number } } | [sample: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::edit
-* @see app/Http/Controllers/Admin/SampleController.php:46
+* @see app/Http/Controllers/Admin/SampleController.php:54
 * @route '/admin/sample/{sample}/edit'
 */
 edit.get = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -181,7 +181,7 @@ edit.get = (args: { sample: number | { id: number } } | [sample: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::edit
-* @see app/Http/Controllers/Admin/SampleController.php:46
+* @see app/Http/Controllers/Admin/SampleController.php:54
 * @route '/admin/sample/{sample}/edit'
 */
 edit.head = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -191,7 +191,7 @@ edit.head = (args: { sample: number | { id: number } } | [sample: number | { id:
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::update
-* @see app/Http/Controllers/Admin/SampleController.php:38
+* @see app/Http/Controllers/Admin/SampleController.php:42
 * @route '/admin/sample/{sample}'
 */
 export const update = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -206,7 +206,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::update
-* @see app/Http/Controllers/Admin/SampleController.php:38
+* @see app/Http/Controllers/Admin/SampleController.php:42
 * @route '/admin/sample/{sample}'
 */
 update.url = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -239,7 +239,7 @@ update.url = (args: { sample: number | { id: number } } | [sample: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::update
-* @see app/Http/Controllers/Admin/SampleController.php:38
+* @see app/Http/Controllers/Admin/SampleController.php:42
 * @route '/admin/sample/{sample}'
 */
 update.put = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -249,7 +249,7 @@ update.put = (args: { sample: number | { id: number } } | [sample: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::update
-* @see app/Http/Controllers/Admin/SampleController.php:38
+* @see app/Http/Controllers/Admin/SampleController.php:42
 * @route '/admin/sample/{sample}'
 */
 update.patch = (args: { sample: number | { id: number } } | [sample: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -259,7 +259,7 @@ update.patch = (args: { sample: number | { id: number } } | [sample: number | { 
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::destroy
-* @see app/Http/Controllers/Admin/SampleController.php:53
+* @see app/Http/Controllers/Admin/SampleController.php:62
 * @route '/admin/sample/{sample}'
 */
 export const destroy = (args: { sample: string | number } | [sample: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -274,7 +274,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::destroy
-* @see app/Http/Controllers/Admin/SampleController.php:53
+* @see app/Http/Controllers/Admin/SampleController.php:62
 * @route '/admin/sample/{sample}'
 */
 destroy.url = (args: { sample: string | number } | [sample: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -301,7 +301,7 @@ destroy.url = (args: { sample: string | number } | [sample: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\Admin\SampleController::destroy
-* @see app/Http/Controllers/Admin/SampleController.php:53
+* @see app/Http/Controllers/Admin/SampleController.php:62
 * @route '/admin/sample/{sample}'
 */
 destroy.delete = (args: { sample: string | number } | [sample: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

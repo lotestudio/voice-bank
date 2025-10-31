@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\HasUploadedFile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class Sample extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, HasUploadedFile;
 
     /**
      * The attributes that are translatable.
@@ -17,6 +20,36 @@ class Sample extends Model
      * @var array<int, string>
      */
     public $translatable = ['title', 'description'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            if ($model->isDirty('file_url')) {
+                $model->updateFileAttributes();
+            }
+        });
+    }
+
+    protected function updateFileAttributes(): void
+    {
+        $disk = Storage::disk('public');
+
+        if (!$this->file_url || !$disk->exists('samples/'.$this->file_url)) {
+            return;
+        }
+
+        $this->file_type = pathinfo($this->file_url, PATHINFO_EXTENSION);
+        $this->file_size = $disk->size('samples/'.$this->file_url);
+
+        // Get audio duration if it's an audio file
+        if (str_starts_with($this->file_type, 'audio/')) {
+            $getID3 = new \getID3();
+            $fileInfo = $getID3->analyze($disk->path('samples/'.$this->file_url));
+            $this->duration = isset($fileInfo['playtime_seconds']) ? (int) $fileInfo['playtime_seconds'] : 0;
+        }
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +79,10 @@ class Sample extends Model
         'is_featured' => 'boolean',
         'sort_order' => 'integer',
     ];
+
+
+
+
 
     /**
      * Get the voice that owns the sample.
@@ -106,4 +143,23 @@ class Sample extends Model
 
         return round($size, 2) . ' ' . $units[$i];
     }
+
+
+    public static function forSelect($prepend = true, $prepend_label = 'Choose sample'): Collection
+    {
+        $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item) {
+            return [
+                'label' => $item->title,
+                'value' => $item->id
+            ];
+        });
+
+        if ($prepend) {
+            $items = $items->prepend(['label' => $prepend_label, 'value' => null]);
+        }
+
+        return $items;
+
+    }
 }
+

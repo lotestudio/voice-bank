@@ -12,7 +12,7 @@ const isEdit = !!page.props.model;
 const form = useForm({
     display_value: page.props.model?.display_value ?? {},
     description: page.props.model?.description ?? {},
-    feature_id: page.props.model?.feature_id ?? {},
+    feature_id: page.props.model?.feature_id ?? null,
     sort_order: page.props.model?.sort_order ?? null,
 });
 
@@ -29,12 +29,11 @@ function submit() {
     <AppLayout :breadcrumbs="[]">
         <Head :title="isEdit ? 'Edit FeatureValue' : 'Create FeatureValue'" />
         <div class="max-w-xl p-4">
-            <form @submit.prevent="submit" class="space-y-4">
-                <MultilangInput v-model="form.display_value" :errors="form.errors" label="Name" as="Input" />
+            <form @submit.prevent="submit" class="space-y-8">
+                <MultilangInput v-model="form.display_value" :errors="form.errors" label="Display value" as="Input" />
                 <MultilangInput v-model="form.description" :errors="form.errors" label="Description" as="Textarea" />
-
-                <LoteSelect :options="page.props.featureSelect" :selected="form.feature_id" @change="form.feature_id=$event"></LoteSelect>
-                <InputError class="" :message="form.errors.lang_id" />
+                <LoteSelect width_class="w-full"  :options="page.props.featureSelect" :selected="form.feature_id" @change="form.feature_id=$event"></LoteSelect>
+                <InputError class="" :message="form.errors.feature_id" />
                 <div class="flex items-center gap-2">
                     <label for="sort_order" class="block text-sm font-medium">Order:</label>
                     <Input id="sort_order" type="number" class="block w-full" v-model="form.sort_order" />

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeatureFormRequest;
 use App\Models\Feature;
+use App\Models\Voice;
 use App\Transformers\DataTable\FeatureDataTable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\RouteAttributes\Attributes\Post;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FeatureController extends Controller
@@ -54,5 +56,16 @@ class FeatureController extends Controller
     {
         feature::destroy([$id]);
         return back();
+    }
+
+
+    #[Post('admin/feature/{id}/toggle-featured')]
+    public function toggleFeatured($id):string
+    {
+        $voice = Feature::query()->findOrFail($id);
+        $voice->is_featured = !$voice->is_featured;
+        $voice->save();
+
+        return 'success';
     }
 }

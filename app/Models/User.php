@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -202,7 +203,7 @@ class User extends Authenticatable
         return $this->receivedOrders()->completed()->sum('amount');
     }
 
-    public function getInitialsAttribute():string
+    public function getInitialsAttribute(): string
     {
         $words = explode(' ', $this->name);
 
@@ -211,5 +212,35 @@ class User extends Authenticatable
         }
 
         return strtoupper(substr($this->name, 0, 2));
+    }
+
+
+    public static function forSelectArtists($prepend = true, $prepend_label = 'Choose artist')
+    {
+        return self::forSelect($prepend, $prepend_label, 'artist');
+    }
+
+    public static function forSelectClients($prepend = true, $prepend_label = 'Choose client')
+    {
+        return self::forSelect($prepend, $prepend_label, 'client');
+    }
+
+    public static function forSelect($prepend = true, $prepend_label = 'Choose user', $role = null): Collection
+    {
+        $users = self::query()->when($role, function ($query) use ($role) {
+            $query->where('role', $role);
+        })->orderBy('name')->get(['name', 'id'])->map(function ($user) {
+            return [
+                'label' => $user->name,
+                'value' => $user->id
+            ];
+        });
+
+        if ($prepend) {
+            $users = $users->prepend(['label' => $prepend_label, 'value' => null]);
+        }
+
+        return $users;
+
     }
 }

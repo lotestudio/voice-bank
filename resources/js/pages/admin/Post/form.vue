@@ -39,7 +39,7 @@ function submit() {
   <AppLayout :breadcrumbs="[]">
     <Head :title="isEdit ? 'Edit Post' : 'Create Post'" />
     <div class="max-w-xl p-4">
-      <form @submit.prevent="submit" class="space-y-4">
+      <form @submit.prevent="submit" class="space-y-8">
           <MultilangInput v-model="form.title" :errors="form.errors" label="Title"  as="Input"/>
           <MultilangInput v-model="form.excerpt" :errors="form.errors" label="Excerpt"  as="Textarea"/>
           <MultilangInput v-model="form.body" :errors="form.errors" label="Body"  as="RichText"/>

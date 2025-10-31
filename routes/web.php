@@ -17,7 +17,6 @@ Route::get('sample/download/{id}',\App\Http\Controllers\SampleDownloaderControll
 
 Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
     Route::resource('voice', \App\Http\Controllers\Admin\VoiceController::class )
-        ->except('show')
         ->names('voice');
 
     Route::resource('user', \App\Http\Controllers\Admin\UserController::class )
@@ -32,6 +31,10 @@ Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
     Route::resource('feature-value', \App\Http\Controllers\Admin\FeatureValueController::class )
         ->except('show')
         ->names('feature-value');
+
+    Route::resource('voice-feature-value', \App\Http\Controllers\Admin\VoiceFeatureValueController::class )
+        ->except('show,index,create,edit')
+        ->names('voice-feature-value');
 
     Route::resource('sample', \App\Http\Controllers\Admin\SampleController::class )
         ->except('show')

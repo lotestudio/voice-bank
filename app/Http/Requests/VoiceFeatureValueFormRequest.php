@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-class VoiceFormRequest extends FormRequest
+class VoiceFeatureValueFormRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,9 +15,8 @@ class VoiceFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'array', 'max:255'],
-            'is_active' => 'required|boolean',
-            'user_id' => 'required|integer'
+            'voice_id' => ['required', 'int'],
+            'feature_value_id' => ['required', 'int'],
         ];
     }
 }

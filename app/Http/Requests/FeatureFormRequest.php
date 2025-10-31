@@ -17,7 +17,7 @@ class FeatureFormRequest extends FormRequest
         $rules =  [
             'display_name' => ['required', 'array'],
             'sort_order' => 'nullable|integer|min:0',
-            'is_filterable' => 'boolean'
+            'is_featured' => 'boolean'
         ];
 
 

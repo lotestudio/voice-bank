@@ -30,9 +30,15 @@ class SampleDataTable extends DataTableResource
         return $columns->toArray();
     }
 
+    public function preBuild(): void
+    {
+       $this->builder->with(['voice.user']);
+    }
+
     protected function transform($item): array
     {
         $res = $item->toArray();
+        $res['voice_user_name'] = $item->voice->title.'/'.$item->voice->user->name;
         $res['actions'] = [
             [
                 'label' => 'Редакция',

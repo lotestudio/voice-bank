@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SampleFormRequest extends FormRequest
 {
@@ -13,8 +14,19 @@ class SampleFormRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
-            'title' => ['required', 'string', 'max:255'],
+        $rules = [
+            'title' => ['required', 'array'],
+            'voice_id' => 'required|integer',
+            'file_url' => ['required', 'string'],
+            'description' => 'nullable|array'
         ];
+
+        foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
+            $rules["title.{$locale}"] = ['required', 'string', 'max:255', 'min:2'];
+            $rules["description.{$locale}"] = ['nullable', 'string' ];
+        }
+
+        return  $rules;
+
     }
 }

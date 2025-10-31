@@ -86,10 +86,10 @@ const handleContextMenu = (e) => {
 }
 
 const actions = [
-    {label: 'Копирай клетката', callback:copyCell, onTag:['td','th']},
-    {label: 'Копирай реда', callback:copyRow, onTag:['tr']},
-    {label: 'Копирай връзката', callback:copyLink, onTag:['a']},
-    {label: 'Отвори връзката в нов таб', callback:openLinkInNewTab, onTag:['a']},
+    {label: 'Copy cell', callback:copyCell, onTag:['td','th']},
+    {label: 'Copy row', callback:copyRow, onTag:['tr']},
+    {label: 'Copy link address', callback:copyLink, onTag:['a']},
+    {label: 'Open link in new tab', callback:openLinkInNewTab, onTag:['a']},
 ]
 
 const filteredActions = computed(() => {

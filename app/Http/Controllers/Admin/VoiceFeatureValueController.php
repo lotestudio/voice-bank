@@ -11,7 +11,6 @@ use Illuminate\Routing\Redirector;
 
 class VoiceFeatureValueController extends Controller
 {
-
     public function store(VoiceFeatureValueFormRequest $request)
     {
         $data = $request->validated();
@@ -28,10 +27,9 @@ class VoiceFeatureValueController extends Controller
         return redirect(route('feature-value.index'));
     }
 
-
     public function destroy($id)
     {
-        VoiceFeatureValue::destroy([$id]);
+ //       VoiceFeatureValue::destroy([$id]);
         return back();
     }
 }

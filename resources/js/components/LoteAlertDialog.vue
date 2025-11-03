@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
     AlertDialog,
-    // AlertDialogAction,
+    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -11,7 +11,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import Icon from '@/components/Icon.vue';
+import { ref } from 'vue';
 
 defineProps({
     cancelLabel: {
@@ -37,11 +37,18 @@ defineProps({
 });
 
 const emit = defineEmits(['confirm', 'cancel']);
+const open = ref(false);
+
+const onConfirm = () => {
+    emit('confirm');
+    open.value = false; // close programmatically
+};
+
 </script>
 
 <template>
-    <AlertDialog>
-        <AlertDialogTrigger as-child>
+    <AlertDialog v-model:open="open">
+    <AlertDialogTrigger as-child>
             <slot/>
         </AlertDialogTrigger>
         <AlertDialogContent>
@@ -53,8 +60,8 @@ const emit = defineEmits(['confirm', 'cancel']);
             </AlertDialogHeader>
             <AlertDialogFooter>
                 <AlertDialogCancel @click="emit('cancel')">{{ cancelLabel }}</AlertDialogCancel>
-                <Button @click="emit('confirm')" :variant="confirmVariant">
-                    {{ confirmLabel }}
+                <Button @click="onConfirm" :variant="confirmVariant">
+                    {{confirmLabel}}
                 </Button>
             </AlertDialogFooter>
         </AlertDialogContent>

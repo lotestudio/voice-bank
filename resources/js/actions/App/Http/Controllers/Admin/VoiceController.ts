@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::toggleStatus
-* @see app/Http/Controllers/Admin/VoiceController.php:83
+* @see app/Http/Controllers/Admin/VoiceController.php:84
 * @route '/admin/voice/{id}/toggle-status'
 */
 export const toggleStatus = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ toggleStatus.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::toggleStatus
-* @see app/Http/Controllers/Admin/VoiceController.php:83
+* @see app/Http/Controllers/Admin/VoiceController.php:84
 * @route '/admin/voice/{id}/toggle-status'
 */
 toggleStatus.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -43,7 +43,7 @@ toggleStatus.url = (args: { id: string | number } | [id: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::toggleStatus
-* @see app/Http/Controllers/Admin/VoiceController.php:83
+* @see app/Http/Controllers/Admin/VoiceController.php:84
 * @route '/admin/voice/{id}/toggle-status'
 */
 toggleStatus.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -141,7 +141,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::store
-* @see app/Http/Controllers/Admin/VoiceController.php:52
+* @see app/Http/Controllers/Admin/VoiceController.php:53
 * @route '/admin/voice'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -156,7 +156,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::store
-* @see app/Http/Controllers/Admin/VoiceController.php:52
+* @see app/Http/Controllers/Admin/VoiceController.php:53
 * @route '/admin/voice'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -165,7 +165,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::store
-* @see app/Http/Controllers/Admin/VoiceController.php:52
+* @see app/Http/Controllers/Admin/VoiceController.php:53
 * @route '/admin/voice'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -243,7 +243,7 @@ show.head = (args: { voice: number | { id: number } } | [voice: number | { id: n
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::edit
-* @see app/Http/Controllers/Admin/VoiceController.php:68
+* @see app/Http/Controllers/Admin/VoiceController.php:69
 * @route '/admin/voice/{voice}/edit'
 */
 export const edit = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -258,7 +258,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::edit
-* @see app/Http/Controllers/Admin/VoiceController.php:68
+* @see app/Http/Controllers/Admin/VoiceController.php:69
 * @route '/admin/voice/{voice}/edit'
 */
 edit.url = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -291,7 +291,7 @@ edit.url = (args: { voice: number | { id: number } } | [voice: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::edit
-* @see app/Http/Controllers/Admin/VoiceController.php:68
+* @see app/Http/Controllers/Admin/VoiceController.php:69
 * @route '/admin/voice/{voice}/edit'
 */
 edit.get = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -301,7 +301,7 @@ edit.get = (args: { voice: number | { id: number } } | [voice: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::edit
-* @see app/Http/Controllers/Admin/VoiceController.php:68
+* @see app/Http/Controllers/Admin/VoiceController.php:69
 * @route '/admin/voice/{voice}/edit'
 */
 edit.head = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -311,7 +311,7 @@ edit.head = (args: { voice: number | { id: number } } | [voice: number | { id: n
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::update
-* @see app/Http/Controllers/Admin/VoiceController.php:60
+* @see app/Http/Controllers/Admin/VoiceController.php:61
 * @route '/admin/voice/{voice}'
 */
 export const update = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -326,7 +326,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::update
-* @see app/Http/Controllers/Admin/VoiceController.php:60
+* @see app/Http/Controllers/Admin/VoiceController.php:61
 * @route '/admin/voice/{voice}'
 */
 update.url = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -359,7 +359,7 @@ update.url = (args: { voice: number | { id: number } } | [voice: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::update
-* @see app/Http/Controllers/Admin/VoiceController.php:60
+* @see app/Http/Controllers/Admin/VoiceController.php:61
 * @route '/admin/voice/{voice}'
 */
 update.put = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -369,7 +369,7 @@ update.put = (args: { voice: number | { id: number } } | [voice: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::update
-* @see app/Http/Controllers/Admin/VoiceController.php:60
+* @see app/Http/Controllers/Admin/VoiceController.php:61
 * @route '/admin/voice/{voice}'
 */
 update.patch = (args: { voice: number | { id: number } } | [voice: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -379,7 +379,7 @@ update.patch = (args: { voice: number | { id: number } } | [voice: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::destroy
-* @see app/Http/Controllers/Admin/VoiceController.php:76
+* @see app/Http/Controllers/Admin/VoiceController.php:77
 * @route '/admin/voice/{voice}'
 */
 export const destroy = (args: { voice: string | number } | [voice: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -394,7 +394,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::destroy
-* @see app/Http/Controllers/Admin/VoiceController.php:76
+* @see app/Http/Controllers/Admin/VoiceController.php:77
 * @route '/admin/voice/{voice}'
 */
 destroy.url = (args: { voice: string | number } | [voice: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -421,7 +421,7 @@ destroy.url = (args: { voice: string | number } | [voice: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceController::destroy
-* @see app/Http/Controllers/Admin/VoiceController.php:76
+* @see app/Http/Controllers/Admin/VoiceController.php:77
 * @route '/admin/voice/{voice}'
 */
 destroy.delete = (args: { voice: string | number } | [voice: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

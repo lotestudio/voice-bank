@@ -57,6 +57,7 @@ class Voice extends Model
     public function featureValues(): BelongsToMany
     {
         return $this->belongsToMany(FeatureValue::class, 'voice_feature_values')
+            ->withPivot('id')
             ->withTimestamps();
     }
 

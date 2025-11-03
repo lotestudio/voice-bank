@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:14
 * @route '/admin/voice-feature-value'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:14
 * @route '/admin/voice-feature-value'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:14
 * @route '/admin/voice-feature-value'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -247,7 +247,7 @@ edit.head = (args: { voice_feature_value: string | number } | [voice_feature_val
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:23
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:22
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 export const update = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -262,7 +262,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:23
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:22
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 update.url = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -289,7 +289,7 @@ update.url = (args: { voice_feature_value: string | number } | [voice_feature_va
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:23
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:22
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 update.put = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -299,7 +299,7 @@ update.put = (args: { voice_feature_value: string | number } | [voice_feature_va
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:23
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:22
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 update.patch = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -309,7 +309,7 @@ update.patch = (args: { voice_feature_value: string | number } | [voice_feature_
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::destroy
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:32
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:30
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 export const destroy = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -324,7 +324,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::destroy
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:32
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:30
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 destroy.url = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -351,7 +351,7 @@ destroy.url = (args: { voice_feature_value: string | number } | [voice_feature_v
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::destroy
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:32
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:30
 * @route '/admin/voice-feature-value/{voice_feature_value}'
 */
 destroy.delete = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

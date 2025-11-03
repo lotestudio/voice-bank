@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class VoiceFeatureValueFormRequest extends FormRequest
@@ -14,9 +15,18 @@ class VoiceFeatureValueFormRequest extends FormRequest
 
     public function rules(): array
     {
+
+
+        if ($this->isMethod('POST')) {
+            return [
+                'voice_id' => ['required', 'int', 'exists:voices,id'],
+                'feature_id' => ['required', 'int', 'exists:features,id'],
+            ];
+        }
+
         return [
-            'voice_id' => ['required', 'int'],
-            'feature_value_id' => ['required', 'int'],
+            'voice_id' => ['sometimes', 'int', 'exists:voices,id'],
+            'feature_value_id' => ['sometimes', 'int', 'exists:feature_values,id'],
         ];
     }
 }

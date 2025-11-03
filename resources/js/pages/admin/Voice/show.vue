@@ -3,19 +3,21 @@ import { Head, router, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Button } from '@/components/ui/button';
 import LoteSelect from '@/components/LoteSelect.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
 import VoiceFeatureValueController from '@/actions/App/Http/Controllers/Admin/VoiceFeatureValueController';
 import { toast } from 'vue-sonner';
 
 const page = usePage();
-const voice = page.props.voice;
+const voice = computed(() => page.props.voice);
+
 
 const detach = (id: number) => {
     router.delete(VoiceFeatureValueController.destroy(id).url, {
         preserveScroll: true,
         onSuccess: () => {
-            toast.success('The VoiceFeatureValue has been deleted successfully.')
+            router.reload();
+            toast.success('The VoiceFeatureValue has been deleted successfully.');
         },
     });
 };
@@ -23,15 +25,24 @@ const detach = (id: number) => {
 const new_feature_id = ref();
 
 const add_new_feature = () => {
-    router.put(VoiceFeatureValueController.store().url, {
-
-    });
+    router.post(
+        VoiceFeatureValueController.store().url,
+        {
+            voice_id: voice.value.id,
+            feature_id: new_feature_id.value,
+        },
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                router.reload();
+            },
+        },
+    );
 };
-
 </script>
 
 <template>
-    <AppLayout :breadcrumbs="[]">
+    <AppLayout :breadcrumbs="[]" >
         <Head title="Show" />
         <div class="p-4">
             <h1 class="text-2xl font-bold">{{ voice.title.en }}/{{ voice.user.name }}</h1>

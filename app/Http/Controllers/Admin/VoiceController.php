@@ -38,9 +38,10 @@ class VoiceController extends Controller
     public function show(Voice $voice): Response
     {
 
+
         $voice->load('featureValues.feature','user', 'samples');
 
-        $voice->featureValues->sortByDesc(function ($featureValue) {
+        $voice->featureValues = $voice->featureValues->sortByDesc(function ($featureValue) {
             return $featureValue->feature->name;
         });
 

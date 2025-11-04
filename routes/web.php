@@ -56,6 +56,11 @@ Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
         ->except('show')
         ->names('post');
 
+
+    Route::resource('sort', \App\Http\Controllers\Admin\SortController::class )
+        ->only('index','store')
+        ->names('sort');
+
     Route::get('dashboard', function () {
         return Inertia::render('admin/Dashboard');
     })->name('dashboard');

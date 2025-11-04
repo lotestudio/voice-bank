@@ -8,6 +8,7 @@ import ReviewController from './ReviewController'
 import OrderController from './OrderController'
 import PaymentController from './PaymentController'
 import PostController from './PostController'
+import SortController from './SortController'
 
 const Admin = {
     FeatureController: Object.assign(FeatureController, FeatureController),
@@ -20,6 +21,7 @@ const Admin = {
     OrderController: Object.assign(OrderController, OrderController),
     PaymentController: Object.assign(PaymentController, PaymentController),
     PostController: Object.assign(PostController, PostController),
+    SortController: Object.assign(SortController, SortController),
 }
 
 export default Admin

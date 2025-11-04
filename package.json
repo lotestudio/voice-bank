@@ -58,6 +58,7 @@
         "vite": "^6.2.0",
         "vue": "^3.5.13",
         "vue-filepond": "^7.0.4",
+        "vue-slicksort": "^2.0.5",
         "vue-sonner": "^2.0.8",
         "ziggy-js": "^2.4.2"
     },

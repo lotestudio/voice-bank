@@ -40,14 +40,14 @@ const deleteVoice = (id: number) => {
                             placeholder="търси"
                             v-model="filterProps.urlParams.search"
                             @keyup.enter="filterProps.setFilter()"
-                        >
-                            ></Input
-                        >
+                        />
                         <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>
                     </div>
-                    <Link :href="VoiceController.create.url()">
-                        <Button>New Voice</Button>
-                    </Link>
+                    <div class="flex gap-2">
+                        <Link :href="VoiceController.create.url()">
+                            <Button>New Voice</Button>
+                        </Link>
+                    </div>
                 </template>
                 <template v-slot:tr="trProps">
                     <dt-td column="0">

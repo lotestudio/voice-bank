@@ -77,7 +77,8 @@ const progress = computed(() => {
 
 
         <div class="flex items-center justify-between">
-            <div class="text-xs">{{voice.features[12].name}}: {{voice.features[12].values}}</div>
+            <div v-if="voice.features[12]" class="text-xs">{{voice.features[12]?.name}}: {{voice.features[12]?.values}}</div>
+            <div v-else class="text-xs">N/A</div>
             <div><Button>{{T('order')}}</Button></div>
         </div>
     </div>

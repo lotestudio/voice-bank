@@ -11,6 +11,7 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 import LoteSwitch from '@/components/LoteSwitch.vue';
+import SortController from '@/actions/App/Http/Controllers/Admin/SortController';
 
 const breadcrumbItems = [{ title: 'Feature List', href: '/admin/feature' }];
 
@@ -45,25 +46,30 @@ const deleteFeature = (id: number) => {
                         >
                         <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>
                     </div>
-                    <Link :href="FeatureController.create.url()">
-                        <Button>New Feature</Button>
-                    </Link>
+                    <div class="flex gap-2">
+                        <Link :href="SortController.index().url + '?model=feature&display_value=display_name'">
+                            <Button variant="ghost">Sort</Button>
+                        </Link>
+                        <Link :href="FeatureController.create.url()">
+                            <Button>New Feature</Button>
+                        </Link>
+                    </div>
                 </template>
                 <template v-slot:tr="trProps">
                     <dt-td column="0">
                         {{ trProps.row.display_name.bg }}
                     </dt-td>
                     <dt-td column="1">
-                        {{ trProps.row.name}}
+                        {{ trProps.row.name }}
                     </dt-td>
                     <dt-td column="2">
-                        {{ trProps.row.values_count}}
+                        {{ trProps.row.values_count }}
                     </dt-td>
                     <dt-td column="3">
                         <LoteSwitch :default-state="trProps.row.is_featured" :url="'/admin/feature/' + trProps.row.id + '/toggle-featured'" />
                     </dt-td>
                     <dt-td column="4">
-                        {{ trProps.row.sort_order}}
+                        {{ trProps.row.sort_order }}
                     </dt-td>
                     <dt-td column="5">
                         <div class="flex justify-end gap-2">

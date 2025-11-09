@@ -32,9 +32,8 @@ Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
         ->except('show')
         ->names('feature-value');
 
-    Route::resource('voice-feature-value', \App\Http\Controllers\Admin\VoiceFeatureValueController::class )
-        ->except('show,index,create,edit')
-        ->names('voice-feature-value');
+    Route::post('voice-feature-value/store', [\App\Http\Controllers\Admin\VoiceFeatureValueController::class, 'store'])->name('voice-feature-value.store');
+    Route::post('voice-feature-value/update', [\App\Http\Controllers\Admin\VoiceFeatureValueController::class, 'update'])->name('voice-feature-value.update');
 
     Route::resource('sample', \App\Http\Controllers\Admin\SampleController::class )
         ->except('show')

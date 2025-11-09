@@ -78,7 +78,7 @@ class Feature extends Model
     {
 
         $res = Feature::query()
-            ->orderBy('name')
+            ->orderBy('sort_order')
             ->pluck('display_name','id')
             ->map(function($name,$key){
                 return [

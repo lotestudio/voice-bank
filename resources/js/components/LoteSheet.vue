@@ -29,7 +29,7 @@ defineProps({
 <template>
     <Sheet>
         <SheetTrigger as-child>
-            <slot/>
+            <slot name="trigger"/>
         </SheetTrigger>
         <SheetContent :side="side" :class="contentClasses">
             <SheetHeader>

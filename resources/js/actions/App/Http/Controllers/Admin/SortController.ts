@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::store
-* @see app/Http/Controllers/Admin/SortController.php:38
+* @see app/Http/Controllers/Admin/SortController.php:39
 * @route '/admin/sort'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::store
-* @see app/Http/Controllers/Admin/SortController.php:38
+* @see app/Http/Controllers/Admin/SortController.php:39
 * @route '/admin/sort'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::store
-* @see app/Http/Controllers/Admin/SortController.php:38
+* @see app/Http/Controllers/Admin/SortController.php:39
 * @route '/admin/sort'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

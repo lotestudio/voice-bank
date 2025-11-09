@@ -37,17 +37,38 @@ class VoiceController extends Controller
 
     public function show(Voice $voice): Response
     {
+        $voice->load('featureValues.feature.values','user', 'samples');
+
+        $featureValues = $voice->featureValues->groupBy('feature.display_name')->map(function ($featureValues, $featureName) {
+            $res = [];
+            $res['selected'] =  $featureValues->pluck('id')->toArray();
+            $res['forSelect'] = $featureValues[0]->feature->values->map(function ($value) {
+               return [
+                   'label' => $value->display_value,
+                   'value'=>$value->id,
+               ];
+            })->toArray();
+            $res['is_featured'] = $featureValues[0]->feature->is_featured;
+            $res['id'] = $featureValues[0]->feature->id;
+            $res['name'] = $featureValues[0]->feature->display_name;
+            $res['sort_order'] = $featureValues[0]->feature->sort_order;
+            return $res;
+        })->sortBy('sort_order');
 
 
-        $voice->load('featureValues.feature','user', 'samples');
-
-        $voice->featureValues = $voice->featureValues->sortByDesc(function ($featureValue) {
-            return $featureValue->feature->name;
+        $selected=$featureValues->mapWithKeys(function($item,$feature_id){
+           return [$item['id']=>$item['selected']];
         });
+
+
+        $disabledFeatureIds = $voice->featureValues->groupBy('feature_id')->keys()->toArray();
 
         return Inertia::render('admin/Voice/show', [
             'voice'=>$voice,
             'featuresSelect'=>Feature::forSelect(),
+            'featureValues'=>$featureValues,
+            'disabledFeatureIds'=>$disabledFeatureIds,
+            'selected'=>$selected,
         ]);
     }
 

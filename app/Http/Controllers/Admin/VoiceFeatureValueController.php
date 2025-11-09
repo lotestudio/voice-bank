@@ -3,22 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\VoiceFeatureValueFormRequest;
-use App\Models\Feature;
 use App\Models\FeatureValue;
+use App\Models\Voice;
 use App\Models\VoiceFeatureValue;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
+use Illuminate\Http\Request;
 
 class VoiceFeatureValueController extends Controller
 {
-    public function store(VoiceFeatureValueFormRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'feature_id' => 'required',
+            'voice_id' => 'required',
+        ]);
 
         $featureValueId = FeatureValue::query()->where('feature_values.feature_id', $data['feature_id'])->first()->id;
 
-        $v = VoiceFeatureValue::query()->create([
+        VoiceFeatureValue::query()->create([
             'feature_value_id' => $featureValueId,
             'voice_id' => $data['voice_id'],
         ]);
@@ -26,17 +27,17 @@ class VoiceFeatureValueController extends Controller
         return back();
     }
 
-    public function update(VoiceFeatureValue $voiceFeatureValue, VoiceFeatureValueFormRequest $request)
+    public function update(Request $request)
     {
-        $data = $request->validated();
-        $voiceFeatureValue->update($data);
+        $data = $request->validate([
+            'voice_id' => 'required',
+            'values' => 'required|array',
+        ]);
 
-        return back();
-    }
+        $values = collect($data['values'])->flatten()->unique()->toArray();
 
-    public function destroy($id)
-    {
-        VoiceFeatureValue::destroy([$id]);
+        Voice::query()->find($data['voice_id'])->featureValues()->sync($values);
+
         return back();
     }
 }

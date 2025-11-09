@@ -47,7 +47,7 @@ const progress = computed(() => {
                 <p class="text-xs">{{ voice.title }}</p>
                 <p class="flex items-center gap-1 text-xs">
                     <span class="i-star text-orange-400"></span>
-                    {{ voice.features[10].values }} {{t('from')}} {{voice.orders_count }} {{t('orders')}}
+                    {{ voice.features[10]?.values ?? 0 }} {{t('from')}} {{voice.orders_count }} {{t('orders')}}
 
                     <span class="i-heart text-red-500"></span>
                     {{ voice.favorites_count }}

@@ -1,96 +1,8 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::index
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value'
-*/
-export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index.url(options),
-    method: 'get',
-})
-
-index.definition = {
-    methods: ["get","head"],
-    url: '/admin/voice-feature-value',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::index
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value'
-*/
-index.url = (options?: RouteQueryOptions) => {
-    return index.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::index
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value'
-*/
-index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::index
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value'
-*/
-index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: index.url(options),
-    method: 'head',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::create
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/create'
-*/
-export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: create.url(options),
-    method: 'get',
-})
-
-create.definition = {
-    methods: ["get","head"],
-    url: '/admin/voice-feature-value/create',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::create
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/create'
-*/
-create.url = (options?: RouteQueryOptions) => {
-    return create.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::create
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/create'
-*/
-create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::create
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/create'
-*/
-create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: create.url(options),
-    method: 'head',
-})
-
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
-* @route '/admin/voice-feature-value'
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:13
+* @route '/admin/voice-feature-value/store'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
@@ -99,13 +11,13 @@ export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 store.definition = {
     methods: ["post"],
-    url: '/admin/voice-feature-value',
+    url: '/admin/voice-feature-value/store',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
-* @route '/admin/voice-feature-value'
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:13
+* @route '/admin/voice-feature-value/store'
 */
 store.url = (options?: RouteQueryOptions) => {
     return store.definition.url + queryParams(options)
@@ -113,8 +25,8 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
-* @route '/admin/voice-feature-value'
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:13
+* @route '/admin/voice-feature-value/store'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
@@ -122,243 +34,39 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::show
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-export const show = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: show.url(args, options),
-    method: 'get',
-})
-
-show.definition = {
-    methods: ["get","head"],
-    url: '/admin/voice-feature-value/{voice_feature_value}',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::show
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-show.url = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { voice_feature_value: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            voice_feature_value: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    const parsedArgs = {
-        voice_feature_value: args.voice_feature_value,
-    }
-
-    return show.definition.url
-            .replace('{voice_feature_value}', parsedArgs.voice_feature_value.toString())
-            .replace(/\/+$/, '') + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::show
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-show.get = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::show
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-show.head = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: show.url(args, options),
-    method: 'head',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::edit
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}/edit'
-*/
-export const edit = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: edit.url(args, options),
-    method: 'get',
-})
-
-edit.definition = {
-    methods: ["get","head"],
-    url: '/admin/voice-feature-value/{voice_feature_value}/edit',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::edit
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}/edit'
-*/
-edit.url = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { voice_feature_value: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            voice_feature_value: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    const parsedArgs = {
-        voice_feature_value: args.voice_feature_value,
-    }
-
-    return edit.definition.url
-            .replace('{voice_feature_value}', parsedArgs.voice_feature_value.toString())
-            .replace(/\/+$/, '') + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::edit
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}/edit'
-*/
-edit.get = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::edit
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:0
-* @route '/admin/voice-feature-value/{voice_feature_value}/edit'
-*/
-edit.head = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: edit.url(args, options),
-    method: 'head',
-})
-
-/**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:29
-* @route '/admin/voice-feature-value/{voice_feature_value}'
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:30
+* @route '/admin/voice-feature-value/update'
 */
-export const update = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
-    url: update.url(args, options),
-    method: 'put',
+export const update = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: update.url(options),
+    method: 'post',
 })
 
 update.definition = {
-    methods: ["put","patch"],
-    url: '/admin/voice-feature-value/{voice_feature_value}',
-} satisfies RouteDefinition<["put","patch"]>
+    methods: ["post"],
+    url: '/admin/voice-feature-value/update',
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:29
-* @route '/admin/voice-feature-value/{voice_feature_value}'
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:30
+* @route '/admin/voice-feature-value/update'
 */
-update.url = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { voice_feature_value: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            voice_feature_value: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    const parsedArgs = {
-        voice_feature_value: args.voice_feature_value,
-    }
-
-    return update.definition.url
-            .replace('{voice_feature_value}', parsedArgs.voice_feature_value.toString())
-            .replace(/\/+$/, '') + queryParams(options)
+update.url = (options?: RouteQueryOptions) => {
+    return update.definition.url + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:29
-* @route '/admin/voice-feature-value/{voice_feature_value}'
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:30
+* @route '/admin/voice-feature-value/update'
 */
-update.put = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
-    url: update.url(args, options),
-    method: 'put',
+update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: update.url(options),
+    method: 'post',
 })
 
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:29
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-update.patch = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
-    url: update.url(args, options),
-    method: 'patch',
-})
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::destroy
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:37
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-export const destroy = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
-    url: destroy.url(args, options),
-    method: 'delete',
-})
-
-destroy.definition = {
-    methods: ["delete"],
-    url: '/admin/voice-feature-value/{voice_feature_value}',
-} satisfies RouteDefinition<["delete"]>
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::destroy
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:37
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-destroy.url = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { voice_feature_value: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            voice_feature_value: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    const parsedArgs = {
-        voice_feature_value: args.voice_feature_value,
-    }
-
-    return destroy.definition.url
-            .replace('{voice_feature_value}', parsedArgs.voice_feature_value.toString())
-            .replace(/\/+$/, '') + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\Admin\VoiceFeatureValueController::destroy
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:37
-* @route '/admin/voice-feature-value/{voice_feature_value}'
-*/
-destroy.delete = (args: { voice_feature_value: string | number } | [voice_feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
-    url: destroy.url(args, options),
-    method: 'delete',
-})
-
-const VoiceFeatureValueController = { index, create, store, show, edit, update, destroy }
+const VoiceFeatureValueController = { store, update }
 
 export default VoiceFeatureValueController

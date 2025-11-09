@@ -24,6 +24,10 @@ const props = defineProps({
         type: Array,
         required: true,
     },
+    disabled:{
+        type: Array,
+        default:()=>[]
+    },
     selected: {
         type: [String, Number],
         default: null,
@@ -126,11 +130,12 @@ watch(
                         :value="option.value"
                         class="block cursor-pointer rounded p-2 outline-none hover:bg-accent"
                         :title="option.label"
+                        :disabled="disabled.includes(option.value)"
                     >
                         <SelectItemIndicator class="absolute left-0 inline-flex w-[25px] items-center justify-center">
                             <span class="i-check"></span>
                         </SelectItemIndicator>
-                        <SelectItemText>{{ option.label }}</SelectItemText>
+                        <SelectItemText :class="disabled.includes(option.value) ? 'text-foreground/50':''">{{ option.label }}</SelectItemText>
                     </SelectItem>
                 </SelectViewport>
                 <SelectScrollDownButton class="flex h-[25px] cursor-default items-center justify-center rounded-b-lg bg-background">

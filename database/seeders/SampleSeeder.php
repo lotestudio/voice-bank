@@ -36,24 +36,5 @@ class SampleSeeder extends Seeder
                     ->create();
             }
         }
-
-        // Create some additional random samples
-        Sample::factory()
-            ->count(20)
-            ->create();
-
-        // Create some samples with specific file types to ensure we have a good distribution
-        $fileTypes = ['mp3', 'wav', 'ogg', 'm4a'];
-        foreach ($fileTypes as $index => $fileType) {
-            Sample::factory()
-                ->count(5)
-                ->state(function (array $attributes) use ($fileType) {
-                    return [
-                        'file_type' => $fileType,
-                        'file_url' => 'https://example.com/samples/' . fake()->uuid() . '.' . $fileType,
-                    ];
-                })
-                ->create();
-        }
     }
 }

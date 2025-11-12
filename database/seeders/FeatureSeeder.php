@@ -24,7 +24,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The quality of the voice',
                 'bg' => 'Качеството на гласа'
             ],
-            'is_filterable' => true,
+            'is_featured' => true,
             'sort_order' => 1,
         ]);
 
@@ -64,7 +64,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The gender of the voice',
                 'bg' => 'Полът на гласа'
             ],
-            'is_filterable' => true,
+            'is_featured' => true,
             'sort_order' => 2,
         ]);
 
@@ -100,7 +100,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The age range of the voice',
                 'bg' => 'Възрастовият диапазон на гласа'
             ],
-            'is_filterable' => true,
+            'is_featured' => true,
             'sort_order' => 3,
         ]);
 
@@ -138,7 +138,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The accent of the voice',
                 'bg' => 'Акцентът на гласа'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 4,
         ]);
 
@@ -180,7 +180,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The style of the voice',
                 'bg' => 'Стилът на гласа'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 5,
         ]);
 
@@ -220,7 +220,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The language the voice actor can speak',
                 'bg' => 'Езикът, на който гласовият актьор може да говори'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 6,
         ]);
 
@@ -264,7 +264,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The price range for the voice actor',
                 'bg' => 'Ценовият диапазон за гласовия актьор'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 7,
         ]);
 
@@ -302,7 +302,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The category of voice work',
                 'bg' => 'Категорията на гласовата работа'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 8,
         ]);
 
@@ -346,7 +346,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The estimated delivery time',
                 'bg' => 'Очакваното време за доставка'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 9,
         ]);
 
@@ -373,43 +373,6 @@ class FeatureSeeder extends Seeder
             ]);
         }
 
-        // Rating feature
-        $rating = Feature::create([
-            'name' => 'rating',
-            'display_name' => [
-                'en' => 'Rating',
-                'bg' => 'Рейтинг'
-            ],
-            'description' => [
-                'en' => 'The rating of the voice actor',
-                'bg' => 'Рейтингът на гласовия актьор'
-            ],
-            'is_filterable' => true,
-            'sort_order' => 10,
-        ]);
-
-        // Rating values with translations
-        $ratingValues = [
-            '5-star' => ['en' => '5 Stars', 'bg' => '5 звезди'],
-            '4-star' => ['en' => '4 Stars', 'bg' => '4 звезди'],
-            '3-star' => ['en' => '3 Stars', 'bg' => '3 звезди'],
-            '2-star' => ['en' => '2 Stars', 'bg' => '2 звезди'],
-            '1-star' => ['en' => '1 Star', 'bg' => '1 звезда']
-        ];
-
-        $index = 1;
-        foreach ($ratingValues as $value => $translations) {
-            FeatureValue::create([
-                'feature_id' => $rating->id,
-                'value' => $value,
-                'display_value' => $translations,
-                'description' => [
-                    'en' => 'Rated ' . strtolower($translations['en']),
-                    'bg' => 'Оценен с ' . $translations['bg']
-                ],
-                'sort_order' => $index++,
-            ]);
-        }
 
         // Experience Level feature
         $experienceLevel = Feature::create([
@@ -422,7 +385,7 @@ class FeatureSeeder extends Seeder
                 'en' => 'The experience level of the voice actor',
                 'bg' => 'Нивото на опит на гласовия актьор'
             ],
-            'is_filterable' => true,
+            'is_featured' => false,
             'sort_order' => 11,
         ]);
 
@@ -443,47 +406,11 @@ class FeatureSeeder extends Seeder
                 'display_value' => $translations,
                 'description' => [
                     'en' => $translations['en'] . ' voice actor',
-                    'bg' => $translations['bg'] . ' гласов актьор'
+                    'bg' => $translations['bg'] . ' актьор'
                 ],
                 'sort_order' => $index++,
             ]);
         }
 
-        // Availability feature
-        $availability = Feature::create([
-            'name' => 'availability',
-            'display_name' => [
-                'en' => 'Availability',
-                'bg' => 'Наличност'
-            ],
-            'description' => [
-                'en' => 'The availability of the voice actor',
-                'bg' => 'Наличността на гласовия актьор'
-            ],
-            'is_filterable' => true,
-            'sort_order' => 12,
-        ]);
-
-        // Availability values with translations
-        $availabilityValues = [
-            'available' => ['en' => 'Available', 'bg' => 'Наличен'],
-            'limited' => ['en' => 'Limited Availability', 'bg' => 'Ограничена наличност'],
-            'busy' => ['en' => 'Busy', 'bg' => 'Зает'],
-            'on-vacation' => ['en' => 'On Vacation', 'bg' => 'В отпуск']
-        ];
-
-        $index = 1;
-        foreach ($availabilityValues as $value => $translations) {
-            FeatureValue::create([
-                'feature_id' => $availability->id,
-                'value' => $value,
-                'display_value' => $translations,
-                'description' => [
-                    'en' => 'Voice actor is ' . strtolower($translations['en']),
-                    'bg' => 'Гласовият актьор е ' . $translations['bg']
-                ],
-                'sort_order' => $index++,
-            ]);
-        }
     }
 }

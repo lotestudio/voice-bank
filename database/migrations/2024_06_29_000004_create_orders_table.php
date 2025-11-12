@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The client who placed the order
             $table->foreignId('voice_id')->constrained()->onDelete('cascade'); // The voice being ordered
             $table->string('order_number')->unique(); // Unique order number for reference
-            $table->json('title'); // Translatable title of the project
-            $table->json('description')->nullable(); // Translatable description of the project
+            $table->string('title'); // Translatable title of the project
+            $table->text('description')->nullable(); // Translatable description of the project
             $table->decimal('amount', 10, 2); // Order amount
             $table->string('currency', 3)->default('USD'); // Currency code (USD, EUR, etc.)
             $table->enum('status', ['pending', 'accepted', 'in_progress', 'completed', 'cancelled', 'refunded'])->default('pending');
@@ -25,8 +25,8 @@ return new class extends Migration
             $table->integer('word_count')->nullable(); // Number of words in the script
             $table->string('script_url')->nullable(); // URL to the script file
             $table->string('result_url')->nullable(); // URL to the result file
-            $table->json('notes')->nullable(); // Translatable notes from the client
-            $table->json('artist_notes')->nullable(); // Translatable notes from the artist
+            $table->text('notes')->nullable(); // Translatable notes from the client
+            $table->text('artist_notes')->nullable(); // Translatable notes from the artist
             $table->timestamp('accepted_at')->nullable(); // When the order was accepted by the artist
             $table->timestamp('completed_at')->nullable(); // When the order was completed
             $table->timestamps();

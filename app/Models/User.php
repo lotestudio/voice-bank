@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\ArtistStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'artist_status'
     ];
 
     /**
@@ -47,6 +49,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'artist_status' => ArtistStatus::class,
         ];
     }
 
@@ -190,6 +193,25 @@ class User extends Authenticatable
     {
         return $this->receivedOrders()->completed();
     }
+
+
+    public function getRatingAttribute(): int
+    {
+        if (!$this->isArtist()) {
+            return 0;
+        }
+
+        $voiceIds = $this->voices()->pluck('id');
+
+        if ($voiceIds->isEmpty()) {
+            return 0;
+        }
+
+        return (int) Review::whereIn('voice_id', $voiceIds)
+            ->avg('rating') ?? 0;
+    }
+
+
 
     /**
      * Get the total earnings for the user (for artists).

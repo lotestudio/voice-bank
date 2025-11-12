@@ -27,7 +27,7 @@ class Contact extends Mailable
     {
         return new Envelope(
             from: $this->email,
-            to: env('MAIL_ADMIN'),
+            to: config('mail.admin_email'),
             replyTo: $this->email,
             subject: 'Contact'
         );

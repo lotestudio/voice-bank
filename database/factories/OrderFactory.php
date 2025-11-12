@@ -44,7 +44,7 @@ class OrderFactory extends Factory
             'user_id' => User::factory()->client(),
             'voice_id' => Voice::factory(),
             'order_number' => Order::generateOrderNumber(),
-            'title' =>  $englishTitle,
+            'title' =>$englishTitle,
             'description' => $englishDescription,
             'amount' => $amount,
             'currency' => $currencies[array_rand($currencies)],

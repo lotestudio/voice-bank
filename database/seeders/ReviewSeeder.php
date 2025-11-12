@@ -18,19 +18,22 @@ class ReviewSeeder extends Seeder
         $clients = User::where('role', 'client')->get();
 
         // Get all active voices
-        $voices = Voice::active()->get();
+        $voices = Voice::active()->withWhereHas('orders')->get();
 
         // For each client, create 1-5 reviews for random voices
         foreach ($clients as $client) {
             $reviewCount = rand(1, 5);
             $randomVoices = $voices->random(min($reviewCount, $voices->count()));
 
+
             foreach ($randomVoices as $voice) {
                 $englishComment = fake()->paragraph();
+                $order = $voice->orders()->inRandomOrder()->first();
 
                 Review::create([
                     'user_id' => $client->id,
                     'voice_id' => $voice->id,
+                    'order_id' => $order->id,
                     'rating' => rand(3, 5), // Most reviews are positive (3-5 stars)
                     'comment' => [
                         'en' => $englishComment,

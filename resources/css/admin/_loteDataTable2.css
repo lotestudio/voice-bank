@@ -123,5 +123,5 @@ table.loteDataTable2 td {
 }
 
 .loteDataTablePager{
-    @apply flex p-2 rounded-b space-x-1
+    @apply flex rounded-b space-x-1
 }

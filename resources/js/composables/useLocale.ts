@@ -4,7 +4,7 @@ type LocaleStrings = Record<string, Record<string, string>>;
 
 export const locales: LocaleStrings = {
     'en': {
-
+        'artist_status':'status'
     },
     'bg': {
         'price':'цена',
@@ -14,7 +14,10 @@ export const locales: LocaleStrings = {
         'message':'Съобщение',
         'become an artist': 'Стани диктор',
         'all filters': 'Всички филтри',
-        'search': 'Търси'
+        'search': 'Търси',
+        'artist_status':'наличност',
+        'from':'oт',
+        'orders':'поръчки'
     }
 };
 

@@ -33,8 +33,8 @@ class SampleFactory extends Factory
                 'en' => $englishDescription,
                 'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
             ],
-            'file_url' => 'https://example.com/samples/' . fake()->uuid() . '.' . $fileTypes[array_rand($fileTypes)],
-            'file_type' => $fileTypes[array_rand($fileTypes)],
+            'file_url' => 'sample_1.mp3',
+            'file_type' => 'mp3',
             'duration' => $duration,
             'file_size' => $fileSize,
             'is_featured' => fake()->boolean(20), // 20% chance of being featured

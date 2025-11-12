@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
 use App\Models\User;
 use App\Models\Voice;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,9 +21,15 @@ class ReviewFactory extends Factory
     {
         $englishComment = fake()->paragraph();
 
+
+        $client = User::factory()->client();
+        $voice = Voice::factory();
+        $order = Order::factory()->for($client)->for($voice)->create();
+
         return [
-            'user_id' => User::factory()->client(),
-            'voice_id' => Voice::factory(),
+            'user_id' => $client,
+            'voice_id' => $voice,
+            'order_id' => $order,
             'rating' => fake()->numberBetween(1, 5),
             'comment' => [
                 'en' => $englishComment,

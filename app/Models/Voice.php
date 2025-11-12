@@ -196,6 +196,8 @@ class Voice extends Model
         return $this->orders()->count();
     }
 
+
+
     /**
      * Get the total earnings for the voice.
      */

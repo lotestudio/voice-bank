@@ -7,4 +7,8 @@ return [
     'voices' => 'Voices',
     'about' => 'About us',
     'choose'=>'choose',
+    'Settings'=>'Settings',
+    'Orders'=>'Orders',
+    'Reviews'=>'Reviews',
+    'Favorites'=>'Favorites'
 ];

@@ -74,7 +74,13 @@ extract($setup->all());
 
 @task('composer', ['on' => 'web'])
     cd {{$deploy_path}}
+
+    @if($branch==='main')
+    {{ $composer }} update --optimize-autoloader --no-dev
+    @else
     {{ $composer }} update
+    @endif
+
     {{ $composer }} dump-autoload -o
 @endtask
 

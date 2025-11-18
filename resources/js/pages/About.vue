@@ -2,9 +2,8 @@
 import { Head, usePage } from '@inertiajs/vue3';
 import SiteLayout from '@/layouts/SiteLayout.vue';
 import { useLocale } from '@/composables/useLocale';
-import { about } from '@/actions/App/Http/Controllers/MainController';
-const { T } = useLocale()
 
+const { T } = useLocale()
 const page = usePage();
 const contents=page.props.about;
 </script>

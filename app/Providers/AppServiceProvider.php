@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Services\VoiceFilterService;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +29,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RouteServiceProvider::loadCachedRoutesUsing(fn() => $this->loadCachedRoutes());
+
+        Gate::define('administrate', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        Gate::define('develop', function (User $user) {
+            return $user->isDev();
+        });
+
+        Gate::define('artist-actions', function (User $user) {
+            return $user->isArtist();
+        });
+
+        Gate::define('act_as_client', function (User $user) {
+            return $user->isClient();
+        });
     }
 }

@@ -1,77 +1,52 @@
 <?php
 
+use App\Http\Controllers\Profile\FavoritesController;
+use App\Http\Controllers\Profile\OrdersController;
+use App\Http\Controllers\Profile\ProfileSettingsController;
+use App\Http\Controllers\Profile\ReviewsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [
+        'localeSessionRedirect',
+        'localizationRedirect',
+        'localeViewPath',
+    ],
+], function () {
     Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
     Route::get('/voices', [\App\Http\Controllers\VoicesController::class, 'index']);
     Route::get('/about', [\App\Http\Controllers\MainController::class, 'about']);
     Route::get('/contacts', [\App\Http\Controllers\MainController::class, 'contacts']);
     Route::get('/artist/{id}', [\App\Http\Controllers\ArtistController::class, 'show']);
+
+
+    //settings + avatar
+    Route::resource('profile/profile_settings',ProfileSettingsController::class)
+        ->only(['index','edit','update'])
+        ->names('profile_settings')
+        ->middleware('auth');
+    //orders
+    Route::get('profile/orders',[OrdersController::class,'index'])->name('orders.index')->middleware('auth');;
+    Route::get('profile/orders/{order}',[OrdersController::class,'show'])->name('orders.show')->middleware('auth');;
+    Route::resource('orders',OrdersController::class)->only(['create','store','update'])->middleware(['auth','can:act_as_client']);
+
+    //reviews
+    Route::resource('profile/reviews',ReviewsController::class)->middleware('auth');;
+    //favorites
+    Route::resource('profile/favorites',FavoritesController::class)->middleware('auth');;
+
 });
 
 Route::post('/send',[\App\Http\Controllers\MainController::class,'send']);
 Route::get('sample/download/{id}',\App\Http\Controllers\SampleDownloaderController::class)->name('sample.download');
 
-Route::group(['middleware'=>['auth'],'prefix' => 'admin'], function () {
-    Route::resource('voice', \App\Http\Controllers\Admin\VoiceController::class )
-        ->names('voice');
-
-    Route::resource('user', \App\Http\Controllers\Admin\UserController::class )
-        ->except('show')
-        ->names('user');
-
-    Route::resource('feature', \App\Http\Controllers\Admin\FeatureController::class )
-        ->except('show')
-        ->names('feature');
 
 
-    Route::resource('feature-value', \App\Http\Controllers\Admin\FeatureValueController::class )
-        ->except('show')
-        ->names('feature-value');
 
-    Route::post('voice-feature-value/store', [\App\Http\Controllers\Admin\VoiceFeatureValueController::class, 'store'])->name('voice-feature-value.store');
-    Route::post('voice-feature-value/update', [\App\Http\Controllers\Admin\VoiceFeatureValueController::class, 'update'])->name('voice-feature-value.update');
-
-    Route::resource('sample', \App\Http\Controllers\Admin\SampleController::class )
-        ->except('show')
-        ->names('sample');
-
-    Route::resource('review', \App\Http\Controllers\Admin\ReviewController::class )
-        ->except('show')
-        ->names('review');
-
-    Route::resource('order', \App\Http\Controllers\Admin\OrderController::class )
-        ->except('show')
-        ->names('order');
-
-    Route::resource('payment', \App\Http\Controllers\Admin\PaymentController::class )
-        ->except('show')
-        ->names('payment');
-
-    Route::resource('post', \App\Http\Controllers\Admin\PostController::class )
-        ->except('show')
-        ->names('post');
-
-
-    Route::resource('sort', \App\Http\Controllers\Admin\SortController::class )
-        ->only('index','store')
-        ->names('sort');
-
-    Route::get('dashboard', function () {
-        return Inertia::render('admin/Dashboard');
-    })->name('dashboard');
-
-});
-
-
-Route::group(['middleware'=>['auth'],'prefix' => 'dev'], function () {
-    Route::get('template', \App\Http\Controllers\Dev\TemplateController::class)->name('template');
-    Route::get('data-list-test', \App\Http\Controllers\Dev\DataListTestController::class)->name('data-list-test');
-});
-
-
+require __DIR__.'/admin.php';
+require __DIR__.'/dev.php';
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

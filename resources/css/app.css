@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-
 @import 'tw-animate-css';
+@import './_safe_list.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -8,6 +8,7 @@
 @plugin "../../tailwindcss_plugins/icons/icons.js";
 
 @custom-variant dark (&:is(.dark *));
+
 
 
 @theme {

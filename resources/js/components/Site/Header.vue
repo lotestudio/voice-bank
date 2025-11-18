@@ -35,7 +35,10 @@ const { isActive } = useActive();
                     :href="item.href"
                     v-for="(item, index) in items"
                     :class="isActive(item.href) ? 'opacity-100' : 'opacity-50 hover:opacity-100'"
-                    >{{ item.title }}</Link
+                    >
+                    <span v-if="item.icon" class="i" :class="item.icon"></span>
+                    <span v-else>{{ item.title }}</span>
+                </Link
                 >
                 <LangSwitcher />
             </div>

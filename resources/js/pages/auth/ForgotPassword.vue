@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import {email} from '@/routes/password';
+import {login} from '@/routes';
 
 defineProps<{
     status?: string;
@@ -17,7 +19,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('password.email'));
+    form.post(email.url());
 };
 </script>
 
@@ -47,7 +49,7 @@ const submit = () => {
 
             <div class="space-x-1 text-center text-sm text-muted-foreground">
                 <span>Or, return to</span>
-                <TextLink :href="route('login')">log in</TextLink>
+                <TextLink :href="login.url()">log in</TextLink>
             </div>
         </div>
     </AuthLayout>

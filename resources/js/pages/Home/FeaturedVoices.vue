@@ -6,6 +6,10 @@ import { ref } from 'vue';
 const page = usePage();
 const locale = ref(page.props.locale);
 const content=page.props.contents['home.featured_voices'];
+import { useLocale } from '@/composables/useLocale';
+const {T} = useLocale();
+
+
 </script>
 
 <template>
@@ -20,7 +24,7 @@ const content=page.props.contents['home.featured_voices'];
 
         <div class="text-center">
             <Button size="lg" as-child>
-                <Link :href="locale+ '/voices'">Разгледай всички</Link>
+                <Link :href="locale+ '/voices'">{{T('all_voices')}}</Link>
             </Button>
         </div>
     </div>

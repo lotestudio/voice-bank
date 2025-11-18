@@ -5,12 +5,14 @@
             <meta name="description" content="Lap Voice Over - Full Voice Over Services" />
         </Head>
         <!--    <h2 class="text-6xl font-bold text-gray-400 text-center mb-4">{{T('contacts',locale)}}</h2>-->
-        <div v-if="page.props.flash.message !== 'success'" class="mx-auto max-w-sm text-xl mt-6 lg:mt-18">
+        <div v-if="page.props.flash.message !== 'success'" class="mx-auto max-w-sm text-xl mt-6 lg:mt-18 space-y-2">
             <div class="flex items-center justify-center">
                 <span class="i-mobile"></span>
+            </div>
+            <div class="flex items-center justify-center">
                 +359 898 989 614
             </div>
-            <p class="mt-2 text-center">
+            <p class="text-center text-sm text-muted-foreground">
                 <span v-if="locale === 'bg'"> Обадете се или изпратете съобщение </span>
                 <span v-if="locale === 'en'"> Call us or send a message: </span>
             </p>

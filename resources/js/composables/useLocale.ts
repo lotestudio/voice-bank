@@ -4,7 +4,9 @@ type LocaleStrings = Record<string, Record<string, string>>;
 
 export const locales: LocaleStrings = {
     'en': {
-        'artist_status':'status'
+        'artist_status':'status',
+        'all_voices':'All voices',
+
     },
     'bg': {
         'price':'цена',
@@ -17,7 +19,10 @@ export const locales: LocaleStrings = {
         'search': 'Търси',
         'artist_status':'наличност',
         'from':'oт',
-        'orders':'поръчки'
+        'orders':'поръчки',
+        'all_voices':'Разгледай всички',
+        'logout':'Изход'
+
     }
 };
 
@@ -56,7 +61,13 @@ export function useLocale() {
         return lastSeparatorIndex === -1 ? str.slice(0, maxLen) + '...' : str.slice(0, lastSeparatorIndex) + '...';
     }
 
+    const locale_url = (url:string)=>{
+        if(!url.startsWith('/')){
+            url = '/'+url;
+        }
+        return '/'+page.props.locale+url
+    }
 
-    return {T,t, shorten};
+    return {T,t, shorten, locale_url};
 
 }

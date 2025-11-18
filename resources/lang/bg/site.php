@@ -9,6 +9,10 @@ return [
     'Available'=>'Наличен',
     'Limited'=>'Ограничена наличност',
     'Busy'=>'Зает',
-    'Vacation'=>'Отпуск'
+    'Vacation'=>'Отпуск',
+    'Settings'=>'Настройки',
+    'Orders'=>'Поръчки',
+    'Reviews'=>'Ревюта',
+    'Favorites'=>'Любими'
 
 ];

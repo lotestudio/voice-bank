@@ -9,7 +9,7 @@ const isOpen = usePage<SharedData>().props.sidebarOpen;
 </script>
 
 <template>
-    <SidebarProvider :default-open="isOpen" class="block">
+    <SidebarProvider :default-open="isOpen" class="flex flex-col">
         <slot />
     </SidebarProvider>
 </template>

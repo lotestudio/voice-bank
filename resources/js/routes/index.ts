@@ -44,7 +44,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/web.php:63
+* @see [serialized-closure]:2
 * @route '/admin/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -58,7 +58,7 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:63
+* @see [serialized-closure]:2
 * @route '/admin/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -66,7 +66,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:63
+* @see [serialized-closure]:2
 * @route '/admin/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -75,7 +75,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:63
+* @see [serialized-closure]:2
 * @route '/admin/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -128,6 +128,50 @@ template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\Dev\ServicePagesController::sideMenu
+* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @route '/dev/template/side_menu'
+*/
+export const sideMenu = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: sideMenu.url(options),
+    method: 'get',
+})
+
+sideMenu.definition = {
+    methods: ["get","head"],
+    url: '/dev/template/side_menu',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Dev\ServicePagesController::sideMenu
+* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @route '/dev/template/side_menu'
+*/
+sideMenu.url = (options?: RouteQueryOptions) => {
+    return sideMenu.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dev\ServicePagesController::sideMenu
+* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @route '/dev/template/side_menu'
+*/
+sideMenu.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: sideMenu.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Dev\ServicePagesController::sideMenu
+* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @route '/dev/template/side_menu'
+*/
+sideMenu.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: sideMenu.url(options),
+    method: 'head',
+})
+
+/**
 * @see \App\Http\Controllers\Dev\DataListTestController::__invoke
 * @see app/Http/Controllers/Dev/DataListTestController.php:20
 * @route '/dev/data-list-test'
@@ -172,7 +216,7 @@ dataListTest.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/settings.php:18
+* @see [serialized-closure]:2
 * @route '/admin/settings/appearance'
 */
 export const appearance = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -186,7 +230,7 @@ appearance.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/settings.php:18
+* @see [serialized-closure]:2
 * @route '/admin/settings/appearance'
 */
 appearance.url = (options?: RouteQueryOptions) => {
@@ -194,7 +238,7 @@ appearance.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/settings.php:18
+* @see [serialized-closure]:2
 * @route '/admin/settings/appearance'
 */
 appearance.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -203,7 +247,7 @@ appearance.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/settings.php:18
+* @see [serialized-closure]:2
 * @route '/admin/settings/appearance'
 */
 appearance.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -301,7 +345,7 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::logout
-* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:48
 * @route '/logout'
 */
 export const logout = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -316,7 +360,7 @@ logout.definition = {
 
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::logout
-* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:48
 * @route '/logout'
 */
 logout.url = (options?: RouteQueryOptions) => {
@@ -325,7 +369,7 @@ logout.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::logout
-* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:48
 * @route '/logout'
 */
 logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

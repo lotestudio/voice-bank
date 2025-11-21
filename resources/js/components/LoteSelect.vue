@@ -151,6 +151,6 @@ watch(
 @reference "@@/app.css";
 
 .defaultListBoxButtonClass {
-    @apply relative flex cursor-default items-center justify-between rounded-md bg-background px-3 py-2 text-sm outline outline-offset-[-1px] outline-border focus:outline-none;
+    @apply relative flex cursor-default items-center justify-between rounded-md bg-background px-3 py-2 text-sm outline outline-offset-[-1px] outline-border focus:outline-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] ;
 }
 </style>

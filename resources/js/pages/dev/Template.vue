@@ -5,6 +5,7 @@ import { useLocale } from '@/composables/useLocale';
 import { Button } from '@/components/ui/button';
 import LangSwitcher from '@/components/Site/LangSwitcher.vue';
 import AppearanceTabs from '@/components/AppearanceTabs.vue';
+import Colors from '@/pages/dev/Colors.vue';
 const locale = usePage().props.locale;
 const { T } = useLocale()
 </script>
@@ -32,9 +33,33 @@ const { T } = useLocale()
                 <Button variant="default" disabled>Click me</Button>
             </div>
             <hr>
-                <div class="flex gap-4 py-8">
-                    <span class="i-circleMenu text-xl"></span>
+                <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-8">
+                    <div><span class="i-clock text-xl"></span> clock</div>
+                    <div><span class="i-document text-xl"></span> document</div>
+                    <div><span class="i-userStar text-xl"></span> userStar</div>
+                    <div><span class="i-chat text-xl"></span> chat</div>
+                    <div><span class="i-auto text-xl"></span> auto</div>
+                    <div><span class="i-download text-xl"></span> download</div>
+                    <div><span class="i-star text-xl"></span> star</div>
+                    <div><span class="i-heart text-xl"></span> heart</div>
+                    <div><span class="i-play text-xl"></span> play</div>
+                    <div><span class="i-pause text-xl"></span> pause</div>
+                    <div><span class="i-edit text-xl"></span> edit</div>
+                    <div><span class="i-trash text-xl"></span> trash</div>
+                    <div><span class="i-mobile text-xl"></span> mobile</div>
+                    <div><span class="i-chevronLeft text-xl"></span> chevronLeft</div>
+                    <div><span class="i-chevronRight text-xl"></span> chevronRight</div>
+                    <div><span class="i-close text-xl"></span> close</div>
+                    <div><span class="i-user text-xl"></span> user</div>
+                    <div><span class="i-logout text-xl"></span> logout</div>
+                    <div><span class="i-sin text-xl"></span> sin</div>
+                    <div><span class="i-moon text-xl"></span> moon</div>
                 </div>
+            <hr>
+
+
+            <hr>
+            <Colors/>
             <hr>
 
             <main class="max-w-[65ch] mt-8 space-y-4">

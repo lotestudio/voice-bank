@@ -3,10 +3,11 @@ import {computed} from "vue";
 export function useFilters(state){
 
     const filtersCount = computed(() => {
-
-        return Object.keys(state.value.urlParams).filter((key) => {
-            return key.startsWith('filters') && state.value.urlParams[key] !== '';
-        }).length;
+        const res = Object.keys(state.value.urlParams).filter((key) => {
+            const isEmpty = state.value.urlParams[key] === '' || state.value.urlParams[key].length === 0;
+            return key.startsWith('filters') && !isEmpty;
+        });
+        return res.length;
     })
 
     const setFilter = (name, value) => {
@@ -28,7 +29,6 @@ export function useFilters(state){
     const getFilter = (name) => {
         return state.value.urlParams['filters['+name+']'];
     }
-
 
     return {
         filtersCount,

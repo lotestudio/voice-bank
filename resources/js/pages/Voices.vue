@@ -86,7 +86,6 @@ const {T,t} = useLocale()
                                             </div>
                                         </div>
                                     </div>
-
                                 </lote-sheet>
                                 <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>
                             </div>

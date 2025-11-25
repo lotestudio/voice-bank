@@ -7,9 +7,7 @@ Route::group(['middleware'=>['auth','can:administrate'],'prefix' => 'admin'], fu
     Route::resource('voice', \App\Http\Controllers\Admin\VoiceController::class )
         ->names('voice');
 
-    Route::resource('user', \App\Http\Controllers\Admin\UserController::class )
-        ->except('show')
-        ->names('user');
+    Route::resource('user', \App\Http\Controllers\Admin\UserController::class )->names('user');
 
     Route::resource('feature', \App\Http\Controllers\Admin\FeatureController::class )
         ->except('show')

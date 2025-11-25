@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\ArtistStatus;
+use App\Enums\Roles;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +28,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'artist_status'
+        'avatar',
+        'artist_status',
     ];
 
     /**
@@ -50,8 +53,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'artist_status' => ArtistStatus::class,
+            'role' => Roles::class,
+            'avatar' => 'array',
         ];
     }
+
+    //protected $appends = ['initials','avatar'];
 
     /**
      * Get the voices for the user.
@@ -66,7 +73,7 @@ class User extends Authenticatable
      */
     public function isArtist(): bool
     {
-        return $this->role === 'artist';
+        return $this->role->value === 'artist';
     }
 
     /**
@@ -74,7 +81,7 @@ class User extends Authenticatable
      */
     public function isClient(): bool
     {
-        return $this->role === 'client';
+        return $this->role->value === 'client';
     }
 
     /**
@@ -82,7 +89,7 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return $this->role === 'admin' || $this->role === 'dev';
+        return $this->role->value === 'admin' || $this->role->value === 'dev';
     }
 
     /**
@@ -90,7 +97,7 @@ class User extends Authenticatable
      */
     public function isDev(): bool
     {
-        return $this->role === 'dev';
+        return $this->role->value === 'dev';
     }
 
     /**
@@ -171,11 +178,14 @@ class User extends Authenticatable
      */
     public function receivedOrders()
     {
-        if (!$this->isArtist()) {
+        if (! $this->isArtist()) {
             return collect();
         }
 
-        return Order::whereIn('voice_id', $this->voices()->pluck('id'));
+        // Orders that include any of this user's voices
+        return Order::whereHas('voices', function ($q) {
+            $q->whereIn('voices.id', $this->voices()->pluck('id'));
+        });
     }
 
     /**
@@ -194,10 +204,9 @@ class User extends Authenticatable
         return $this->receivedOrders()->completed();
     }
 
-
     public function getRatingAttribute(): int
     {
-        if (!$this->isArtist()) {
+        if (! $this->isArtist()) {
             return 0;
         }
 
@@ -211,29 +220,49 @@ class User extends Authenticatable
             ->avg('rating') ?? 0;
     }
 
-
-
     /**
      * Get the total earnings for the user (for artists).
      */
     public function getTotalEarningsAttribute(): float
     {
-        if (!$this->isArtist()) {
+        if (! $this->isArtist()) {
             return 0;
         }
 
         return $this->receivedOrders()->completed()->sum('amount');
     }
 
-    public function getInitialsAttribute(): string
+    protected function Initials(): Attribute
     {
-        $words = explode(' ', $this->name);
+        return Attribute::make(
+            get: function(){
+                $words = explode(' ', $this->name);
 
-        if (count($words) >= 2) {
-            return strtoupper(substr($words[0], 0, 1).substr($words[1], 0, 1));
-        }
+                if (count($words) >= 2) {
+                    return mb_strtoupper(mb_substr($words[0], 0, 1).mb_substr($words[1], 0, 1));
+                }
 
-        return strtoupper(substr($this->name, 0, 2));
+                return mb_strtoupper(mb_substr($this->name, 0, 2));
+            },
+            set: fn($value) => $value,
+        );
+    }
+
+    protected function Avatar(): Attribute
+    {
+        return Attribute::make(
+            get: function($value, array $attributes) {
+
+                return [
+                    'url'=>$value ? url('storage/avatars/'.$value) : '',
+                    'path'=>$value ? public_path('storage/avatars/'.$value) : '',
+                    'file_name'=>$value,
+                    'initials'=>$this->initials
+                ];
+
+            },
+            set: fn($value) => $value,
+        );
     }
 
 
@@ -254,7 +283,7 @@ class User extends Authenticatable
         })->orderBy('name')->get(['name', 'id'])->map(function ($user) {
             return [
                 'label' => $user->name,
-                'value' => $user->id
+                'value' => $user->id,
             ];
         });
 

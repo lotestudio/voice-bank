@@ -19,6 +19,7 @@ class MenuService
             'voice'=>['title'=>__('site.voices'), 'href'=>LaravelLocalization::localizeUrl('/voices')],
             'about'=>['title'=>__('site.about'), 'href'=>LaravelLocalization::localizeUrl('/about')],
             'contacts'=>['title'=>__('site.contacts'), 'href'=>LaravelLocalization::localizeUrl('/contacts')],
+            //'test'=>['title'=>'Test', 'href'=>url('/dev/redirect')],
         ];
 
 

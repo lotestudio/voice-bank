@@ -22,6 +22,13 @@ class UserController extends Controller
         return Inertia::render('admin/User/index', []);
     }
 
+    public function show(User $user): Response
+    {
+        return Inertia::render('admin/User/show', [
+            'user' => $user,
+        ]);
+    }
+
     public function create(): Response
     {
         return Inertia::render('admin/User/form', []);

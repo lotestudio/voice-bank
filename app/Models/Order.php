@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
     use HasFactory;
-
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,6 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'voice_id',
         'order_number',
         'title',
         'description',
@@ -28,8 +28,7 @@ class Order extends Model
         'status',
         'deadline',
         'word_count',
-        'script_url',
-        'result_url',
+        'script_text',
         'notes',
         'artist_notes',
         'accepted_at',
@@ -47,6 +46,7 @@ class Order extends Model
         'word_count' => 'integer',
         'accepted_at' => 'datetime',
         'completed_at' => 'datetime',
+        'status' => OrderStatus::class
     ];
 
     /**
@@ -58,19 +58,29 @@ class Order extends Model
     }
 
     /**
-     * Get the voice that is ordered.
+     * Voices attached to this order.
      */
-    public function voice(): BelongsTo
+    public function voices(): BelongsToMany
     {
-        return $this->belongsTo(Voice::class);
+        return $this->belongsToMany(Voice::class, 'order_voice')
+            ->withTimestamps();
     }
 
     /**
-     * Get the artist through the voice.
+     * Get the artists (voice owners) for this order.
+     */
+    public function artists()
+    {
+        return $this->voices->map(fn(Voice $voice) => $voice->user)->unique('id')->values();
+    }
+
+    /**
+     * Backwards-compatible helper returning the first artist if available.
+     * Prefer using artists() which returns a collection.
      */
     public function artist()
     {
-        return $this->voice->user;
+        return $this->artists()->first();
     }
 
     /**
@@ -218,7 +228,7 @@ class Order extends Model
         $timestamp = now()->format('YmdHis');
         $random = strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 6));
 
-        return $prefix . '-' . $timestamp . '-' . $random;
+        return $prefix.'-'.$timestamp.'-'.$random;
     }
 
     /**

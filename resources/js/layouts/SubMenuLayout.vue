@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto mt-10 px-8">
-        <div class="flex gap-8">
+        <div class="md:flex md:gap-8">
             <div class="w-[250px] hidden md:flex flex-col gap-1 pt-12">
                 <slot name="sub_sidebar_header"/>
                 <SubmenuLink
@@ -11,7 +11,7 @@
                 />
                 <slot name="sub_sidebar_footer"/>
             </div>
-            <div>
+            <div class="flex-1">
                 <h1 class="font-bold text-3xl mt-2" v-if="title!==''">{{title}}</h1>
                 <slot/>
             </div>

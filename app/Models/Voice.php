@@ -70,7 +70,6 @@ class Voice extends Model
     /**
      * Scope a query to only include voices with specific feature values.
      */
-
     #[Scope]
     protected function withFeatureValues($query, array $featureValueIds)
     {
@@ -165,11 +164,12 @@ class Voice extends Model
     }
 
     /**
-     * Get the orders for the voice.
+     * Orders that include this voice.
      */
-    public function orders(): HasMany
+    public function orders(): BelongsToMany
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsToMany(Order::class, 'order_voice')
+            ->withTimestamps();
     }
 
     /**
@@ -196,8 +196,6 @@ class Voice extends Model
         return $this->orders()->count();
     }
 
-
-
     /**
      * Get the total earnings for the voice.
      */
@@ -211,7 +209,7 @@ class Voice extends Model
         $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item) {
             return [
                 'label' => $item->title,
-                'value' => $item->id
+                'value' => $item->id,
             ];
         });
 

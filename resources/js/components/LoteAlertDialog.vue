@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { ref } from 'vue';
 
-defineProps({
+const props=defineProps({
     cancelLabel: {
         type: String,
         default: 'Cancel',
@@ -34,10 +34,18 @@ defineProps({
         type: String,
         default: 'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
     },
+    autoOpen: {
+        type: Boolean,
+        default: false,
+    },
+    closeOnly:{
+        type: Boolean,
+        default: false,
+    }
 });
 
 const emit = defineEmits(['confirm', 'cancel']);
-const open = ref(false);
+const open = ref(props.autoOpen);
 
 const onConfirm = () => {
     emit('confirm');
@@ -59,10 +67,12 @@ const onConfirm = () => {
                 </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-                <AlertDialogCancel @click="emit('cancel')">{{ cancelLabel }}</AlertDialogCancel>
+
+                <AlertDialogCancel v-if="!closeOnly" @click="emit('cancel')">{{ cancelLabel }}</AlertDialogCancel>
                 <Button @click="onConfirm" :variant="confirmVariant">
                     {{confirmLabel}}
                 </Button>
+
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>

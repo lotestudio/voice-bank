@@ -30,7 +30,7 @@ Route::group([
         ->middleware('auth');
     //orders
     Route::get('profile/orders',[OrdersController::class,'index'])->name('orders.index')->middleware('auth');;
-    Route::get('profile/orders/{order}',[OrdersController::class,'show'])->name('orders.show')->middleware('auth');;
+    Route::get('profile/orders/{id}',[OrdersController::class,'show'])->name('orders.show')->middleware('auth');;
     Route::resource('orders',OrdersController::class)->only(['create','store','update'])->middleware(['auth','can:act_as_client']);
 
     //reviews

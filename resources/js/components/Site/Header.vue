@@ -5,6 +5,7 @@ import type { NavItem } from '@/types';
 import LangSwitcher from '@/components/Site/LangSwitcher.vue';
 import { useActive } from '@/composables/useActive';
 import Logo from '@/components/Site/Logo.vue';
+import CartIcon from '@/components/Site/CartIcon.vue';
 
 const items: NavItem[] = usePage().props.menu as NavItem[];
 const { isMobile } = useSidebar();
@@ -40,10 +41,12 @@ const { isActive } = useActive();
                     <span v-else>{{ item.title }}</span>
                 </Link
                 >
+                <CartIcon/>
                 <LangSwitcher />
             </div>
         </div>
         <div class="flex items-center gap-2" v-if="isMobile">
+            <CartIcon/>
             <LangSwitcher />
         </div>
     </header>

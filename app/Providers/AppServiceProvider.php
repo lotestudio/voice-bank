@@ -39,11 +39,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('artist-actions', function (User $user) {
-            return $user->isArtist();
+            return $user->isArtist() || $user->isAdmin() || $user->isDev();
         });
 
         Gate::define('act_as_client', function (User $user) {
-            return $user->isClient();
+            return $user->isClient() || $user->isAdmin() || $user->isDev();
         });
     }
 }

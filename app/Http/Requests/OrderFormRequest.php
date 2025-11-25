@@ -13,8 +13,15 @@ class OrderFormRequest extends FormRequest
 
     public function rules(): array
     {
+
         return [
-            'order_number' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
+            'script_text' => ['required', 'string'],
+            'deadline' => ['required', 'date'],
+            'voices' => ['required', 'array'],
+            //'voices.*' => ['required'],
         ];
+
     }
 }

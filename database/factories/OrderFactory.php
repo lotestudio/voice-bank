@@ -42,22 +42,36 @@ class OrderFactory extends Factory
 
         return [
             'user_id' => User::factory()->client(),
-            'voice_id' => Voice::factory(),
             'order_number' => Order::generateOrderNumber(),
-            'title' =>$englishTitle,
+            'title' => $englishTitle,
             'description' => $englishDescription,
             'amount' => $amount,
             'currency' => $currencies[array_rand($currencies)],
             'status' => $status,
             'deadline' => now()->addDays(rand(3, 30)),
             'word_count' => fake()->numberBetween(100, 5000),
-            'script_url' => fake()->boolean(80) ? 'https://example.com/scripts/' . fake()->uuid() . '.pdf' : null,
-            'result_url' => $status === 'completed' ? 'https://example.com/results/' . fake()->uuid() . '.mp3' : null,
+            'script_text' => fake()->paragraph(3),
             'notes' => $englishNotes ?? null,
             'artist_notes' => $artistNotes ?? null,
             'accepted_at' => $acceptedAt,
             'completed_at' => $completedAt,
         ];
+    }
+
+    /**
+     * Configure the factory to attach voices via pivot after creating.
+     */
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Order $order, array $attributes) {
+            // If specific voice_ids provided in state, sync those; otherwise attach a random/new voice
+            $voiceIds = $attributes['voice_ids'] ?? null;
+            if ($voiceIds === null) {
+                $voice = Voice::factory()->create();
+                $voiceIds = [$voice->id];
+            }
+            $order->voices()->sync($voiceIds);
+        });
     }
 
     /**
@@ -107,7 +121,6 @@ class OrderFactory extends Factory
             'status' => 'completed',
             'accepted_at' => $acceptedAt,
             'completed_at' => $acceptedAt->copy()->addDays(rand(1, 7)),
-            'result_url' => 'https://example.com/results/' . fake()->uuid() . '.mp3',
         ]);
     }
 
@@ -154,7 +167,7 @@ class OrderFactory extends Factory
     public function forVoice(Voice $voice): static
     {
         return $this->state(fn (array $attributes) => [
-            'voice_id' => $voice->id,
+            'voice_ids' => [$voice->id],
         ]);
     }
 }

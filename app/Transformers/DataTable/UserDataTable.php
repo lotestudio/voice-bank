@@ -2,6 +2,7 @@
 
 namespace App\Transformers\DataTable;
 
+use App\Lote\DataTables2\Column;
 use App\Lote\DataTables2\Columns;
 use App\Lote\DataTables2\DataTableResource;
 use App\Models\User;
@@ -22,20 +23,34 @@ class UserDataTable extends DataTableResource
 
     protected array $columns = [
         ['label' => 'Title', 'sort' => 'name'],
+        ['label' => 'Email', 'sort' => 'email'],
+        ['label' => 'Role', 'sort' => 'role'],
+        ['label' => 'Actions'],
     ];
 
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+        $columns->getByLabel('Actions')->alignRight();
         return $columns->toArray();
     }
 
     protected function transform($item): array
     {
         $res = $item->toArray();
+
+        $res['role'] = $item->role->label();
+
+
         $res['actions'] = [
             [
-                'label' => 'Редакция',
+                'label' => 'View',
+                'href' => route('user.show', $item->id),
+                'icon' => 'i-eye',
+                'class' => 'btn btn-warning btn-xs',
+            ],
+            [
+                'label' => 'Edit',
                 'href' => route('user.edit', $item->id),
                 'icon' => 'i-edit',
                 'class' => 'btn btn-warning btn-xs',

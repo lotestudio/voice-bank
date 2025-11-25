@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import { Progress } from '@/components/ui/progress';
-import { computed } from 'vue';
+import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import { useLocale } from '@/composables/useLocale';
+import {useGlobalCart } from '@/cartStore';
 import { router } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import { toast } from 'vue-sonner';
+import {create} from '@/routes/orders';
 
 const props = defineProps({
     voice: {
@@ -31,6 +34,20 @@ function onPlayPause() {
 const progress = computed(() => {
     return player.progress_percent.value(props.voice.id);
 });
+
+const cart = useGlobalCart();
+
+
+const addToCart=(id)=>{
+    cart.addVoice(id);
+    toast.success(T('voice_added_to_cart'),{
+        action: {
+            label: T('checkout_order'),
+            onClick: () => router.visit(create.url()+'?cart_voices='+cart.asString()),
+        },
+    });
+}
+
 </script>
 
 <template>
@@ -83,7 +100,7 @@ const progress = computed(() => {
             <div class="text-xs">{{ T('artist_status') }}: {{ voice.availability }}</div>
 
             <div>
-                <Button>{{ T('order') }}</Button>
+                <Button @click="addToCart(voice.id)" :disabled="cart.existsInCard(voice.id)">{{ T('order') }}</Button>
             </div>
         </div>
     </div>

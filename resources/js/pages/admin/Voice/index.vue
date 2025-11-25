@@ -11,6 +11,7 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 import LoteSwitch from '@/components/LoteSwitch.vue';
+import {show} from '@/routes/voice';
 
 const breadcrumbItems = [{ title: 'Voice List', href: '/admin/voice' }];
 
@@ -51,7 +52,7 @@ const deleteVoice = (id: number) => {
                 </template>
                 <template v-slot:tr="trProps">
                     <dt-td column="0">
-                        {{ trProps.row.title.bg }}
+                        <Link :href="show.url(trProps.row.id)">{{ trProps.row.title.bg }}</Link>
                     </dt-td>
                     <dt-td column="1">
                         {{trProps.row.user_name}}

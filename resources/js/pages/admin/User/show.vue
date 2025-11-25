@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, usePage } from '@inertiajs/vue3';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
+import AvatarUpload from '@/components/AvatarUpload.vue';
 const user = usePage().props.user;
 </script>
 
@@ -11,13 +10,12 @@ const user = usePage().props.user;
         <Head title="Show" />
         <div class="flex gap-2 p-4">
             <div class="w-[250px]">
-                <Avatar class="flex aspect-square w-full h-auto cursor-pointer items-center justify-center bg-sidebar-accent">
-                    <AvatarImage :src="user.avatar.url" :alt="user.avatar.initials" />
-                    <AvatarFallback class="text-xs font-bold">{{ user.avatar.initials }}</AvatarFallback>
-                </Avatar>
-
-
-
+            <AvatarUpload
+                :fallback_text="user.avatar.initials"
+                :avatar_url="user.avatar.url"
+                :post_data="{user_id: user.id}"
+                show_remove_button
+            />
             </div>
             <div class="flex-1">
                 {{ user.name }}

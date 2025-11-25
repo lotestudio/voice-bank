@@ -5,9 +5,9 @@ import VoicesController from './VoicesController'
 import ArtistController from './ArtistController'
 import Profile from './Profile'
 import SampleDownloaderController from './SampleDownloaderController'
+import Auth from './Auth'
 import Dev from './Dev'
 import Settings from './Settings'
-import Auth from './Auth'
 
 const Controllers = {
     Admin: Object.assign(Admin, Admin),
@@ -17,9 +17,9 @@ const Controllers = {
     ArtistController: Object.assign(ArtistController, ArtistController),
     Profile: Object.assign(Profile, Profile),
     SampleDownloaderController: Object.assign(SampleDownloaderController, SampleDownloaderController),
+    Auth: Object.assign(Auth, Auth),
     Dev: Object.assign(Dev, Dev),
     Settings: Object.assign(Settings, Settings),
-    Auth: Object.assign(Auth, Auth),
 }
 
 export default Controllers

@@ -44,6 +44,40 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\Auth\UserAvatarController::__invoke
+* @see app/Http/Controllers/Auth/UserAvatarController.php:11
+* @route '/avatar_upload'
+*/
+export const avatar_upload = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: avatar_upload.url(options),
+    method: 'post',
+})
+
+avatar_upload.definition = {
+    methods: ["post"],
+    url: '/avatar_upload',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Auth\UserAvatarController::__invoke
+* @see app/Http/Controllers/Auth/UserAvatarController.php:11
+* @route '/avatar_upload'
+*/
+avatar_upload.url = (options?: RouteQueryOptions) => {
+    return avatar_upload.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Auth\UserAvatarController::__invoke
+* @see app/Http/Controllers/Auth/UserAvatarController.php:11
+* @route '/avatar_upload'
+*/
+avatar_upload.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: avatar_upload.url(options),
+    method: 'post',
+})
+
+/**
 * @see routes/admin.php:49
 * @route '/admin/dashboard'
 */

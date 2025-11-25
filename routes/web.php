@@ -43,6 +43,9 @@ Route::group([
 Route::post('/send',[\App\Http\Controllers\MainController::class,'send']);
 Route::get('sample/download/{id}',\App\Http\Controllers\SampleDownloaderController::class)->name('sample.download');
 
+//avatar upload
+Route::post('/avatar_upload', \App\Http\Controllers\Auth\UserAvatarController::class)->name('avatar_upload');
+
 
 
 

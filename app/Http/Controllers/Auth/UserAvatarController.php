@@ -11,15 +11,30 @@ class UserAvatarController extends Controller
     public function __invoke(Request $request)
     {
         $user_id = auth()->user()->isAdmin() ? $request->user_id : auth()->id();
+        $storage_path = 'avatars';
 
-        $user = User::find($user_id);
-        if($user->avatar['path']){
-            \Storage::delete($user->avatar['path']);
+        $message = 'Avatar updated successfully';
+
+        $user = User::findOrFail($user_id);
+
+        //remove old avatar
+        if ($user->avatar && isset($user->avatar['path']) && file_exists($user->avatar['path'])) {
+            unlink($user->avatar['path']);
         }
 
+        if ($request->hasFile('avatar')) {
+            $new_file = $request->file('avatar')->store($storage_path, 'public');
+            //TODO::resize image
 
-        $user->update(['avatar' => $request->file('avatar')->store('avatars', 'public')]);
+            $user->avatar = basename($new_file);
+        }else{
+            //if just remove the avatar
+            $user->avatar = null;
+            $message = 'Avatar removed successfully';
+        }
 
-        return back();
+        $user->save();
+
+        return response()->json(['message' => $message]);
     }
 }

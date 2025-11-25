@@ -53,8 +53,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'artist_status' => ArtistStatus::class,
-            'role' => Roles::class,
-            'avatar' => 'array',
+            'role' => Roles::class
         ];
     }
 
@@ -260,8 +259,7 @@ class User extends Authenticatable
                     'initials'=>$this->initials
                 ];
 
-            },
-            set: fn($value) => $value,
+            }
         );
     }
 

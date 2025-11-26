@@ -2,7 +2,6 @@
 import { Button } from '@/components/ui/button';
 import { useLocale } from '@/composables/useLocale';
 import {login} from '@/routes';
-import { index } from '@/routes/profile_settings'
 import { create } from '@/routes/orders'
 import { Link } from '@inertiajs/vue3';
 import { useAuth } from '@/composables/useAuth';
@@ -28,13 +27,13 @@ const {isArtist, isClient} = useAuth();
                 <Link :href="locale_url(create.url())">
                 <Button variant="default" size="lg">{{ T('order') }}</Button>
                 </Link>
-                <Link :href="locale_url(index.url())">
+                <Link :href="locale_url('/profile/settings')">
                     <Button variant="secondary" size="lg">{{T('Profile')}}</Button>
                 </Link>
             </template>
 
             <template v-else-if="isArtist">
-                <Link :href="locale_url(index.url())">
+                <Link :href="locale_url('/profile/settings')">
                     <Button variant="secondary" size="lg">{{T('Profile')}}</Button>
                 </Link>
             </template>

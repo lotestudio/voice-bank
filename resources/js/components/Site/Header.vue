@@ -39,8 +39,7 @@ const { isActive } = useActive();
                     >
                     <span v-if="item.icon" class="i" :class="item.icon"></span>
                     <span v-else>{{ item.title }}</span>
-                </Link
-                >
+                </Link>
                 <CartIcon/>
                 <LangSwitcher />
             </div>

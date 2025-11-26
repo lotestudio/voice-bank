@@ -5,10 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import HeadingSmall from '@/components/HeadingSmall.vue';
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { update } from '@/routes/password';
-
-
+import { useLocale } from '@/composables/useLocale';
 
 const passwordInput = ref<HTMLInputElement | null>(null);
 const currentPasswordInput = ref<HTMLInputElement | null>(null);
@@ -40,15 +39,21 @@ const updatePassword = () => {
         },
     });
 };
+
+const page = usePage();
+const title = page.props.heading?.title ?? 'Update password';
+const description = page.props.heading?.description ?? 'Ensure your account is using a long, random password to stay secure.';
+
+const { T, t } = useLocale();
 </script>
 
 <template>
     <div class="space-y-6">
-        <HeadingSmall title="Update password" description="Ensure your account is using a long, random password to stay secure" />
+        <HeadingSmall :title="title" :description="description" />
 
         <form @submit.prevent="updatePassword" class="space-y-6">
             <div class="grid gap-2">
-                <Label for="current_password">Current password</Label>
+                <Label for="current_password">{{ T('current_password') }}</Label>
                 <Input
                     id="current_password"
                     ref="currentPasswordInput"
@@ -56,13 +61,13 @@ const updatePassword = () => {
                     type="password"
                     class="mt-1 block w-full"
                     autocomplete="current-password"
-                    placeholder="Current password"
+                    :placeholder="T('current_password')"
                 />
                 <InputError :message="form.errors.current_password" />
             </div>
 
             <div class="grid gap-2">
-                <Label for="password">New password</Label>
+                <Label for="password">{{ T('new_password') }}</Label>
                 <Input
                     id="password"
                     ref="passwordInput"
@@ -70,26 +75,26 @@ const updatePassword = () => {
                     type="password"
                     class="mt-1 block w-full"
                     autocomplete="new-password"
-                    placeholder="New password"
+                    :placeholder="T('new_password')"
                 />
                 <InputError :message="form.errors.password" />
             </div>
 
             <div class="grid gap-2">
-                <Label for="password_confirmation">Confirm password</Label>
+                <Label for="password_confirmation">{{ T('confirm_password') }}</Label>
                 <Input
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
                     class="mt-1 block w-full"
                     autocomplete="new-password"
-                    placeholder="Confirm password"
+                    :placeholder="T('confirm_password')"
                 />
                 <InputError :message="form.errors.password_confirmation" />
             </div>
 
             <div class="flex items-center gap-4">
-                <Button :disabled="form.processing">Save password</Button>
+                <Button :disabled="form.processing">{{ T('save_password') }}</Button>
 
                 <Transition
                     enter-active-class="transition ease-in-out"
@@ -97,7 +102,7 @@ const updatePassword = () => {
                     leave-active-class="transition ease-in-out"
                     leave-to-class="opacity-0"
                 >
-                    <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                    <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ T('saved') }}.</p>
                 </Transition>
             </div>
         </form>

@@ -7,10 +7,10 @@ return [
     'voices' => 'Voices',
     'about' => 'About us',
     'choose'=>'choose',
-    'Settings'=>'Settings',
-    'Orders'=>'Orders',
-    'Reviews'=>'Reviews',
-    'Favorites'=>'Favorites',
+    'settings'=>'settings',
+    'orders'=>'orders',
+    'reviews'=>'reviews',
+    'favorites'=>'favorites',
 
     'pending'=>'pending',
     'accepted'=>'accepted',
@@ -26,5 +26,9 @@ return [
     'admin'=>'administrator',
     'dev'=>'developer',
     'artist'=>'artist',
-    'client'=>'client'
+    'client'=>'client',
+    'password'=>'password',
+    'avatar'=>'avatar',
+    'appearance'=>'appearance',
+    'my_voices'=>'my voices',
 ];

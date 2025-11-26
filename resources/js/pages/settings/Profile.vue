@@ -26,7 +26,6 @@ const breadcrumbItems: BreadcrumbItem[] = [
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
         <Head title="Profile settings" />
-
         <SettingsLayout>
             <ProfileForm  :must-verify-email="mustVerifyEmail" :status="status"/>
             <DeleteUser />

@@ -4,6 +4,8 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { toast } from 'vue-sonner';
 import { Button } from '@/components/ui/button';
+import { useLocale } from '@/composables/useLocale';
+
 
 const props = defineProps({
     fallback_text: {
@@ -69,6 +71,9 @@ const sendRequest = async (formData: FormData) => {
         loading.value = false;
     }
 };
+
+const {T} = useLocale();
+
 </script>
 
 <template>
@@ -87,7 +92,7 @@ const sendRequest = async (formData: FormData) => {
         </Avatar>
         <input type="file" :disabled="loading" @change="handleFileInputChange($event)" ref="fileInput" class="hidden" />
 
-        <Button :disabled="loading" v-if="show_remove_button && src_url" @click="removePhoto">Remove photo</Button>
+        <Button :disabled="loading" v-if="show_remove_button && src_url" @click="removePhoto">{{T('remove_photo')}}</Button>
     </div>
 </template>
 

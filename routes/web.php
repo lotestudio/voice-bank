@@ -24,10 +24,12 @@ Route::group([
 
 
     //settings + avatar
-    Route::resource('profile/profile_settings',ProfileSettingsController::class)
-        ->only(['index','edit','update'])
-        ->names('profile_settings')
-        ->middleware('auth');
+    Route::get('profile/settings',[ProfileSettingsController::class,'settings'])->middleware('auth')->name('profile.settings');
+    Route::get('profile/password',[ProfileSettingsController::class,'password'])->middleware('auth');
+    Route::get('profile/appearance',[ProfileSettingsController::class,'appearance'])->middleware('auth');
+    Route::get('profile/avatar',[ProfileSettingsController::class,'avatar'])->middleware('auth');
+    Route::get('profile/voices',[ProfileSettingsController::class,'my_voices'])->middleware(['auth','can:act_as_artist']);
+
     //orders
     Route::get('profile/orders',[OrdersController::class,'index'])->name('orders.index')->middleware('auth');;
     Route::get('profile/orders/{id}',[OrdersController::class,'show'])->name('orders.show')->middleware('auth');;

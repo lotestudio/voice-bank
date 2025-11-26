@@ -18,7 +18,8 @@ class UserAvatarController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user_id = auth()->user()->isAdmin() ? $request->user_id : auth()->id();
+        $user_id = (auth()->user()->isAdmin() && $request->user_id) ? $request->user_id : auth()->id();
+
         $storage_path = 'avatars';
 
         $message = 'Avatar updated successfully';

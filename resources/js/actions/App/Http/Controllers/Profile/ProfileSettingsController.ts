@@ -1,172 +1,224 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::index
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
 * @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
-* @route '/profile/profile_settings'
+* @route '/profile/settings'
 */
-export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index.url(options),
+export const settings = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: settings.url(options),
     method: 'get',
 })
 
-index.definition = {
+settings.definition = {
     methods: ["get","head"],
-    url: '/profile/profile_settings',
+    url: '/profile/settings',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::index
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
 * @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
-* @route '/profile/profile_settings'
+* @route '/profile/settings'
 */
-index.url = (options?: RouteQueryOptions) => {
-    return index.definition.url + queryParams(options)
+settings.url = (options?: RouteQueryOptions) => {
+    return settings.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::index
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
 * @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
-* @route '/profile/profile_settings'
+* @route '/profile/settings'
 */
-index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index.url(options),
+settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: settings.url(options),
     method: 'get',
 })
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::index
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
 * @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
-* @route '/profile/profile_settings'
+* @route '/profile/settings'
 */
-index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: index.url(options),
+settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: settings.url(options),
     method: 'head',
 })
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::edit
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}/edit'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::password
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @route '/profile/password'
 */
-export const edit = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: edit.url(args, options),
+export const password = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: password.url(options),
     method: 'get',
 })
 
-edit.definition = {
+password.definition = {
     methods: ["get","head"],
-    url: '/profile/profile_settings/{profile_setting}/edit',
+    url: '/profile/password',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::edit
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}/edit'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::password
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @route '/profile/password'
 */
-edit.url = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { profile_setting: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            profile_setting: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    const parsedArgs = {
-        profile_setting: args.profile_setting,
-    }
-
-    return edit.definition.url
-            .replace('{profile_setting}', parsedArgs.profile_setting.toString())
-            .replace(/\/+$/, '') + queryParams(options)
+password.url = (options?: RouteQueryOptions) => {
+    return password.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::edit
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}/edit'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::password
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @route '/profile/password'
 */
-edit.get = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: edit.url(args, options),
+password.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: password.url(options),
     method: 'get',
 })
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::edit
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}/edit'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::password
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @route '/profile/password'
 */
-edit.head = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: edit.url(args, options),
+password.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: password.url(options),
     method: 'head',
 })
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::update
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @route '/profile/appearance'
 */
-export const update = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
-    url: update.url(args, options),
-    method: 'put',
+export const appearance = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: appearance.url(options),
+    method: 'get',
 })
 
-update.definition = {
-    methods: ["put","patch"],
-    url: '/profile/profile_settings/{profile_setting}',
-} satisfies RouteDefinition<["put","patch"]>
+appearance.definition = {
+    methods: ["get","head"],
+    url: '/profile/appearance',
+} satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::update
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @route '/profile/appearance'
 */
-update.url = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions) => {
-    if (typeof args === 'string' || typeof args === 'number') {
-        args = { profile_setting: args }
-    }
-
-    if (Array.isArray(args)) {
-        args = {
-            profile_setting: args[0],
-        }
-    }
-
-    args = applyUrlDefaults(args)
-
-    const parsedArgs = {
-        profile_setting: args.profile_setting,
-    }
-
-    return update.definition.url
-            .replace('{profile_setting}', parsedArgs.profile_setting.toString())
-            .replace(/\/+$/, '') + queryParams(options)
+appearance.url = (options?: RouteQueryOptions) => {
+    return appearance.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::update
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @route '/profile/appearance'
 */
-update.put = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
-    url: update.url(args, options),
-    method: 'put',
+appearance.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: appearance.url(options),
+    method: 'get',
 })
 
 /**
-* @see \App\Http\Controllers\Profile\ProfileSettingsController::update
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:0
-* @route '/profile/profile_settings/{profile_setting}'
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @route '/profile/appearance'
 */
-update.patch = (args: { profile_setting: string | number } | [profile_setting: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
-    url: update.url(args, options),
-    method: 'patch',
+appearance.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: appearance.url(options),
+    method: 'head',
 })
 
-const ProfileSettingsController = { index, edit, update }
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @route '/profile/avatar'
+*/
+export const avatar = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: avatar.url(options),
+    method: 'get',
+})
+
+avatar.definition = {
+    methods: ["get","head"],
+    url: '/profile/avatar',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @route '/profile/avatar'
+*/
+avatar.url = (options?: RouteQueryOptions) => {
+    return avatar.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @route '/profile/avatar'
+*/
+avatar.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: avatar.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @route '/profile/avatar'
+*/
+avatar.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: avatar.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @route '/profile/voices'
+*/
+export const my_voices = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: my_voices.url(options),
+    method: 'get',
+})
+
+my_voices.definition = {
+    methods: ["get","head"],
+    url: '/profile/voices',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @route '/profile/voices'
+*/
+my_voices.url = (options?: RouteQueryOptions) => {
+    return my_voices.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @route '/profile/voices'
+*/
+my_voices.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: my_voices.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @route '/profile/voices'
+*/
+my_voices.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: my_voices.url(options),
+    method: 'head',
+})
+
+const ProfileSettingsController = { settings, password, appearance, avatar, my_voices }
 
 export default ProfileSettingsController

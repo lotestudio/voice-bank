@@ -10,10 +10,10 @@ return [
     'Limited'=>'Ограничена наличност',
     'Busy'=>'Зает',
     'Vacation'=>'Отпуск',
-    'Settings'=>'Настройки',
-    'Orders'=>'Поръчки',
-    'Reviews'=>'Ревюта',
-    'Favorites'=>'Любими',
+    'settings'=>'настройки',
+    'orders'=>'поръчки',
+    'reviews'=>'ревюта',
+    'favorites'=>'любими',
 
     'pending'=>'изчакване',
     'accepted'=>'приета',
@@ -29,6 +29,9 @@ return [
     'admin'=>'администратор',
     'dev'=>'Developer',
     'artist'=>'артист',
-    'client'=>'клиент'
-
+    'client'=>'клиент',
+    'password'=>'парола',
+    'avatar'=>'аватар',
+    'appearance'=>'оформление',
+    'my_voices'=>'моите гласове',
 ];

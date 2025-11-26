@@ -8,7 +8,7 @@ import HeadingSmall from '@/components/HeadingSmall.vue';
 import type { User } from '@/types';
 import { update } from '@/routes/profile';
 import { send } from '@/routes/verification';
-
+import { useLocale } from '@/composables/useLocale';
 
 interface Props {
     mustVerifyEmail: boolean;
@@ -30,15 +30,20 @@ const submit = () => {
         preserveScroll: true,
     });
 };
+
+const title = page.props.heading?.title ?? 'Profile Information';
+const description = page.props.heading?.description ?? "Update your account's profile information and email address.";
+
+const { T, t } = useLocale();
 </script>
 
 <template>
     <div class="flex flex-col space-y-6">
-        <HeadingSmall title="Profile information" description="Update your name and email address" />
+        <HeadingSmall :title="title" :description="description" />
 
         <form @submit.prevent="submit" class="space-y-6">
             <div class="grid gap-2">
-                <Label for="name">Name</Label>
+                <Label for="name">{{ T('name') }}</Label>
                 <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" placeholder="Full name" />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
@@ -76,7 +81,7 @@ const submit = () => {
             </div>
 
             <div class="flex items-center gap-4">
-                <Button :disabled="form.processing">Save</Button>
+                <Button :disabled="form.processing">{{T('save')}}</Button>
 
                 <Transition
                     enter-active-class="transition ease-in-out"
@@ -84,7 +89,7 @@ const submit = () => {
                     leave-active-class="transition ease-in-out"
                     leave-to-class="opacity-0"
                 >
-                    <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                    <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">{{ T('saved') }}.</p>
                 </Transition>
             </div>
         </form>

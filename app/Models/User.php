@@ -72,7 +72,7 @@ class User extends Authenticatable
      */
     public function isArtist(): bool
     {
-        return $this->role->value === 'artist';
+        return $this->role->value === 'artist' || $this->isAdmin();
     }
 
     /**
@@ -80,7 +80,7 @@ class User extends Authenticatable
      */
     public function isClient(): bool
     {
-        return $this->role->value === 'client';
+        return $this->role->value === 'client' || $this->isAdmin();
     }
 
     /**

@@ -24,7 +24,17 @@ export const locales: LocaleStrings = {
         'add_voices':'Add voices',
         'voice_added_to_cart':'The voice has been saved to your order',
         'checkout_order':'Go to order',
-        'add_more_voices':'Add more voices'
+        'add_more_voices':'Add more voices',
+
+        'current_password':'current password',
+        'new_password':'new password',
+        'confirm_password':'confirm password',
+        'save_password':'save password',
+
+        'save':'save',
+        'saved':'saved',
+
+        'remove_photo':'Remove photo',
     },
     'bg': {
         'price':'цена',
@@ -61,7 +71,17 @@ export const locales: LocaleStrings = {
         'add_voices':'добави гласове',
         'voice_added_to_cart':'Гласът е запазен в поръчката Ви',
         'checkout_order':'Към поръчката',
-        'add_more_voices':'Добави още гласове'
+
+        'add_more_voices':'Добави още гласове',
+        'current_password':'настояща парола',
+        'new_password':'нова парола',
+        'confirm_password':'потвърдете паролата',
+        'save_password':'запазете паролата',
+
+        'save':'Запази',
+        'saved':'Запазено',
+
+        'remove_photo':'Изтрийте снимката'
     }
 };
 

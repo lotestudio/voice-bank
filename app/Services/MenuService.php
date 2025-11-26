@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Exceptions\UnsupportedLocaleException;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -27,14 +28,30 @@ class MenuService
             $res['profile'] = [
                     'title'=>'Profile',
                     'icon'=>'i-user',
-                    'href'=>LaravelLocalization::localizeUrl('/profile/profile_settings'),
+                    'href'=>LaravelLocalization::localizeUrl('/profile/settings'),
                     'children'=>[
-                        'settings'=>['title'=>__('site.Settings'), 'href'=>LaravelLocalization::localizeUrl('/profile/profile_settings'),],
-                        'orders'=>['title'=>__('site.Orders'), 'href'=>LaravelLocalization::localizeUrl('/profile/orders'),],
-                        'reviews'=>['title'=>__('site.Reviews'), 'href'=>LaravelLocalization::localizeUrl('/profile/reviews'),],
-                        'favorites'=>['title'=>__('site.Favorites'), 'href'=>LaravelLocalization::localizeUrl('/profile/favorites'),],
+                        'orders'=>['title'=>Str::title(__('site.orders')), 'href'=>LaravelLocalization::localizeUrl('/profile/orders'),],
+                        'reviews'=>['title'=>Str::title(__('site.reviews')), 'href'=>LaravelLocalization::localizeUrl('/profile/reviews'),],
+                        'favorites'=>['title'=>Str::title(__('site.favorites')), 'href'=>LaravelLocalization::localizeUrl('/profile/favorites'),],
+                        'settings'=>['title'=>Str::title(__('site.settings')), 'href'=>LaravelLocalization::localizeUrl('/profile/settings'),],
+                        'password'=>['title'=>Str::title(__('site.password')), 'href'=>LaravelLocalization::localizeUrl('/profile/password'),],
+                        'avatar'=>['title'=>Str::title(__('site.avatar')), 'href'=>LaravelLocalization::localizeUrl('/profile/avatar'),],
+                        'appearance'=>['title'=>Str::title(__('site.appearance')), 'href'=>LaravelLocalization::localizeUrl('/profile/appearance'),],
                     ]
                 ];
+            if(auth()->user()->isArtist()){
+
+
+                $res['profile']['children'] = array_merge(
+                    [
+                        'voices' => [
+                            'title' => Str::ucfirst(__('site.my_voices')),
+                            'href' => LaravelLocalization::localizeUrl('/profile/voices'),
+                        ]
+                    ],
+                    $res['profile']['children']
+                );
+            }
         }
 
         return $res;

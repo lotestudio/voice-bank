@@ -22,24 +22,32 @@ class VoiceDataTable extends DataTableResource
 
     protected array $columns = [
         ['label' => 'Title', 'sort' => 'title'],
+        ['label' => 'User', 'sort' => 'user_id'],
+        ['label' => 'Status', 'sort' => 'status'],
+        ['label' => 'Sample'],
+        ['label' => 'Actions'],
     ];
 
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+        $columns->getByLabel('Actions')->alignRight();
+
         return $columns->toArray();
     }
 
 
     public function preBuild(): void
     {
-        $this->builder->with(['user']);
+        $this->builder->with(['user','samples']);
     }
 
     protected function transform($item): array
     {
         $res = $item->toArray();
         $res['user_name'] = $item->user->name;
+        $res['featuredSample'] = $item->featuredSample();
+
         $res['actions'] = [
             [
                 'label' => 'View',

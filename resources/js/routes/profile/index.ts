@@ -1,5 +1,49 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @route '/profile/settings'
+*/
+export const settings = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: settings.url(options),
+    method: 'get',
+})
+
+settings.definition = {
+    methods: ["get","head"],
+    url: '/profile/settings',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @route '/profile/settings'
+*/
+settings.url = (options?: RouteQueryOptions) => {
+    return settings.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @route '/profile/settings'
+*/
+settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: settings.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @route '/profile/settings'
+*/
+settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: settings.url(options),
+    method: 'head',
+})
+
+/**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
 * @see app/Http/Controllers/Settings/ProfileController.php:19
 * @route '/admin/settings/profile'
@@ -112,6 +156,7 @@ destroy.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
 })
 
 const profile = {
+    settings: Object.assign(settings, settings),
     edit: Object.assign(edit, edit),
     update: Object.assign(update, update),
     destroy: Object.assign(destroy, destroy),

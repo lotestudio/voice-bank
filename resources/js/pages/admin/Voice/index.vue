@@ -8,10 +8,16 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { toast } from 'vue-sonner';
 import LoteSwitch from '@/components/LoteSwitch.vue';
-import {show} from '@/routes/voice';
+import { show } from '@/routes/voice';
+import LoteSelect from '@/components/LoteSelect.vue';
+import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
+import { Progress } from '@/components/ui/progress';
+import Player from '@/components/Player.vue';
+import LoteSheet from '@/components/LoteSheet.vue';
+import VoiceSamples from '@/pages/admin/Sample/VoiceSamples.vue';
 
 const breadcrumbItems = [{ title: 'Voice List', href: '/admin/voice' }];
 
@@ -27,6 +33,7 @@ const deleteVoice = (id: number) => {
         },
     });
 };
+
 </script>
 
 <template>
@@ -42,6 +49,13 @@ const deleteVoice = (id: number) => {
                             v-model="filterProps.urlParams.search"
                             @keyup.enter="filterProps.setFilter()"
                         />
+
+                        <LoteSelect
+                            :options="$page.props.usersSelect"
+                            @change="filterProps.setFilter('user_id', $event)"
+                            :selected="filterProps.getFilter('user_id') ?? null"
+                        ></LoteSelect>
+
                         <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>
                     </div>
                     <div class="flex gap-2">
@@ -55,12 +69,26 @@ const deleteVoice = (id: number) => {
                         <Link :href="show.url(trProps.row.id)">{{ trProps.row.title.bg }}</Link>
                     </dt-td>
                     <dt-td column="1">
-                        {{trProps.row.user_name}}
+                        {{ trProps.row.user_name }}
                     </dt-td>
                     <dt-td column="2">
                         <LoteSwitch :default-state="trProps.row.is_active" :url="'/admin/voice/' + trProps.row.id + '/toggle-status'" />
                     </dt-td>
                     <dt-td column="3">
+                        <div class="flex gap-2 items-center">
+                            <LoteSheet content-classes="max-w-[500px]">
+                                <template #trigger>
+                                    <Button size="sm">Manage samples</Button>
+                                </template>
+                                <VoiceSamples :voice="trProps.row" class="px-4"></VoiceSamples>
+                            </LoteSheet>
+                            <div v-if="trProps.row.featuredSample">
+                                <Player :id="trProps.row.featuredSample.id+''" :url="trProps.row.featuredSample.file_url"/>
+                            </div>
+                            <div v-else>N/A</div>
+                        </div>
+                    </dt-td>
+                    <dt-td column="4">
                         <div class="flex justify-end gap-2">
                             <Button variant="secondary" size="icon" @click="router.visit(VoiceController.edit(trProps.row.id).url)">
                                 <span class="i-edit"></span>

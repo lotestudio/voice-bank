@@ -7,6 +7,7 @@ import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import LoteFilePond from '@/components/LoteFilePond.vue';
+import LoteSwitch from '@/components/LoteSwitch.vue';
 
 const page = usePage();
 const isEdit = !!page.props.model;
@@ -14,10 +15,11 @@ const oldFile = page.props.model?.file_url ?? null;
 
 const form = useForm({
     id:page.props.model?.id ?? 'tmp',
-    title: page.props.model?.title ?? [],
+    title: page.props.model?.title ?? {},
     voice_id: page.props.model?.voice_id ?? null,
     file_url: page.props.model?.file_url ?? null,
-    description: page.props.model?.description ?? null,
+    is_featured: page.props.model?.is_featured ?? false,
+    description: page.props.model?.description ?? {},
 });
 
 const fileUpdated = (e: string) => {
@@ -82,6 +84,11 @@ function onPlayPause() {
                     </div>
                     <LoteFilePond label="Upload Audio file" file_types="audio/*" @update="fileUpdated"></LoteFilePond>
                     <div v-if="form.errors.file" class="mt-2 text-sm text-red-600">{{ form.errors.file }}</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <label class="block text-sm font-medium">Is featured:</label>
+                    <LoteSwitch :default-state="form.is_featured" @change="form.is_featured = $event" />
                 </div>
 
                 <Button :disabled="form.processing">Save</Button>

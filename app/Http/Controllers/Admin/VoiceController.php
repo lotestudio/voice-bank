@@ -25,7 +25,9 @@ class VoiceController extends Controller
             return VoiceDataTable::make()->get();
         }
 
-        return Inertia::render('admin/Voice/index', []);
+        return Inertia::render('admin/Voice/index', [
+            'usersSelect'=>User::forSelectArtists(),
+        ]);
     }
 
     public function create(): Response

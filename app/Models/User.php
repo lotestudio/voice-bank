@@ -11,12 +11,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Impersonate;
 
     /**
      * The attributes that are mass assignable.
@@ -97,6 +98,24 @@ class User extends Authenticatable
     public function isDev(): bool
     {
         return $this->role->value === 'dev';
+    }
+
+
+    public function canImpersonate(): bool
+    {
+        return $this->isAdmin();
+    }
+
+    public function canBeImpersonated(): bool
+    {
+        return !$this->isDev();
+    }
+
+    protected function impersonated(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => app('impersonate')->isImpersonating(),
+        );
     }
 
     /**

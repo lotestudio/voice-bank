@@ -72,6 +72,7 @@ const submit = () => {
                                 { label: 'Artist', value: 'artist' },
                                 { label: 'Client', value: 'client' },
                             ]"
+                            :tabindex="3"
                             :selected="form.role || ''"
                             name="role"
                             width_class="w-full"
@@ -85,7 +86,7 @@ const submit = () => {
                             id="password"
                             type="password"
                             required
-                            :tabindex="3"
+                            :tabindex="4"
                             autocomplete="new-password"
                             v-model="form.password"
                             placeholder="Password"
@@ -99,7 +100,7 @@ const submit = () => {
                             id="password_confirmation"
                             type="password"
                             required
-                            :tabindex="4"
+                            :tabindex="5"
                             autocomplete="new-password"
                             v-model="form.password_confirmation"
                             placeholder="Confirm password"

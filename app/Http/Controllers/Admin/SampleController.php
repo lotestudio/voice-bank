@@ -4,23 +4,32 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SampleFormRequest;
+use App\Models\Feature;
 use App\Models\Sample;
+use App\Models\User;
 use App\Models\Voice;
 use App\Transformers\DataTable\SampleDataTable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\RouteAttributes\Attributes\Post;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SampleController extends Controller
 {
+    /**
+     * @throws \Exception
+     */
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
             return SampleDataTable::make()->get();
         }
 
-        return Inertia::render('admin/Sample/index', []);
+        return Inertia::render('admin/Sample/index', [
+            'voicesSelect'=>Voice::forSelect(),
+            'usersSelect'=>User::forSelectArtists()
+        ]);
     }
 
     public function create(): Response
@@ -63,5 +72,15 @@ class SampleController extends Controller
     {
         sample::destroy([$id]);
         return back();
+    }
+
+    #[Post('admin/sample/{id}/toggle-featured')]
+    public function toggleFeatured($id):string
+    {
+        $sample = Sample::query()->findOrFail($id);
+        $sample->is_featured = !$sample->is_featured;
+        $sample->save();
+
+        return 'success';
     }
 }

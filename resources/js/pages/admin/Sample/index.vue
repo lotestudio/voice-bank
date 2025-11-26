@@ -10,6 +10,8 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
+import LoteSwitch from '@/components/LoteSwitch.vue';
+import LoteSelect from '@/components/LoteSelect.vue';
 
 const breadcrumbItems = [{ title: 'Sample List', href: '/admin/sample' }];
 
@@ -42,6 +44,16 @@ const deleteSample = (id: number) => {
                         >
                             ></Input
                         >
+                        <LoteSelect
+                            :options="$page.props.usersSelect"
+                            @change="filterProps.setFilter('user', $event)"
+                            :selected="filterProps.getFilter('user') ?? null"
+                        ></LoteSelect>
+                        <LoteSelect
+                            :options="$page.props.voicesSelect"
+                            @change="filterProps.setFilter('voice_id', $event)"
+                            :selected="filterProps.getFilter('voice_id') ?? null"
+                        ></LoteSelect>
                         <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>
                     </div>
                     <Link :href="SampleController.create.url()">
@@ -56,6 +68,12 @@ const deleteSample = (id: number) => {
                         {{ trProps.row.voice_user_name }}
                     </dt-td>
                     <dt-td column="2">
+                        <LoteSwitch :default-state="trProps.row.is_featured" :url="'/admin/sample/' + trProps.row.id + '/toggle-featured'" />
+                    </dt-td>
+                    <dt-td column="3">
+                        {{ trProps.row.sort_order }}
+                    </dt-td>
+                    <dt-td column="4">
                         <div class="flex justify-end gap-2">
                             <Button variant="secondary" size="icon" @click="router.visit(SampleController.edit(trProps.row.id).url)">
                                 <span class="i-edit"></span>

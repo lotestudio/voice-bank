@@ -6,6 +6,8 @@ import { Link, router } from '@inertiajs/vue3';
 import { LogOut, Settings } from 'lucide-vue-next';
 import profile from '@/routes/profile';
 import { logout } from '@/routes';
+import { computed } from 'vue';
+
 
 interface Props {
     user: User;
@@ -15,7 +17,11 @@ const handleLogout = () => {
     router.flushAll();
 };
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+
+const isAdmin = computed(() => props.user.role === 'admin' || props.user.role === 'dev');
+
 </script>
 
 <template>
@@ -26,17 +32,35 @@ defineProps<Props>();
     </DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
-        <DropdownMenuItem :as-child="true">
+        <DropdownMenuItem :as-child="true" v-if="isAdmin">
             <Link class="block w-full" :href="profile.edit.url()" prefetch as="button">
-                <Settings class="mr-2 h-4 w-4" />
+                <span class="i-settings"></span>
                 Settings
+            </Link>
+        </DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuSeparator v-if="user.impersonated" />
+    <DropdownMenuGroup>
+        <DropdownMenuItem :as-child="true" v-if="user.impersonated">
+            <Link class="block w-full" href="/impersonate/leave" prefetch as="button">
+                <span class="i-ghost"></span>
+                Leave impersonation
+            </Link>
+        </DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuSeparator />
+    <DropdownMenuGroup>
+        <DropdownMenuItem :as-child="true" v-if="isAdmin">
+            <Link class="block w-full" href="/admin/dashboard" prefetch as="button">
+                <span class="i-dashboard"></span>
+                Admin panel
             </Link>
         </DropdownMenuItem>
     </DropdownMenuGroup>
     <DropdownMenuSeparator />
     <DropdownMenuItem :as-child="true">
         <Link class="block w-full" method="post" :href="logout.url()" @click="handleLogout" as="button">
-            <LogOut class="mr-2 h-4 w-4" />
+            <span class="i-logout"></span>
             Log out
         </Link>
     </DropdownMenuItem>

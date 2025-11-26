@@ -9,6 +9,8 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 import {email} from '@/routes/password';
 import {login} from '@/routes';
+import SiteLayout from '@/layouts/SiteLayout.vue';
+import AuthBase from '@/layouts/AuthLayout.vue';
 
 defineProps<{
     status?: string;
@@ -24,7 +26,8 @@ const submit = () => {
 </script>
 
 <template>
-    <AuthLayout title="Forgot password" description="Enter your email to receive a password reset link">
+    <SiteLayout>
+        <AuthBase title="Forgot Password" description="Enter your email below to send a password reset link">
         <Head title="Forgot password" />
 
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
@@ -52,5 +55,6 @@ const submit = () => {
                 <TextLink :href="login.url()">log in</TextLink>
             </div>
         </div>
-    </AuthLayout>
+        </AuthBase>
+    </SiteLayout>
 </template>

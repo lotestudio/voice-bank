@@ -9,6 +9,7 @@ import {
 import { type NavItem } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import AppearanceTabs from '@/components/AppearanceTabs.vue';
+import NavUser from '@/components/NavUser.vue';
 
 const items: NavItem[] = usePage().props.menu as NavItem[];
 const {isMobile} = useSidebar();
@@ -21,6 +22,7 @@ const {isMobile} = useSidebar();
             <NavMain :items="items" />
         </SidebarContent>
         <SidebarFooter>
+            <NavUser />
             <AppearanceTabs></AppearanceTabs>
         </SidebarFooter>
     </Sidebar>

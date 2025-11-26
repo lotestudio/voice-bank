@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../wayfinder'
 /**
 * @see \App\Http\Controllers\MainController::home
 * @see app/Http/Controllers/MainController.php:17
@@ -78,7 +78,72 @@ avatar_upload.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 })
 
 /**
-* @see routes/admin.php:49
+* @see \Lab404\Impersonate\Controllers\ImpersonateController::impersonate
+* @see vendor/lab404/laravel-impersonate/src/Controllers/ImpersonateController.php:32
+* @route '/impersonate/take/{id}/{guardName?}'
+*/
+export const impersonate = (args: { id: string | number, guardName?: string | number } | [id: string | number, guardName: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: impersonate.url(args, options),
+    method: 'get',
+})
+
+impersonate.definition = {
+    methods: ["get","head"],
+    url: '/impersonate/take/{id}/{guardName?}',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Lab404\Impersonate\Controllers\ImpersonateController::impersonate
+* @see vendor/lab404/laravel-impersonate/src/Controllers/ImpersonateController.php:32
+* @route '/impersonate/take/{id}/{guardName?}'
+*/
+impersonate.url = (args: { id: string | number, guardName?: string | number } | [id: string | number, guardName: string | number ], options?: RouteQueryOptions) => {
+    if (Array.isArray(args)) {
+        args = {
+            id: args[0],
+            guardName: args[1],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    validateParameters(args, [
+        "guardName",
+    ])
+
+    const parsedArgs = {
+        id: args.id,
+        guardName: args.guardName,
+    }
+
+    return impersonate.definition.url
+            .replace('{id}', parsedArgs.id.toString())
+            .replace('{guardName?}', parsedArgs.guardName?.toString() ?? '')
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \Lab404\Impersonate\Controllers\ImpersonateController::impersonate
+* @see vendor/lab404/laravel-impersonate/src/Controllers/ImpersonateController.php:32
+* @route '/impersonate/take/{id}/{guardName?}'
+*/
+impersonate.get = (args: { id: string | number, guardName?: string | number } | [id: string | number, guardName: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: impersonate.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Lab404\Impersonate\Controllers\ImpersonateController::impersonate
+* @see vendor/lab404/laravel-impersonate/src/Controllers/ImpersonateController.php:32
+* @route '/impersonate/take/{id}/{guardName?}'
+*/
+impersonate.head = (args: { id: string | number, guardName?: string | number } | [id: string | number, guardName: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: impersonate.url(args, options),
+    method: 'head',
+})
+
+/**
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -92,7 +157,7 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/admin.php:49
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -100,7 +165,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/admin.php:49
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -109,7 +174,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/admin.php:49
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

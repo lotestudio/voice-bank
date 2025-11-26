@@ -22,11 +22,17 @@ class SampleDataTable extends DataTableResource
 
     protected array $columns = [
         ['label' => 'Title', 'sort' => 'title'],
+        ['label' => 'Voice/User', 'sort' => 'voice_id'],
+        ['label' => 'Is Featured', 'sort' => 'is_featured'],
+        ['label' => 'Order', 'sort' => 'sort_order'],
+        ['label' => 'Actions'],
     ];
 
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+        $columns->getByLabel('Actions')->alignRight();
+        $columns->getByLabel('Order')->alignRight();
         return $columns->toArray();
     }
 
@@ -48,5 +54,12 @@ class SampleDataTable extends DataTableResource
             ],
         ];
         return $res;
+    }
+
+    public function filterQueryUser($value): void
+    {
+        $this->builder->whereHas('voice.user', function ($query) use ($value) {
+            $query->where('id',$value);
+        });
     }
 }

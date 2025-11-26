@@ -86,6 +86,9 @@ const deleteUser = (id: number) => {
                     </dt-td>
                     <dt-td column="3">
                         <div class="flex justify-end gap-2">
+                            <Button size="icon" @click="router.visit('/impersonate/take/'+trProps.row.id)">
+                                <span class="i-ghost"></span>
+                            </Button>
                             <Button variant="secondary" size="icon" @click="router.visit(UserController.edit(trProps.row.id))">
                                 <span class="i-edit"></span>
                             </Button>

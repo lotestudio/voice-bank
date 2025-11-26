@@ -23,7 +23,7 @@ const active = window.location.href===props.href;
 </script>
 <template>
 
-    <Link as="button" :href="href" :class="active ? 'bg-muted' : ''" class="block w-full hover:bg-muted px-2 py-1.5 rounded text-left">
+    <Link as="button" prefetch :href="href" :class="active ? 'bg-muted' : ''" class="block w-full hover:bg-muted px-2 py-1.5 rounded text-left">
         {{ T(title) }}
     </Link>
 

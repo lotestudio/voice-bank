@@ -23,11 +23,16 @@ class MenuService
             //'test'=>['title'=>'Test', 'href'=>url('/dev/redirect')],
         ];
 
+        $res['profile'] = [
+            'title'=>'Login',
+            'icon'=>'i-user',
+            'href'=>url('login')
+        ];
 
         if(auth()->check()){
             $res['profile'] = [
                     'title'=>'Profile',
-                    'icon'=>'i-user',
+                    'icon'=>'i-user_check',
                     'href'=>LaravelLocalization::localizeUrl('/profile/settings'),
                     'children'=>[
                         'orders'=>['title'=>Str::title(__('site.orders')), 'href'=>LaravelLocalization::localizeUrl('/profile/orders'),],
@@ -40,8 +45,6 @@ class MenuService
                     ]
                 ];
             if(auth()->user()->isArtist()){
-
-
                 $res['profile']['children'] = array_merge(
                     [
                         'voices' => [
@@ -51,6 +54,11 @@ class MenuService
                     ],
                     $res['profile']['children']
                 );
+            }
+
+
+            if(auth()->user()->isImpersonated()){
+              $res['profile']['icon'] = 'i-ghost';
             }
         }
 

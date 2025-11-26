@@ -98,7 +98,7 @@ const InputComponent = {
         <TabsContent v-for="(lang, index) in languages" :key="lang" :value="lang" force-mount :hidden="modelValue !== index">
             <component
                 :is="InputComponent"
-                class="mt-1 block w-full"
+                class="mt-1 block w-full field-sizing-content"
                 v-model="field[lang]"
                 :placeholder="label+' '+lang"
             />
@@ -108,7 +108,7 @@ const InputComponent = {
             <div class="space-y-2" v-for="lang in languages" :key="lang">
                 <component
                     :is="InputComponent"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full field-sizing-content"
                     v-model="field[lang]"
                     :placeholder="label+' '+lang"
                 />

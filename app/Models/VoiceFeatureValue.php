@@ -10,6 +10,9 @@ class VoiceFeatureValue extends Pivot
 {
     use HasFactory;
 
+
+    protected $table = 'voice_feature_values';
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

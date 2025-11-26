@@ -3,6 +3,8 @@
 
 use Inertia\Inertia;
 
+Route::impersonate();
+
 Route::group(['middleware'=>['auth','can:administrate'],'prefix' => 'admin'], function () {
     Route::resource('voice', \App\Http\Controllers\Admin\VoiceController::class )
         ->names('voice');

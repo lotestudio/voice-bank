@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Auth\UserAvatarController::__invoke
-* @see app/Http/Controllers/Auth/UserAvatarController.php:11
+* @see app/Http/Controllers/Auth/UserAvatarController.php:19
 * @route '/avatar_upload'
 */
 const UserAvatarController = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ UserAvatarController.definition = {
 
 /**
 * @see \App\Http\Controllers\Auth\UserAvatarController::__invoke
-* @see app/Http/Controllers/Auth/UserAvatarController.php:11
+* @see app/Http/Controllers/Auth/UserAvatarController.php:19
 * @route '/avatar_upload'
 */
 UserAvatarController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ UserAvatarController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Auth\UserAvatarController::__invoke
-* @see app/Http/Controllers/Auth/UserAvatarController.php:11
+* @see app/Http/Controllers/Auth/UserAvatarController.php:19
 * @route '/avatar_upload'
 */
 UserAvatarController.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

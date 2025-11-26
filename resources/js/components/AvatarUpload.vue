@@ -13,26 +13,26 @@ const props = defineProps({
     avatar_url: {
         type: [String, null],
     },
-    post_data:{
+    post_data: {
         type: Object,
-        default: ()=>({})
+        default: () => ({}),
     },
     show_remove_button: {
         type: Boolean,
-        default: false
+        default: false,
     },
     post_url: {
         type: String,
-        default: '/avatar_upload'
-    }
+        default: '/avatar_upload',
+    },
 });
 
+const src_url = ref(props.avatar_url);
 const loading = ref(false);
 
 const handleFileInputChange = async (event: Event) => {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
-
         const file = fileInput.files[0];
         src_url.value = URL.createObjectURL(file);
 
@@ -40,7 +40,6 @@ const handleFileInputChange = async (event: Event) => {
         formData.append('avatar', file);
 
         await sendRequest(formData);
-
     }
 };
 
@@ -49,43 +48,47 @@ const removePhoto = async () => {
     await sendRequest(new FormData());
 };
 
-
-const sendRequest = async (formData: FormData)=>{
+const sendRequest = async (formData: FormData) => {
     loading.value = true;
 
-    Object.keys(props.post_data).forEach(key => formData.append(key, props.post_data[key]));
+    Object.keys(props.post_data).forEach((key) => formData.append(key, props.post_data[key]));
 
     try {
-        await axios.post(props.post_url, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        }).then((response) => {
-            toast.success(response.data.message);
-            loading.value = false;
-        });
+        await axios
+            .post(props.post_url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then((response) => {
+                toast.success(response.data.message);
+                loading.value = false;
+            });
     } catch (error) {
-        toast.error('Error uploading avatar:'+error.toString());
+        toast.error('Error uploading avatar:' + error.toString());
         loading.value = false;
     }
-}
-
-
-const src_url = ref(props.avatar_url);
+};
 </script>
 
 <template>
     <div class="flex flex-col gap-4">
+        <Avatar
+            class="flex aspect-square h-auto w-full cursor-pointer items-center justify-center bg-sidebar-accent"
+            @click="loading ? null : $refs.fileInput.click()"
+        >
+            <AvatarImage :src="src_url ?? ''" :alt="fallback_text" class="object-cover" />
+            <AvatarFallback>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="i-image_plus"></span>
+                    <p class="font-bold">{{fallback_text}}</p>
+                </div>
+            </AvatarFallback>
+        </Avatar>
+        <input type="file" :disabled="loading" @change="handleFileInputChange($event)" ref="fileInput" class="hidden" />
 
-    <Avatar class="flex aspect-square h-auto w-full cursor-pointer items-center justify-center bg-sidebar-accent" @click="loading ? null : $refs.fileInput.click()">
-        <AvatarImage :src="src_url" :alt="fallback_text" class="object-cover object-top" />
-        <AvatarFallback class="text-xs font-bold">{{ fallback_text }}</AvatarFallback>
-    </Avatar>
-    <input type="file" :disabled="loading" @change="handleFileInputChange($event)" ref="fileInput" class="hidden" />
-
-    <Button :disabled="loading" v-if="show_remove_button && src_url" @click="removePhoto">Remove photo</Button>
+        <Button :disabled="loading" v-if="show_remove_button && src_url" @click="removePhoto">Remove photo</Button>
     </div>
-
 </template>
 
 <style scoped></style>

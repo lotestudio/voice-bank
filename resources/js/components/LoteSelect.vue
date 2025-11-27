@@ -15,9 +15,9 @@ import {
     SelectViewport,
 } from 'reka-ui';
 
-import { ChevronsUpDown } from 'lucide-vue-next';
-
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
+
+const EMPTY_VALUE_MARKER = '__EMPTY_SELECTION__';
 
 const props = defineProps({
     options: {
@@ -61,6 +61,10 @@ const props = defineProps({
         type: String,
         default: 'defaultListBoxButtonClass',
     },
+    tabindex: {
+        type: [String, Number],
+        default: 0,
+    },
 });
 
 // Reactive reference for the selected value
@@ -69,17 +73,21 @@ const emit = defineEmits(['change']);
 
 const update = (event) => {
     nextTick(() => {
-        emit('change', event ?? '');
+        const valueToEmit = event === EMPTY_VALUE_MARKER ? '' : event;
+        emit('change', valueToEmit ?? '');
     });
 };
 
 // Preprocess the option array: remove empty value
 const filteredOptions = computed(() => {
     return props.options.map((option) => {
-        if (option.value === '') {
-            option.value = null;
+        // Създаваме нов обект, за да не мутираме пропса
+        const newOption = { ...option };
+        // Ако стойността е празна или null, сменяме я с маркера
+        if (newOption.value === '' || newOption.value === null) {
+            newOption.value = EMPTY_VALUE_MARKER;
         }
-        return option;
+        return newOption;
     });
 });
 
@@ -87,34 +95,35 @@ const isMounted = ref(false);
 
 // Set the initial value for selectedRef on mount
 onMounted(() => {
-    selectedRef.value = filteredOptions.value.find((option) => option.value === props.selected)?.value ?? null;
-
+    const initialVal = props.selected === '' || props.selected === null ? EMPTY_VALUE_MARKER : props.selected;
+    selectedRef.value = filteredOptions.value.find((option) => option.value === initialVal)?.value ?? null;
     isMounted.value = true;
 });
 
 const selectedLabel = computed(() => {
-    let sl = filteredOptions.value.find((option) => option.value === selectedRef.value)?.label ?? props.notFoundValueLabel;
-    return sl;
+    return filteredOptions.value.find((option) => option.value === selectedRef.value)?.label ?? props.notFoundValueLabel;
 });
 
 //Chek if props.selected is changed after mounting. TODO::NOT TESTED
 watch(
     () => props.selected,
-    (newVal, oldVal) => {
+    (newVal) => {
         if (isMounted.value) {
-            selectedRef.value = props.selected === '' ? null : props.selected;
+            // При промяна отвън, отново прилагаме логиката за маркера
+            selectedRef.value = (newVal === '' || newVal === null) ? EMPTY_VALUE_MARKER : newVal;
         }
     },
 );
+
 </script>
 <template>
     <SelectRoot v-model="selectedRef" :name="name" @update:modelValue="update">
-        <SelectTrigger :class="[props.width_class, props.listBoxButtonClass]">
+        <SelectTrigger :class="[props.width_class, props.listBoxButtonClass]" :tabindex="props.tabindex">
             <SelectValue class="block truncate">
                 {{ selectedLabel }}
             </SelectValue>
             <SelectIcon v-if="!props.doNotShowChevrons" as-child>
-                <ChevronsUpDown size="16" />
+                <span class="i-chevronUpDown"></span>
             </SelectIcon>
         </SelectTrigger>
 
@@ -125,10 +134,10 @@ watch(
                 </SelectScrollUpButton>
                 <SelectViewport class="p-1">
                     <SelectItem
-                        v-for="(option, index) in filteredOptions"
+                        v-for="(option) in filteredOptions"
                         :key="option.value"
                         :value="option.value"
-                        class="block cursor-pointer rounded p-2 outline-none hover:bg-accent"
+                        class="block cursor-pointer rounded p-2 outline-none hover:bg-accent focus:bg-accent focus:text-accent-foreground"
                         :title="option.label"
                         :disabled="disabled.includes(option.value)"
                     >

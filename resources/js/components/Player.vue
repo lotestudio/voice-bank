@@ -41,7 +41,7 @@ function onPlayPause() {
             <span v-else class="i-play" />
         </Button>
         <p class="text-xs text-gray-500">{{ player.progress_formatted.value(id) }}</p>
-        <Progress v-model="progress" class="flex-1" @click="player.seek_click($event, id)" />
+        <Progress v-model="progress" class="min-w-full flex-1" @click="player.seek_click($event, id)" />
     </div>
 </template>
 

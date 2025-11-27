@@ -8,19 +8,21 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import LoteFilePond from '@/components/LoteFilePond.vue';
 import LoteSwitch from '@/components/LoteSwitch.vue';
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 const page = usePage();
-const isEdit = !!page.props.model;
-const oldFile = page.props.model?.file_url ?? null;
+const { get, isEdit, model } = useInitialValue();
+const oldFile = model?.file_url ?? null;
 
 const form = useForm({
-    id:page.props.model?.id ?? 'tmp',
-    title: page.props.model?.title ?? {},
-    voice_id: page.props.model?.voice_id ?? null,
-    file_url: page.props.model?.file_url ?? null,
-    is_featured: page.props.model?.is_featured ?? false,
-    description: page.props.model?.description ?? {},
+    id: get('id', 'tmp'),
+    title: get('title', {}, 'json'),
+    voice_id: get('voice_id', null, 'number'), // Автоматично хваща ?voice_id=5
+    file_url: get('file_url', null),
+    is_featured: get('is_featured', false, 'boolean'),
+    description: get('description', {}),
 });
+
 
 const fileUpdated = (e: string) => {
     form.file_url = e;
@@ -54,20 +56,6 @@ function onPlayPause() {
         <Head :title="isEdit ? 'Edit Sample' : 'Create Sample'" />
         <div class="max-w-xl p-4">
             <form @submit.prevent="submit" class="space-y-8">
-                <MultilangInput v-model="form.title" :errors="form.errors" label="Title" as="Input" />
-
-                <MultilangInput v-model="form.description" :errors="form.errors" label="Description"  as="Textarea"/>
-                <div class="flex items-center gap-2">
-                    <label class="block text-sm font-medium">Voice:</label>
-                    <LoteSelect
-                        width_class="w-full"
-                        :options="page.props.voices"
-                        :selected="form.voice_id"
-                        @change="form.voice_id = $event"
-                    ></LoteSelect>
-                </div>
-                <InputError :message="form.errors.voice_id" />
-
                 <div class="rounded-lg border p-2">
                     <div class="flex items-center gap-2">
                         <span v-if="oldFile" class="font-bold">
@@ -83,8 +71,24 @@ function onPlayPause() {
                         </div>
                     </div>
                     <LoteFilePond label="Upload Audio file" file_types="audio/*" @update="fileUpdated"></LoteFilePond>
-                    <div v-if="form.errors.file" class="mt-2 text-sm text-red-600">{{ form.errors.file }}</div>
+                    <div v-if="form.errors.file_url" class="mt-2 text-center text-sm text-red-600">{{ form.errors.file_url }}</div>
                 </div>
+
+                <div class="flex items-center gap-2">
+                    <label class="block text-sm font-medium">Voice:</label>
+                    <LoteSelect
+                        width_class="w-full"
+                        :options="page.props.voices"
+                        :selected="form.voice_id"
+                        @change="form.voice_id = $event"
+                    ></LoteSelect>
+                </div>
+                <InputError :message="form.errors.voice_id" />
+
+                <MultilangInput v-model="form.title" :errors="form.errors" label="Title" as="Input" />
+
+                <MultilangInput v-model="form.description" :errors="form.errors" label="Description"  as="Textarea"/>
+
 
                 <div class="flex items-center gap-2">
                     <label class="block text-sm font-medium">Is featured:</label>

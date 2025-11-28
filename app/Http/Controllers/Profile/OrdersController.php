@@ -5,13 +5,9 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderFormRequest;
 use App\Http\Resources\UserOrderResource;
-use App\Models\Order;
 use App\Models\User;
-use App\Models\Voice;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class OrdersController extends Controller
@@ -22,7 +18,7 @@ class OrdersController extends Controller
     public function index()
     {
 
-        $orders = auth()->user()->orders()->with(['voices'])
+        $orders = auth()->user()->orders()->with(['voices','reviews'])
             ->latest()->get();
 
         $orders = UserOrderResource::collection($orders);
@@ -67,7 +63,9 @@ class OrdersController extends Controller
     public function show($id)
     {
         return Inertia::render('Profile/Order',[
-            'order' => auth()->user()->orders()->with(['voices'])->findOrFail($id)
+            'order' => auth()->user()->orders()->with(['voices'=>function ($query) {
+                $query->with('samples','user');
+            },'reviews'])->findOrFail($id)
         ]);
     }
 

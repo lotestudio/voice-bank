@@ -36,7 +36,7 @@ Route::group([
     Route::resource('orders',OrdersController::class)->only(['create','store','update'])->middleware(['auth','can:act_as_client']);
 
     //reviews
-    Route::resource('profile/reviews',ReviewsController::class)->middleware('auth');;
+    Route::resource('profile/reviews',ReviewsController::class)->only(['index','create','store','update'])->middleware(['auth','can:act_as_client']);
     //favorites
     Route::resource('profile/favorites',FavoritesController::class)->middleware('auth');;
 

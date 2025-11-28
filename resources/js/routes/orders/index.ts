@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:22
+* @see app/Http/Controllers/Profile/OrdersController.php:18
 * @route '/profile/orders'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:22
+* @see app/Http/Controllers/Profile/OrdersController.php:18
 * @route '/profile/orders'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:22
+* @see app/Http/Controllers/Profile/OrdersController.php:18
 * @route '/profile/orders'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:22
+* @see app/Http/Controllers/Profile/OrdersController.php:18
 * @route '/profile/orders'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::show
-* @see app/Http/Controllers/Profile/OrdersController.php:67
+* @see app/Http/Controllers/Profile/OrdersController.php:63
 * @route '/profile/orders/{id}'
 */
 export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::show
-* @see app/Http/Controllers/Profile/OrdersController.php:67
+* @see app/Http/Controllers/Profile/OrdersController.php:63
 * @route '/profile/orders/{id}'
 */
 show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -87,7 +87,7 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::show
-* @see app/Http/Controllers/Profile/OrdersController.php:67
+* @see app/Http/Controllers/Profile/OrdersController.php:63
 * @route '/profile/orders/{id}'
 */
 show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -97,7 +97,7 @@ show.get = (args: { id: string | number } | [id: string | number ] | string | nu
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::show
-* @see app/Http/Controllers/Profile/OrdersController.php:67
+* @see app/Http/Controllers/Profile/OrdersController.php:63
 * @route '/profile/orders/{id}'
 */
 show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -107,7 +107,7 @@ show.head = (args: { id: string | number } | [id: string | number ] | string | n
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::create
-* @see app/Http/Controllers/Profile/OrdersController.php:37
+* @see app/Http/Controllers/Profile/OrdersController.php:33
 * @route '/orders/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -122,7 +122,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::create
-* @see app/Http/Controllers/Profile/OrdersController.php:37
+* @see app/Http/Controllers/Profile/OrdersController.php:33
 * @route '/orders/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -131,7 +131,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::create
-* @see app/Http/Controllers/Profile/OrdersController.php:37
+* @see app/Http/Controllers/Profile/OrdersController.php:33
 * @route '/orders/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -141,7 +141,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::create
-* @see app/Http/Controllers/Profile/OrdersController.php:37
+* @see app/Http/Controllers/Profile/OrdersController.php:33
 * @route '/orders/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -151,7 +151,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::store
-* @see app/Http/Controllers/Profile/OrdersController.php:78
+* @see app/Http/Controllers/Profile/OrdersController.php:76
 * @route '/orders'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -166,7 +166,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::store
-* @see app/Http/Controllers/Profile/OrdersController.php:78
+* @see app/Http/Controllers/Profile/OrdersController.php:76
 * @route '/orders'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -175,7 +175,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::store
-* @see app/Http/Controllers/Profile/OrdersController.php:78
+* @see app/Http/Controllers/Profile/OrdersController.php:76
 * @route '/orders'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

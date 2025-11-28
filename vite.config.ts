@@ -5,11 +5,14 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from 'vite';
 import { run } from "vite-plugin-run";
 import vueDevTools from 'vite-plugin-vue-devtools'
-
+import Components from 'unplugin-vue-components/vite'
 
 
 export default defineConfig({
     plugins: [
+        Components({
+            dirs: ['resources/js/components'],
+        }),
         laravel({
             input: ['resources/js/app.js'],
             refresh: true,

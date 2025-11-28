@@ -127,6 +127,6 @@ export function useLocale() {
         return '/'+page.props.locale+url
     }
 
-    return {T,t, shorten, locale_url};
+    return {T,t, shorten, locale ,locale_url};
 
 }

@@ -23,7 +23,6 @@ const isAdmin = computed(() => user.role === 'admin' || user.role === 'dev');
 
 <template>
     <SubMenuLayout :submenu="submenu" :title="submenu[sub_page].title">
-
         <template #sub_sidebar_footer>
             <hr class="my-1" />
             <Link
@@ -55,7 +54,6 @@ const isAdmin = computed(() => user.role === 'admin' || user.role === 'dev');
                 <span class="i-ghost"></span>
                 Leave impersonation
             </Link>
-
         </template>
         <slot />
     </SubMenuLayout>

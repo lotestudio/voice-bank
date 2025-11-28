@@ -55,11 +55,10 @@
             $res['id']=$item->id;
             $res['title']=$item->title;
             $res['user']=$item->user;
-            $res['user_initials']=$item->user->initials;
             $res['sample']=$item->featuredSample();
             $res['favorites_count']=$item->favorites_count;
             $res['orders_count']=$item->orders_count;
-            $res['rating']=$item->average_rating;
+            $res['average_rating']=$item->average_rating;
             $res['availability']=$item->user->artist_status->label();
             $res['features']=$item->featureValues?->groupBy('feature_id')->map(function($item,$key){
                 return [

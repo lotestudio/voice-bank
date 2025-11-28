@@ -74,14 +74,12 @@ class Order extends Model
         return $this->voices->map(fn(Voice $voice) => $voice->user)->unique('id')->values();
     }
 
-    /**
-     * Backwards-compatible helper returning the first artist if available.
-     * Prefer using artists() which returns a collection.
-     */
-    public function artist()
+
+    public function reviews():HasMany
     {
-        return $this->artists()->first();
+        return $this->hasMany(Review::class);
     }
+
 
     /**
      * Scope a query to only include orders with a specific status.

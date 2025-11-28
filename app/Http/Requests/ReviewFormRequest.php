@@ -14,7 +14,11 @@ class ReviewFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'string', 'max:255'],
+            'voice_id' => 'required|integer',
+            'order_id' => 'required|integer',
+            'rating' => 'sometimes|nullable|integer',
+            'comment' => 'sometimes|nullable|string',
+            'approved' => 'sometimes|boolean',
         ];
     }
 }

@@ -12,7 +12,7 @@
                 <slot name="sub_sidebar_footer"/>
             </div>
             <div class="flex-1">
-                <h1 class="font-bold text-3xl mt-2" v-if="title!==''">{{title}}</h1>
+                <h1 class="font-bold text-3xl mt-2 mb-8" v-if="title!==''">{{title}}</h1>
                 <slot/>
             </div>
         </div>

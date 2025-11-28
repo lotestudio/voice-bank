@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { usePage } from '@inertiajs/vue3';
 import { Progress } from '@/components/ui/progress';
 import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import { useLocale } from '@/composables/useLocale';
-import {useGlobalCart } from '@/cartStore';
+import { useGlobalCart } from '@/cartStore';
 import { router } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { toast } from 'vue-sonner';
-import {create} from '@/routes/orders';
+import { create } from '@/routes/orders';
 
 const props = defineProps({
     voice: {
@@ -17,7 +18,7 @@ const props = defineProps({
     },
 });
 
-const { T, t } = useLocale();
+const { T, t, locale } = useLocale();
 
 const player = useGlobalAudioPlayer();
 
@@ -37,16 +38,20 @@ const progress = computed(() => {
 
 const cart = useGlobalCart();
 
-
-const addToCart=(id)=>{
+const addToCart = (id) => {
     cart.addVoice(id);
-    toast.success(T('voice_added_to_cart'),{
+    toast.success(T('voice_added_to_cart'), {
         action: {
             label: T('checkout_order'),
-            onClick: () => router.visit(create.url()+'?cart_voices='+cart.asString()),
+            onClick: () => router.visit(create.url() + '?cart_voices=' + cart.asString()),
         },
     });
-}
+};
+
+
+const title = computed(() => {
+    return typeof props.voice.title === 'object' ? props.voice.title[locale] : props.voice.title;
+});
 
 </script>
 
@@ -57,15 +62,15 @@ const addToCart=(id)=>{
                 class="flex h-10 w-10 cursor-pointer items-center justify-center bg-sidebar-accent"
                 @click="router.visit('artist/' + voice.user.id)"
             >
-                <!--                <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />-->
-                <AvatarFallback class="text-xs font-bold">{{ voice.user_initials }}</AvatarFallback>
+                <AvatarImage :src="voice.user.avatar.url" alt="voice.user.avatar.initials" />
+                <AvatarFallback class="text-xs font-bold">{{ voice.user.avatar.initials }}</AvatarFallback>
             </Avatar>
 
             <div class="space-y-1">
                 <a :href="'artist/' + voice.user.id">{{ voice.user.name }}</a>
-                <p class="text-xs">{{ voice.title }}</p>
+                <p class="text-xs">{{ title }}</p>
                 <p class="flex items-center gap-1 text-xs">
-                    {{ voice.rating }} <span class="i-star text-orange-400"></span> {{ t('from') }} {{ voice.orders_count }} {{ t('orders') }}
+                    {{ voice.average_rating }} <span class="i-star text-orange-400"></span> {{ t('from') }} {{ voice.orders_count }} {{ t('orders') }}
                     <span class="i-heart text-red-500"></span>
                     {{ voice.favorites_count }}
                 </p>

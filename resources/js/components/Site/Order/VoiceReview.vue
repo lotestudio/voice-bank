@@ -1,7 +1,13 @@
 <template>
-    <div class="flex items-center gap-2">
-        <div>Review:</div>
-        <Textarea v-model="form.comment" @blur="updateComment" class="field-sizing-content"/>
+    <div>
+        <div class="flex items-center gap-2">
+            <div>Review:</div>
+            <Textarea v-model="form.comment" class="field-sizing-content"/>
+        </div>
+        <div class="flex justify-end gap-2 mt-4">
+            <Button variant="destructive" size="sm" @click="updateComment(true)">Delete</Button>
+            <Button  size="sm" @click="updateComment()">Save</Button>
+        </div>
     </div>
 </template>
 
@@ -12,6 +18,7 @@ import { computed} from 'vue';
 import { Textarea } from '@/components/ui/textarea/index.ts';
 import { useLocale } from '@/composables/useLocale';
 import { toast } from 'vue-sonner';
+import { Button } from '@/components/ui/button/index.ts';
 
 const { locale } = useLocale();
 
@@ -39,7 +46,12 @@ const form = useForm({
 });
 
 
-const updateComment = () => {
+const updateComment = (reset = false) => {
+
+    if(reset){
+        form.comment='';
+    }
+
     if (props.review) {
         form.put(update.url(props.review.id), {
             onSuccess: () => {

@@ -40,11 +40,7 @@ function onChange() {
     } else if (props.voice_id && props.order_id) {
         form.post(store.url(), {
             preserveScroll: true,
-            onSuccess: () => {
-                console.log('success');
-                // Това е важно, ако искаме да сме сигурни, че формата е "чиста" след създаване
-                // Но watch-ерът по-горе би трябвало да хване промяната от Inertia reload-а
-            },
+            onSuccess: () => {},
         });
     }
 }

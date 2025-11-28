@@ -6,13 +6,15 @@ import { Head, useForm, usePage } from '@inertiajs/vue3';
 import LoteSwitch from '@/components/LoteSwitch.vue';
 import InputError from '@/components/InputError.vue';
 import { Input } from '@/components/ui/input';
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 const page = usePage();
-const isEdit = !!page.props.model;
+const { get, isEdit } = useInitialValue();
 const form = useForm({
-    display_name: page.props.model?.display_name ?? '',
-    is_featured: page.props.model?.is_featured ?? true,
-    sort_order: page.props.model?.sort_order ?? null,
+    display_name: get('display_name', {}, 'json'),
+    is_featured: get('is_featured', true, 'boolean'),
+    sort_order: get('sort_order', null, 'number'),
+    return_url: get('return_url', null),
 });
 
 function submit() {

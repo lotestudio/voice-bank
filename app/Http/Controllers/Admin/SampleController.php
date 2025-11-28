@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SampleFormRequest;
-use App\Models\Feature;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\Sample;
 use App\Models\User;
 use App\Models\Voice;
@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SampleController extends Controller
 {
+
+    use HasReturnUrl;
     /**
      * @throws \Exception
      */
@@ -45,7 +47,9 @@ class SampleController extends Controller
         $data['file_url'] = (new Sample())->moveFileFromTmp('samples', $data['file_url']);
         Sample::query()->create($data);
 
-        return redirect(route('sample.index'));
+
+        return $this->redirectAfterSave($request, to_route('sample.index'))
+            ->with('success', 'Sample created successfully.');
     }
 
     public function update(Sample $sample, SampleFormRequest $request)
@@ -56,7 +60,7 @@ class SampleController extends Controller
         }
         $sample->update($data);
 
-        return redirect(route('sample.index'));
+        return $this->redirectAfterSave($request, to_route('sample.index'));
     }
 
 

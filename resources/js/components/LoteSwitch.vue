@@ -1,7 +1,6 @@
 <template>
     <div>
         <div @click="toggle()" class="toggle">
-
             <div
                  class="w-10 h-6 rounded-full border flex items-center p-0.5"
                 :class="state ? 'bg-neutral-700 border-black dark:border-white justify-end' : 'border-neutral-500 ' "

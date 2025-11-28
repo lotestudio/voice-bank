@@ -6,14 +6,16 @@ import MultilangInput from '@/components/MultilangInput.vue';
 import LoteSelect from '@/components/LoteSelect.vue';
 import InputError from '@/components/InputError.vue';
 import { Input } from '@/components/ui/input';
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 const page = usePage();
-const isEdit = !!page.props.model;
+const { get, isEdit } = useInitialValue();
 const form = useForm({
-    display_value: page.props.model?.display_value ?? {},
-    description: page.props.model?.description ?? {},
-    feature_id: page.props.model?.feature_id ?? null,
-    sort_order: page.props.model?.sort_order ?? null,
+    display_value: get('display_value', {}, 'json'),
+    description: get('description', {}, 'json'),
+    feature_id: get('feature_id', null, 'number'),
+    sort_order: get('sort_order', null, 'number'),
+    return_url: get('return_url', null),
 });
 
 function submit() {

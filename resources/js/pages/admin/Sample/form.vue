@@ -20,7 +20,8 @@ const form = useForm({
     voice_id: get('voice_id', null, 'number'), // Автоматично хваща ?voice_id=5
     file_url: get('file_url', null),
     is_featured: get('is_featured', false, 'boolean'),
-    description: get('description', {}),
+    description: get('description', {}, 'json'),
+    return_url: get('return_url', null),
 });
 
 
@@ -88,7 +89,6 @@ function onPlayPause() {
                 <MultilangInput v-model="form.title" :errors="form.errors" label="Title" as="Input" />
 
                 <MultilangInput v-model="form.description" :errors="form.errors" label="Description"  as="Textarea"/>
-
 
                 <div class="flex items-center gap-2">
                     <label class="block text-sm font-medium">Is featured:</label>

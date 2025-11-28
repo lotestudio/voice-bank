@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentFormRequest;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\Payment;
 use App\Transformers\DataTable\PaymentDataTable;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class PaymentController extends Controller
 {
+    use HasReturnUrl;
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -32,7 +34,7 @@ class PaymentController extends Controller
         $data = $request->validated();
         payment::query()->create($data);
 
-        return redirect(route('payment.index'));
+        return $this->redirectAfterSave($request, to_route('payment.index'));
     }
 
     public function update(payment $payment, PaymentFormRequest $request)
@@ -40,7 +42,7 @@ class PaymentController extends Controller
         $data = $request->validated();
         $payment->update($data);
 
-        return redirect(route('payment.index'));
+        return $this->redirectAfterSave($request, to_route('payment.index'));
     }
 
     public function edit(payment $payment): Response

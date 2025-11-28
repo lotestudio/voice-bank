@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\FeatureValue;
 use App\Models\Voice;
 use App\Models\VoiceFeatureValue;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 
 class VoiceFeatureValueController extends Controller
 {
+    use HasReturnUrl;
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -24,7 +26,7 @@ class VoiceFeatureValueController extends Controller
             'voice_id' => $data['voice_id'],
         ]);
 
-        return back();
+        return $this->redirectAfterSave($request, back());
     }
 
     public function update(Request $request)
@@ -38,6 +40,6 @@ class VoiceFeatureValueController extends Controller
 
         Voice::query()->find($data['voice_id'])->featureValues()->sync($values);
 
-        return back();
+        return $this->redirectAfterSave($request, back());
     }
 }

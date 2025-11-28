@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Lote\Traits\HasReturnUrl;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Psy\Util\Str;
 
 class SortController extends Controller
 {
+    use HasReturnUrl;
     public function index() {
 
         $model = request()->query('model');
@@ -59,6 +61,6 @@ class SortController extends Controller
                 ." END")
         ]);
 
-        return back();
+        return $this->redirectAfterSave($request, back());
     }
 }

@@ -28,7 +28,7 @@ export function useInitialValue(modelPropName: string = 'model') {
      */
     function get<T>(fieldName: string, fallback: T, type: 'string' | 'number' | 'boolean' | 'json' = 'string'): T {
         // 1. Ако има модел и полето съществува в него -> връщаме го
-        if (model && model[fieldName] !== undefined) {
+        if (model && model[fieldName] !== undefined && model[fieldName] !== null) {
             return model[fieldName] as T;
         }
 

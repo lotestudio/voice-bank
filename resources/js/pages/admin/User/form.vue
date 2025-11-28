@@ -6,15 +6,17 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { Label } from '@/components/ui/label';
 import LoteSelect from '@/components/LoteSelect.vue';
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 const page = usePage();
-const isEdit = !!page.props.model;
+const { get, isEdit } = useInitialValue();
 const form = useForm({
-    name: page.props.model?.name ?? '',
-    email: page.props.model?.email ?? '',
-    role: page.props.model?.role ?? '',
-    password: '',
-    password_confirmation: '',
+    name: get('name', ''),
+    email: get('email', ''),
+    role: get('role', ''),
+    password: get('password', ''),
+    password_confirmation: get('password_confirmation', ''),
+    return_url: get('return_url', null),
 });
 
 function submit() {

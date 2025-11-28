@@ -6,13 +6,15 @@ import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import LoteSelect from '@/components/LoteSelect.vue';
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 const page = usePage();
-const isEdit = !!page.props.model;
+const { get, isEdit } = useInitialValue();
 const form = useForm({
-    title: page.props.model?.title ?? '',
-    is_active: page.props.model?.is_active ?? true,
-    user_id: page.props.model?.user_id ?? null,
+    title: get('title', ''),
+    is_active: get('is_active', true, 'boolean'),
+    user_id: get('user_id', null, 'number'),
+    return_url: get('return_url', null),
 });
 
 function submit() {

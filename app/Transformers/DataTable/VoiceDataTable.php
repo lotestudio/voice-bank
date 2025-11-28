@@ -24,7 +24,7 @@ class VoiceDataTable extends DataTableResource
         ['label' => 'Title', 'sort' => 'title'],
         ['label' => 'User', 'sort' => 'user_id'],
         ['label' => 'Status', 'sort' => 'status'],
-        ['label' => 'Sample'],
+        ['label' => 'Samples'],
         ['label' => 'Actions'],
     ];
 

@@ -4,12 +4,14 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import { Input } from '@/components/ui/input';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 
 const page = usePage()
-const isEdit = !!page.props.model
+const { get, isEdit } = useInitialValue();
 const form = useForm({
-  user_id: page.props.model?.user_id ?? ''
+  user_id: get('user_id', ''),
+  return_url: get('return_url', null),
 })
 
 function submit() {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoiceFormRequest;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\Feature;
 use App\Models\User;
 use App\Models\Voice;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class VoiceController extends Controller
 {
+    use HasReturnUrl;
     /**
      * @throws \Exception
      */
@@ -79,7 +81,7 @@ class VoiceController extends Controller
         $data = $request->validated();
         voice::query()->create($data);
 
-        return redirect(route('voice.index'));
+        return $this->redirectAfterSave($request, to_route('voice.index'));
     }
 
     public function update(Voice $voice, VoiceFormRequest $request)
@@ -87,7 +89,7 @@ class VoiceController extends Controller
         $data = $request->validated();
         $voice->update($data);
 
-        return redirect(route('voice.index'));
+        return $this->redirectAfterSave($request, to_route('voice.index'));
     }
 
     public function edit(voice $voice): Response

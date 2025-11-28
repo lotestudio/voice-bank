@@ -11,7 +11,7 @@ defineProps({
 });
 
 const { T,locale_url } = useLocale();
-const {isArtist, isClient} = useAuth();
+const {isArtist, isClient,isAdmin} = useAuth();
 
 
 
@@ -23,7 +23,13 @@ const {isArtist, isClient} = useAuth();
         <h2 class="mx-auto my-8 max-w-2xl text-center text-balance md:text-lg lg:text-2xl">{{ content.excerpt }}</h2>
         <div class="mx-auto flex max-w-2xl justify-center gap-4">
 
-            <template v-if="isClient">
+            <template v-if="isAdmin">
+                <Link :href="'/admin/dashboard'">
+                <Button variant="default" size="lg">Admin panel</Button>
+                </Link>
+            </template>
+
+            <template v-else-if="isClient">
                 <Link :href="locale_url(create.url())">
                 <Button variant="default" size="lg">{{ T('order') }}</Button>
                 </Link>

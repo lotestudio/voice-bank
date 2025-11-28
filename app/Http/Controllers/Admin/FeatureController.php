@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeatureFormRequest;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\Feature;
 use App\Models\Voice;
 use App\Transformers\DataTable\FeatureDataTable;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FeatureController extends Controller
 {
+    use HasReturnUrl;
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -34,7 +36,7 @@ class FeatureController extends Controller
         $data = $request->validated();
         feature::query()->create($data);
 
-        return redirect(route('feature.index'));
+        return $this->redirectAfterSave($request, to_route('feature.index'));
     }
 
     public function update(feature $feature, FeatureFormRequest $request)
@@ -42,7 +44,7 @@ class FeatureController extends Controller
         $data = $request->validated();
         $feature->update($data);
 
-        return redirect(route('feature.index'));
+        return $this->redirectAfterSave($request, to_route('feature.index'));
     }
 
     public function edit(feature $feature): Response

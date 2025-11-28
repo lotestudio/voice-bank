@@ -7,7 +7,7 @@ import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 import LoteSwitch from '@/components/LoteSwitch.vue';
@@ -17,7 +17,7 @@ import Player from '@/components/Player.vue';
 import LoteSheet from '@/components/LoteSheet.vue';
 import VoiceSamples from '@/pages/admin/Sample/VoiceSamples.vue';
 import {create as createSample} from '@/routes/sample';
-import { Progress } from '@/components/ui/progress';
+import VoiceSamplesManager from '@/pages/admin/Sample/VoiceSamplesManager.vue';
 
 const breadcrumbItems = [{ title: 'Voice List', href: '/admin/voice' }];
 
@@ -37,9 +37,9 @@ const deleteVoice = (id: number) => {
 const getCreateSampleUrl = (voiceId: number) => {
     const params = new URLSearchParams();
     params.append('voice_id', voiceId);
-// Пример за обект
     params.append('title', JSON.stringify({ bg: 'Аудио '+voiceId, en: 'Sample ' +voiceId  }));
     params.append('is_featured', 'true');
+    params.append('return_url', usePage().url);
     return  createSample.url() + '?' + params.toString();
 }
 
@@ -85,17 +85,19 @@ const getCreateSampleUrl = (voiceId: number) => {
                     </dt-td>
                     <dt-td column="3">
                         <div class="flex gap-2 items-center">
-<!--                            <LoteSheet content-classes="max-w-[500px]">-->
-<!--                                <template #trigger>-->
-<!--                                    <Button size="sm">Manage samples</Button>-->
-<!--                                </template>-->
-<!--                                <VoiceSamples :voice="trProps.row" class="px-4"></VoiceSamples>-->
-<!--                            </LoteSheet>-->
+                            <LoteSheet content-classes="max-w-[500px]">
+                                <template #trigger>
+                                    <Button size="icon">
+                                        <span class="i-list_chevrons"></span>
+                                    </Button>
+                                </template>
+                                <VoiceSamplesManager :voice="trProps.row" class="px-4"></VoiceSamplesManager>
+                            </LoteSheet>
+                            <Link :href="getCreateSampleUrl(trProps.row.id)" class="flex items-center gap-2 hover:no-underline">
+                                <Button variant="secondary" size="icon"><span class="i-plus"></span></Button>
+                            </Link>
                             <div v-if="trProps.row.featuredSample" class="w-full">
                                 <Player :id="trProps.row.featuredSample.id+''" :url="trProps.row.featuredSample.file_url"/>
-                            </div>
-                            <div v-else>
-                                <Button variant="secondary" size="sm" @click="router.visit(getCreateSampleUrl(trProps.row.id))">Add sample</Button>
                             </div>
                         </div>
                     </dt-td>

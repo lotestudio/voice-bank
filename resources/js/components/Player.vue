@@ -16,9 +16,6 @@ const progress = computed(() => {
     return player.progress_percent.value(props.id);
 });
 
-
-console.log(props.url);
-
 function onPlayPause() {
     player.play({
         id: props.id ?? 'tmp',

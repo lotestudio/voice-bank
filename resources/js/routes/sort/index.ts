@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\SortController::index
-* @see app/Http/Controllers/Admin/SortController.php:12
+* @see app/Http/Controllers/Admin/SortController.php:14
 * @route '/admin/sort'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::index
-* @see app/Http/Controllers/Admin/SortController.php:12
+* @see app/Http/Controllers/Admin/SortController.php:14
 * @route '/admin/sort'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::index
-* @see app/Http/Controllers/Admin/SortController.php:12
+* @see app/Http/Controllers/Admin/SortController.php:14
 * @route '/admin/sort'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::index
-* @see app/Http/Controllers/Admin/SortController.php:12
+* @see app/Http/Controllers/Admin/SortController.php:14
 * @route '/admin/sort'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::store
-* @see app/Http/Controllers/Admin/SortController.php:39
+* @see app/Http/Controllers/Admin/SortController.php:41
 * @route '/admin/sort'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::store
-* @see app/Http/Controllers/Admin/SortController.php:39
+* @see app/Http/Controllers/Admin/SortController.php:41
 * @route '/admin/sort'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\SortController::store
-* @see app/Http/Controllers/Admin/SortController.php:39
+* @see app/Http/Controllers/Admin/SortController.php:41
 * @route '/admin/sort'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

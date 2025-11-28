@@ -7,7 +7,7 @@ import SortController from '@/actions/App/Http/Controllers/Admin/SortController'
 import { toast } from 'vue-sonner';
 
 const page = usePage();
-const breadcrumbItems = [{ title: 'Sort List: ' + page.props.model.charAt(0).toUpperCase() + page.props.model.slice(1), href: '/admin/sample' }];
+const breadcrumbItems = [{ title: 'Sort List: ' + page.props.model.charAt(0).toUpperCase() + page.props.model.slice(1), href: '' }];
 
 const items = ref(page.props.items);
 

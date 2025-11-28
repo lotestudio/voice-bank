@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\Post;
 use App\Transformers\DataTable\PostDataTable;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class PostController extends Controller
 {
+    use HasReturnUrl;
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -32,7 +34,7 @@ class PostController extends Controller
         $data = $request->validated();
         Post::query()->create($data);
 
-        return redirect(route('post.index'));
+        return $this->redirectAfterSave($request, to_route('post.index'));
     }
 
     public function update(post $post, PostFormRequest $request)
@@ -40,7 +42,7 @@ class PostController extends Controller
         $data = $request->validated();
         $post->update($data);
 
-        return redirect(route('post.index'));
+        return $this->redirectAfterSave($request, to_route('post.index'));
     }
 
     public function edit(post $post): Response

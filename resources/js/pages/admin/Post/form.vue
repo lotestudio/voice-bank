@@ -7,18 +7,19 @@ import { Button } from '@/components/ui/button';
 import MultilangInput from '@/components/MultilangInput.vue';
 import LoteSwitch from '@/components/LoteSwitch.vue';
 import {store, update} from '@/actions/App/Http/Controllers/Admin/PostController';
-
+import {useInitialValue} from '@/composables/useInitialFormValue';
 
 const page = usePage()
-const isEdit = !!page.props.model
+const { get, isEdit } = useInitialValue();
 
 const form = useForm({
-    title: page.props.model?.title || {},
-    body: page.props.model?.body || {},
-    excerpt: page.props.model?.excerpt || {},
-    position: page.props.model?.position || 0,
-    section: page.props.model?.section || '',
-    is_published: isEdit ? page.props.model.is_published : true,
+    title: get('title', {}, 'json'),
+    body: get('body', {}, 'json'),
+    excerpt: get('excerpt', {}, 'json'),
+    position: get('position', 0, 'number'),
+    section: get('section', ''),
+    is_published: get('is_published', true, 'boolean'),
+    return_url: get('return_url', null),
 });
 
 function submit() {

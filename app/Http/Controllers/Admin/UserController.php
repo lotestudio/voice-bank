@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
+use App\Lote\Traits\HasReturnUrl;
 use App\Models\User;
 use App\Transformers\DataTable\UserDataTable;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class UserController extends Controller
 {
+    use HasReturnUrl;
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -39,7 +41,7 @@ class UserController extends Controller
         $data = $request->validated();
         user::query()->create($data);
 
-        return redirect(route('user.index'));
+        return $this->redirectAfterSave($request, to_route('user.index'));
     }
 
     public function update(user $user, UserFormRequest $request)
@@ -47,7 +49,7 @@ class UserController extends Controller
         $data = $request->validated();
         $user->update($data);
 
-        return redirect(route('user.index'));
+        return $this->redirectAfterSave($request, to_route('user.index'));
     }
 
     public function edit(user $user): Response

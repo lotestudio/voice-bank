@@ -58,11 +58,7 @@ function submit() {
                 <div class="grid gap-2">
                     <Label for="name">Role</Label>
                     <LoteSelect
-                        :options="[
-                                { label: 'Choose', value: '' },
-                                { label: 'Artist', value: 'artist' },
-                                { label: 'Client', value: 'client' },
-                            ]"
+                        :options="page.props.rolesSelect"
                         :selected="form.role || ''"
                         name="role"
                         width_class="w-full"

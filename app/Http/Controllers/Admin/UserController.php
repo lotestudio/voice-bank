@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Roles;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
 use App\Lote\Traits\HasReturnUrl;
@@ -33,7 +34,9 @@ class UserController extends Controller
 
     public function create(): Response
     {
-        return Inertia::render('admin/User/form', []);
+        return Inertia::render('admin/User/form', [
+            'rolesSelect'=>Roles::forSelect(prependLabel: 'Choose role',toArray: true)
+        ]);
     }
 
     public function store(UserFormRequest $request)
@@ -56,6 +59,7 @@ class UserController extends Controller
     {
         return Inertia::render('admin/User/form', [
             'model' => $user,
+            'rolesSelect'=>Roles::forSelect(prependLabel: 'Choose role',toArray: true)
         ]);
     }
 

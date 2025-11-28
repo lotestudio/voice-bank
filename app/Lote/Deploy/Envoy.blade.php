@@ -20,6 +20,7 @@ extract($setup->all());
     local_build
     delete_build
     upload_build
+    extract
     cleanup
     git-push
     {{-- on server--}}
@@ -124,10 +125,15 @@ extract($setup->all());
     rsync -avz -e "ssh -p {{ $server_port }}" {{ $archiveName }} {{ $server_no_port }}:{{ $deploy_path }}/public/
     echo "Архивът е качен."
 
+@endtask
+
+
+
+@task('extract', ['on' => 'web'])
+
     echo "Разархивиране..."
     cd {{ $deploy_path }}/public
     tar -xzf {{ $archiveName }}
-
     rm {{ $archiveName }}
     echo "Архивът е разархивиран и изтрит."
 

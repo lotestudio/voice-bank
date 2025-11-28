@@ -1,1 +1,0 @@
-import{u as t}from"./useLocale-Dmsp2NC3.js";import{d as o,c as n,t as s,b as r,o as c}from"./app-n_fLUIe1.js";const a={class:"border bg-accent text-gold-500 rounded-md p-4 text-center"},l=o({__name:"InDevelopment",setup(p){const{T:e}=t();return(_,m)=>(c(),n("div",a,s(r(e)("in_development")),1))}});export{l as _};

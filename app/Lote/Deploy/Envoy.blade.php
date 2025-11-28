@@ -20,7 +20,6 @@ extract($setup->all());
     local_build
     delete_build
     upload_build
-    extract
     cleanup
     git-push
     {{-- on server--}}
@@ -113,7 +112,7 @@ extract($setup->all());
     npm run build
 @endtask
 
-@task('upload_build',['on' => 'localhost','confirm'=>true])
+@task('upload_build',['on' => 'localhost'])
 
     export COPYFILE_DISABLE=1
     export COPY_EXTENDED_ATTRIBUTES_DISABLE=1
@@ -125,21 +124,16 @@ extract($setup->all());
     rsync -avz -e "ssh -p {{ $server_port }}" {{ $archiveName }} {{ $server_no_port }}:{{ $deploy_path }}/public/
     echo "Архивът е качен."
 
-@endtask
-
-
-
-@task('extract', ['on' => 'web', 'confirm'=>true])
-
     echo "Разархивиране..."
     cd {{ $deploy_path }}/public
     tar -xzf {{ $archiveName }}
+
     rm {{ $archiveName }}
     echo "Архивът е разархивиран и изтрит."
 
 @endtask
 
-@task('cleanup', ['on' => 'localhost','confirm'=>true])
+@task('cleanup', ['on' => 'localhost'])
 
     if [ -f {{ $archiveName }} ]; then
     rm {{ $archiveName }}

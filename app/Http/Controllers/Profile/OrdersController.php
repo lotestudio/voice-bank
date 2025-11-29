@@ -44,7 +44,7 @@ class OrdersController extends Controller
                 return [
                     'id' => $user->id,
                     'name' => $user->name,
-                    'user_initials' => $user->initials,
+                    'avatar' => $user->avatar,
                     'voices' => $user->voices->map(function ($voice): array {
                         return [
                             'id' => $voice->id,

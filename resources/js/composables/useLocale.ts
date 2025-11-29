@@ -35,6 +35,7 @@ export const locales: LocaleStrings = {
         'saved':'saved',
 
         'remove_photo':'Remove photo',
+        'order_details':'Order details',
     },
     'bg': {
         'price':'цена',
@@ -81,7 +82,8 @@ export const locales: LocaleStrings = {
         'save':'Запази',
         'saved':'Запазено',
 
-        'remove_photo':'Изтрийте снимката'
+        'remove_photo':'Изтрийте снимката',
+        'order_details':'Детайли на поръчката'
     }
 };
 

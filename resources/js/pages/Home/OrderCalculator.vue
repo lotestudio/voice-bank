@@ -60,7 +60,7 @@ const t = (key: string) => translations[key] ?? key;
                 <div class="flex">
                     <div class="w-2/3">
                         <p class="text-xs font-bold">{{t('total_price')}}</p>
-                        <p class="text-xs">{{t('approximate')}}</p>
+                        <p class="text-xs">({{t('approximate')}})</p>
                     </div>
                     <div class="w-1/3 flex justify-center items-center">
                         <p class="font-bold">{{ total }}</p>

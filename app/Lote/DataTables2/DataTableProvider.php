@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\DataTables2;
 
 use App\Lote\DataTables2\Commands\DataTableResourceCommand;

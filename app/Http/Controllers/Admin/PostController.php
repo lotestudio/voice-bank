@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -30,20 +32,20 @@ class PostController extends Controller
         return Inertia::render('admin/Post/form', []);
     }
 
-    public function store(PostFormRequest $request)
+    public function store(PostFormRequest $postFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $postFormRequest->validated();
         Post::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('post.index'));
+        return $this->redirectAfterSave($postFormRequest, to_route('post.index'));
     }
 
-    public function update(post $post, PostFormRequest $request)
+    public function update(post $post, PostFormRequest $postFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $postFormRequest->validated();
         $post->update($data);
 
-        return $this->redirectAfterSave($request, to_route('post.index'));
+        return $this->redirectAfterSave($postFormRequest, to_route('post.index'));
     }
 
     public function edit(post $post): Response
@@ -53,7 +55,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         post::destroy([$id]);
 

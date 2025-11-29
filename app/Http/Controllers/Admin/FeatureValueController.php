@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -35,20 +37,20 @@ class FeatureValueController extends Controller
         ]);
     }
 
-    public function store(FeatureValueFormRequest $request)
+    public function store(FeatureValueFormRequest $featureValueFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $featureValueFormRequest->validated();
         featureValue::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('feature-value.index'));
+        return $this->redirectAfterSave($featureValueFormRequest, to_route('feature-value.index'));
     }
 
-    public function update(featureValue $featureValue, FeatureValueFormRequest $request)
+    public function update(featureValue $featureValue, FeatureValueFormRequest $featureValueFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $featureValueFormRequest->validated();
         $featureValue->update($data);
 
-        return $this->redirectAfterSave($request, to_route('feature-value.index'));
+        return $this->redirectAfterSave($featureValueFormRequest, to_route('feature-value.index'));
     }
 
     public function edit(featureValue $featureValue): Response
@@ -59,7 +61,7 @@ class FeatureValueController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         featureValue::destroy([$id]);
 

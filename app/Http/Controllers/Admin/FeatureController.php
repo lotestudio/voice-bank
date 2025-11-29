@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -31,20 +33,20 @@ class FeatureController extends Controller
         return Inertia::render('admin/Feature/form', []);
     }
 
-    public function store(FeatureFormRequest $request)
+    public function store(FeatureFormRequest $featureFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $featureFormRequest->validated();
         feature::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('feature.index'));
+        return $this->redirectAfterSave($featureFormRequest, to_route('feature.index'));
     }
 
-    public function update(feature $feature, FeatureFormRequest $request)
+    public function update(feature $feature, FeatureFormRequest $featureFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $featureFormRequest->validated();
         $feature->update($data);
 
-        return $this->redirectAfterSave($request, to_route('feature.index'));
+        return $this->redirectAfterSave($featureFormRequest, to_route('feature.index'));
     }
 
     public function edit(feature $feature): Response
@@ -54,7 +56,7 @@ class FeatureController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         feature::destroy([$id]);
 

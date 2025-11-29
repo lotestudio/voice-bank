@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,8 +25,8 @@ class SampleFormRequest extends FormRequest
         ];
 
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
-            $rules["title.{$locale}"] = ['required', 'string', 'max:255', 'min:2'];
-            $rules["description.{$locale}"] = ['nullable', 'string'];
+            $rules['title.'.$locale] = ['required', 'string', 'max:255', 'min:2'];
+            $rules['description.'.$locale] = ['nullable', 'string'];
         }
 
         return $rules;

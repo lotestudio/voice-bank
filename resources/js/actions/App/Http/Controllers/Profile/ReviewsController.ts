@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::store
-* @see app/Http/Controllers/Profile/ReviewsController.php:18
+* @see app/Http/Controllers/Profile/ReviewsController.php:19
 * @route '/profile/reviews'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::store
-* @see app/Http/Controllers/Profile/ReviewsController.php:18
+* @see app/Http/Controllers/Profile/ReviewsController.php:19
 * @route '/profile/reviews'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::store
-* @see app/Http/Controllers/Profile/ReviewsController.php:18
+* @see app/Http/Controllers/Profile/ReviewsController.php:19
 * @route '/profile/reviews'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::update
-* @see app/Http/Controllers/Profile/ReviewsController.php:28
+* @see app/Http/Controllers/Profile/ReviewsController.php:29
 * @route '/profile/reviews/{review}'
 */
 export const update = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -138,7 +138,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::update
-* @see app/Http/Controllers/Profile/ReviewsController.php:28
+* @see app/Http/Controllers/Profile/ReviewsController.php:29
 * @route '/profile/reviews/{review}'
 */
 update.url = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ update.url = (args: { review: number | { id: number } } | [review: number | { id
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::update
-* @see app/Http/Controllers/Profile/ReviewsController.php:28
+* @see app/Http/Controllers/Profile/ReviewsController.php:29
 * @route '/profile/reviews/{review}'
 */
 update.put = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -181,7 +181,7 @@ update.put = (args: { review: number | { id: number } } | [review: number | { id
 
 /**
 * @see \App\Http\Controllers\Profile\ReviewsController::update
-* @see app/Http/Controllers/Profile/ReviewsController.php:28
+* @see app/Http/Controllers/Profile/ReviewsController.php:29
 * @route '/profile/reviews/{review}'
 */
 update.patch = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({

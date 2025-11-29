@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers\DataTable;
 
 use App\Lote\DataTables2\Columns;
@@ -13,6 +15,7 @@ class SampleDataTable extends DataTableResource
     public string $defaultOrderField = 'id';
 
     public array $searchableFields = [0 => 'title', 1 => 'description'];
+
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -60,7 +63,7 @@ class SampleDataTable extends DataTableResource
 
     public function filterQueryUser($value): void
     {
-        $this->builder->whereHas('voice.user', function ($query) use ($value) {
+        $this->builder->whereHas('voice.user', function ($query) use ($value): void {
             $query->where('id', $value);
         });
     }

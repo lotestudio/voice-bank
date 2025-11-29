@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
@@ -14,9 +16,9 @@ class ReviewsController extends Controller
         return Inertia::render('Profile/Reviews');
     }
 
-    public function store(ReviewFormRequest $request)
+    public function store(ReviewFormRequest $reviewFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $reviewFormRequest->validated();
         $data['user_id'] = auth()->id();
 
         Review::query()->create($data);
@@ -24,9 +26,9 @@ class ReviewsController extends Controller
         return back();
     }
 
-    public function update(ReviewFormRequest $request, Review $review)
+    public function update(ReviewFormRequest $reviewFormRequest, Review $review): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $reviewFormRequest->validated();
         $data['user_id'] = auth()->id();
         $review->update($data);
 

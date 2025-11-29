@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers\DataTable;
 
 use App\Lote\DataTables2\Columns;
@@ -13,6 +15,7 @@ class FeatureDataTable extends DataTableResource
     public string $defaultOrderField = 'id';
 
     public array $searchableFields = [0 => 'name', 1 => 'display_name', 2 => 'description'];
+
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Models\User;
@@ -17,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(VoiceFilterService::class, function ($app) {
+        $this->app->singleton(VoiceFilterService::class, function ($app): \App\Services\VoiceFilterService {
             return new VoiceFilterService;
         });
     }
@@ -29,20 +31,36 @@ class AppServiceProvider extends ServiceProvider
     {
         RouteServiceProvider::loadCachedRoutesUsing(fn () => $this->loadCachedRoutes());
 
-        Gate::define('administrate', function (User $user) {
+        Gate::define('administrate', function (User $user): bool {
             return $user->isAdmin();
         });
 
-        Gate::define('develop', function (User $user) {
+        Gate::define('develop', function (User $user): bool {
             return $user->isDev();
         });
 
-        Gate::define('act_as_artist', function (User $user) {
-            return $user->isArtist() || $user->isAdmin() || $user->isDev();
+        Gate::define('act_as_artist', function (User $user): bool {
+            if ($user->isArtist()) {
+                return true;
+            }
+
+            if ($user->isAdmin()) {
+                return true;
+            }
+
+            return $user->isDev();
         });
 
-        Gate::define('act_as_client', function (User $user) {
-            return $user->isClient() || $user->isAdmin() || $user->isDev();
+        Gate::define('act_as_client', function (User $user): bool {
+            if ($user->isClient()) {
+                return true;
+            }
+
+            if ($user->isAdmin()) {
+                return true;
+            }
+
+            return $user->isDev();
         });
     }
 }

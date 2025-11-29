@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -13,7 +15,7 @@ class VoiceFeatureValueController extends Controller
 {
     use HasReturnUrl;
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $data = $request->validate([
             'feature_id' => 'required',
@@ -30,7 +32,7 @@ class VoiceFeatureValueController extends Controller
         return $this->redirectAfterSave($request, back());
     }
 
-    public function update(Request $request)
+    public function update(Request $request): \Illuminate\Http\RedirectResponse
     {
         $data = $request->validate([
             'voice_id' => 'required',

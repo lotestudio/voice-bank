@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dev\ServicePagesController::side_menu
-* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @see app/Http/Controllers/Dev/ServicePagesController.php:12
 * @route '/dev/template/side_menu'
 */
 export const side_menu = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ side_menu.definition = {
 
 /**
 * @see \App\Http\Controllers\Dev\ServicePagesController::side_menu
-* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @see app/Http/Controllers/Dev/ServicePagesController.php:12
 * @route '/dev/template/side_menu'
 */
 side_menu.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ side_menu.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dev\ServicePagesController::side_menu
-* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @see app/Http/Controllers/Dev/ServicePagesController.php:12
 * @route '/dev/template/side_menu'
 */
 side_menu.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ side_menu.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dev\ServicePagesController::side_menu
-* @see app/Http/Controllers/Dev/ServicePagesController.php:10
+* @see app/Http/Controllers/Dev/ServicePagesController.php:12
 * @route '/dev/template/side_menu'
 */
 side_menu.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

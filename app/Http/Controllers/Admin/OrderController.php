@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -30,20 +32,20 @@ class OrderController extends Controller
         return Inertia::render('admin/Order/form', []);
     }
 
-    public function store(OrderFormRequest $request)
+    public function store(OrderFormRequest $orderFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $orderFormRequest->validated();
         order::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('order.index'));
+        return $this->redirectAfterSave($orderFormRequest, to_route('order.index'));
     }
 
-    public function update(order $order, OrderFormRequest $request)
+    public function update(order $order, OrderFormRequest $orderFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $orderFormRequest->validated();
         $order->update($data);
 
-        return $this->redirectAfterSave($request, to_route('order.index'));
+        return $this->redirectAfterSave($orderFormRequest, to_route('order.index'));
     }
 
     public function edit(order $order): Response
@@ -53,7 +55,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         order::destroy([$id]);
 

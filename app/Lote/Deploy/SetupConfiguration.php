@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\Deploy;
 
 use Dotenv\Dotenv;
@@ -35,8 +37,8 @@ class SetupConfiguration
                 'DEPLOY_STAGE_SERVER',
                 'DEPLOY_STAGE_PATH',
             ])->notEmpty();
-        } catch (Exception $e) {
-            echo $e->getMessage();
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
             exit;
         }
     }

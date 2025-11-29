@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -20,13 +22,13 @@ class SortController extends Controller
         $order_column = request()->query('order_column') ?? 'sort_order';
         $display_value = request()->query('display_value') ?? 'name';
 
-        $modelClass = "App\\Models\\{$model}";
+        $modelClass = 'App\Models\\'.$model;
 
         if (! class_exists($modelClass)) {
-            throw new \RuntimeException("Model {$modelClass} not found");
+            throw new \RuntimeException(sprintf('Model %s not found', $modelClass));
         }
 
-        $items = $modelClass::query()->when($groupBy, function ($query) use ($groupBy, $groupValue) {
+        $items = $modelClass::query()->when($groupBy, function ($query) use ($groupBy, $groupValue): void {
             $query->where($groupBy, $groupValue);
         })->orderBy($order_column)->get(['id', $display_value, $order_column]);
 
@@ -39,7 +41,7 @@ class SortController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'items' => 'required|array',
@@ -49,16 +51,16 @@ class SortController extends Controller
             'model' => 'required|string',
         ]);
 
-        $modelClass = "App\\Models\\{$request->model}";
+        $modelClass = 'App\Models\\'.$request->model;
 
         if (! class_exists($modelClass)) {
-            throw new \RuntimeException("Model {$modelClass} not found");
+            throw new \RuntimeException(sprintf('Model %s not found', $modelClass));
         }
 
         $modelClass::whereIn('id', collect($request->items)->pluck('id'))->update([
             $request->order_column => \DB::raw('CASE id '.
                 collect($request->items)->map(fn ($item
-                ) => "WHEN {$item['id']} THEN {$item[$request->order_column]}")->join(' ')
+                ): string => sprintf('WHEN %s THEN %s', $item['id'], $item[$request->order_column]))->join(' ')
                 .' END'),
         ]);
 

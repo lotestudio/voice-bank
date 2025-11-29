@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -41,25 +43,26 @@ class SampleController extends Controller
         ]);
     }
 
-    public function store(SampleFormRequest $request)
+    public function store(SampleFormRequest $sampleFormRequest)
     {
-        $data = $request->validated();
+        $data = $sampleFormRequest->validated();
         $data['file_url'] = (new Sample)->moveFileFromTmp('samples', $data['file_url']);
         Sample::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('sample.index'))
+        return $this->redirectAfterSave($sampleFormRequest, to_route('sample.index'))
             ->with('success', 'Sample created successfully.');
     }
 
-    public function update(Sample $sample, SampleFormRequest $request)
+    public function update(Sample $sample, SampleFormRequest $sampleFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $sampleFormRequest->validated();
         if ($data['file_url'] !== $sample->file_url) {
             $data['file_url'] = $sample->moveFileFromTmp('samples', $data['file_url']);
         }
+
         $sample->update($data);
 
-        return $this->redirectAfterSave($request, to_route('sample.index'));
+        return $this->redirectAfterSave($sampleFormRequest, to_route('sample.index'));
     }
 
     public function edit(sample $sample): Response
@@ -70,7 +73,7 @@ class SampleController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         sample::destroy([$id]);
 

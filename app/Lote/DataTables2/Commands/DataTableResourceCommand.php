@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\DataTables2\Commands;
 
 use Illuminate\Console\Command;
@@ -36,7 +38,7 @@ class DataTableResourceCommand extends Command
         $pathParts = array_map(fn ($part) => Str::studly(trim($part)), explode('/', $relativePathInput));
         $relativePath = implode('/', array_filter($pathParts)); // array_filter премахва празни части, ако има //
 
-        if (empty($relativePath)) {
+        if ($relativePath === '' || $relativePath === '0') {
             $this->error('Пътят не може да бъде празен.');
 
             return CommandAlias::FAILURE;
@@ -49,6 +51,7 @@ class DataTableResourceCommand extends Command
 
             return CommandAlias::FAILURE;
         }
+
         $modelName = Str::studly(trim($modelNameInput)); // Гарантира CamelCase (PascalCase)
 
         // 3. Питане за полето за търсене
@@ -58,6 +61,7 @@ class DataTableResourceCommand extends Command
 
             return CommandAlias::FAILURE;
         }
+
         $searchableField = trim($searchableFieldInput);
 
         // Подготовка на имена и пътища
@@ -74,7 +78,7 @@ class DataTableResourceCommand extends Command
 
         // Проверка дали файлът вече съществува
         if (File::exists($filePath)) {
-            $this->error("Файлът {$filePath} вече съществува!");
+            $this->error(sprintf('Файлът %s вече съществува!', $filePath));
 
             return CommandAlias::FAILURE;
         }
@@ -83,7 +87,7 @@ class DataTableResourceCommand extends Command
         $stubPath = __DIR__.'/../stubs/DataTableResource.stub';
 
         if (! File::exists($stubPath)) {
-            $this->error("Stub файлът не е намерен на адрес: {$stubPath}. Моля, създайте го.");
+            $this->error(sprintf('Stub файлът не е намерен на адрес: %s. Моля, създайте го.', $stubPath));
 
             return CommandAlias::FAILURE;
         }
@@ -110,8 +114,8 @@ class DataTableResourceCommand extends Command
         // Записване на файла
         File::put($filePath, $generatedContent);
 
-        $this->info("DataTableResource класът {$className} е създаден успешно в {$filePath}");
-        $this->comment("Не забравяйте да проверите импортите 'use App\\Http\\Resources\\DataTable\\DataTableResource;' и 'use {$modelFQN};' в генерирания файл, ако са различни от вашите.");
+        $this->info(sprintf('DataTableResource класът %s е създаден успешно в %s', $className, $filePath));
+        $this->comment(sprintf("Не забравяйте да проверите импортите 'use App\\Http\\Resources\\DataTable\\DataTableResource;' и 'use %s;' в генерирания файл, ако са различни от вашите.", $modelFQN));
         $this->comment('Също така, актуализирайте метода toArray() със съответните полета за вашия модел.');
 
         return CommandAlias::SUCCESS;

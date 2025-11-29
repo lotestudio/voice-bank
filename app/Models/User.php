@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,8 +18,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Impersonate, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Impersonate;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -200,7 +204,7 @@ class User extends Authenticatable
         }
 
         // Orders that include any of this user's voices
-        return Order::whereHas('voices', function ($q) {
+        return Order::whereHas('voices', function ($q): void {
             $q->whereIn('voices.id', $this->voices()->pluck('id'));
         });
     }
@@ -268,7 +272,7 @@ class User extends Authenticatable
     protected function Avatar(): Attribute
     {
         return Attribute::make(
-            get: function ($value, array $attributes) {
+            get: function (?string $value, array $attributes): array {
 
                 return [
                     'url' => $value ? url('storage/avatars/'.$value) : '',
@@ -281,21 +285,21 @@ class User extends Authenticatable
         );
     }
 
-    public static function forSelectArtists($prepend = true, $prepend_label = 'Choose artist')
+    public static function forSelectArtists($prepend = true, $prepend_label = 'Choose artist'): \Illuminate\Support\Collection
     {
         return self::forSelect($prepend, $prepend_label, 'artist');
     }
 
-    public static function forSelectClients($prepend = true, $prepend_label = 'Choose client')
+    public static function forSelectClients($prepend = true, $prepend_label = 'Choose client'): \Illuminate\Support\Collection
     {
         return self::forSelect($prepend, $prepend_label, 'client');
     }
 
     public static function forSelect($prepend = true, $prepend_label = 'Choose user', $role = null): Collection
     {
-        $users = self::query()->when($role, function ($query) use ($role) {
+        $users = self::query()->when($role, function ($query) use ($role): void {
             $query->where('role', $role);
-        })->orderBy('name')->get(['name', 'id'])->map(function ($user) {
+        })->orderBy('name')->get(['name', 'id'])->map(function ($user): array {
             return [
                 'label' => $user->name,
                 'value' => $user->id,
@@ -303,7 +307,7 @@ class User extends Authenticatable
         });
 
         if ($prepend) {
-            $users = $users->prepend(['label' => $prepend_label, 'value' => null]);
+            return $users->prepend(['label' => $prepend_label, 'value' => null]);
         }
 
         return $users;

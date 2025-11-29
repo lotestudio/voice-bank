@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enums;
 
 use App\Http\Resources\UserOrderResource;
@@ -11,10 +13,15 @@ enum OrderStatus: string
     use HasEnumUtilities;
 
     case PENDING = 'pending';
+
     case ACCEPTED = 'accepted';
+
     case IN_PROGRESS = 'in_progress';
+
     case COMPLETED = 'completed';
+
     case CANCELLED = 'cancelled';
+
     case REFUNDED = 'refunded';
 
     public function label(Order|UserOrderResource|null $order = null): string

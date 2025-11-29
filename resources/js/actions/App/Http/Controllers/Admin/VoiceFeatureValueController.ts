@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:18
 * @route '/admin/voice-feature-value/store'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:18
 * @route '/admin/voice-feature-value/store'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::store
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:15
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:18
 * @route '/admin/voice-feature-value/store'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:32
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:35
 * @route '/admin/voice-feature-value/update'
 */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -50,7 +50,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:32
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:35
 * @route '/admin/voice-feature-value/update'
 */
 update.url = (options?: RouteQueryOptions) => {
@@ -59,7 +59,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\VoiceFeatureValueController::update
-* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:32
+* @see app/Http/Controllers/Admin/VoiceFeatureValueController.php:35
 * @route '/admin/voice-feature-value/update'
 */
 update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

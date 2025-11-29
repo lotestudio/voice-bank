@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enums;
 
 use App\Lote\Traits\HasEnumUtilities;
@@ -9,8 +11,11 @@ enum Roles: string
     use HasEnumUtilities;
 
     case DEV = 'dev';
+
     case ADMIN = 'admin';
+
     case ARTIST = 'artist';
+
     case CLIENT = 'client';
 
     public function label(): string

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::index
-* @see app/Http/Controllers/Admin/ReviewController.php:18
+* @see app/Http/Controllers/Admin/ReviewController.php:21
 * @route '/admin/review'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::index
-* @see app/Http/Controllers/Admin/ReviewController.php:18
+* @see app/Http/Controllers/Admin/ReviewController.php:21
 * @route '/admin/review'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::index
-* @see app/Http/Controllers/Admin/ReviewController.php:18
+* @see app/Http/Controllers/Admin/ReviewController.php:21
 * @route '/admin/review'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::index
-* @see app/Http/Controllers/Admin/ReviewController.php:18
+* @see app/Http/Controllers/Admin/ReviewController.php:21
 * @route '/admin/review'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::create
-* @see app/Http/Controllers/Admin/ReviewController.php:27
+* @see app/Http/Controllers/Admin/ReviewController.php:30
 * @route '/admin/review/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::create
-* @see app/Http/Controllers/Admin/ReviewController.php:27
+* @see app/Http/Controllers/Admin/ReviewController.php:30
 * @route '/admin/review/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::create
-* @see app/Http/Controllers/Admin/ReviewController.php:27
+* @see app/Http/Controllers/Admin/ReviewController.php:30
 * @route '/admin/review/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::create
-* @see app/Http/Controllers/Admin/ReviewController.php:27
+* @see app/Http/Controllers/Admin/ReviewController.php:30
 * @route '/admin/review/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::store
-* @see app/Http/Controllers/Admin/ReviewController.php:32
+* @see app/Http/Controllers/Admin/ReviewController.php:35
 * @route '/admin/review'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::store
-* @see app/Http/Controllers/Admin/ReviewController.php:32
+* @see app/Http/Controllers/Admin/ReviewController.php:35
 * @route '/admin/review'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::store
-* @see app/Http/Controllers/Admin/ReviewController.php:32
+* @see app/Http/Controllers/Admin/ReviewController.php:35
 * @route '/admin/review'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::edit
-* @see app/Http/Controllers/Admin/ReviewController.php:48
+* @see app/Http/Controllers/Admin/ReviewController.php:51
 * @route '/admin/review/{review}/edit'
 */
 export const edit = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::edit
-* @see app/Http/Controllers/Admin/ReviewController.php:48
+* @see app/Http/Controllers/Admin/ReviewController.php:51
 * @route '/admin/review/{review}/edit'
 */
 edit.url = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ edit.url = (args: { review: number | { id: number } } | [review: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::edit
-* @see app/Http/Controllers/Admin/ReviewController.php:48
+* @see app/Http/Controllers/Admin/ReviewController.php:51
 * @route '/admin/review/{review}/edit'
 */
 edit.get = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -181,7 +181,7 @@ edit.get = (args: { review: number | { id: number } } | [review: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::edit
-* @see app/Http/Controllers/Admin/ReviewController.php:48
+* @see app/Http/Controllers/Admin/ReviewController.php:51
 * @route '/admin/review/{review}/edit'
 */
 edit.head = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -191,7 +191,7 @@ edit.head = (args: { review: number | { id: number } } | [review: number | { id:
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::update
-* @see app/Http/Controllers/Admin/ReviewController.php:40
+* @see app/Http/Controllers/Admin/ReviewController.php:43
 * @route '/admin/review/{review}'
 */
 export const update = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -206,7 +206,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::update
-* @see app/Http/Controllers/Admin/ReviewController.php:40
+* @see app/Http/Controllers/Admin/ReviewController.php:43
 * @route '/admin/review/{review}'
 */
 update.url = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -239,7 +239,7 @@ update.url = (args: { review: number | { id: number } } | [review: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::update
-* @see app/Http/Controllers/Admin/ReviewController.php:40
+* @see app/Http/Controllers/Admin/ReviewController.php:43
 * @route '/admin/review/{review}'
 */
 update.put = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -249,7 +249,7 @@ update.put = (args: { review: number | { id: number } } | [review: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::update
-* @see app/Http/Controllers/Admin/ReviewController.php:40
+* @see app/Http/Controllers/Admin/ReviewController.php:43
 * @route '/admin/review/{review}'
 */
 update.patch = (args: { review: number | { id: number } } | [review: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -259,7 +259,7 @@ update.patch = (args: { review: number | { id: number } } | [review: number | { 
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::destroy
-* @see app/Http/Controllers/Admin/ReviewController.php:55
+* @see app/Http/Controllers/Admin/ReviewController.php:58
 * @route '/admin/review/{review}'
 */
 export const destroy = (args: { review: string | number } | [review: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -274,7 +274,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::destroy
-* @see app/Http/Controllers/Admin/ReviewController.php:55
+* @see app/Http/Controllers/Admin/ReviewController.php:58
 * @route '/admin/review/{review}'
 */
 destroy.url = (args: { review: string | number } | [review: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -301,7 +301,7 @@ destroy.url = (args: { review: string | number } | [review: string | number ] | 
 
 /**
 * @see \App\Http\Controllers\Admin\ReviewController::destroy
-* @see app/Http/Controllers/Admin/ReviewController.php:55
+* @see app/Http/Controllers/Admin/ReviewController.php:58
 * @route '/admin/review/{review}'
 */
 destroy.delete = (args: { review: string | number } | [review: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

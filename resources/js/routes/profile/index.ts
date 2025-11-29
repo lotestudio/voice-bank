@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 export const settings = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ settings.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 settings.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ settings.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
-* @see app/Http/Controllers/Settings/ProfileController.php:19
+* @see app/Http/Controllers/Settings/ProfileController.php:21
 * @route '/admin/settings/profile'
 */
 export const edit = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
-* @see app/Http/Controllers/Settings/ProfileController.php:19
+* @see app/Http/Controllers/Settings/ProfileController.php:21
 * @route '/admin/settings/profile'
 */
 edit.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ edit.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
-* @see app/Http/Controllers/Settings/ProfileController.php:19
+* @see app/Http/Controllers/Settings/ProfileController.php:21
 * @route '/admin/settings/profile'
 */
 edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
-* @see app/Http/Controllers/Settings/ProfileController.php:19
+* @see app/Http/Controllers/Settings/ProfileController.php:21
 * @route '/admin/settings/profile'
 */
 edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::update
-* @see app/Http/Controllers/Settings/ProfileController.php:30
+* @see app/Http/Controllers/Settings/ProfileController.php:32
 * @route '/admin/settings/profile'
 */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -104,7 +104,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::update
-* @see app/Http/Controllers/Settings/ProfileController.php:30
+* @see app/Http/Controllers/Settings/ProfileController.php:32
 * @route '/admin/settings/profile'
 */
 update.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::update
-* @see app/Http/Controllers/Settings/ProfileController.php:30
+* @see app/Http/Controllers/Settings/ProfileController.php:32
 * @route '/admin/settings/profile'
 */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -123,7 +123,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::destroy
-* @see app/Http/Controllers/Settings/ProfileController.php:47
+* @see app/Http/Controllers/Settings/ProfileController.php:49
 * @route '/admin/settings/profile'
 */
 export const destroy = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -138,7 +138,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::destroy
-* @see app/Http/Controllers/Settings/ProfileController.php:47
+* @see app/Http/Controllers/Settings/ProfileController.php:49
 * @route '/admin/settings/profile'
 */
 destroy.url = (options?: RouteQueryOptions) => {
@@ -147,7 +147,7 @@ destroy.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::destroy
-* @see app/Http/Controllers/Settings/ProfileController.php:47
+* @see app/Http/Controllers/Settings/ProfileController.php:49
 * @route '/admin/settings/profile'
 */
 destroy.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

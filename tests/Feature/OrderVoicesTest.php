@@ -4,7 +4,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Voice;
 
-it('allows attaching multiple voices to an order via pivot', function () {
+it('allows attaching multiple voices to an order via pivot', function (): void {
     $client = User::factory()->client()->create();
     $voiceA = Voice::factory()->create();
     $voiceB = Voice::factory()->create();
@@ -19,7 +19,7 @@ it('allows attaching multiple voices to an order via pivot', function () {
         ->toEqual([$voiceA->id, $voiceB->id]);
 });
 
-it('aggregates artists from attached voices', function () {
+it('aggregates artists from attached voices', function (): void {
     $artist1 = User::factory()->artist()->create();
     $artist2 = User::factory()->artist()->create();
 
@@ -37,7 +37,7 @@ it('aggregates artists from attached voices', function () {
         ->and($order->artist()?->id)->toBeIn([$artist1->id, $artist2->id]);
 });
 
-it('lets artists retrieve received orders via voices', function () {
+it('lets artists retrieve received orders via voices', function (): void {
     $artist = User::factory()->artist()->create();
     $otherArtist = User::factory()->artist()->create();
 

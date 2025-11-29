@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -44,24 +46,16 @@ class VoiceController extends Controller
     {
         $voice->load('featureValues.feature.values', 'user', 'samples');
 
-        $featureValues = $voice->featureValues->groupBy('feature.display_name')->map(function ($featureValues, $featureName) {
-            $res = [];
-            $res['selected'] = $featureValues->pluck('id')->toArray();
-            $res['forSelect'] = $featureValues[0]->feature->values->map(function ($value) {
+        $featureValues = $voice->featureValues->groupBy('feature.display_name')->map(function ($featureValues, $featureName): array {
+            return ['selected' => $featureValues->pluck('id')->toArray(), 'forSelect' => $featureValues[0]->feature->values->map(function ($value): array {
                 return [
                     'label' => $value->display_value,
                     'value' => $value->id,
                 ];
-            })->toArray();
-            $res['is_featured'] = $featureValues[0]->feature->is_featured;
-            $res['id'] = $featureValues[0]->feature->id;
-            $res['name'] = $featureValues[0]->feature->display_name;
-            $res['sort_order'] = $featureValues[0]->feature->sort_order;
-
-            return $res;
+            })->toArray(), 'is_featured' => $featureValues[0]->feature->is_featured, 'id' => $featureValues[0]->feature->id, 'name' => $featureValues[0]->feature->display_name, 'sort_order' => $featureValues[0]->feature->sort_order];
         })->sortBy('sort_order');
 
-        $selected = $featureValues->mapWithKeys(function ($item, $feature_id) {
+        $selected = $featureValues->mapWithKeys(function (array $item, $feature_id): array {
             return [$item['id'] => $item['selected']];
         });
 
@@ -76,20 +70,20 @@ class VoiceController extends Controller
         ]);
     }
 
-    public function store(VoiceFormRequest $request)
+    public function store(VoiceFormRequest $voiceFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $voiceFormRequest->validated();
         voice::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('voice.index'));
+        return $this->redirectAfterSave($voiceFormRequest, to_route('voice.index'));
     }
 
-    public function update(Voice $voice, VoiceFormRequest $request)
+    public function update(Voice $voice, VoiceFormRequest $voiceFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $voiceFormRequest->validated();
         $voice->update($data);
 
-        return $this->redirectAfterSave($request, to_route('voice.index'));
+        return $this->redirectAfterSave($voiceFormRequest, to_route('voice.index'));
     }
 
     public function edit(voice $voice): Response
@@ -100,7 +94,7 @@ class VoiceController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         voice::destroy([$id]);
 

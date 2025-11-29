@@ -3,7 +3,7 @@
 use App\Lote\InertiaCrudCommand\MakeInertiaCrud;
 use Illuminate\Support\Facades\Artisan;
 
-Artisan::command('dev:download_db', function () {
+Artisan::command('dev:download_db', function (): void {
     $dumper = new \App\Lote\Services\DevDBSync\Dumper;
 
     $this->info($dumper->dumpDb(true));
@@ -12,7 +12,7 @@ Artisan::command('dev:download_db', function () {
 
 })->describe('Download database from production');
 
-Artisan::command('lote:inertia-crud', function () {
+Artisan::command('lote:inertia-crud', function (): void {
     $generator = new MakeInertiaCrud;
     $generator->run($this);
 })->describe('Generate DataTableResource and optional Inertia CRUD scaffolding');

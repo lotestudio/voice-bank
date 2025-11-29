@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Feature;
@@ -22,7 +24,7 @@ class VoicesController extends Controller
             return VoicesSiteDataTable::make()->getTableData();
         }
 
-        [$featured_filters,$filters] = Feature::with('values')->get()->map(function ($feature) {
+        [$featured_filters,$filters] = Feature::with('values')->get()->map(function ($feature): \App\Models\Feature {
             $feature->valuesForSelect = $feature->valuesForSelect($feature->is_featured);
 
             return $feature;

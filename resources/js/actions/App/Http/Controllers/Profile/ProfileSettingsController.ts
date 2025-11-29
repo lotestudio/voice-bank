@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 export const settings = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ settings.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 settings.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ settings.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::settings
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:11
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:12
 * @route '/profile/settings'
 */
 settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::password
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:22
 * @route '/profile/password'
 */
 export const password = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ password.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::password
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:22
 * @route '/profile/password'
 */
 password.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ password.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::password
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:22
 * @route '/profile/password'
 */
 password.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ password.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::password
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:20
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:22
 * @route '/profile/password'
 */
 password.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ password.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:32
 * @route '/profile/appearance'
 */
 export const appearance = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +104,7 @@ appearance.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:32
 * @route '/profile/appearance'
 */
 appearance.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ appearance.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:32
 * @route '/profile/appearance'
 */
 appearance.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -123,7 +123,7 @@ appearance.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::appearance
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:29
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:32
 * @route '/profile/appearance'
 */
 appearance.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -133,7 +133,7 @@ appearance.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:42
 * @route '/profile/avatar'
 */
 export const avatar = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -148,7 +148,7 @@ avatar.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:42
 * @route '/profile/avatar'
 */
 avatar.url = (options?: RouteQueryOptions) => {
@@ -157,7 +157,7 @@ avatar.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:42
 * @route '/profile/avatar'
 */
 avatar.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -167,7 +167,7 @@ avatar.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::avatar
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:38
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:42
 * @route '/profile/avatar'
 */
 avatar.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -177,7 +177,7 @@ avatar.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:52
 * @route '/profile/voices'
 */
 export const my_voices = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -192,7 +192,7 @@ my_voices.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:52
 * @route '/profile/voices'
 */
 my_voices.url = (options?: RouteQueryOptions) => {
@@ -201,7 +201,7 @@ my_voices.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:52
 * @route '/profile/voices'
 */
 my_voices.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -211,7 +211,7 @@ my_voices.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\ProfileSettingsController::my_voices
-* @see app/Http/Controllers/Profile/ProfileSettingsController.php:47
+* @see app/Http/Controllers/Profile/ProfileSettingsController.php:52
 * @route '/profile/voices'
 */
 my_voices.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

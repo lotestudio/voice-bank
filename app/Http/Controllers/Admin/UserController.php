@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Roles;
@@ -40,20 +42,20 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(UserFormRequest $request)
+    public function store(UserFormRequest $userFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $userFormRequest->validated();
         user::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('user.index'));
+        return $this->redirectAfterSave($userFormRequest, to_route('user.index'));
     }
 
-    public function update(user $user, UserFormRequest $request)
+    public function update(user $user, UserFormRequest $userFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $userFormRequest->validated();
         $user->update($data);
 
-        return $this->redirectAfterSave($request, to_route('user.index'));
+        return $this->redirectAfterSave($userFormRequest, to_route('user.index'));
     }
 
     public function edit(user $user): Response
@@ -64,7 +66,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         user::destroy([$id]);
 

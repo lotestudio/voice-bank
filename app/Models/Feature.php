@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +12,8 @@ use Spatie\Translatable\HasTranslations;
 
 class Feature extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
+    use HasTranslations;
 
     /**
      * The attributes that are translatable.
@@ -80,7 +83,7 @@ class Feature extends Model
         $res = Feature::query()
             ->orderBy('sort_order')
             ->pluck('display_name', 'id')
-            ->map(function ($name, $key) {
+            ->map(function ($name, $key): array {
                 return [
                     'label' => $name,
                     'value' => $key,
@@ -88,7 +91,7 @@ class Feature extends Model
             });
 
         if ($prepend_label) {
-            $res = $res->prepend(['label' => $prepend_label, 'value' => null]);
+            return $res->prepend(['label' => $prepend_label, 'value' => null]);
         }
 
         return $res;
@@ -99,7 +102,7 @@ class Feature extends Model
 
         $res = $this->values
             ->pluck('display_value', 'id')
-            ->map(function ($name, $key) {
+            ->map(function ($name, $key): array {
                 return [
                     'label' => $name,
                     'value' => $key,

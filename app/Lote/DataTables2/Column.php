@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\DataTables2;
 
 class Column
@@ -36,14 +38,14 @@ class Column
         $this->tdStyle = isset($data['tdStyle']) ? $this->styleToArray($data['tdStyle']) : [];
     }
 
-    public function tooltip($tooltip): self
+    public function tooltip(?string $tooltip): self
     {
         $this->tooltip = $tooltip;
 
         return $this;
     }
 
-    public function sort($field): self
+    public function sort(?string $field): self
     {
         $this->sort = $field;
 
@@ -101,9 +103,9 @@ class Column
         $newClasses = explode(' ', $class);
         $classes = explode(' ', $currentClass);
 
-        foreach ($newClasses as $class) {
-            if (! in_array($class, $classes)) {
-                $currentClass = trim($currentClass.' '.$class);
+        foreach ($newClasses as $newClass) {
+            if (! in_array($newClass, $classes)) {
+                $currentClass = trim($currentClass.' '.$newClass);
             }
         }
 
@@ -133,7 +135,7 @@ class Column
         $styles = explode(';', trim($style));
 
         foreach ($styles as $declaration) {
-            if (empty(trim($declaration))) {
+            if (in_array(trim($declaration), ['', '0'], true)) {
                 continue;
             }
 
@@ -146,12 +148,12 @@ class Column
 
     private function arrayToStyle(array $styles): string
     {
-        if (empty($styles)) {
+        if ($styles === []) {
             return '';
         }
 
         return implode(';', array_map(
-            fn ($property, $value) => "$property:$value",
+            fn (string $property, $value): string => sprintf('%s:%s', $property, $value),
             array_keys($styles),
             $styles
         ));

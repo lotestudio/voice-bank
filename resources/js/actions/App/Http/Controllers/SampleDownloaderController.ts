@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\SampleDownloaderController::__invoke
-* @see app/Http/Controllers/SampleDownloaderController.php:12
+* @see app/Http/Controllers/SampleDownloaderController.php:13
 * @route '/sample/download/{id}'
 */
 const SampleDownloaderController = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ SampleDownloaderController.definition = {
 
 /**
 * @see \App\Http\Controllers\SampleDownloaderController::__invoke
-* @see app/Http/Controllers/SampleDownloaderController.php:12
+* @see app/Http/Controllers/SampleDownloaderController.php:13
 * @route '/sample/download/{id}'
 */
 SampleDownloaderController.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -43,7 +43,7 @@ SampleDownloaderController.url = (args: { id: string | number } | [id: string | 
 
 /**
 * @see \App\Http\Controllers\SampleDownloaderController::__invoke
-* @see app/Http/Controllers/SampleDownloaderController.php:12
+* @see app/Http/Controllers/SampleDownloaderController.php:13
 * @route '/sample/download/{id}'
 */
 SampleDownloaderController.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -53,7 +53,7 @@ SampleDownloaderController.get = (args: { id: string | number } | [id: string | 
 
 /**
 * @see \App\Http\Controllers\SampleDownloaderController::__invoke
-* @see app/Http/Controllers/SampleDownloaderController.php:12
+* @see app/Http/Controllers/SampleDownloaderController.php:13
 * @route '/sample/download/{id}'
 */
 SampleDownloaderController.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

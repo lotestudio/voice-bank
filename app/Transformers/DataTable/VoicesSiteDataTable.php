@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers\DataTable;
 
 use App\Lote\DataTables2\Columns;
@@ -49,24 +51,13 @@ class VoicesSiteDataTable extends DataTableResource
 
     public static function itemTransform($item): array
     {
-        $res['id'] = $item->id;
-        $res['title'] = $item->title;
-        $res['user'] = $item->user;
-        $res['sample'] = $item->featuredSample();
-        $res['favorites_count'] = $item->favorites_count;
-        $res['orders_count'] = $item->orders_count;
-        $res['average_rating'] = $item->average_rating;
-        $res['availability'] = $item->user->artist_status->label();
-        $res['features'] = $item->featureValues?->groupBy('feature_id')->map(function ($item, $key) {
+        return ['id' => $item->id, 'title' => $item->title, 'user' => $item->user, 'sample' => $item->featuredSample(), 'favorites_count' => $item->favorites_count, 'orders_count' => $item->orders_count, 'average_rating' => $item->average_rating, 'availability' => $item->user->artist_status->label(), 'features' => $item->featureValues?->groupBy('feature_id')->map(function ($item, $key): array {
             return [
                 'id' => $key,
                 'name' => $item->first()->feature->display_name,
                 'values' => $item->pluck('display_value')->join(', '),
             ];
-        });
-
-        return $res;
-
+        })];
     }
 
     // info or caption comes with data to table
@@ -92,15 +83,15 @@ class VoicesSiteDataTable extends DataTableResource
 
                     if (is_array($value)) {
                         // Multiple values for the same feature (OR condition)
-                        $this->builder->whereHas('featureValues', function ($query) use ($featureId, $value) {
+                        $this->builder->whereHas('featureValues', function ($query) use ($featureId, $value): void {
                             $query->whereIn('feature_values.id', $value)
-                                ->whereHas('feature', function ($query) use ($featureId) {
+                                ->whereHas('feature', function ($query) use ($featureId): void {
                                     $query->where('id', $featureId);
                                 });
                         });
                     } else {
                         // Single value for the feature
-                        $this->builder->whereHas('featureValues', function ($query) use ($value) {
+                        $this->builder->whereHas('featureValues', function ($query) use ($value): void {
                             $query->where('feature_values.id', $value);
                         });
                     }
@@ -112,12 +103,10 @@ class VoicesSiteDataTable extends DataTableResource
 
                 if (method_exists($this, $filterQueryMethod)) {
                     $this->$filterQueryMethod($value);
+                } elseif ($value === self::NULL_VALUE) {
+                    $this->builder->whereNull($this->setDatabasePrefixToField($field));
                 } else {
-                    if ($value === self::NULL_VALUE) {
-                        $this->builder->whereNull($this->setDatabasePrefixToField($field));
-                    } else {
-                        $this->builder->where($this->setDatabasePrefixToField($field), $value);
-                    }
+                    $this->builder->where($this->setDatabasePrefixToField($field), $value);
                 }
             }
 

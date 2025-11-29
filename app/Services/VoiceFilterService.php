@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Models\Voice;
@@ -23,9 +25,9 @@ class VoiceFilterService
         // Filter by search term (title or description)
         if (! empty($filters['search'])) {
             $search = $filters['search'];
-            $query->where(function ($query) use ($search) {
-                $query->where('title', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
+            $query->where(function ($query) use ($search): void {
+                $query->where('title', 'like', sprintf('%%%s%%', $search))
+                    ->orWhere('description', 'like', sprintf('%%%s%%', $search));
             });
         }
 
@@ -41,15 +43,15 @@ class VoiceFilterService
 
                 if (is_array($value)) {
                     // Multiple values for the same feature (OR condition)
-                    $query->whereHas('featureValues', function ($query) use ($featureId, $value) {
+                    $query->whereHas('featureValues', function ($query) use ($featureId, $value): void {
                         $query->whereIn('feature_values.id', $value)
-                            ->whereHas('feature', function ($query) use ($featureId) {
+                            ->whereHas('feature', function ($query) use ($featureId): void {
                                 $query->where('id', $featureId);
                             });
                     });
                 } else {
                     // Single value for the feature
-                    $query->whereHas('featureValues', function ($query) use ($value) {
+                    $query->whereHas('featureValues', function ($query) use ($value): void {
                         $query->where('feature_values.id', $value);
                     });
                 }
@@ -66,7 +68,7 @@ class VoiceFilterService
     {
         return \App\Models\Feature::filterable()
             ->ordered()
-            ->with(['values' => function ($query) {
+            ->with(['values' => function ($query): void {
                 $query->ordered();
             }])
             ->get();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -30,20 +32,20 @@ class PaymentController extends Controller
         return Inertia::render('admin/Payment/form', []);
     }
 
-    public function store(PaymentFormRequest $request)
+    public function store(PaymentFormRequest $paymentFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $paymentFormRequest->validated();
         payment::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('payment.index'));
+        return $this->redirectAfterSave($paymentFormRequest, to_route('payment.index'));
     }
 
-    public function update(payment $payment, PaymentFormRequest $request)
+    public function update(payment $payment, PaymentFormRequest $paymentFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $paymentFormRequest->validated();
         $payment->update($data);
 
-        return $this->redirectAfterSave($request, to_route('payment.index'));
+        return $this->redirectAfterSave($paymentFormRequest, to_route('payment.index'));
     }
 
     public function edit(payment $payment): Response
@@ -53,7 +55,7 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         payment::destroy([$id]);
 

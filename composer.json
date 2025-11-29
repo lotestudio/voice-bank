@@ -37,6 +37,7 @@
         "pestphp/pest": "^3.8",
         "pestphp/pest-plugin-laravel": "^3.2",
         "phiki/phiki": "^2.0",
+        "rector/rector": "^2.2",
         "spatie/laravel-ray": "^1.40"
     },
     "autoload": {
@@ -79,6 +80,10 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "format":[
+            "./vendor/bin/rector",
+            "./vendor/bin/pint"
         ]
     },
     "extra": {

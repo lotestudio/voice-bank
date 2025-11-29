@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\DataTables2;
 
 use Illuminate\Support\Facades\Log;
@@ -17,7 +19,7 @@ class Columns
 
     public function __construct(array $columns, array $options = [])
     {
-        $this->columns = collect($columns)->map(function ($column) {
+        $this->columns = collect($columns)->map(function (array $column): \App\Lote\DataTables2\Column {
             return Column::make($column);
         });
 
@@ -53,7 +55,7 @@ class Columns
 
     private function addDefaultWidths(): void
     {
-        $this->columns->each(function (Column $column) {
+        $this->columns->each(function (Column $column): void {
             $column->addDefaultWidth($this->defaultWidth);
         });
     }
@@ -62,7 +64,7 @@ class Columns
     {
         try {
             return $this->columns->where('label', '==', $label)->sole();
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             Log::error('Label not found: '.$label);
 
             return null;

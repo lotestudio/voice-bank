@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Mail\Contact;
@@ -19,13 +21,13 @@ class MainController extends Controller
     {
 
         $voices['data'] = Voice::query()->withFeatureValues([])->with(['featureValues.feature', 'user', 'samples'])
-            ->take(6)->get()->map(fn ($item) => VoicesSiteDataTable::itemTransform($item));
+            ->take(6)->get()->map(fn ($item): array => VoicesSiteDataTable::itemTransform($item));
 
         $posts = Post::query()->where('posts.section', 'like', 'home.%')
             ->orderBy('posts.position')
             ->get();
 
-        [$features, $contents] = $posts->partition(function ($post) {
+        [$features, $contents] = $posts->partition(function ($post): bool {
             return $post->section === 'home.features';
         });
 
@@ -63,8 +65,8 @@ class MainController extends Controller
         ]);
 
         // defer(function ()  {
-        $mail = new Contact(request()->get('message'), request()->get('email'), request()->get('name'));
-        Mail::to(config('mail.admin_email'))->send($mail);
+        $contact = new Contact(request()->get('message'), request()->get('email'), request()->get('name'));
+        Mail::to(config('mail.admin_email'))->send($contact);
         // });
 
         return redirect('contacts')->with('message', 'success');

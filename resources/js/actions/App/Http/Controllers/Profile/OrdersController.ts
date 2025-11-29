@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:19
+* @see app/Http/Controllers/Profile/OrdersController.php:21
 * @route '/profile/orders'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:19
+* @see app/Http/Controllers/Profile/OrdersController.php:21
 * @route '/profile/orders'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:19
+* @see app/Http/Controllers/Profile/OrdersController.php:21
 * @route '/profile/orders'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::index
-* @see app/Http/Controllers/Profile/OrdersController.php:19
+* @see app/Http/Controllers/Profile/OrdersController.php:21
 * @route '/profile/orders'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -151,7 +151,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::store
-* @see app/Http/Controllers/Profile/OrdersController.php:78
+* @see app/Http/Controllers/Profile/OrdersController.php:77
 * @route '/orders'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -166,7 +166,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::store
-* @see app/Http/Controllers/Profile/OrdersController.php:78
+* @see app/Http/Controllers/Profile/OrdersController.php:77
 * @route '/orders'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -175,7 +175,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\OrdersController::store
-* @see app/Http/Controllers/Profile/OrdersController.php:78
+* @see app/Http/Controllers/Profile/OrdersController.php:77
 * @route '/orders'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

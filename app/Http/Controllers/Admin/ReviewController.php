@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -30,20 +32,20 @@ class ReviewController extends Controller
         return Inertia::render('admin/Review/form', []);
     }
 
-    public function store(ReviewFormRequest $request)
+    public function store(ReviewFormRequest $reviewFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $reviewFormRequest->validated();
         review::query()->create($data);
 
-        return $this->redirectAfterSave($request, to_route('review.index'));
+        return $this->redirectAfterSave($reviewFormRequest, to_route('review.index'));
     }
 
-    public function update(review $review, ReviewFormRequest $request)
+    public function update(review $review, ReviewFormRequest $reviewFormRequest): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validated();
+        $data = $reviewFormRequest->validated();
         $review->update($data);
 
-        return $this->redirectAfterSave($request, to_route('review.index'));
+        return $this->redirectAfterSave($reviewFormRequest, to_route('review.index'));
     }
 
     public function edit(review $review): Response
@@ -53,7 +55,7 @@ class ReviewController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         review::destroy([$id]);
 

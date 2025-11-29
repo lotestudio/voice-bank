@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\Services\DevDBSync;
 
 use Symfony\Component\Process\Process;
@@ -58,7 +60,7 @@ class Dumper
     /**
      * @throws \Exception
      */
-    public function dumpDb($isProduction): string
+    public function dumpDb(bool $isProduction): string
     {
 
         $ssh = $this->getSshClient($isProduction);
@@ -75,7 +77,7 @@ class Dumper
     /**
      * @throws \Exception
      */
-    public function deleteDumpFile($isProduction): string
+    public function deleteDumpFile(bool $isProduction): string
     {
 
         $ssh = $this->getSshClient($isProduction);

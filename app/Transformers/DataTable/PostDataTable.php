@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Transformers\DataTable;
 
 use App\Lote\DataTables2\Columns;
@@ -13,6 +15,7 @@ class PostDataTable extends DataTableResource
     public string $defaultOrderField = 'id';
 
     public array $searchableFields = ['title'];
+
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 

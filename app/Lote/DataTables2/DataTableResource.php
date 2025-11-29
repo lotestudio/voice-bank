@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\DataTables2;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -46,7 +48,7 @@ abstract class DataTableResource
 
     private bool $skip_getColumns_method = false;
 
-    public function __construct(?Builder $builder = null, $options = [])
+    public function __construct(?Builder $builder = null, array $options = [])
     {
 
         if (is_null($builder) && is_null($this->model)) {
@@ -89,11 +91,11 @@ abstract class DataTableResource
 
         try {
             $paginator = $this->getPaginator();
-        } catch (\Exception $e) {
-            abort(500, 'Възникна грешка при зареждане на данните. Моля опитайте отново (изтрийте всички филтри): '.$e->getMessage());
+        } catch (\Exception $exception) {
+            abort(500, 'Възникна грешка при зареждане на данните. Моля опитайте отново (изтрийте всички филтри): '.$exception->getMessage());
         }
 
-        $data = $paginator->getCollection()->map(function ($item) {
+        $data = $paginator->getCollection()->map(function ($item): array {
             return $this->transform($item);
         });
 
@@ -167,7 +169,7 @@ abstract class DataTableResource
         $orderDirection = request()->get($this->orderDirectionRequestKey);
 
         if ($orderBy && $orderDirection) {
-            if (isset($this->defaultOrderField) and $this->defaultOrderField === $orderBy) {
+            if (isset($this->defaultOrderField) && $this->defaultOrderField === $orderBy) {
                 $this->builder->orderBy($orderBy, $orderDirection);
 
                 return;
@@ -182,10 +184,8 @@ abstract class DataTableResource
             }
 
             $this->builder->orderBy($orderBy, $orderDirection)->orderBy($this->defaultOrderField, $defaultOrder);
-        } else {
-            if (isset($this->defaultOrderField)) {
-                $this->builder->orderBy($this->defaultOrderField, $defaultOrder);
-            }
+        } elseif (isset($this->defaultOrderField)) {
+            $this->builder->orderBy($this->defaultOrderField, $defaultOrder);
         }
     }
 
@@ -193,19 +193,17 @@ abstract class DataTableResource
     {
         $search = request()->get($this->searchRequestKey);
 
-        if ($search) {
-            if (! empty($this->searchableFields)) {
-                if (method_exists($this, 'searchQueryName')) {
-                    $this->searchQueryName();
-                } else {
-                    $this->builder->where(function ($query) use ($search) {
-                        collect(str_getcsv($search, ' ', '"', '\\'))->filter()->each(function ($term) use ($query) {
-                            foreach ($this->searchableFields as $field) {
-                                $query->orWhere($this->setDatabasePrefixToField($field), 'LIKE', '%'.$term.'%');
-                            }
-                        });
+        if ($search && $this->searchableFields !== []) {
+            if (method_exists($this, 'searchQueryName')) {
+                $this->searchQueryName();
+            } else {
+                $this->builder->where(function ($query) use ($search): void {
+                    collect(str_getcsv($search, ' ', '"', '\\'))->filter()->each(function (string $term) use ($query): void {
+                        foreach ($this->searchableFields as $searchableField) {
+                            $query->orWhere($this->setDatabasePrefixToField($searchableField), 'LIKE', '%'.$term.'%');
+                        }
                     });
-                }
+                });
             }
         }
     }
@@ -226,12 +224,10 @@ abstract class DataTableResource
 
                 if (method_exists($this, $filterQueryMethod)) {
                     $this->$filterQueryMethod($value);
+                } elseif ($value === self::NULL_VALUE) {
+                    $this->builder->whereNull($this->setDatabasePrefixToField($field));
                 } else {
-                    if ($value === self::NULL_VALUE) {
-                        $this->builder->whereNull($this->setDatabasePrefixToField($field));
-                    } else {
-                        $this->builder->where($this->setDatabasePrefixToField($field), $value);
-                    }
+                    $this->builder->where($this->setDatabasePrefixToField($field), $value);
                 }
             }
 

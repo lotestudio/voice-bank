@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasTranslations;
@@ -21,12 +23,8 @@ class Post extends Model
     {
         parent::boot();
 
-        static::creating(function ($post) {
-            if (! is_null($post->section)) {
-                $post->slug = str($post->section)->slug();
-            } else {
-                $post->slug = str($post->title['en'])->slug();
-            }
+        static::creating(function ($post): void {
+            $post->slug = is_null($post->section) ? str($post->title['en'])->slug() : str($post->section)->slug();
 
             $originalSlug = $post->slug;
             $counter = 1;

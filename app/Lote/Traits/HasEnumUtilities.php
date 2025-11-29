@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\Traits;
 
 use BackedEnum;
@@ -9,7 +11,7 @@ trait HasEnumUtilities
 {
     public static function forSelect($prepend = false, $prependLabel = 'Изберете', $prependValue = '', $toArray = false, $except = []): string|array
     {
-        $collection = collect(static::cases())->map(function ($item) {
+        $collection = collect(static::cases())->map(function ($item): array {
             return [
                 'value' => $item->value,
                 'label' => method_exists($item, 'label')
@@ -24,7 +26,7 @@ trait HasEnumUtilities
             });
 
         if (! empty($except)) {
-            $collection = $collection->filter(function ($item) use ($except) {
+            $collection = $collection->filter(function (array $item) use ($except): bool {
                 return ! in_array($item['value'], $except);
             });
         }
@@ -40,7 +42,7 @@ trait HasEnumUtilities
 
         try {
             return (new ReflectionEnum(self::class))->getCase($case)->getValue();
-        } catch (\ReflectionException $e) {
+        } catch (\ReflectionException $reflectionException) {
             return null;
         }
     }

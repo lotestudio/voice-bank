@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasUploadedFile;
@@ -12,7 +14,9 @@ use Spatie\Translatable\HasTranslations;
 
 class Sample extends Model
 {
-    use HasFactory, HasTranslations, HasUploadedFile;
+    use HasFactory;
+    use HasTranslations;
+    use HasUploadedFile;
 
     /**
      * The attributes that are translatable.
@@ -25,7 +29,7 @@ class Sample extends Model
     {
         parent::boot();
 
-        static::saving(function ($model) {
+        static::saving(function ($model): void {
             if ($model->isDirty('file_url')) {
                 $model->updateFileAttributes();
             }
@@ -142,7 +146,7 @@ class Sample extends Model
 
     public static function forSelect($prepend = true, $prepend_label = 'Choose sample'): Collection
     {
-        $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item) {
+        $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item): array {
             return [
                 'label' => $item->title,
                 'value' => $item->id,
@@ -150,7 +154,7 @@ class Sample extends Model
         });
 
         if ($prepend) {
-            $items = $items->prepend(['label' => $prepend_label, 'value' => null]);
+            return $items->prepend(['label' => $prepend_label, 'value' => null]);
         }
 
         return $items;

@@ -13,7 +13,7 @@ Route::group([
         'localizationRedirect',
         'localeViewPath',
     ],
-], function () {
+], function (): void {
     Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
     Route::get('/voices', [\App\Http\Controllers\VoicesController::class, 'index']);
     Route::get('/about', [\App\Http\Controllers\MainController::class, 'about']);

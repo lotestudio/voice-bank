@@ -35,7 +35,7 @@ process.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\UI\FileUploadController::remove
-* @see app/Http/Controllers/UI/FileUploadController.php:60
+* @see app/Http/Controllers/UI/FileUploadController.php:58
 * @route '/api/uploads/remove'
 */
 export const remove = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -50,7 +50,7 @@ remove.definition = {
 
 /**
 * @see \App\Http\Controllers\UI\FileUploadController::remove
-* @see app/Http/Controllers/UI/FileUploadController.php:60
+* @see app/Http/Controllers/UI/FileUploadController.php:58
 * @route '/api/uploads/remove'
 */
 remove.url = (options?: RouteQueryOptions) => {
@@ -59,7 +59,7 @@ remove.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UI\FileUploadController::remove
-* @see app/Http/Controllers/UI/FileUploadController.php:60
+* @see app/Http/Controllers/UI/FileUploadController.php:58
 * @route '/api/uploads/remove'
 */
 remove.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UserRolesTest extends TestCase
+final class UserRolesTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function it_can_create_users_with_different_roles()
+    public function it_can_create_users_with_different_roles(): void
     {
         // Create users with different roles
         $artist = User::factory()->artist()->create();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enums;
 
 use App\Lote\Traits\HasEnumUtilities;
@@ -9,8 +11,11 @@ enum ArtistStatus: string
     use HasEnumUtilities;
 
     case AVAILABLE = 'available';
+
     case LIMITED = 'limited';
+
     case BUSY = 'busy';
+
     case VACATION = 'vacation';
 
     public function label(): string

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use App\Http\Controllers\UI\FileUploadController;
@@ -27,7 +29,7 @@ trait HasUploadedFile
 
             // проверяваме дали вече съществува файл с такова име
             while ($disk->exists($newPath)) {
-                $newFilename = $name.'_'.$counter.($ext ? '.'.$ext : '');
+                $newFilename = $name.'_'.$counter.($ext !== '' && $ext !== '0' ? '.'.$ext : '');
                 $newPath = $toFolder.'/'.$newFilename;
                 $counter++;
             }

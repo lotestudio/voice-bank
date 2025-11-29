@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -13,7 +15,8 @@ use Spatie\Translatable\HasTranslations;
 
 class Voice extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
+    use HasTranslations;
 
     /**
      * The attributes that are translatable.
@@ -74,7 +77,7 @@ class Voice extends Model
     protected function withFeatureValues($query, array $featureValueIds)
     {
         foreach ($featureValueIds as $featureValueId) {
-            $query->whereHas('featureValues', function ($query) use ($featureValueId) {
+            $query->whereHas('featureValues', function ($query) use ($featureValueId): void {
                 $query->where('feature_values.id', $featureValueId);
             });
         }
@@ -95,7 +98,7 @@ class Voice extends Model
      */
     public function getAverageRatingAttribute(): float
     {
-        return $this->reviews()->approved()->avg('rating') ?? 0;
+        return (float) ($this->reviews()->approved()->avg('rating') ?? 0);
     }
 
     /**
@@ -206,7 +209,7 @@ class Voice extends Model
 
     public static function forSelect($prepend = true, $prepend_label = 'Choose voice'): Collection
     {
-        $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item) {
+        $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item): array {
             return [
                 'label' => $item->title,
                 'value' => $item->id,
@@ -214,7 +217,7 @@ class Voice extends Model
         });
 
         if ($prepend) {
-            $items = $items->prepend(['label' => $prepend_label, 'value' => null]);
+            return $items->prepend(['label' => $prepend_label, 'value' => null]);
         }
 
         return $items;

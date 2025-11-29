@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::index
-* @see app/Http/Controllers/Admin/FeatureValueController.php:19
+* @see app/Http/Controllers/Admin/FeatureValueController.php:22
 * @route '/admin/feature-value'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::index
-* @see app/Http/Controllers/Admin/FeatureValueController.php:19
+* @see app/Http/Controllers/Admin/FeatureValueController.php:22
 * @route '/admin/feature-value'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::index
-* @see app/Http/Controllers/Admin/FeatureValueController.php:19
+* @see app/Http/Controllers/Admin/FeatureValueController.php:22
 * @route '/admin/feature-value'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::index
-* @see app/Http/Controllers/Admin/FeatureValueController.php:19
+* @see app/Http/Controllers/Admin/FeatureValueController.php:22
 * @route '/admin/feature-value'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::create
-* @see app/Http/Controllers/Admin/FeatureValueController.php:30
+* @see app/Http/Controllers/Admin/FeatureValueController.php:33
 * @route '/admin/feature-value/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::create
-* @see app/Http/Controllers/Admin/FeatureValueController.php:30
+* @see app/Http/Controllers/Admin/FeatureValueController.php:33
 * @route '/admin/feature-value/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::create
-* @see app/Http/Controllers/Admin/FeatureValueController.php:30
+* @see app/Http/Controllers/Admin/FeatureValueController.php:33
 * @route '/admin/feature-value/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::create
-* @see app/Http/Controllers/Admin/FeatureValueController.php:30
+* @see app/Http/Controllers/Admin/FeatureValueController.php:33
 * @route '/admin/feature-value/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::store
-* @see app/Http/Controllers/Admin/FeatureValueController.php:37
+* @see app/Http/Controllers/Admin/FeatureValueController.php:40
 * @route '/admin/feature-value'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::store
-* @see app/Http/Controllers/Admin/FeatureValueController.php:37
+* @see app/Http/Controllers/Admin/FeatureValueController.php:40
 * @route '/admin/feature-value'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::store
-* @see app/Http/Controllers/Admin/FeatureValueController.php:37
+* @see app/Http/Controllers/Admin/FeatureValueController.php:40
 * @route '/admin/feature-value'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::edit
-* @see app/Http/Controllers/Admin/FeatureValueController.php:53
+* @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
 export const edit = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::edit
-* @see app/Http/Controllers/Admin/FeatureValueController.php:53
+* @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
 edit.url = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -165,7 +165,7 @@ edit.url = (args: { feature_value: string | number } | [feature_value: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::edit
-* @see app/Http/Controllers/Admin/FeatureValueController.php:53
+* @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
 edit.get = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -175,7 +175,7 @@ edit.get = (args: { feature_value: string | number } | [feature_value: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::edit
-* @see app/Http/Controllers/Admin/FeatureValueController.php:53
+* @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
 edit.head = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -185,7 +185,7 @@ edit.head = (args: { feature_value: string | number } | [feature_value: string |
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::update
-* @see app/Http/Controllers/Admin/FeatureValueController.php:45
+* @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
 export const update = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -200,7 +200,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::update
-* @see app/Http/Controllers/Admin/FeatureValueController.php:45
+* @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
 update.url = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -227,7 +227,7 @@ update.url = (args: { feature_value: string | number } | [feature_value: string 
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::update
-* @see app/Http/Controllers/Admin/FeatureValueController.php:45
+* @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
 update.put = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -237,7 +237,7 @@ update.put = (args: { feature_value: string | number } | [feature_value: string 
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::update
-* @see app/Http/Controllers/Admin/FeatureValueController.php:45
+* @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
 update.patch = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -247,7 +247,7 @@ update.patch = (args: { feature_value: string | number } | [feature_value: strin
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::destroy
-* @see app/Http/Controllers/Admin/FeatureValueController.php:61
+* @see app/Http/Controllers/Admin/FeatureValueController.php:64
 * @route '/admin/feature-value/{feature_value}'
 */
 export const destroy = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -262,7 +262,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::destroy
-* @see app/Http/Controllers/Admin/FeatureValueController.php:61
+* @see app/Http/Controllers/Admin/FeatureValueController.php:64
 * @route '/admin/feature-value/{feature_value}'
 */
 destroy.url = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -289,7 +289,7 @@ destroy.url = (args: { feature_value: string | number } | [feature_value: string
 
 /**
 * @see \App\Http\Controllers\Admin\FeatureValueController::destroy
-* @see app/Http/Controllers/Admin/FeatureValueController.php:61
+* @see app/Http/Controllers/Admin/FeatureValueController.php:64
 * @route '/admin/feature-value/{feature_value}'
 */
 destroy.delete = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

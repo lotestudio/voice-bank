@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::index
-* @see app/Http/Controllers/Admin/PaymentController.php:18
+* @see app/Http/Controllers/Admin/PaymentController.php:21
 * @route '/admin/payment'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::index
-* @see app/Http/Controllers/Admin/PaymentController.php:18
+* @see app/Http/Controllers/Admin/PaymentController.php:21
 * @route '/admin/payment'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::index
-* @see app/Http/Controllers/Admin/PaymentController.php:18
+* @see app/Http/Controllers/Admin/PaymentController.php:21
 * @route '/admin/payment'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::index
-* @see app/Http/Controllers/Admin/PaymentController.php:18
+* @see app/Http/Controllers/Admin/PaymentController.php:21
 * @route '/admin/payment'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::create
-* @see app/Http/Controllers/Admin/PaymentController.php:27
+* @see app/Http/Controllers/Admin/PaymentController.php:30
 * @route '/admin/payment/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::create
-* @see app/Http/Controllers/Admin/PaymentController.php:27
+* @see app/Http/Controllers/Admin/PaymentController.php:30
 * @route '/admin/payment/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::create
-* @see app/Http/Controllers/Admin/PaymentController.php:27
+* @see app/Http/Controllers/Admin/PaymentController.php:30
 * @route '/admin/payment/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::create
-* @see app/Http/Controllers/Admin/PaymentController.php:27
+* @see app/Http/Controllers/Admin/PaymentController.php:30
 * @route '/admin/payment/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::store
-* @see app/Http/Controllers/Admin/PaymentController.php:32
+* @see app/Http/Controllers/Admin/PaymentController.php:35
 * @route '/admin/payment'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::store
-* @see app/Http/Controllers/Admin/PaymentController.php:32
+* @see app/Http/Controllers/Admin/PaymentController.php:35
 * @route '/admin/payment'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::store
-* @see app/Http/Controllers/Admin/PaymentController.php:32
+* @see app/Http/Controllers/Admin/PaymentController.php:35
 * @route '/admin/payment'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::edit
-* @see app/Http/Controllers/Admin/PaymentController.php:48
+* @see app/Http/Controllers/Admin/PaymentController.php:51
 * @route '/admin/payment/{payment}/edit'
 */
 export const edit = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::edit
-* @see app/Http/Controllers/Admin/PaymentController.php:48
+* @see app/Http/Controllers/Admin/PaymentController.php:51
 * @route '/admin/payment/{payment}/edit'
 */
 edit.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ edit.url = (args: { payment: number | { id: number } } | [payment: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::edit
-* @see app/Http/Controllers/Admin/PaymentController.php:48
+* @see app/Http/Controllers/Admin/PaymentController.php:51
 * @route '/admin/payment/{payment}/edit'
 */
 edit.get = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -181,7 +181,7 @@ edit.get = (args: { payment: number | { id: number } } | [payment: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::edit
-* @see app/Http/Controllers/Admin/PaymentController.php:48
+* @see app/Http/Controllers/Admin/PaymentController.php:51
 * @route '/admin/payment/{payment}/edit'
 */
 edit.head = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -191,7 +191,7 @@ edit.head = (args: { payment: number | { id: number } } | [payment: number | { i
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::update
-* @see app/Http/Controllers/Admin/PaymentController.php:40
+* @see app/Http/Controllers/Admin/PaymentController.php:43
 * @route '/admin/payment/{payment}'
 */
 export const update = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -206,7 +206,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::update
-* @see app/Http/Controllers/Admin/PaymentController.php:40
+* @see app/Http/Controllers/Admin/PaymentController.php:43
 * @route '/admin/payment/{payment}'
 */
 update.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -239,7 +239,7 @@ update.url = (args: { payment: number | { id: number } } | [payment: number | { 
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::update
-* @see app/Http/Controllers/Admin/PaymentController.php:40
+* @see app/Http/Controllers/Admin/PaymentController.php:43
 * @route '/admin/payment/{payment}'
 */
 update.put = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -249,7 +249,7 @@ update.put = (args: { payment: number | { id: number } } | [payment: number | { 
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::update
-* @see app/Http/Controllers/Admin/PaymentController.php:40
+* @see app/Http/Controllers/Admin/PaymentController.php:43
 * @route '/admin/payment/{payment}'
 */
 update.patch = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -259,7 +259,7 @@ update.patch = (args: { payment: number | { id: number } } | [payment: number | 
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::destroy
-* @see app/Http/Controllers/Admin/PaymentController.php:55
+* @see app/Http/Controllers/Admin/PaymentController.php:58
 * @route '/admin/payment/{payment}'
 */
 export const destroy = (args: { payment: string | number } | [payment: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -274,7 +274,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::destroy
-* @see app/Http/Controllers/Admin/PaymentController.php:55
+* @see app/Http/Controllers/Admin/PaymentController.php:58
 * @route '/admin/payment/{payment}'
 */
 destroy.url = (args: { payment: string | number } | [payment: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -301,7 +301,7 @@ destroy.url = (args: { payment: string | number } | [payment: string | number ] 
 
 /**
 * @see \App\Http\Controllers\Admin\PaymentController::destroy
-* @see app/Http/Controllers/Admin/PaymentController.php:55
+* @see app/Http/Controllers/Admin/PaymentController.php:58
 * @route '/admin/payment/{payment}'
 */
 destroy.delete = (args: { payment: string | number } | [payment: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

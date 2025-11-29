@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Profile\FavoritesController::index
-* @see app/Http/Controllers/Profile/FavoritesController.php:11
+* @see app/Http/Controllers/Profile/FavoritesController.php:12
 * @route '/profile/favorites'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Profile\FavoritesController::index
-* @see app/Http/Controllers/Profile/FavoritesController.php:11
+* @see app/Http/Controllers/Profile/FavoritesController.php:12
 * @route '/profile/favorites'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Profile\FavoritesController::index
-* @see app/Http/Controllers/Profile/FavoritesController.php:11
+* @see app/Http/Controllers/Profile/FavoritesController.php:12
 * @route '/profile/favorites'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Profile\FavoritesController::index
-* @see app/Http/Controllers/Profile/FavoritesController.php:11
+* @see app/Http/Controllers/Profile/FavoritesController.php:12
 * @route '/profile/favorites'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

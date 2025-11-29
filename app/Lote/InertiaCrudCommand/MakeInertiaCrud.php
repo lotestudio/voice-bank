@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\InertiaCrudCommand;
 
 use Illuminate\Console\Command;
@@ -48,7 +50,7 @@ class MakeInertiaCrud
 
         $searchableFields = $this->csvToArray($searchableFieldsInput);
 
-        $routePrefix = Str::of($modelShort)->snake('-')->lower()->toString();
+        Str::of($modelShort)->snake('-')->lower()->toString();
 
         $this->ensureDirectory(dirname($dtPath));
         $dtStub = $this->getStub('datatable.stub');
@@ -151,13 +153,14 @@ class MakeInertiaCrud
     protected function promptForModel(Command $command): string
     {
         while (true) {
-            $input = $this->askDefault($command, 'Model class (FQN or just name under App\\Models)', 'App\\Models\\Post');
+            $input = $this->askDefault($command, 'Model class (FQN or just name under App\\Models)', \App\Models\Post::class);
             $class = $this->normalizeModelClass($input);
             if (! class_exists($class)) {
-                $command->error("Model class not found: {$class}");
+                $command->error('Model class not found: '.$class);
 
                 continue;
             }
+
             if (! is_subclass_of($class, \Illuminate\Database\Eloquent\Model::class)) {
                 $command->error('Provided class is not an Eloquent model.');
 
@@ -174,6 +177,7 @@ class MakeInertiaCrud
         if (str_starts_with($input, 'App\\')) {
             return $input;
         }
+
         if (! str_contains($input, '\\')) {
             return 'App\\Models\\'.Str::studly($input);
         }
@@ -190,14 +194,14 @@ class MakeInertiaCrud
 
     protected function csvToArray(string $csv): array
     {
-        return array_values(array_filter(array_map(function ($v) {
+        return array_values(array_filter(array_map(function ($v): string {
             return trim($v);
-        }, explode(',', $csv)), fn ($v) => $v !== ''));
+        }, explode(',', $csv)), fn ($v): bool => $v !== ''));
     }
 
     protected function renderSearchableFields(array $fields): string
     {
-        if (count($fields) === 0) {
+        if ($fields === []) {
             return '    // public array $searchableFields = [\'title\'];';
         }
 
@@ -213,7 +217,7 @@ class MakeInertiaCrud
             return '    // public ?string $useDatabaseTablePrefix = \"\";';
         }
 
-        return '    public ?string $useDatabaseTablePrefix = \''.$prefix.'\';';
+        return '    public ?string $useDatabaseTablePrefix = \''.$prefix."';";
     }
 
     protected function renderExportClass(?string $exportClass): string
@@ -237,12 +241,8 @@ class MakeInertiaCrud
         $table = $model->getTable();
         $columns = [];
         try {
-            if (method_exists(Schema::getConnection(), 'getDoctrineSchemaManager')) {
-                $columns = Schema::getColumnListing($table);
-            } else {
-                $columns = Schema::getColumnListing($table);
-            }
-        } catch (\Throwable $e) {
+            $columns = Schema::getColumnListing($table);
+        } catch (\Throwable $throwable) {
             // ignore, fallback guesses
         }
 
@@ -254,9 +254,9 @@ class MakeInertiaCrud
         }
 
         // fallback to first non-id string-like column
-        foreach ($columns as $col) {
-            if (! in_array($col, ['id', 'created_at', 'updated_at', 'deleted_at'], true)) {
-                return [$table, $col];
+        foreach ($columns as $column) {
+            if (! in_array($column, ['id', 'created_at', 'updated_at', 'deleted_at'], true)) {
+                return [$table, $column];
             }
         }
 
@@ -282,13 +282,12 @@ class MakeInertiaCrud
 
     protected function writeFile(string $path, string $contents, Command $command, string $label): void
     {
-        if (File::exists($path)) {
-            if (! $command->confirm($label.' file already exists at '.$this->relative($path).'. Overwrite?', false)) {
-                $command->warn('Skipped existing '.$label.': '.$this->relative($path));
+        if (File::exists($path) && ! $command->confirm($label.' file already exists at '.$this->relative($path).'. Overwrite?', false)) {
+            $command->warn('Skipped existing '.$label.': '.$this->relative($path));
 
-                return;
-            }
+            return;
         }
+
         File::put($path, $contents);
         $command->info($label.' created: '.$this->relative($path));
     }

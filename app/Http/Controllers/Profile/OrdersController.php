@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
@@ -35,15 +37,15 @@ class OrdersController extends Controller
         $cart_voices = explode(',', \request('cart_voices'));
 
         $artists = collect();
-        if (count($cart_voices) > 0) {
-            $artists = User::withWhereHas('voices', function ($query) use ($cart_voices) {
+        if ($cart_voices !== []) {
+            $artists = User::withWhereHas('voices', function ($query) use ($cart_voices): void {
                 $query->with('samples')->whereIn('id', $cart_voices);
-            })->get()->map(function ($user) {
+            })->get()->map(function ($user): array {
                 return [
                     'id' => $user->id,
                     'name' => $user->name,
                     'user_initials' => $user->initials,
-                    'voices' => $user->voices->map(function ($voice) {
+                    'voices' => $user->voices->map(function ($voice): array {
                         return [
                             'id' => $voice->id,
                             'sample' => $voice->featuredSample(),
@@ -63,7 +65,7 @@ class OrdersController extends Controller
     public function show($id)
     {
         return Inertia::render('Profile/Order', [
-            'order' => auth()->user()->orders()->with(['voices' => function ($query) {
+            'order' => auth()->user()->orders()->with(['voices' => function ($query): void {
                 $query->with('samples', 'user');
             }, 'reviews'])->findOrFail($id),
         ]);
@@ -72,17 +74,17 @@ class OrdersController extends Controller
     /**
      * @throws \Throwable
      */
-    public function store(OrderFormRequest $request): RedirectResponse
+    public function store(OrderFormRequest $orderFormRequest): RedirectResponse
     {
 
-        $data = $request->validated();
+        $data = $orderFormRequest->validated();
         $voices = $data['voices'];
         unset($data['voices']);
 
         return DB::transaction(function () use ($data, $voices) {
             $order = auth()->user()->orders()->create($data);
 
-            $attachData = collect($voices)->mapWithKeys(function ($voice) {
+            $attachData = collect($voices)->mapWithKeys(function (array $voice): array {
                 return [$voice['voice_id'] => ['artist_notes' => $voice['artist_notes']]];
             })->all();
 

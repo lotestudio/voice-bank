@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Lote\Services\DevDBSync;
 
 use Spatie\Ssh\Ssh;
@@ -34,15 +36,15 @@ class SshClients
 
     public static function getStaging(): Ssh
     {
-        $client = new SshClients;
+        $sshClients = new SshClients;
 
-        return Ssh::create($client->staging_user, $client->staging_host, $client->staging_port);
+        return Ssh::create($sshClients->staging_user, $sshClients->staging_host, $sshClients->staging_port);
     }
 
     public static function getProduction(): Ssh
     {
-        $client = new SshClients;
+        $sshClients = new SshClients;
 
-        return Ssh::create($client->prod_user, $client->prod_host, $client->prod_port);
+        return Ssh::create($sshClients->prod_user, $sshClients->prod_host, $sshClients->prod_port);
     }
 }

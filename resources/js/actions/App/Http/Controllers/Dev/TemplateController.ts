@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dev\TemplateController::__invoke
-* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @see app/Http/Controllers/Dev/TemplateController.php:12
 * @route '/dev/template'
 */
 const TemplateController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ TemplateController.definition = {
 
 /**
 * @see \App\Http\Controllers\Dev\TemplateController::__invoke
-* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @see app/Http/Controllers/Dev/TemplateController.php:12
 * @route '/dev/template'
 */
 TemplateController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ TemplateController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dev\TemplateController::__invoke
-* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @see app/Http/Controllers/Dev/TemplateController.php:12
 * @route '/dev/template'
 */
 TemplateController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ TemplateController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> =
 
 /**
 * @see \App\Http\Controllers\Dev\TemplateController::__invoke
-* @see app/Http/Controllers/Dev/TemplateController.php:10
+* @see app/Http/Controllers/Dev/TemplateController.php:12
 * @route '/dev/template'
 */
 TemplateController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

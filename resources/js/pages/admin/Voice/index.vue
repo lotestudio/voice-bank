@@ -15,11 +15,14 @@ import { show } from '@/routes/voice';
 import LoteSelect from '@/components/LoteSelect.vue';
 import Player from '@/components/Player.vue';
 import LoteSheet from '@/components/LoteSheet.vue';
-import VoiceSamples from '@/pages/admin/Sample/VoiceSamples.vue';
 import {create as createSample} from '@/routes/sample';
 import VoiceSamplesManager from '@/pages/admin/Sample/VoiceSamplesManager.vue';
 
 const breadcrumbItems = [{ title: 'Voice List', href: '/admin/voice' }];
+const userIdFilter = usePage().props?.userIdFilter;
+if(userIdFilter){
+    breadcrumbItems.push({ title: 'User Voice List', href: '/admin/voice?user_id='+userIdFilter });
+}
 
 const dataTable = ref<InstanceType<typeof DataTable2>>();
 
@@ -43,13 +46,21 @@ const getCreateSampleUrl = (voiceId: number) => {
     return  createSample.url() + '?' + params.toString();
 }
 
+const getDefaultUrlParameters = () => {
+    if(usePage().props.userIdFilter) {
+        return [{'filters[user_id]': userIdFilter}];
+    }
+
+    return[];
+}
+
 </script>
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
         <Head :title="`Voice List`" />
         <div class="p-4">
-            <data-table2 :default-url="'/admin/voice'" ref="dataTable">
+            <data-table2 :default-url="'/admin/voice'" ref="dataTable" :default-url-params="getDefaultUrlParameters()">
                 <template #filters="filterProps">
                     <div class="flex w-full gap-2">
                         <Input
@@ -60,9 +71,10 @@ const getCreateSampleUrl = (voiceId: number) => {
                         />
 
                         <LoteSelect
+                            v-if="!userIdFilter"
                             :options="$page.props.usersSelect"
                             @change="filterProps.setFilter('user_id', $event)"
-                            :selected="filterProps.getFilter('user_id') ?? null"
+                            :selected="filterProps.getFilter('user_id') ?? ''"
                         ></LoteSelect>
 
                         <ResetButton @click.stop.prevent="filterProps.resetFilters()"></ResetButton>

@@ -7,11 +7,13 @@ import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 import LoteSelect from '@/components/LoteSelect.vue';
-import { Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { create as createVoice } from '@/routes/voice';
+import {index as voiceIndex} from '@/routes/voice';
 
 const breadcrumbItems = [{ title: 'User List', href: '/admin/user' }];
 
@@ -26,6 +28,14 @@ const deleteUser = (id: number) => {
             toast.success('The User has been deleted successfully.');
         },
     });
+};
+
+const getCreateVoiceUrl = (userId: number) => {
+    const params = new URLSearchParams();
+    params.append('user_id', userId);
+    params.append('title', JSON.stringify({ bg: 'Глас ' + userId, en: 'Voice ' + userId }));
+    params.append('return_url', usePage().url);
+    return createVoice.url() + '?' + params.toString();
 };
 </script>
 
@@ -65,28 +75,38 @@ const deleteUser = (id: number) => {
                 </template>
                 <template v-slot:tr="trProps">
                     <dt-td column="0">
-                        <div class="flex gap-2 items-center">
-                            <Avatar
-                                class="flex h-10 w-10 cursor-pointer items-center justify-center bg-sidebar-accent"
-                            >
+                        <div class="flex items-center gap-2">
+                            <Avatar class="flex h-10 w-10 cursor-pointer items-center justify-center bg-sidebar-accent">
                                 <AvatarImage :src="trProps.row.avatar.url" :alt="trProps.row.avatar.initials" />
                                 <AvatarFallback class="text-xs font-bold">{{ trProps.row.avatar.initials }}</AvatarFallback>
                             </Avatar>
 
-                            <Link :href="UserController.show(trProps.row.id)">
-                                {{ trProps.row.name }}
-                            </Link>
+                            <div>
+                                <Link :href="UserController.show(trProps.row.id)">
+                                    {{ trProps.row.name }}
+                                </Link>
+                                <p class="text-xs">{{ trProps.row.email }}</p>
+                                <p class="text-xs text-muted-foreground">({{ trProps.row.role }})</p>
+                            </div>
                         </div>
                     </dt-td>
                     <dt-td column="1">
-                        {{ trProps.row.email }}
+                        <div class="flex gap-2 items-center justify-end">
+                            <Link v-if="trProps.row.role==='artist'" :href="voiceIndex.url()+'?user_id='+trProps.row.id" class="flex items-center gap-2 hover:no-underline">
+                                <Button size="icon"><span class="i-list"></span></Button>
+                            </Link>
+                            <Link v-if="trProps.row.role==='artist'" :href="getCreateVoiceUrl(trProps.row.id)" class="flex items-center gap-2 hover:no-underline">
+                                <Button variant="secondary" size="icon"><span class="i-plus"></span></Button>
+                            </Link>
+                            {{ trProps.row.voices_count }}
+                        </div>
                     </dt-td>
                     <dt-td column="2">
-                        {{ trProps.row.role }}
+                        {{ trProps.row.orders_count }}
                     </dt-td>
                     <dt-td column="3">
                         <div class="flex justify-end gap-2">
-                            <Button size="icon" @click="router.visit('/impersonate/take/'+trProps.row.id)">
+                            <Button size="icon" @click="router.visit('/impersonate/take/' + trProps.row.id)">
                                 <span class="i-ghost"></span>
                             </Button>
                             <Button variant="secondary" size="icon" @click="router.visit(UserController.edit(trProps.row.id))">

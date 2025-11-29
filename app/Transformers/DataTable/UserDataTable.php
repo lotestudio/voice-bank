@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Transformers\DataTable;
 
+use App\Enums\Roles;
 use App\Lote\DataTables2\Columns;
 use App\Lote\DataTables2\DataTableResource;
 use App\Models\User;
@@ -25,8 +26,8 @@ class UserDataTable extends DataTableResource
 
     protected array $columns = [
         ['label' => 'Title', 'sort' => 'name'],
-        ['label' => 'Email', 'sort' => 'email'],
-        ['label' => 'Role', 'sort' => 'role'],
+        ['label' => 'Voices',],
+        ['label' => 'Orders',],
         ['label' => 'Actions'],
     ];
 
@@ -34,8 +35,16 @@ class UserDataTable extends DataTableResource
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
         $columns->getByLabel('Actions')->alignRight();
+        $columns->getByLabel('Voices')->alignRight();
+        $columns->getByLabel('Orders')->alignRight();
 
         return $columns->toArray();
+    }
+
+
+    public function preBuild(): void
+    {
+        $this->builder->withCount(['voices','orders','voiceOrders']);
     }
 
     protected function transform($item): array
@@ -43,6 +52,8 @@ class UserDataTable extends DataTableResource
         $res = $item->toArray();
 
         $res['role'] = $item->role->label();
+        $res['voices_count'] = $item->voices_count;
+        $res['orders_count'] = $item->role===Roles::ARTIST ? $item->voice_orders_count :  $item->orders_count;
 
         $res['actions'] = [
             [

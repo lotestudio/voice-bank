@@ -32,6 +32,7 @@ class VoiceController extends Controller
 
         return Inertia::render('admin/Voice/index', [
             'usersSelect' => User::forSelectArtists(),
+            'userIdFilter'=>(int) $request->user_id ?? null,
         ]);
     }
 

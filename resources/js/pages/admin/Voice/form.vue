@@ -11,7 +11,7 @@ import {useInitialValue} from '@/composables/useInitialFormValue';
 const page = usePage();
 const { get, isEdit } = useInitialValue();
 const form = useForm({
-    title: get('title', ''),
+    title: get('title', '','json'),
     is_active: get('is_active', true, 'boolean'),
     user_id: get('user_id', null, 'number'),
     return_url: get('return_url', null),

@@ -154,12 +154,21 @@ class User extends Authenticatable
         return $this->favorites()->where('voice_id', $voice->id)->exists();
     }
 
-    /**
-     * Get the orders that the user has placed.
-     */
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function voiceOrders(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(
+            OrderVoice::class,
+            Voice::class,
+            'user_id', // Foreign key on voices table
+            'voice_id', // Foreign key on order_voice table
+            'id', // Local key on users table
+            'id' // Local key on voices table
+        );
     }
 
     /**

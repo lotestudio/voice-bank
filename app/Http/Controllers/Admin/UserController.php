@@ -38,7 +38,7 @@ class UserController extends Controller
     public function create(): Response
     {
         return Inertia::render('admin/User/form', [
-            'rolesSelect' => Roles::forSelect(prependLabel: 'Choose role', toArray: true),
+            'rolesSelect' => Roles::forSelect(prepend:true, prependLabel: 'Choose role', toArray: true),
         ]);
     }
 

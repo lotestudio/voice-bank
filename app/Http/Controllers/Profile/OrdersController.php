@@ -34,7 +34,7 @@ class OrdersController extends Controller
     public function create()
     {
 
-        $cart_voices = explode(',', \request('cart_voices'));
+        $cart_voices = explode(',', \request('cart_voices') ?? '');
 
         $artists = collect();
         if ($cart_voices !== []) {

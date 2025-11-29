@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderFormRequest;
 use App\Http\Resources\UserOrderResource;
 use App\Models\User;
+use App\Services\OrderCalculator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -56,7 +57,8 @@ class OrdersController extends Controller
         }
 
         return Inertia::render('Orders/Create',[
-            'artists' => $artists
+            'artists' => $artists,
+            'order_calculator_translations'=>OrderCalculator::getTranslations()
         ]);
     }
 

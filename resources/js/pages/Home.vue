@@ -12,11 +12,14 @@ import FeaturedVoices from '@/pages/Home/FeaturedVoices.vue';
 import LatestOrders from '@/pages/Home/LatestOrders.vue';
 import Collaboration from '@/pages/Home/Collaboration.vue';
 import OrderCalculator from '@/pages/Home/OrderCalculator.vue';
+import LoteToggleGroup from '@/components/LoteToggleGroup.vue';
+import { ref } from 'vue';
 
 const page = usePage();
-const contents=page.props.contents;
-const features=page.props.features;
-
+const contents = page.props.contents;
+const features = page.props.features;
+const calculatorCountArtists = ref(1);
+const calculatorContent=ref('');
 </script>
 
 <template>
@@ -30,7 +33,7 @@ const features=page.props.features;
                 <!--                    circle-class="border-primary bg-[#0000]/25 dark:bg-primary/25 rounded-full"-->
                 <!--                />-->
                 <Ripple
-                    class="bg-accent dark:[mask-image:linear-gradient(to_bottom,white,transparent)] dark:bg-primary/10"
+                    class="bg-accent dark:bg-primary/10 dark:[mask-image:linear-gradient(to_bottom,white,transparent)]"
                     circle-class="dark:border-primary border-secondary rounded-full dark:bg-primary/20 bg-white"
                 />
             </div>
@@ -40,6 +43,36 @@ const features=page.props.features;
         <FeaturedVoices></FeaturedVoices>
         <LatestOrders :content="contents['home.latest_orders']"></LatestOrders>
         <Collaboration :content="contents['home.get_involved']"></Collaboration>
-        <OrderCalculator :content="contents['home.order_calculator']"></OrderCalculator>
+
+        <div class="container mx-auto mt-10 space-y-10 px-8">
+            <div class="mx-auto max-w-2xl">
+                <h2 class="mb-1 text-center text-3xl font-bold tracking-tighter">
+                    {{ contents['home.order_calculator'].title }}
+                </h2>
+                <p class="text-center text-balance">
+                    {{ contents['home.order_calculator'].excerpt }}
+                </p>
+                <div class="space-y-4 mt-4">
+                    <div class="flex items-center gap-4 justify-center">
+                        <div>{{page.props.select_number_of_voices}}</div>
+                        <LoteToggleGroup
+                            :options="[
+                                {'label':1, 'value':'1'},
+                                {'label':2, 'value':'2'},
+                                {'label':3, 'value':'3'},
+                                {'label':4, 'value':'4'},
+                                {'label':5, 'value':'5'}
+                            ]"
+
+                            class="block"
+                            type="single"
+                            :selected="calculatorCountArtists+''"
+                            @update:selected="calculatorCountArtists = $event"
+                        ></LoteToggleGroup>
+                    </div>
+                    <OrderCalculator class="mt-4" v-model="calculatorContent" :artist_count="Number(calculatorCountArtists)"></OrderCalculator>
+                </div>
+            </div>
+        </div>
     </SiteLayout>
 </template>

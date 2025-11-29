@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Services\MenuService;
+use App\Services\OrderCalculator;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -57,6 +58,7 @@ class HandleInertiaRequests extends Middleware
                 'modal' => fn () => $request->session()->get('modal'),
                 'clear_cart' => fn () => $request->session()->get('clear_cart'),
             ],
+            'price_calculator'=>OrderCalculator::getPrices(),
             'menu'=>MenuService::get()
         ];
     }

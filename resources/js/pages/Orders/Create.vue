@@ -4,7 +4,7 @@ import Artist from '@/components/Site/Artist.vue';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import SiteLayout from '@/layouts/SiteLayout.vue';
-import { Head, Link, router, useForm } from '@inertiajs/vue3';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useLocale } from '@/composables/useLocale';
@@ -13,6 +13,7 @@ import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
 import LoteDatePicker from '@/components/LoteDatePicker.vue';
 import { watch } from 'vue';
 import { store, create } from '@/routes/orders';
+import OrderCalculator from '@/pages/Home/OrderCalculator.vue';
 
 const { clearVoices, voices, order, clearOrder } = useGlobalCart();
 
@@ -61,26 +62,29 @@ const reset_form = () => {
 
             <div class="space-y-2 rounded border p-4 dark:border-primary/10 dark:bg-primary/5">
                 <form @submit.prevent="submit" class="space-y-6">
-                    <div class="grid gap-2">
-                        <Label for="title">{{ T('project_title') }}</Label>
-                        <Input id="title" class="mt-1 block w-full" v-model="form.title" required autocomplete="name" />
-                        <InputError class="mt-2" :message="form.errors.title" />
+
+                    <div class="grid gap-2 md:grid-cols-2 grid-cols-1 space-y-4 md:space-y-0">
+                        <div class="grid gap-2">
+                            <Label for="title">{{ T('project_title') }}</Label>
+                            <Input id="title" class="block w-full" v-model="form.title" required autocomplete="name" />
+                            <InputError class="mt-2" :message="form.errors.title" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="script">{{ T('deadline') }}</Label>
+                            <LoteDatePicker :initial_date="form.deadline" @change="form.deadline = $event" :placeholder="T('pick_a_date')" />
+                            <InputError class="mt-2" :message="form.errors.deadline" />
+                        </div>
                     </div>
 
                     <div class="grid gap-2">
                         <Label for="description">{{ T('project_description') }}</Label>
-                        <Textarea id="description" class="mt-1 block w-full field-sizing-content" v-model="form.description" required autocomplete="name" />
+                        <Textarea id="description" class="block w-full field-sizing-content" v-model="form.description" required autocomplete="name" />
                         <InputError class="mt-2" :message="form.errors.description" />
                     </div>
                     <div class="grid gap-2">
                         <Label for="script_text">{{ T('project_script') }}</Label>
-                        <Textarea id="script_text" class="mt-1 block w-full field-sizing-content" v-model="form.script_text" required autocomplete="name" />
+                        <OrderCalculator textarea_id="script_text" class="block w-full" v-model="form.script_text" :artist_count="voices.size ?? 1"></OrderCalculator>
                         <InputError class="mt-2" :message="form.errors.script_text" />
-                    </div>
-                    <div class="grid gap-2">
-                        <Label for="script">{{ T('deadline') }}</Label>
-                        <LoteDatePicker :initial_date="form.deadline" @change="form.deadline = $event" :placeholder="T('pick_a_date')" />
-                        <InputError class="mt-2" :message="form.errors.deadline" />
                     </div>
                 </form>
             </div>

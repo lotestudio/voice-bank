@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\Contact;
 use App\Models\Post;
 use App\Models\Voice;
+use App\Services\OrderCalculator;
 use App\Transformers\DataTable\VoicesSiteDataTable;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
@@ -35,6 +36,8 @@ class MainController extends Controller
             'voices' => $voices,
             'features' => $features->values(),
             'contents' => $contents,
+            'order_calculator_translations'=>OrderCalculator::getTranslations(),
+            'select_number_of_voices'=>__('order_calculator.select_number_of_voices'),
         ]);
     }
 

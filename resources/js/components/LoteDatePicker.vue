@@ -43,7 +43,7 @@ const dateFormatter = computed(() => {
 <template>
     <Popover v-slot="{ close }">
         <PopoverTrigger as-child>
-            <Button variant="outline" :class="cn('w-[240px] justify-start text-left font-normal', !date && 'text-muted-foreground')">
+            <Button variant="outline" :class="cn('w-full justify-start text-left font-normal', !date && 'text-muted-foreground')">
                 <span class="i-calendar"></span>
                 {{ dateFormatter }}
             </Button>

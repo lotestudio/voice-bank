@@ -24,7 +24,7 @@ const props = defineProps({
     }
 });
 
-const { T, t, locale } = useLocale();
+const { T, locale } = useLocale();
 
 const player = useGlobalAudioPlayer();
 

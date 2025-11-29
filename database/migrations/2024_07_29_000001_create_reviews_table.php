@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Ensure a user can only review a voice once
-            $table->unique(['user_id', 'voice_id','order_id']);
+            $table->unique(['user_id', 'voice_id', 'order_id']);
         });
     }
 

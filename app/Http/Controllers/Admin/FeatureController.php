@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FeatureFormRequest;
 use App\Lote\Traits\HasReturnUrl;
 use App\Models\Feature;
-use App\Models\Voice;
 use App\Transformers\DataTable\FeatureDataTable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,6 +16,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class FeatureController extends Controller
 {
     use HasReturnUrl;
+
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -57,15 +57,15 @@ class FeatureController extends Controller
     public function destroy($id)
     {
         feature::destroy([$id]);
+
         return back();
     }
 
-
     #[Post('admin/feature/{id}/toggle-featured')]
-    public function toggleFeatured($id):string
+    public function toggleFeatured($id): string
     {
         $voice = Feature::query()->findOrFail($id);
-        $voice->is_featured = !$voice->is_featured;
+        $voice->is_featured = ! $voice->is_featured;
         $voice->save();
 
         return 'success';

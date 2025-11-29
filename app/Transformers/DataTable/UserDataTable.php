@@ -2,7 +2,6 @@
 
 namespace App\Transformers\DataTable;
 
-use App\Lote\DataTables2\Column;
 use App\Lote\DataTables2\Columns;
 use App\Lote\DataTables2\DataTableResource;
 use App\Models\User;
@@ -13,7 +12,7 @@ class UserDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'name',1 => 'email',);
+    public array $searchableFields = [0 => 'name', 1 => 'email'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -32,6 +31,7 @@ class UserDataTable extends DataTableResource
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
         $columns->getByLabel('Actions')->alignRight();
+
         return $columns->toArray();
     }
 
@@ -40,7 +40,6 @@ class UserDataTable extends DataTableResource
         $res = $item->toArray();
 
         $res['role'] = $item->role->label();
-
 
         $res['actions'] = [
             [
@@ -56,6 +55,7 @@ class UserDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 }

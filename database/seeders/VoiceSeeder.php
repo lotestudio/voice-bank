@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Feature;
-use App\Models\FeatureValue;
 use App\Models\User;
 use App\Models\Voice;
 use Illuminate\Database\Seeder;
@@ -69,11 +68,11 @@ class VoiceSeeder extends Seeder
                     'user_id' => $artist->id,
                     'title' => [
                         'en' => $englishTitle,
-                        'bg' => 'БГ: ' . $englishTitle // Placeholder for Bulgarian translation
+                        'bg' => 'БГ: '.$englishTitle, // Placeholder for Bulgarian translation
                     ],
                     'description' => [
                         'en' => $englishDescription,
-                        'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
+                        'bg' => 'БГ: '.$englishDescription, // Placeholder for Bulgarian translation
                     ],
                     'is_active' => rand(0, 10) > 1, // 90% chance of being active
                 ]);

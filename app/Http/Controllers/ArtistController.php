@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ArtistController extends Controller
 {
-    public function show($id){
+    public function show($id)
+    {
         $artist = User::with('voices')->find($id);
 
         return Inertia::render('Artist/Show', [
-           'artist' => $artist,
+            'artist' => $artist,
         ]);
     }
-
 }

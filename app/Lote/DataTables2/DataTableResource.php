@@ -85,7 +85,6 @@ abstract class DataTableResource
     public function getTableData(): array
     {
 
-
         $this->getPaginator();
 
         try {
@@ -200,7 +199,7 @@ abstract class DataTableResource
                     $this->searchQueryName();
                 } else {
                     $this->builder->where(function ($query) use ($search) {
-                        collect(str_getcsv($search, ' ', '"','\\'))->filter()->each(function ($term) use ($query) {
+                        collect(str_getcsv($search, ' ', '"', '\\'))->filter()->each(function ($term) use ($query) {
                             foreach ($this->searchableFields as $field) {
                                 $query->orWhere($this->setDatabasePrefixToField($field), 'LIKE', '%'.$term.'%');
                             }
@@ -249,7 +248,6 @@ abstract class DataTableResource
     {
         return $this->useDatabaseTablePrefix ? $this->useDatabaseTablePrefix.'.'.$field : $field;
     }
-
 
     /**
      * @throws \Exception

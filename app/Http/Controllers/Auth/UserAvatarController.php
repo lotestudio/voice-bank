@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Image\Enums\Fit;
 use Spatie\Image\Exceptions\CouldNotLoadImage;
 use Spatie\Image\Image;
-use Spatie\Image\Enums\Fit;
-
-
 
 class UserAvatarController extends Controller
 {
@@ -26,7 +24,7 @@ class UserAvatarController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        //remove old avatar
+        // remove old avatar
         if ($user->avatar && isset($user->avatar['path']) && file_exists($user->avatar['path'])) {
             unlink($user->avatar['path']);
         }
@@ -37,8 +35,8 @@ class UserAvatarController extends Controller
             Image::load($user->avatar['path'])
                 ->fit(Fit::Crop, 500, 500)
                 ->save();
-        }else{
-            //if just remove the avatar
+        } else {
+            // if just remove the avatar
             $user->avatar = null;
             $message = 'Avatar removed successfully';
         }

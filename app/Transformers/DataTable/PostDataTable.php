@@ -27,6 +27,7 @@ class PostDataTable extends DataTableResource
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+
         return $columns->toArray();
     }
 
@@ -41,6 +42,7 @@ class PostDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 }

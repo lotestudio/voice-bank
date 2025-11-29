@@ -24,11 +24,11 @@ class VoiceFactory extends Factory
             'user_id' => User::factory()->artist(),
             'title' => [
                 'en' => $englishTitle,
-                'bg' => 'БГ: ' . $englishTitle // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishTitle, // Placeholder for Bulgarian translation
             ],
             'description' => [
                 'en' => $englishDescription,
-                'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishDescription, // Placeholder for Bulgarian translation
             ],
             'is_active' => true,
         ];

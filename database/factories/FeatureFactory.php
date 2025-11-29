@@ -24,11 +24,11 @@ class FeatureFactory extends Factory
             'name' => $name,
             'display_name' => [
                 'en' => $englishDisplayName,
-                'bg' => 'БГ: ' . $englishDisplayName // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishDisplayName, // Placeholder for Bulgarian translation
             ],
             'description' => [
                 'en' => $englishDescription,
-                'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishDescription, // Placeholder for Bulgarian translation
             ],
             'is_filterable' => true,
             'sort_order' => fake()->numberBetween(0, 100),

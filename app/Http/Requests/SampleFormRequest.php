@@ -19,15 +19,15 @@ class SampleFormRequest extends FormRequest
             'voice_id' => 'required|integer',
             'file_url' => ['required', 'string'],
             'description' => 'nullable|array',
-            'is_featured' => 'boolean'
+            'is_featured' => 'boolean',
         ];
 
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
             $rules["title.{$locale}"] = ['required', 'string', 'max:255', 'min:2'];
-            $rules["description.{$locale}"] = ['nullable', 'string' ];
+            $rules["description.{$locale}"] = ['nullable', 'string'];
         }
 
-        return  $rules;
+        return $rules;
 
     }
 }

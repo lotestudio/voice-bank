@@ -74,46 +74,43 @@ class Feature extends Model
         $this->attributes['name'] = Str::slug($value);
     }
 
-    public static function forSelect($prepend_label='Choose feature')
+    public static function forSelect($prepend_label = 'Choose feature')
     {
 
         $res = Feature::query()
             ->orderBy('sort_order')
-            ->pluck('display_name','id')
-            ->map(function($name,$key){
+            ->pluck('display_name', 'id')
+            ->map(function ($name, $key) {
                 return [
                     'label' => $name,
-                    'value' => $key
+                    'value' => $key,
                 ];
             });
 
-
-        if($prepend_label){
-            $res=$res->prepend(['label'=>$prepend_label,'value'=>null]);
+        if ($prepend_label) {
+            $res = $res->prepend(['label' => $prepend_label, 'value' => null]);
         }
 
         return $res;
     }
 
-    public function valuesForSelect($prepend=true)
+    public function valuesForSelect($prepend = true)
     {
 
         $res = $this->values
-            ->pluck('display_value','id')
-            ->map(function($name,$key){
+            ->pluck('display_value', 'id')
+            ->map(function ($name, $key) {
                 return [
                     'label' => $name,
-                    'value' => $key
+                    'value' => $key,
                 ];
             });
 
-
-        if($prepend){
+        if ($prepend) {
             $prepend_label = Str::ucfirst(\Lang::get('site.choose')).' '.$this->display_name;
-            $res=$res->prepend(['label'=>$prepend_label,'value'=>null]);
+            $res = $res->prepend(['label' => $prepend_label, 'value' => null]);
         }
 
         return $res;
     }
-
 }

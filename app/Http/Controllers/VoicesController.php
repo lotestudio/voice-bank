@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Feature;
 use App\Transformers\DataTable\VoicesSiteDataTable;
 use Illuminate\Http\Request;
@@ -17,7 +16,7 @@ class VoicesController extends Controller
      */
     public function index(Request $request): Response|array|BinaryFileResponse
     {
-        //$voices = VoicesSiteDataTable::make()->getTableData();
+        // $voices = VoicesSiteDataTable::make()->getTableData();
 
         if ($request->ajax() && $request->json === 'true') {
             return VoicesSiteDataTable::make()->getTableData();
@@ -25,12 +24,13 @@ class VoicesController extends Controller
 
         [$featured_filters,$filters] = Feature::with('values')->get()->map(function ($feature) {
             $feature->valuesForSelect = $feature->valuesForSelect($feature->is_featured);
+
             return $feature;
         })->partition(function ($feature) {
             return $feature->is_featured;
         });
 
-        return Inertia::render('Voices',[
+        return Inertia::render('Voices', [
             'featured_filters' => $featured_filters,
             'filters' => $filters,
         ]);

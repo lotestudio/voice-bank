@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Lote\Traits\HasReturnUrl;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Psy\Util\Str;
 
 class SortController extends Controller
 {
     use HasReturnUrl;
-    public function index() {
+
+    public function index()
+    {
 
         $model = request()->query('model');
         $groupBy = request()->query('groupBy');
@@ -21,7 +22,7 @@ class SortController extends Controller
 
         $modelClass = "App\\Models\\{$model}";
 
-        if (!class_exists($modelClass)) {
+        if (! class_exists($modelClass)) {
             throw new \RuntimeException("Model {$modelClass} not found");
         }
 
@@ -50,15 +51,15 @@ class SortController extends Controller
 
         $modelClass = "App\\Models\\{$request->model}";
 
-        if (!class_exists($modelClass)) {
+        if (! class_exists($modelClass)) {
             throw new \RuntimeException("Model {$modelClass} not found");
         }
 
         $modelClass::whereIn('id', collect($request->items)->pluck('id'))->update([
-            $request->order_column => \DB::raw("CASE id ".
-                collect($request->items)->map(fn($item
+            $request->order_column => \DB::raw('CASE id '.
+                collect($request->items)->map(fn ($item
                 ) => "WHEN {$item['id']} THEN {$item[$request->order_column]}")->join(' ')
-                ." END")
+                .' END'),
         ]);
 
         return $this->redirectAfterSave($request, back());

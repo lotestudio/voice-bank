@@ -5,7 +5,6 @@ namespace App\Transformers\DataTable;
 use App\Lote\DataTables2\Columns;
 use App\Lote\DataTables2\DataTableResource;
 use App\Models\Feature;
-use Illuminate\Support\Facades\DB;
 
 class FeatureDataTable extends DataTableResource
 {
@@ -13,7 +12,7 @@ class FeatureDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'name',1 => 'display_name',2 => 'description',);
+    public array $searchableFields = [0 => 'name', 1 => 'display_name', 2 => 'description'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -33,6 +32,7 @@ class FeatureDataTable extends DataTableResource
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+
         return $columns->toArray();
     }
 
@@ -53,13 +53,13 @@ class FeatureDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 
-
-//    public function sortQueryValues_count($orderDirection): void
-//    {
-//        $this->builder->orderBy('values_count', $orderDirection);
-//    }
+    //    public function sortQueryValues_count($orderDirection): void
+    //    {
+    //        $this->builder->orderBy('values_count', $orderDirection);
+    //    }
 
 }

@@ -5,13 +5,13 @@ namespace App\Models;
 use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Post extends Model
 {
     use HasTranslations;
 
     protected $guarded = [];
-    protected $translatable = ['title','excerpt','body'];
+
+    protected $translatable = ['title', 'excerpt', 'body'];
 
     protected $casts = [
         'is_published' => 'boolean',
@@ -22,9 +22,9 @@ class Post extends Model
         parent::boot();
 
         static::creating(function ($post) {
-            if(!is_null($post->section)){
+            if (! is_null($post->section)) {
                 $post->slug = str($post->section)->slug();
-            }else{
+            } else {
                 $post->slug = str($post->title['en'])->slug();
             }
 
@@ -36,8 +36,4 @@ class Post extends Model
             }
         });
     }
-
-
-
-
 }

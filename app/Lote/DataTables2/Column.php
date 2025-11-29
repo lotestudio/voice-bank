@@ -2,18 +2,20 @@
 
 namespace App\Lote\DataTables2;
 
-use Illuminate\Contracts\Support\Arrayable;
-
 class Column
 {
-
-
     public ?string $label;
+
     public ?string $sort;
+
     public ?string $tooltip;
+
     public ?string $classes;
+
     public ?string $tdClasses;
+
     public ?array $style;
+
     public ?array $tdStyle;
 
     const STICKY_CLASS = 'dtSticky';
@@ -37,12 +39,14 @@ class Column
     public function tooltip($tooltip): self
     {
         $this->tooltip = $tooltip;
+
         return $this;
     }
 
     public function sort($field): self
     {
         $this->sort = $field;
+
         return $this;
     }
 
@@ -73,30 +77,32 @@ class Column
 
     public function addDefaultWidth($defaultWidth): void
     {
-        if(!isset($this->style['width'])){
+        if (! isset($this->style['width'])) {
             $this->style['width'] = $defaultWidth;
         }
     }
 
-
     public function addClass(string $class): self
     {
         $this->classes = $this->formatClass($this->classes, $class);
+
         return $this;
     }
 
     public function addTdClass(string $class): self
     {
         $this->tdClasses = $this->formatClass($this->tdClasses, $class);
+
         return $this;
     }
 
-    private function formatClass(string $currentClass,string $class):string{
-        $newClasses =  explode(' ', $class);
+    private function formatClass(string $currentClass, string $class): string
+    {
+        $newClasses = explode(' ', $class);
         $classes = explode(' ', $currentClass);
 
         foreach ($newClasses as $class) {
-            if (!in_array($class, $classes)) {
+            if (! in_array($class, $classes)) {
                 $currentClass = trim($currentClass.' '.$class);
             }
         }
@@ -105,11 +111,11 @@ class Column
 
     }
 
-
     public function addStyle(string $style): self
     {
         $new_styles = $this->styleToArray($style);
         $this->style = array_merge($this->style, $new_styles);
+
         return $this;
     }
 
@@ -117,9 +123,9 @@ class Column
     {
         $new_styles = $this->styleToArray($style);
         $this->tdStyle = array_merge($this->tdStyle, $new_styles);
+
         return $this;
     }
-
 
     private function styleToArray(string $style): array
     {
@@ -145,7 +151,7 @@ class Column
         }
 
         return implode(';', array_map(
-            fn($property, $value) => "$property:$value",
+            fn ($property, $value) => "$property:$value",
             array_keys($styles),
             $styles
         ));

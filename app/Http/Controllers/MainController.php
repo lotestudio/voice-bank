@@ -15,16 +15,15 @@ class MainController extends Controller
     /**
      * @throws \Exception
      */
-    public function index(){
+    public function index()
+    {
 
-        $voices['data'] = Voice::query()->withFeatureValues([])->with(['featureValues.feature','user','samples'])
-            ->take(6)->get()->map(fn($item)=>VoicesSiteDataTable::itemTransform($item));
+        $voices['data'] = Voice::query()->withFeatureValues([])->with(['featureValues.feature', 'user', 'samples'])
+            ->take(6)->get()->map(fn ($item) => VoicesSiteDataTable::itemTransform($item));
 
-
-        $posts=Post::query()->where('posts.section','like','home.%')
+        $posts = Post::query()->where('posts.section', 'like', 'home.%')
             ->orderBy('posts.position')
             ->get();
-
 
         [$features, $contents] = $posts->partition(function ($post) {
             return $post->section === 'home.features';
@@ -32,26 +31,30 @@ class MainController extends Controller
 
         $contents = $contents->keyBy('section');
 
-        return Inertia::render('Home',[
+        return Inertia::render('Home', [
             'voices' => $voices,
             'features' => $features->values(),
             'contents' => $contents,
-            'order_calculator_translations'=>OrderCalculator::getTranslations(),
-            'select_number_of_voices'=>__('order_calculator.select_number_of_voices'),
+            'order_calculator_translations' => OrderCalculator::getTranslations(),
+            'select_number_of_voices' => __('order_calculator.select_number_of_voices'),
         ]);
     }
 
-    public function about(){
-        $about = Post::query()->where('section','about')->first();
-        return Inertia::render('About',[
+    public function about()
+    {
+        $about = Post::query()->where('section', 'about')->first();
+
+        return Inertia::render('About', [
             'about' => $about,
         ]);
     }
-    public function contacts(){
+
+    public function contacts()
+    {
         return Inertia::render('Contacts');
     }
 
-    public function send():\Illuminate\Http\RedirectResponse
+    public function send(): \Illuminate\Http\RedirectResponse
     {
         \request()->validate([
             'name' => 'required',
@@ -59,10 +62,10 @@ class MainController extends Controller
             'message' => 'required|min:5',
         ]);
 
-        //defer(function ()  {
-            $mail = new Contact(request()->get('message'), request()->get('email'), request()->get('name'));
-            Mail::to(config('mail.admin_email'))->send($mail);
-       // });
+        // defer(function ()  {
+        $mail = new Contact(request()->get('message'), request()->get('email'), request()->get('name'));
+        Mail::to(config('mail.admin_email'))->send($mail);
+        // });
 
         return redirect('contacts')->with('message', 'success');
     }

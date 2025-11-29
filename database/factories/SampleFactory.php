@@ -27,11 +27,11 @@ class SampleFactory extends Factory
             'voice_id' => Voice::factory(),
             'title' => [
                 'en' => $englishTitle,
-                'bg' => 'БГ: ' . $englishTitle // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishTitle, // Placeholder for Bulgarian translation
             ],
             'description' => [
                 'en' => $englishDescription,
-                'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishDescription, // Placeholder for Bulgarian translation
             ],
             'file_url' => 'sample_1.mp3',
             'file_type' => 'mp3',

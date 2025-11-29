@@ -13,7 +13,9 @@ class SshClients
     protected string $staging_host;
 
     protected string $prod_user;
+
     protected mixed $prod_port;
+
     protected mixed $staging_port;
 
     public function __construct()
@@ -32,14 +34,14 @@ class SshClients
 
     public static function getStaging(): Ssh
     {
-        $client = new SshClients();
+        $client = new SshClients;
 
         return Ssh::create($client->staging_user, $client->staging_host, $client->staging_port);
     }
 
     public static function getProduction(): Ssh
     {
-        $client = new SshClients();
+        $client = new SshClients;
 
         return Ssh::create($client->prod_user, $client->prod_host, $client->prod_port);
     }

@@ -12,7 +12,7 @@ class OrderDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'order_number',1 => 'title',2 => 'description',);
+    public array $searchableFields = [0 => 'order_number', 1 => 'title', 2 => 'description'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -27,6 +27,7 @@ class OrderDataTable extends DataTableResource
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+
         return $columns->toArray();
     }
 
@@ -41,6 +42,7 @@ class OrderDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 }

@@ -8,6 +8,7 @@ use Exception;
 class SetupConfiguration
 {
     const PUBLIC_BUILD = 'public/build';
+
     const BUILD_TAR_GZ = 'build.tar.gz';
 
     private array $config = [];
@@ -32,7 +33,7 @@ class SetupConfiguration
                 'DEPLOY_PRODUCTION_SERVER',
                 'DEPLOY_PRODUCTION_PATH',
                 'DEPLOY_STAGE_SERVER',
-                'DEPLOY_STAGE_PATH'
+                'DEPLOY_STAGE_PATH',
             ])->notEmpty();
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -55,7 +56,7 @@ class SetupConfiguration
             echo 'Proceed deploy to STAGING';
         }
 
-        $this->config['server'] = $this->config['server_no_port'] . ' -p ' . $this->config['server_port'];
+        $this->config['server'] = $this->config['server_no_port'].' -p '.$this->config['server_port'];
     }
 
     private function setupCommands(): void

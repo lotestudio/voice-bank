@@ -12,7 +12,7 @@ class FeatureValueDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'value',1 => 'display_value',2 => 'description',);
+    public array $searchableFields = [0 => 'value', 1 => 'display_value', 2 => 'description'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -27,10 +27,12 @@ class FeatureValueDataTable extends DataTableResource
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+
         return $columns->toArray();
     }
 
-    public function preBuild(): void{
+    public function preBuild(): void
+    {
         $this->builder->with(['feature']);
     }
 
@@ -45,6 +47,7 @@ class FeatureValueDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 }

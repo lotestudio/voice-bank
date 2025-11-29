@@ -46,7 +46,7 @@ class Order extends Model
         'word_count' => 'integer',
         'accepted_at' => 'datetime',
         'completed_at' => 'datetime',
-        'status' => OrderStatus::class
+        'status' => OrderStatus::class,
     ];
 
     /**
@@ -71,15 +71,13 @@ class Order extends Model
      */
     public function artists()
     {
-        return $this->voices->map(fn(Voice $voice) => $voice->user)->unique('id')->values();
+        return $this->voices->map(fn (Voice $voice) => $voice->user)->unique('id')->values();
     }
 
-
-    public function reviews():HasMany
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
-
 
     /**
      * Scope a query to only include orders with a specific status.

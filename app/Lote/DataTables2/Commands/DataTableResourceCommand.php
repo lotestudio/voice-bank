@@ -25,8 +25,6 @@ class DataTableResourceCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle(): int
     {
@@ -35,11 +33,12 @@ class DataTableResourceCommand extends Command
             'Transformers/DataTable');
 
         // Нормализиране на пътя (PascalCase за всяка част)
-        $pathParts = array_map(fn($part) => Str::studly(trim($part)), explode('/', $relativePathInput));
+        $pathParts = array_map(fn ($part) => Str::studly(trim($part)), explode('/', $relativePathInput));
         $relativePath = implode('/', array_filter($pathParts)); // array_filter премахва празни части, ако има //
 
         if (empty($relativePath)) {
             $this->error('Пътят не може да бъде празен.');
+
             return CommandAlias::FAILURE;
         }
 
@@ -47,6 +46,7 @@ class DataTableResourceCommand extends Command
         $modelNameInput = $this->ask('Въведете името на модела (например User, Product)');
         if (empty($modelNameInput)) {
             $this->error('Името на модела е задължително.');
+
             return CommandAlias::FAILURE;
         }
         $modelName = Str::studly(trim($modelNameInput)); // Гарантира CamelCase (PascalCase)
@@ -55,6 +55,7 @@ class DataTableResourceCommand extends Command
         $searchableFieldInput = $this->ask('Въведете основното поле за търсене в модела');
         if (empty($searchableFieldInput)) {
             $this->error('Полето за търсене е задължително.');
+
             return CommandAlias::FAILURE;
         }
         $searchableField = trim($searchableFieldInput);
@@ -74,14 +75,16 @@ class DataTableResourceCommand extends Command
         // Проверка дали файлът вече съществува
         if (File::exists($filePath)) {
             $this->error("Файлът {$filePath} вече съществува!");
+
             return CommandAlias::FAILURE;
         }
 
         // Път до stub файла
         $stubPath = __DIR__.'/../stubs/DataTableResource.stub';
 
-        if (!File::exists($stubPath)) {
+        if (! File::exists($stubPath)) {
             $this->error("Stub файлът не е намерен на адрес: {$stubPath}. Моля, създайте го.");
+
             return CommandAlias::FAILURE;
         }
 
@@ -109,7 +112,7 @@ class DataTableResourceCommand extends Command
 
         $this->info("DataTableResource класът {$className} е създаден успешно в {$filePath}");
         $this->comment("Не забравяйте да проверите импортите 'use App\\Http\\Resources\\DataTable\\DataTableResource;' и 'use {$modelFQN};' в генерирания файл, ако са различни от вашите.");
-        $this->comment("Също така, актуализирайте метода toArray() със съответните полета за вашия модел.");
+        $this->comment('Също така, актуализирайте метода toArray() със съответните полета за вашия модел.');
 
         return CommandAlias::SUCCESS;
     }

@@ -10,21 +10,18 @@ class VoiceFilterService
 {
     /**
      * Filter voices based on the provided criteria.
-     *
-     * @param array $filters
-     * @return Builder
      */
     public function filter(array $filters = []): Builder
     {
         $query = Voice::query()->with(['user', 'featureValues.feature'])->active();
 
         // Filter by artist
-        if (!empty($filters['artist_id'])) {
+        if (! empty($filters['artist_id'])) {
             $query->where('user_id', $filters['artist_id']);
         }
 
         // Filter by search term (title or description)
-        if (!empty($filters['search'])) {
+        if (! empty($filters['search'])) {
             $search = $filters['search'];
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', "%{$search}%")
@@ -33,13 +30,13 @@ class VoiceFilterService
         }
 
         // Filter by feature values
-        if (!empty($filters['feature_values']) && is_array($filters['feature_values'])) {
+        if (! empty($filters['feature_values']) && is_array($filters['feature_values'])) {
             $query->withFeatureValues($filters['feature_values']);
         }
 
         // Filter by specific features
         foreach ($filters as $key => $value) {
-            if (str_starts_with($key, 'feature_') && !empty($value)) {
+            if (str_starts_with($key, 'feature_') && ! empty($value)) {
                 $featureId = substr($key, 8); // Remove 'feature_' prefix
 
                 if (is_array($value)) {
@@ -64,8 +61,6 @@ class VoiceFilterService
 
     /**
      * Get all available features with their values for filtering.
-     *
-     * @return Collection
      */
     public function getFilterableFeatures(): Collection
     {
@@ -79,9 +74,6 @@ class VoiceFilterService
 
     /**
      * Get the most popular feature values based on voice count.
-     *
-     * @param int $limit
-     * @return Collection
      */
     public function getPopularFeatureValues(int $limit = 10): Collection
     {

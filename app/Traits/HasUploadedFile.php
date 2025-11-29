@@ -7,19 +7,18 @@ use Illuminate\Support\Facades\Storage;
 
 trait HasUploadedFile
 {
-
     public function moveFileFromTmp(string $toFolder, $filePathToMove): string
     {
-        if($this->file===$filePathToMove){
+        if ($this->file === $filePathToMove) {
             return $this->file;
         }
 
         $disk = Storage::disk('public');
 
-        $fileName=cache($filePathToMove) ?? basename($filePathToMove);
-        $newPath = $toFolder . '/' . $fileName;
+        $fileName = cache($filePathToMove) ?? basename($filePathToMove);
+        $newPath = $toFolder.'/'.$fileName;
 
-        if(str_starts_with($filePathToMove, FileUploadController::TMP_FOLDER)) {
+        if (str_starts_with($filePathToMove, FileUploadController::TMP_FOLDER)) {
 
             $name = pathinfo($fileName, PATHINFO_FILENAME); // filename
             $ext = pathinfo($fileName, PATHINFO_EXTENSION); // ext
@@ -28,21 +27,18 @@ trait HasUploadedFile
 
             // проверяваме дали вече съществува файл с такова име
             while ($disk->exists($newPath)) {
-                $newFilename = $name . '_' . $counter . ($ext ? '.' . $ext : '');
-                $newPath = $toFolder . '/' . $newFilename;
+                $newFilename = $name.'_'.$counter.($ext ? '.'.$ext : '');
+                $newPath = $toFolder.'/'.$newFilename;
                 $counter++;
             }
-
 
             $disk->move($filePathToMove, $newPath);
         }
 
-        if(!is_null($this->file) && $disk->exists($toFolder.'/'.$this->file))
-        {
+        if (! is_null($this->file) && $disk->exists($toFolder.'/'.$this->file)) {
             $disk->delete($toFolder.'/'.$this->file);
         }
 
         return basename($newPath);
     }
-
 }

@@ -11,5 +11,4 @@ class ServicePagesController extends Controller
     {
         return Inertia::render('dev/SideMenu');
     }
-
 }

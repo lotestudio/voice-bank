@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 final class FileUploadController extends Controller
 {
-    const TMP_FOLDER = 'tmp'; //save in public folder to easy manage permission when manipulate images after upload!!!
+    const TMP_FOLDER = 'tmp'; // save in public folder to easy manage permission when manipulate images after upload!!!
 
     public function process(Request $request): string
     {
@@ -43,11 +43,9 @@ final class FileUploadController extends Controller
             ? $request->file($requestKey)[0]
             : $request->file($requestKey);
 
-
-
         // Store the file in a temporary location and save the location
         $tmpFileName = $file->store(
-            path: self::TMP_FOLDER , options: ['disk' => 'public']
+            path: self::TMP_FOLDER, options: ['disk' => 'public']
         );
 
         // Cache the temporary file name and the original name for later use.

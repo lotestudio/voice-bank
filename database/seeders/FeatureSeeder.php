@@ -18,11 +18,11 @@ class FeatureSeeder extends Seeder
             'name' => 'timbre',
             'display_name' => [
                 'en' => 'Timbre',
-                'bg' => 'Тембър'
+                'bg' => 'Тембър',
             ],
             'description' => [
                 'en' => 'The quality of the voice',
-                'bg' => 'Качеството на гласа'
+                'bg' => 'Качеството на гласа',
             ],
             'is_featured' => true,
             'sort_order' => 1,
@@ -36,7 +36,7 @@ class FeatureSeeder extends Seeder
             'raspy' => ['en' => 'Raspy', 'bg' => 'Дрезгав'],
             'smooth' => ['en' => 'Smooth', 'bg' => 'Гладък'],
             'warm' => ['en' => 'Warm', 'bg' => 'Топъл'],
-            'bright' => ['en' => 'Bright', 'bg' => 'Ярък']
+            'bright' => ['en' => 'Bright', 'bg' => 'Ярък'],
         ];
 
         $index = 1;
@@ -46,8 +46,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'A ' . strtolower($translations['en']) . ' voice timbre',
-                    'bg' => $translations['bg'] . ' тембър на гласа'
+                    'en' => 'A '.strtolower($translations['en']).' voice timbre',
+                    'bg' => $translations['bg'].' тембър на гласа',
                 ],
                 'sort_order' => $index++,
             ]);
@@ -58,11 +58,11 @@ class FeatureSeeder extends Seeder
             'name' => 'gender',
             'display_name' => [
                 'en' => 'Gender',
-                'bg' => 'Пол'
+                'bg' => 'Пол',
             ],
             'description' => [
                 'en' => 'The gender of the voice',
-                'bg' => 'Полът на гласа'
+                'bg' => 'Полът на гласа',
             ],
             'is_featured' => true,
             'sort_order' => 2,
@@ -72,7 +72,7 @@ class FeatureSeeder extends Seeder
         $genderValues = [
             'male' => ['en' => 'Male', 'bg' => 'Мъжки'],
             'female' => ['en' => 'Female', 'bg' => 'Женски'],
-            'neutral' => ['en' => 'Neutral', 'bg' => 'Неутрален']
+            'neutral' => ['en' => 'Neutral', 'bg' => 'Неутрален'],
         ];
 
         $index = 1;
@@ -82,8 +82,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'A ' . strtolower($translations['en']) . ' voice',
-                    'bg' => $translations['bg'] . ' глас'
+                    'en' => 'A '.strtolower($translations['en']).' voice',
+                    'bg' => $translations['bg'].' глас',
                 ],
                 'sort_order' => $index++,
             ]);
@@ -94,11 +94,11 @@ class FeatureSeeder extends Seeder
             'name' => 'age',
             'display_name' => [
                 'en' => 'Age',
-                'bg' => 'Възраст'
+                'bg' => 'Възраст',
             ],
             'description' => [
                 'en' => 'The age range of the voice',
-                'bg' => 'Възрастовият диапазон на гласа'
+                'bg' => 'Възрастовият диапазон на гласа',
             ],
             'is_featured' => true,
             'sort_order' => 3,
@@ -110,7 +110,7 @@ class FeatureSeeder extends Seeder
             'teen' => ['en' => 'Teen', 'bg' => 'Тийнейджър'],
             'young_adult' => ['en' => 'Young Adult', 'bg' => 'Млад възрастен'],
             'adult' => ['en' => 'Adult', 'bg' => 'Възрастен'],
-            'senior' => ['en' => 'Senior', 'bg' => 'Възрастен човек']
+            'senior' => ['en' => 'Senior', 'bg' => 'Възрастен човек'],
         ];
 
         $index = 1;
@@ -120,8 +120,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'A voice of a ' . strtolower($translations['en']),
-                    'bg' => 'Глас на ' . $translations['bg']
+                    'en' => 'A voice of a '.strtolower($translations['en']),
+                    'bg' => 'Глас на '.$translations['bg'],
                 ],
                 'sort_order' => $index++,
             ]);
@@ -132,11 +132,11 @@ class FeatureSeeder extends Seeder
             'name' => 'accent',
             'display_name' => [
                 'en' => 'Accent',
-                'bg' => 'Акцент'
+                'bg' => 'Акцент',
             ],
             'description' => [
                 'en' => 'The accent of the voice',
-                'bg' => 'Акцентът на гласа'
+                'bg' => 'Акцентът на гласа',
             ],
             'is_featured' => false,
             'sort_order' => 4,
@@ -152,7 +152,7 @@ class FeatureSeeder extends Seeder
             'french' => ['en' => 'French', 'bg' => 'Френски'],
             'german' => ['en' => 'German', 'bg' => 'Немски'],
             'italian' => ['en' => 'Italian', 'bg' => 'Италиански'],
-            'russian' => ['en' => 'Russian', 'bg' => 'Руски']
+            'russian' => ['en' => 'Russian', 'bg' => 'Руски'],
         ];
 
         $index = 1;
@@ -162,8 +162,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'A voice with ' . strtolower($translations['en']) . ' accent',
-                    'bg' => 'Глас с ' . $translations['bg'] . ' акцент'
+                    'en' => 'A voice with '.strtolower($translations['en']).' accent',
+                    'bg' => 'Глас с '.$translations['bg'].' акцент',
                 ],
                 'sort_order' => $index++,
             ]);
@@ -174,11 +174,11 @@ class FeatureSeeder extends Seeder
             'name' => 'style',
             'display_name' => [
                 'en' => 'Style',
-                'bg' => 'Стил'
+                'bg' => 'Стил',
             ],
             'description' => [
                 'en' => 'The style of the voice',
-                'bg' => 'Стилът на гласа'
+                'bg' => 'Стилът на гласа',
             ],
             'is_featured' => false,
             'sort_order' => 5,
@@ -192,7 +192,7 @@ class FeatureSeeder extends Seeder
             'cheerful' => ['en' => 'Cheerful', 'bg' => 'Весел'],
             'serious' => ['en' => 'Serious', 'bg' => 'Сериозен'],
             'energetic' => ['en' => 'Energetic', 'bg' => 'Енергичен'],
-            'calm' => ['en' => 'Calm', 'bg' => 'Спокоен']
+            'calm' => ['en' => 'Calm', 'bg' => 'Спокоен'],
         ];
 
         $index = 1;
@@ -202,8 +202,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'A ' . strtolower($translations['en']) . ' voice style',
-                    'bg' => $translations['bg'] . ' стил на гласа'
+                    'en' => 'A '.strtolower($translations['en']).' voice style',
+                    'bg' => $translations['bg'].' стил на гласа',
                 ],
                 'sort_order' => $index++,
             ]);
@@ -214,11 +214,11 @@ class FeatureSeeder extends Seeder
             'name' => 'language',
             'display_name' => [
                 'en' => 'Language',
-                'bg' => 'Език'
+                'bg' => 'Език',
             ],
             'description' => [
                 'en' => 'The language the voice actor can speak',
-                'bg' => 'Езикът, на който гласовият актьор може да говори'
+                'bg' => 'Езикът, на който гласовият актьор може да говори',
             ],
             'is_featured' => false,
             'sort_order' => 6,
@@ -236,7 +236,7 @@ class FeatureSeeder extends Seeder
             'portuguese' => ['en' => 'Portuguese', 'bg' => 'Португалски'],
             'chinese' => ['en' => 'Chinese', 'bg' => 'Китайски'],
             'japanese' => ['en' => 'Japanese', 'bg' => 'Японски'],
-            'korean' => ['en' => 'Korean', 'bg' => 'Корейски']
+            'korean' => ['en' => 'Korean', 'bg' => 'Корейски'],
         ];
 
         $index = 1;
@@ -246,8 +246,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'Can speak ' . $translations['en'],
-                    'bg' => 'Може да говори ' . $translations['bg']
+                    'en' => 'Can speak '.$translations['en'],
+                    'bg' => 'Може да говори '.$translations['bg'],
                 ],
                 'sort_order' => $index++,
             ]);
@@ -258,11 +258,11 @@ class FeatureSeeder extends Seeder
             'name' => 'price-range',
             'display_name' => [
                 'en' => 'Price Range',
-                'bg' => 'Ценови диапазон'
+                'bg' => 'Ценови диапазон',
             ],
             'description' => [
                 'en' => 'The price range for the voice actor',
-                'bg' => 'Ценовият диапазон за гласовия актьор'
+                'bg' => 'Ценовият диапазон за гласовия актьор',
             ],
             'is_featured' => false,
             'sort_order' => 7,
@@ -274,7 +274,7 @@ class FeatureSeeder extends Seeder
             'standard' => ['en' => 'Standard', 'bg' => 'Стандартен'],
             'premium' => ['en' => 'Premium', 'bg' => 'Премиум'],
             'professional' => ['en' => 'Professional', 'bg' => 'Професионален'],
-            'enterprise' => ['en' => 'Enterprise', 'bg' => 'Корпоративен']
+            'enterprise' => ['en' => 'Enterprise', 'bg' => 'Корпоративен'],
         ];
 
         $index = 1;
@@ -284,8 +284,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => $translations['en'] . ' price range',
-                    'bg' => $translations['bg'] . ' ценови диапазон'
+                    'en' => $translations['en'].' price range',
+                    'bg' => $translations['bg'].' ценови диапазон',
                 ],
                 'sort_order' => $index++,
             ]);
@@ -296,11 +296,11 @@ class FeatureSeeder extends Seeder
             'name' => 'category',
             'display_name' => [
                 'en' => 'Category',
-                'bg' => 'Категория'
+                'bg' => 'Категория',
             ],
             'description' => [
                 'en' => 'The category of voice work',
-                'bg' => 'Категорията на гласовата работа'
+                'bg' => 'Категорията на гласовата работа',
             ],
             'is_featured' => false,
             'sort_order' => 8,
@@ -318,7 +318,7 @@ class FeatureSeeder extends Seeder
             'ivr' => ['en' => 'IVR/Phone System', 'bg' => 'IVR/Телефонна система'],
             'podcast' => ['en' => 'Podcast', 'bg' => 'Подкаст'],
             'radio' => ['en' => 'Radio', 'bg' => 'Радио'],
-            'tv' => ['en' => 'TV', 'bg' => 'Телевизия']
+            'tv' => ['en' => 'TV', 'bg' => 'Телевизия'],
         ];
 
         $index = 1;
@@ -328,8 +328,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'Voice for ' . strtolower($translations['en']),
-                    'bg' => 'Глас за ' . $translations['bg']
+                    'en' => 'Voice for '.strtolower($translations['en']),
+                    'bg' => 'Глас за '.$translations['bg'],
                 ],
                 'sort_order' => $index++,
             ]);
@@ -340,11 +340,11 @@ class FeatureSeeder extends Seeder
             'name' => 'delivery-time',
             'display_name' => [
                 'en' => 'Delivery Time',
-                'bg' => 'Време за доставка'
+                'bg' => 'Време за доставка',
             ],
             'description' => [
                 'en' => 'The estimated delivery time',
-                'bg' => 'Очакваното време за доставка'
+                'bg' => 'Очакваното време за доставка',
             ],
             'is_featured' => false,
             'sort_order' => 9,
@@ -356,7 +356,7 @@ class FeatureSeeder extends Seeder
             '48h' => ['en' => '48 Hours', 'bg' => '48 часа'],
             '3-5d' => ['en' => '3-5 Days', 'bg' => '3-5 дни'],
             '1w' => ['en' => '1 Week', 'bg' => '1 седмица'],
-            'custom' => ['en' => 'Custom', 'bg' => 'По договаряне']
+            'custom' => ['en' => 'Custom', 'bg' => 'По договаряне'],
         ];
 
         $index = 1;
@@ -366,24 +366,23 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => 'Delivery within ' . strtolower($translations['en']),
-                    'bg' => 'Доставка в рамките на ' . $translations['bg']
+                    'en' => 'Delivery within '.strtolower($translations['en']),
+                    'bg' => 'Доставка в рамките на '.$translations['bg'],
                 ],
                 'sort_order' => $index++,
             ]);
         }
-
 
         // Experience Level feature
         $experienceLevel = Feature::create([
             'name' => 'experience-level',
             'display_name' => [
                 'en' => 'Experience Level',
-                'bg' => 'Ниво на опит'
+                'bg' => 'Ниво на опит',
             ],
             'description' => [
                 'en' => 'The experience level of the voice actor',
-                'bg' => 'Нивото на опит на гласовия актьор'
+                'bg' => 'Нивото на опит на гласовия актьор',
             ],
             'is_featured' => false,
             'sort_order' => 11,
@@ -395,7 +394,7 @@ class FeatureSeeder extends Seeder
             'intermediate' => ['en' => 'Intermediate', 'bg' => 'Среден'],
             'experienced' => ['en' => 'Experienced', 'bg' => 'Опитен'],
             'professional' => ['en' => 'Professional', 'bg' => 'Професионален'],
-            'expert' => ['en' => 'Expert', 'bg' => 'Експерт']
+            'expert' => ['en' => 'Expert', 'bg' => 'Експерт'],
         ];
 
         $index = 1;
@@ -405,8 +404,8 @@ class FeatureSeeder extends Seeder
                 'value' => $value,
                 'display_value' => $translations,
                 'description' => [
-                    'en' => $translations['en'] . ' voice actor',
-                    'bg' => $translations['bg'] . ' актьор'
+                    'en' => $translations['en'].' voice actor',
+                    'bg' => $translations['bg'].' актьор',
                 ],
                 'sort_order' => $index++,
             ]);

@@ -20,7 +20,7 @@ class OrderFormRequest extends FormRequest
             'script_text' => ['required', 'string'],
             'deadline' => ['required', 'date'],
             'voices' => ['required', 'array'],
-            //'voices.*' => ['required'],
+            // 'voices.*' => ['required'],
         ];
 
     }

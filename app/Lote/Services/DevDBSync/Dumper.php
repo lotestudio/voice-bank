@@ -7,7 +7,6 @@ use Symfony\Component\Process\Process;
 // This class is used to dump the database from the production or staging
 class Dumper
 {
-
     public $file_name = 'sync_db';
 
     /**
@@ -25,7 +24,7 @@ class Dumper
         $ssh = $this->getSshClient($isProduction);
         $remote_path = $this->getRemotePath($isProduction);
 
-        $local_path = database_path("snapshots/");
+        $local_path = database_path('snapshots/');
 
         $download = $ssh->download(
             $remote_path.'/database/snapshots/'.$this->file_name.'.sql',
@@ -43,7 +42,7 @@ class Dumper
     {
         $staging = $_ENV['DEPLOY_STAGE_SERVER'];
         $remote_path = $this->getRemotePath(false);
-        $local_file = database_path("snapshots/").$this->file_name.'.sql';
+        $local_file = database_path('snapshots/').$this->file_name.'.sql';
         $staging_folder = $staging.':'.$remote_path.'/database/snapshots/';
 
         $command = 'scp '.$local_file.' '.$staging_folder;
@@ -104,7 +103,6 @@ class Dumper
 
         return $remote_path.($process->isSuccessful() ? ' db migrated' : ' db NOT migrated');
     }
-
 
     protected function getRemotePath(bool $isProduction)
     {

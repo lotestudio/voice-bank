@@ -36,7 +36,7 @@ class Sample extends Model
     {
         $disk = Storage::disk('public');
 
-        if (!$this->file_url || !$disk->exists('samples/'.$this->file_url)) {
+        if (! $this->file_url || ! $disk->exists('samples/'.$this->file_url)) {
             return;
         }
 
@@ -45,7 +45,7 @@ class Sample extends Model
 
         // Get audio duration if it's an audio file
         if (str_starts_with($this->file_type, 'audio/')) {
-            $getID3 = new \getID3();
+            $getID3 = new \getID3;
             $fileInfo = $getID3->analyze($disk->path('samples/'.$this->file_url));
             $this->duration = isset($fileInfo['playtime_seconds']) ? (int) $fileInfo['playtime_seconds'] : 0;
         }
@@ -80,10 +80,6 @@ class Sample extends Model
         'sort_order' => 'integer',
     ];
 
-
-
-
-
     /**
      * Get the voice that owns the sample.
      */
@@ -113,14 +109,14 @@ class Sample extends Model
      */
     public function getFormattedDurationAttribute(): string
     {
-        if (!$this->duration) {
+        if (! $this->duration) {
             return '0:00';
         }
 
         $minutes = floor($this->duration / 60);
         $seconds = $this->duration % 60;
 
-        return $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT);
+        return $minutes.':'.str_pad($seconds, 2, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -128,7 +124,7 @@ class Sample extends Model
      */
     public function getFormattedFileSizeAttribute(): string
     {
-        if (!$this->file_size) {
+        if (! $this->file_size) {
             return '0 KB';
         }
 
@@ -141,16 +137,15 @@ class Sample extends Model
             $i++;
         }
 
-        return round($size, 2) . ' ' . $units[$i];
+        return round($size, 2).' '.$units[$i];
     }
-
 
     public static function forSelect($prepend = true, $prepend_label = 'Choose sample'): Collection
     {
         $items = self::query()->orderBy('title')->get(['title', 'id'])->map(function ($item) {
             return [
                 'label' => $item->title,
-                'value' => $item->id
+                'value' => $item->id,
             ];
         });
 
@@ -162,4 +157,3 @@ class Sample extends Model
 
     }
 }
-

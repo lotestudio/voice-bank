@@ -21,7 +21,6 @@ class ReviewFactory extends Factory
     {
         $englishComment = fake()->paragraph();
 
-
         $client = User::factory()->client();
         $voice = Voice::factory();
         $order = Order::factory()->for($client)->for($voice)->create();
@@ -33,7 +32,7 @@ class ReviewFactory extends Factory
             'rating' => fake()->numberBetween(1, 5),
             'comment' => [
                 'en' => $englishComment,
-                'bg' => 'БГ: ' . $englishComment // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishComment, // Placeholder for Bulgarian translation
             ],
             'is_approved' => fake()->boolean(80), // 80% chance of being approved
         ];

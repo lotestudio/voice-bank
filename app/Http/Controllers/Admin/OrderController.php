@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class OrderController extends Controller
 {
     use HasReturnUrl;
+
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -55,6 +56,7 @@ class OrderController extends Controller
     public function destroy($id)
     {
         order::destroy([$id]);
+
         return back();
     }
 }

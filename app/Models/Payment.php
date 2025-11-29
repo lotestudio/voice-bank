@@ -137,6 +137,6 @@ class Payment extends Model
         $timestamp = now()->format('YmdHis');
         $random = strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 6));
 
-        return $prefix . '-' . $timestamp . '-' . $random;
+        return $prefix.'-'.$timestamp.'-'.$random;
     }
 }

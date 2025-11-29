@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class UserController extends Controller
 {
     use HasReturnUrl;
+
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -35,7 +36,7 @@ class UserController extends Controller
     public function create(): Response
     {
         return Inertia::render('admin/User/form', [
-            'rolesSelect'=>Roles::forSelect(prependLabel: 'Choose role',toArray: true)
+            'rolesSelect' => Roles::forSelect(prependLabel: 'Choose role', toArray: true),
         ]);
     }
 
@@ -59,13 +60,14 @@ class UserController extends Controller
     {
         return Inertia::render('admin/User/form', [
             'model' => $user,
-            'rolesSelect'=>Roles::forSelect(prependLabel: 'Choose role',toArray: true)
+            'rolesSelect' => Roles::forSelect(prependLabel: 'Choose role', toArray: true),
         ]);
     }
 
     public function destroy($id)
     {
         user::destroy([$id]);
+
         return back();
     }
 }

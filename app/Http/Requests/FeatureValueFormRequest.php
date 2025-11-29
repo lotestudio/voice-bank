@@ -22,7 +22,7 @@ class FeatureValueFormRequest extends FormRequest
             $rules["display_value.{$locale}"] = ['required', 'string', 'max:255', 'min:2'];
         }
 
-        return  $rules;
+        return $rules;
 
     }
 }

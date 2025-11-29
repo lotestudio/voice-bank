@@ -25,7 +25,6 @@ class ReviewSeeder extends Seeder
             $reviewCount = rand(1, 5);
             $randomVoices = $voices->random(min($reviewCount, $voices->count()));
 
-
             foreach ($randomVoices as $voice) {
                 $englishComment = fake()->paragraph();
                 $order = $voice->orders()->inRandomOrder()->first();
@@ -37,7 +36,7 @@ class ReviewSeeder extends Seeder
                     'rating' => rand(3, 5), // Most reviews are positive (3-5 stars)
                     'comment' => [
                         'en' => $englishComment,
-                        'bg' => 'БГ: ' . $englishComment // Placeholder for Bulgarian translation
+                        'bg' => 'БГ: '.$englishComment, // Placeholder for Bulgarian translation
                     ],
                     'is_approved' => rand(0, 10) > 2, // 80% chance of being approved
                 ]);

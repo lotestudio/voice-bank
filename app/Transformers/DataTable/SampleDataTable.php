@@ -12,7 +12,7 @@ class SampleDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'title',1 => 'description',);
+    public array $searchableFields = [0 => 'title', 1 => 'description'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -33,12 +33,13 @@ class SampleDataTable extends DataTableResource
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
         $columns->getByLabel('Actions')->alignRight();
         $columns->getByLabel('Order')->alignRight();
+
         return $columns->toArray();
     }
 
     public function preBuild(): void
     {
-       $this->builder->with(['voice.user']);
+        $this->builder->with(['voice.user']);
     }
 
     protected function transform($item): array
@@ -53,13 +54,14 @@ class SampleDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 
     public function filterQueryUser($value): void
     {
         $this->builder->whereHas('voice.user', function ($query) use ($value) {
-            $query->where('id',$value);
+            $query->where('id', $value);
         });
     }
 }

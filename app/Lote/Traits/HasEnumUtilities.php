@@ -50,7 +50,7 @@ trait HasEnumUtilities
         return self::getCase($case)->value;
     }
 
-    //TO Array
+    // TO Array
     public static function names(): array
     {
         return array_column(self::cases(), 'name');

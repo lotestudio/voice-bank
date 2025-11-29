@@ -17,7 +17,7 @@ enum OrderStatus: string
     case CANCELLED = 'cancelled';
     case REFUNDED = 'refunded';
 
-    public function label(Order | UserOrderResource | null $order=null): string
+    public function label(Order|UserOrderResource|null $order = null): string
     {
         $status_label = match ($this) {
             self::PENDING => __('site.pending'),
@@ -28,26 +28,24 @@ enum OrderStatus: string
             self::REFUNDED => __('site.refunded'),
         };
 
-        if(!is_null($order)){
-            return $status_label. ' ' . $this->useDate($order);
+        if (! is_null($order)) {
+            return $status_label.' '.$this->useDate($order);
         }
 
         return $status_label;
     }
 
-    private function useDate(Order | UserOrderResource $order): string
+    private function useDate(Order|UserOrderResource $order): string
     {
 
         return match ($this) {
-            self::PENDING => __('site.since'). ' ' . $order->created_at?->format('d-m-Y') ?? 'N/A',
-            self::ACCEPTED => __('site.on'). ' ' . $order->accepted_at?->format('d-m-Y') ?? 'N/A',
-            self::IN_PROGRESS => __('site.since'). ' ' . $order->accepted_at?->format('d-m-Y') ?? 'N/A',
-            self::COMPLETED => __('site.on'). ' ' . $order->completed_at?->format('d-m-Y') ?? 'N/A',
-            self::CANCELLED => __('site.on'). ' ' . $order->completed_at?->format('d-m-Y') ?? 'N/A',
-            self::REFUNDED => __('site.on'). ' ' . $order->completed_at?->format('d-m-Y') ?? 'N/A',
+            self::PENDING => __('site.since').' '.$order->created_at?->format('d-m-Y') ?? 'N/A',
+            self::ACCEPTED => __('site.on').' '.$order->accepted_at?->format('d-m-Y') ?? 'N/A',
+            self::IN_PROGRESS => __('site.since').' '.$order->accepted_at?->format('d-m-Y') ?? 'N/A',
+            self::COMPLETED => __('site.on').' '.$order->completed_at?->format('d-m-Y') ?? 'N/A',
+            self::CANCELLED => __('site.on').' '.$order->completed_at?->format('d-m-Y') ?? 'N/A',
+            self::REFUNDED => __('site.on').' '.$order->completed_at?->format('d-m-Y') ?? 'N/A',
         };
 
     }
 }
-
-

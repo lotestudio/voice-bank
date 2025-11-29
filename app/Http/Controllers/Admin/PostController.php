@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class PostController extends Controller
 {
     use HasReturnUrl;
+
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -48,13 +49,14 @@ class PostController extends Controller
     public function edit(post $post): Response
     {
         return Inertia::render('admin/Post/form', [
-            'model' => $post->toArrayWithTranslations()
+            'model' => $post->toArrayWithTranslations(),
         ]);
     }
 
     public function destroy($id)
     {
         post::destroy([$id]);
+
         return back();
     }
 }

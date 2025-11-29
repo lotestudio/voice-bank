@@ -12,7 +12,7 @@ class VoiceDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'title',1 => 'description',);
+    public array $searchableFields = [0 => 'title', 1 => 'description'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -36,10 +36,9 @@ class VoiceDataTable extends DataTableResource
         return $columns->toArray();
     }
 
-
     public function preBuild(): void
     {
-        $this->builder->with(['user','samples']);
+        $this->builder->with(['user', 'samples']);
     }
 
     protected function transform($item): array
@@ -54,13 +53,14 @@ class VoiceDataTable extends DataTableResource
                 'href' => route('voice.show', $item->id),
                 'icon' => 'i-eye',
                 'class' => 'btn btn-warning btn-xs',
-            ],[
+            ], [
                 'label' => 'Edit',
                 'href' => route('voice.edit', $item->id),
                 'icon' => 'i-edit',
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 }

@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class FeatureValueController extends Controller
 {
     use HasReturnUrl;
+
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -23,14 +24,14 @@ class FeatureValueController extends Controller
         }
 
         return Inertia::render('admin/FeatureValue/index', [
-            'featureSelect'=>Feature::forSelect()
+            'featureSelect' => Feature::forSelect(),
         ]);
     }
 
     public function create(): Response
     {
         return Inertia::render('admin/FeatureValue/form', [
-            'featureSelect'=>Feature::forSelect()
+            'featureSelect' => Feature::forSelect(),
         ]);
     }
 
@@ -54,13 +55,14 @@ class FeatureValueController extends Controller
     {
         return Inertia::render('admin/FeatureValue/form', [
             'model' => $featureValue,
-            'featureSelect'=>Feature::forSelect()
+            'featureSelect' => Feature::forSelect(),
         ]);
     }
 
     public function destroy($id)
     {
         featureValue::destroy([$id]);
+
         return back();
     }
 }

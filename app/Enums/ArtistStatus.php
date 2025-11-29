@@ -8,7 +8,7 @@ enum ArtistStatus: string
 {
     use HasEnumUtilities;
 
-    case AVAILABLE= 'available';
+    case AVAILABLE = 'available';
     case LIMITED = 'limited';
     case BUSY = 'busy';
     case VACATION = 'vacation';

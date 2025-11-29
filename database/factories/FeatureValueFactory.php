@@ -26,11 +26,11 @@ class FeatureValueFactory extends Factory
             'value' => $value,
             'display_value' => [
                 'en' => $englishDisplayValue,
-                'bg' => 'БГ: ' . $englishDisplayValue // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishDisplayValue, // Placeholder for Bulgarian translation
             ],
             'description' => [
                 'en' => $englishDescription,
-                'bg' => 'БГ: ' . $englishDescription // Placeholder for Bulgarian translation
+                'bg' => 'БГ: '.$englishDescription, // Placeholder for Bulgarian translation
             ],
             'sort_order' => fake()->numberBetween(0, 100),
         ];

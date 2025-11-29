@@ -10,7 +10,6 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     use \Mcamara\LaravelLocalization\Traits\LoadsTranslatedCachedRoutes;
 
     /**
@@ -19,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(VoiceFilterService::class, function ($app) {
-            return new VoiceFilterService();
+            return new VoiceFilterService;
         });
     }
 
@@ -28,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RouteServiceProvider::loadCachedRoutesUsing(fn() => $this->loadCachedRoutes());
+        RouteServiceProvider::loadCachedRoutesUsing(fn () => $this->loadCachedRoutes());
 
         Gate::define('administrate', function (User $user) {
             return $user->isAdmin();

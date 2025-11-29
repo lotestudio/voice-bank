@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class VoiceFeatureValueController extends Controller
 {
     use HasReturnUrl;
+
     public function store(Request $request)
     {
         $data = $request->validate([

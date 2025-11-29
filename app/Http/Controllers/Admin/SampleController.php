@@ -17,8 +17,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SampleController extends Controller
 {
-
     use HasReturnUrl;
+
     /**
      * @throws \Exception
      */
@@ -29,24 +29,23 @@ class SampleController extends Controller
         }
 
         return Inertia::render('admin/Sample/index', [
-            'voicesSelect'=>Voice::forSelect(),
-            'usersSelect'=>User::forSelectArtists()
+            'voicesSelect' => Voice::forSelect(),
+            'usersSelect' => User::forSelectArtists(),
         ]);
     }
 
     public function create(): Response
     {
         return Inertia::render('admin/Sample/form', [
-           'voices'=>Voice::forSelect()
+            'voices' => Voice::forSelect(),
         ]);
     }
 
     public function store(SampleFormRequest $request)
     {
         $data = $request->validated();
-        $data['file_url'] = (new Sample())->moveFileFromTmp('samples', $data['file_url']);
+        $data['file_url'] = (new Sample)->moveFileFromTmp('samples', $data['file_url']);
         Sample::query()->create($data);
-
 
         return $this->redirectAfterSave($request, to_route('sample.index'))
             ->with('success', 'Sample created successfully.');
@@ -55,7 +54,7 @@ class SampleController extends Controller
     public function update(Sample $sample, SampleFormRequest $request)
     {
         $data = $request->validated();
-        if($data['file_url']!==$sample->file_url){
+        if ($data['file_url'] !== $sample->file_url) {
             $data['file_url'] = $sample->moveFileFromTmp('samples', $data['file_url']);
         }
         $sample->update($data);
@@ -63,26 +62,26 @@ class SampleController extends Controller
         return $this->redirectAfterSave($request, to_route('sample.index'));
     }
 
-
     public function edit(sample $sample): Response
     {
         return Inertia::render('admin/Sample/form', [
             'model' => $sample,
-            'voices'=>Voice::forSelect()
+            'voices' => Voice::forSelect(),
         ]);
     }
 
     public function destroy($id)
     {
         sample::destroy([$id]);
+
         return back();
     }
 
     #[Post('admin/sample/{id}/toggle-featured')]
-    public function toggleFeatured($id):string
+    public function toggleFeatured($id): string
     {
         $sample = Sample::query()->findOrFail($id);
-        $sample->is_featured = !$sample->is_featured;
+        $sample->is_featured = ! $sample->is_featured;
         $sample->save();
 
         return 'success';

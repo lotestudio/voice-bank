@@ -16,7 +16,7 @@ class VoiceFormRequest extends FormRequest
         return [
             'title' => ['required', 'array', 'max:255'],
             'is_active' => 'required|boolean',
-            'user_id' => 'required|integer'
+            'user_id' => 'required|integer',
         ];
     }
 }

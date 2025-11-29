@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class VoiceFeatureValue extends Pivot
 {
     use HasFactory;
 
-
     protected $table = 'voice_feature_values';
+
     public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *

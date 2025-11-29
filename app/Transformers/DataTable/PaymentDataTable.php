@@ -12,7 +12,7 @@ class PaymentDataTable extends DataTableResource
 
     public string $defaultOrderField = 'id';
 
-    public array $searchableFields = array (0 => 'payment_id',);
+    public array $searchableFields = [0 => 'payment_id'];
     // public ?string $useDatabaseTablePrefix = \"\";
     // public ?string $exportClass = ExportClass::class;
 
@@ -27,6 +27,7 @@ class PaymentDataTable extends DataTableResource
     public function getColumns(): array
     {
         $columns = Columns::make($this->columns, ['defaultWidth' => $this->defaultWidth]);
+
         return $columns->toArray();
     }
 
@@ -41,6 +42,7 @@ class PaymentDataTable extends DataTableResource
                 'class' => 'btn btn-warning btn-xs',
             ],
         ];
+
         return $res;
     }
 }

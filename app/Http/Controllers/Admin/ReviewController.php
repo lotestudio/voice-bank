@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class ReviewController extends Controller
 {
     use HasReturnUrl;
+
     public function index(Request $request): Response|array|BinaryFileResponse
     {
         if ($request->ajax() && $request->json === 'true') {
@@ -55,6 +56,7 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         review::destroy([$id]);
+
         return back();
     }
 }

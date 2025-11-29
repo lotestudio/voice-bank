@@ -17,7 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable, Impersonate;
+    use HasApiTokens, HasFactory, Impersonate, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -54,11 +54,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'artist_status' => ArtistStatus::class,
-            'role' => Roles::class
+            'role' => Roles::class,
         ];
     }
 
-    //protected $appends = ['initials','avatar'];
+    // protected $appends = ['initials','avatar'];
 
     /**
      * Get the voices for the user.
@@ -100,7 +100,6 @@ class User extends Authenticatable
         return $this->role->value === 'dev';
     }
 
-
     public function canImpersonate(): bool
     {
         return $this->isAdmin();
@@ -108,13 +107,13 @@ class User extends Authenticatable
 
     public function canBeImpersonated(): bool
     {
-        return !$this->isDev();
+        return ! $this->isDev();
     }
 
     protected function impersonated(): Attribute
     {
         return Attribute::make(
-            get: fn() => app('impersonate')->isImpersonating(),
+            get: fn () => app('impersonate')->isImpersonating(),
         );
     }
 
@@ -253,7 +252,7 @@ class User extends Authenticatable
     protected function Initials(): Attribute
     {
         return Attribute::make(
-            get: function(){
+            get: function () {
                 $words = explode(' ', $this->name);
 
                 if (count($words) >= 2) {
@@ -262,26 +261,25 @@ class User extends Authenticatable
 
                 return mb_strtoupper(mb_substr($this->name, 0, 2));
             },
-            set: fn($value) => $value,
+            set: fn ($value) => $value,
         );
     }
 
     protected function Avatar(): Attribute
     {
         return Attribute::make(
-            get: function($value, array $attributes) {
+            get: function ($value, array $attributes) {
 
                 return [
-                    'url'=>$value ? url('storage/avatars/'.$value) : '',
-                    'path'=>$value ? public_path('storage/avatars/'.$value) : '',
-                    'file_name'=>$value,
-                    'initials'=>$this->initials
+                    'url' => $value ? url('storage/avatars/'.$value) : '',
+                    'path' => $value ? public_path('storage/avatars/'.$value) : '',
+                    'file_name' => $value,
+                    'initials' => $this->initials,
                 ];
 
             }
         );
     }
-
 
     public static function forSelectArtists($prepend = true, $prepend_label = 'Choose artist')
     {

@@ -34,7 +34,7 @@ const t = (key: string) => translations[key] ?? key;
         <Textarea class="field-sizing-content" :id="textarea_id" v-model="content"></Textarea>
         <div class="grid grid-cols-2 md:grid-cols-3 mt-4 gap-4">
 
-            <div class="p-2 bg-secondary-foreground border rounded-md">
+            <div class="p-2 bg-secondary-foreground border rounded-md dark:bg-primary/10">
                 <div class="flex">
                     <div class="w-2/3">
                         <p class="text-xs font-bold">{{t('number_of_voices')}}</p>
@@ -45,7 +45,7 @@ const t = (key: string) => translations[key] ?? key;
                     </div>
                 </div>
             </div>
-            <div class="p-2 bg-secondary-foreground border rounded-md">
+            <div class="p-2 bg-secondary-foreground border rounded-md dark:bg-primary/10">
                 <div class="flex">
                     <div class="w-2/3">
                         <p class="text-xs font-bold">{{t('word_count')}}</p>
@@ -56,7 +56,7 @@ const t = (key: string) => translations[key] ?? key;
                     </div>
                 </div>
             </div>
-            <div class="p-2 bg-secondary-foreground border rounded-md col-span-2 md:col-span-1">
+            <div class="p-2 bg-secondary-foreground border rounded-md dark:bg-primary/10 col-span-2 md:col-span-1">
                 <div class="flex">
                     <div class="w-2/3">
                         <p class="text-xs font-bold">{{t('total_price')}}</p>

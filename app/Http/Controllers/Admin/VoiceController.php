@@ -30,16 +30,38 @@ class VoiceController extends Controller
             return VoiceDataTable::make()->get();
         }
 
+        $userNameVoices = $request->query('user_id')
+            ? User::query()->findOrFail($request->query('user_id'))?->name
+            : null;
+
+        $breadcrumbs =[
+            [
+                'title' => 'Voice List',
+                'href' => '/admin/voice'
+            ]
+        ];
+
+        $defaultUrlParams = [];
+        $showUserFilter = true;
+
+        if($userNameVoices){
+            $breadcrumbs[] = [
+                'title' => $userNameVoices. ' Voice List',
+                'href' => ' ',
+            ];
+
+            $defaultUrlParams = [
+                ['filters[user_id]'=> $request->query('user_id')]
+            ];
+
+            $showUserFilter = false;
+        }
+
         return Inertia::render('admin/Voice/index', [
             'usersSelect' => User::forSelectArtists(),
-            'userIdFilter'=>(int) $request->user_id ?? null,
-        ]);
-    }
-
-    public function create(): Response
-    {
-        return Inertia::render('admin/Voice/form', [
-            'users' => User::forSelectArtists(),
+            'breadcrumbs' => $breadcrumbs,
+            'showUserFilter' => $showUserFilter,
+            'defaultUrlParams' => $defaultUrlParams,
         ]);
     }
 
@@ -47,13 +69,21 @@ class VoiceController extends Controller
     {
         $voice->load('featureValues.feature.values', 'user', 'samples');
 
-        $featureValues = $voice->featureValues->groupBy('feature.display_name')->map(function ($featureValues, $featureName): array {
-            return ['selected' => $featureValues->pluck('id')->toArray(), 'forSelect' => $featureValues[0]->feature->values->map(function ($value): array {
-                return [
-                    'label' => $value->display_value,
-                    'value' => $value->id,
-                ];
-            })->toArray(), 'is_featured' => $featureValues[0]->feature->is_featured, 'id' => $featureValues[0]->feature->id, 'name' => $featureValues[0]->feature->display_name, 'sort_order' => $featureValues[0]->feature->sort_order];
+        $featureValues = $voice->featureValues->groupBy('feature.display_name')->map(function (
+            $featureValues,
+            $featureName
+        ): array {
+            return [
+                'selected' => $featureValues->pluck('id')->toArray(),
+                'forSelect' => $featureValues[0]->feature->values->map(function ($value): array {
+                    return [
+                        'label' => $value->display_value,
+                        'value' => $value->id,
+                    ];
+                })->toArray(), 'is_featured' => $featureValues[0]->feature->is_featured,
+                'id' => $featureValues[0]->feature->id, 'name' => $featureValues[0]->feature->display_name,
+                'sort_order' => $featureValues[0]->feature->sort_order
+            ];
         })->sortBy('sort_order');
 
         $selected = $featureValues->mapWithKeys(function (array $item, $feature_id): array {
@@ -74,9 +104,16 @@ class VoiceController extends Controller
     public function store(VoiceFormRequest $voiceFormRequest): \Illuminate\Http\RedirectResponse
     {
         $data = $voiceFormRequest->validated();
-        voice::query()->create($data);
+        Voice::query()->create($data);
 
         return $this->redirectAfterSave($voiceFormRequest, to_route('voice.index'));
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render('admin/Voice/form', [
+            'users' => User::forSelectArtists(),
+        ]);
     }
 
     public function update(Voice $voice, VoiceFormRequest $voiceFormRequest): \Illuminate\Http\RedirectResponse
@@ -87,7 +124,7 @@ class VoiceController extends Controller
         return $this->redirectAfterSave($voiceFormRequest, to_route('voice.index'));
     }
 
-    public function edit(voice $voice): Response
+    public function edit(Voice $voice): Response
     {
         return Inertia::render('admin/Voice/form', [
             'model' => $voice,
@@ -97,7 +134,7 @@ class VoiceController extends Controller
 
     public function destroy($id): \Illuminate\Http\RedirectResponse
     {
-        voice::destroy([$id]);
+        Voice::destroy([$id]);
 
         return back();
     }
@@ -106,7 +143,7 @@ class VoiceController extends Controller
     public function toggleStatus($id): string
     {
         $voice = Voice::query()->findOrFail($id);
-        $voice->is_active = ! $voice->is_active;
+        $voice->is_active = !$voice->is_active;
         $voice->save();
 
         return 'success';

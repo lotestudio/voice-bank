@@ -1,6 +1,4 @@
 import {useStorage} from "@vueuse/core";
-import values from '../../../../../tailwindcss_plugins/icons/values.js';
-
 export function useDataTableStorage(defaultUrl,defaultUrlParams){
 
     const state = useStorage(

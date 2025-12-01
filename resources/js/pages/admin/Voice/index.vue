@@ -18,12 +18,8 @@ import LoteSheet from '@/components/LoteSheet.vue';
 import {create as createSample} from '@/routes/sample';
 import VoiceSamplesManager from '@/pages/admin/Sample/VoiceSamplesManager.vue';
 
-const breadcrumbItems = [{ title: 'Voice List', href: '/admin/voice' }];
-const userIdFilter = usePage().props?.userIdFilter;
-if(userIdFilter){
-    breadcrumbItems.push({ title: 'User Voice List', href: '/admin/voice?user_id='+userIdFilter });
-}
-
+const page = usePage();
+const breadcrumbItems = page.props.breadcrumbs
 const dataTable = ref<InstanceType<typeof DataTable2>>();
 
 const deleteVoice = (id: number) => {
@@ -43,16 +39,9 @@ const getCreateSampleUrl = (voiceId: number) => {
     params.append('title', JSON.stringify({ bg: 'Аудио '+voiceId, en: 'Sample ' +voiceId  }));
     params.append('is_featured', 'true');
     params.append('return_url', usePage().url);
-    return  createSample.url() + '?' + params.toString();
+    return createSample.url() + '?' + params.toString();
 }
 
-const getDefaultUrlParameters = () => {
-    if(usePage().props.userIdFilter) {
-        return [{'filters[user_id]': userIdFilter}];
-    }
-
-    return[];
-}
 
 </script>
 
@@ -60,7 +49,7 @@ const getDefaultUrlParameters = () => {
     <AppLayout :breadcrumbs="breadcrumbItems">
         <Head :title="`Voice List`" />
         <div class="p-4">
-            <data-table2 :default-url="'/admin/voice'" ref="dataTable" :default-url-params="getDefaultUrlParameters()">
+            <data-table2 :default-url="$page.url" ref="dataTable" :default-url-params="page.props.defaultUrlParams ?? []">
                 <template #filters="filterProps">
                     <div class="flex w-full gap-2">
                         <Input
@@ -71,7 +60,7 @@ const getDefaultUrlParameters = () => {
                         />
 
                         <LoteSelect
-                            v-if="!userIdFilter"
+                            v-if="page.props.showUserFilter"
                             :options="$page.props.usersSelect"
                             @change="filterProps.setFilter('user_id', $event)"
                             :selected="filterProps.getFilter('user_id') ?? ''"

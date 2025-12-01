@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 import { show } from '@/actions/App/Http/Controllers/Profile/OrdersController';
 import { Link } from '@inertiajs/vue3';
+import OrderStatus from '@/components/OrderStatus.vue';
 
 const { T } = useLocale();
 
@@ -15,14 +16,6 @@ defineProps({
     },
 });
 
-const statusStyle = {
-    pending: 'border-yellow-500/20 text-yellow-500 bg-yellow-500/10',
-    accepted: 'border-blue-500/20 text-blue-500 bg-blue-500/10',
-    in_progress: 'border-purple-500/20 text-purple-500 bg-purple-500/10',
-    completed: 'border-green-500/20 text-green-500 bg-green-500/10',
-    cancelled: 'border-red-500/20 text-red-500 bg-red-500/10',
-    refunded: 'border-gray-500/20 text-gray-500 bg-gray-500/10',
-};
 </script>
 
 <template>
@@ -36,7 +29,7 @@ const statusStyle = {
             <Button as-child>
                 <Link :href="show.url(order.id)">{{ T('details') }}</Link>
             </Button>
-            <div :class="statusStyle[order.status]" class="text-sm border rounded py-1 px-2">{{ order.status_label }}</div>
+            <OrderStatus :label="order.status_label" :status="order.status"/>
         </CardFooter>
     </Card>
 </template>

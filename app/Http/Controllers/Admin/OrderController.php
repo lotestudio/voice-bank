@@ -6,8 +6,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderFormRequest;
+use App\Http\Resources\OrderResource;
 use App\Lote\Traits\HasReturnUrl;
 use App\Models\Order;
+use App\Models\User;
 use App\Transformers\DataTable\OrderDataTable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -24,7 +26,42 @@ class OrderController extends Controller
             return OrderDataTable::make()->get();
         }
 
-        return Inertia::render('admin/Order/index', []);
+        $userNameOrders = $request->query('user_id')
+            ? User::query()->findOrFail($request->query('user_id'))?->name
+            : null;
+
+        $breadcrumbs =[
+            [
+                'title' => 'Orders List',
+                'href' => '/admin/order'
+            ]
+        ];
+
+        $defaultUrlParams = [];
+        $showUserFilter = true;
+
+        if($userNameOrders){
+            $breadcrumbs[] = [
+                'title' => $userNameOrders. ' Orders List',
+                'href' => ' ',
+            ];
+
+            $defaultUrlParams = [
+                ['filters[user_id]'=> $request->query('user_id')]
+            ];
+
+            $showUserFilter = false;
+        }
+
+        return Inertia::render('admin/Order/index', [
+            'usersSelect' => User::forSelect(),
+            'breadcrumbs' => $breadcrumbs,
+            'showUserFilter' => $showUserFilter,
+            'defaultUrlParams' => $defaultUrlParams,
+        ]);
+
+
+
     }
 
     public function create(): Response
@@ -48,10 +85,10 @@ class OrderController extends Controller
         return $this->redirectAfterSave($orderFormRequest, to_route('order.index'));
     }
 
-    public function edit(order $order): Response
+    public function edit(Order $order): Response
     {
         return Inertia::render('admin/Order/form', [
-            'model' => $order,
+            'model' => (new OrderResource($order))->toArray(request()),
         ]);
     }
 

@@ -26,6 +26,7 @@ const form = useForm({
 });
 
 watch(form, (newVal) => {
+    console.log(newVal.deadline);
     Object.assign(order.value, {
         title: newVal.title,
         description: newVal.description,
@@ -37,7 +38,6 @@ watch(form, (newVal) => {
 const { T, locale_url } = useLocale();
 
 const submit = () => {
-    console.log(voices.value);
 
     form.transform((data) => ({
         ...data,

@@ -34,7 +34,7 @@ const emitChange = () => {
 
 const dateFormatter = computed(() => {
     if (date.value) {
-        return date.value.year + '-' + date.value.month + '-' + date.value.day;
+        return date.value.year + '-' + String(date.value.month).padStart(2, '0') + '-' + String(date.value.day).padStart(2, '0');
     }
     return props.placeholder;
 });

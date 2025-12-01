@@ -15,15 +15,17 @@ class OrderFormRequest extends FormRequest
 
     public function rules(): array
     {
-
-        return [
+        $rules = [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:1000'],
             'script_text' => ['required', 'string'],
             'deadline' => ['required', 'date'],
-            'voices' => ['required', 'array'],
-            // 'voices.*' => ['required'],
         ];
 
+        if (!request()->is('admin/*')) {
+            $rules['voices'] = ['required', 'array'];
+        }
+
+        return $rules;
     }
 }

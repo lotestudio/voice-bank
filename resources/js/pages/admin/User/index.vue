@@ -14,6 +14,7 @@ import LoteSelect from '@/components/LoteSelect.vue';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { create as createVoice } from '@/routes/voice';
 import {index as voiceIndex} from '@/routes/voice';
+import {index as orderIndex} from '@/routes/order';
 
 const breadcrumbItems = [{ title: 'User List', href: '/admin/user' }];
 
@@ -102,7 +103,12 @@ const getCreateVoiceUrl = (userId: number) => {
                         </div>
                     </dt-td>
                     <dt-td column="2">
+                        <div class="flex gap-2 items-center justify-end">
+                        <Link :href="orderIndex.url()+'?user_id='+trProps.row.id" class="flex items-center gap-2 hover:no-underline">
+                            <Button size="icon"><span class="i-list"></span></Button>
+                        </Link>
                         {{ trProps.row.orders_count }}
+                        </div>
                     </dt-td>
                     <dt-td column="3">
                         <div class="flex justify-end gap-2">

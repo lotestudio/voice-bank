@@ -143,7 +143,41 @@ impersonate.head = (args: { id: string | number, guardName?: string | number } |
 })
 
 /**
-* @see routes/admin.php:48
+* @see \App\Http\Controllers\Admin\OrderStatusController::__invoke
+* @see app/Http/Controllers/Admin/OrderStatusController.php:13
+* @route '/admin/order_status'
+*/
+export const order_status = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: order_status.url(options),
+    method: 'post',
+})
+
+order_status.definition = {
+    methods: ["post"],
+    url: '/admin/order_status',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Admin\OrderStatusController::__invoke
+* @see app/Http/Controllers/Admin/OrderStatusController.php:13
+* @route '/admin/order_status'
+*/
+order_status.url = (options?: RouteQueryOptions) => {
+    return order_status.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\OrderStatusController::__invoke
+* @see app/Http/Controllers/Admin/OrderStatusController.php:13
+* @route '/admin/order_status'
+*/
+order_status.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: order_status.url(options),
+    method: 'post',
+})
+
+/**
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -157,7 +191,7 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/admin.php:48
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -165,7 +199,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/admin.php:48
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -174,7 +208,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/admin.php:48
+* @see routes/admin.php:51
 * @route '/admin/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

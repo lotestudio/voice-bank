@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderStatusController;
 use Inertia\Inertia;
 
 Route::impersonate();
@@ -44,6 +45,8 @@ Route::group(['middleware' => ['auth', 'can:administrate'], 'prefix' => 'admin']
     Route::resource('sort', \App\Http\Controllers\Admin\SortController::class)
         ->only('index', 'store')
         ->names('sort');
+
+    Route::post('order_status',OrderStatusController::class)->name('order_status');
 
     Route::get('dashboard', function () {
         return Inertia::render('admin/Dashboard');

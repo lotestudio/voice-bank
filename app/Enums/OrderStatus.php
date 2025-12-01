@@ -53,6 +53,17 @@ enum OrderStatus: string
             self::CANCELLED => __('site.on').' '.$order->completed_at?->format('d-m-Y') ?? 'N/A',
             self::REFUNDED => __('site.on').' '.$order->completed_at?->format('d-m-Y') ?? 'N/A',
         };
+    }
 
+
+    public static function getUpdateOrderStatusDates(string $status, Order $order): array
+    {
+
+        return match ($status) {
+            'pending' =>['status'=>$status, 'accepted_at'=>null, 'completed_at'=>null],
+            'accepted' =>['status'=>$status, 'accepted_at'=>$order->accepted_at ?? now(), 'completed_at'=>null],
+            'completed', 'cancelled', 'refunded' =>['status'=>$status, 'completed_at'=>now()],
+            default =>[]
+        };
     }
 }

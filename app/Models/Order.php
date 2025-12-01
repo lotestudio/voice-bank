@@ -20,22 +20,7 @@ class Order extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'order_number',
-        'title',
-        'description',
-        'amount',
-        'currency',
-        'status',
-        'deadline',
-        'word_count',
-        'script_text',
-        'notes',
-        'artist_notes',
-        'accepted_at',
-        'completed_at',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be cast.

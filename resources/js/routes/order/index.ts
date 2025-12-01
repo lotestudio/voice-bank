@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\OrderController::index
-* @see app/Http/Controllers/Admin/OrderController.php:21
+* @see app/Http/Controllers/Admin/OrderController.php:23
 * @route '/admin/order'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::index
-* @see app/Http/Controllers/Admin/OrderController.php:21
+* @see app/Http/Controllers/Admin/OrderController.php:23
 * @route '/admin/order'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::index
-* @see app/Http/Controllers/Admin/OrderController.php:21
+* @see app/Http/Controllers/Admin/OrderController.php:23
 * @route '/admin/order'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::index
-* @see app/Http/Controllers/Admin/OrderController.php:21
+* @see app/Http/Controllers/Admin/OrderController.php:23
 * @route '/admin/order'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::create
-* @see app/Http/Controllers/Admin/OrderController.php:30
+* @see app/Http/Controllers/Admin/OrderController.php:67
 * @route '/admin/order/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::create
-* @see app/Http/Controllers/Admin/OrderController.php:30
+* @see app/Http/Controllers/Admin/OrderController.php:67
 * @route '/admin/order/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::create
-* @see app/Http/Controllers/Admin/OrderController.php:30
+* @see app/Http/Controllers/Admin/OrderController.php:67
 * @route '/admin/order/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::create
-* @see app/Http/Controllers/Admin/OrderController.php:30
+* @see app/Http/Controllers/Admin/OrderController.php:67
 * @route '/admin/order/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::store
-* @see app/Http/Controllers/Admin/OrderController.php:35
+* @see app/Http/Controllers/Admin/OrderController.php:72
 * @route '/admin/order'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::store
-* @see app/Http/Controllers/Admin/OrderController.php:35
+* @see app/Http/Controllers/Admin/OrderController.php:72
 * @route '/admin/order'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::store
-* @see app/Http/Controllers/Admin/OrderController.php:35
+* @see app/Http/Controllers/Admin/OrderController.php:72
 * @route '/admin/order'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::edit
-* @see app/Http/Controllers/Admin/OrderController.php:51
+* @see app/Http/Controllers/Admin/OrderController.php:88
 * @route '/admin/order/{order}/edit'
 */
 export const edit = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::edit
-* @see app/Http/Controllers/Admin/OrderController.php:51
+* @see app/Http/Controllers/Admin/OrderController.php:88
 * @route '/admin/order/{order}/edit'
 */
 edit.url = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ edit.url = (args: { order: number | { id: number } } | [order: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::edit
-* @see app/Http/Controllers/Admin/OrderController.php:51
+* @see app/Http/Controllers/Admin/OrderController.php:88
 * @route '/admin/order/{order}/edit'
 */
 edit.get = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -181,7 +181,7 @@ edit.get = (args: { order: number | { id: number } } | [order: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::edit
-* @see app/Http/Controllers/Admin/OrderController.php:51
+* @see app/Http/Controllers/Admin/OrderController.php:88
 * @route '/admin/order/{order}/edit'
 */
 edit.head = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -191,7 +191,7 @@ edit.head = (args: { order: number | { id: number } } | [order: number | { id: n
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::update
-* @see app/Http/Controllers/Admin/OrderController.php:43
+* @see app/Http/Controllers/Admin/OrderController.php:80
 * @route '/admin/order/{order}'
 */
 export const update = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -206,7 +206,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::update
-* @see app/Http/Controllers/Admin/OrderController.php:43
+* @see app/Http/Controllers/Admin/OrderController.php:80
 * @route '/admin/order/{order}'
 */
 update.url = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -239,7 +239,7 @@ update.url = (args: { order: number | { id: number } } | [order: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::update
-* @see app/Http/Controllers/Admin/OrderController.php:43
+* @see app/Http/Controllers/Admin/OrderController.php:80
 * @route '/admin/order/{order}'
 */
 update.put = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -249,7 +249,7 @@ update.put = (args: { order: number | { id: number } } | [order: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::update
-* @see app/Http/Controllers/Admin/OrderController.php:43
+* @see app/Http/Controllers/Admin/OrderController.php:80
 * @route '/admin/order/{order}'
 */
 update.patch = (args: { order: number | { id: number } } | [order: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -259,7 +259,7 @@ update.patch = (args: { order: number | { id: number } } | [order: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::destroy
-* @see app/Http/Controllers/Admin/OrderController.php:58
+* @see app/Http/Controllers/Admin/OrderController.php:95
 * @route '/admin/order/{order}'
 */
 export const destroy = (args: { order: string | number } | [order: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -274,7 +274,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::destroy
-* @see app/Http/Controllers/Admin/OrderController.php:58
+* @see app/Http/Controllers/Admin/OrderController.php:95
 * @route '/admin/order/{order}'
 */
 destroy.url = (args: { order: string | number } | [order: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -301,7 +301,7 @@ destroy.url = (args: { order: string | number } | [order: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\Admin\OrderController::destroy
-* @see app/Http/Controllers/Admin/OrderController.php:58
+* @see app/Http/Controllers/Admin/OrderController.php:95
 * @route '/admin/order/{order}'
 */
 destroy.delete = (args: { order: string | number } | [order: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

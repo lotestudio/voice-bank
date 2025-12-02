@@ -50,6 +50,7 @@ class Order extends Model
     public function voices(): BelongsToMany
     {
         return $this->belongsToMany(Voice::class, 'order_voice')
+            ->withPivot('artist_notes')
             ->withTimestamps();
     }
 

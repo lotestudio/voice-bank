@@ -30,31 +30,33 @@ class MenuService
         ];
 
         if (auth()->check()) {
+
+            $profile_children = [];
+
+            if (auth()->user()->isArtist()) {
+                $profile_children['voices'] = ['title' => Str::ucfirst(__('site.my_voices')), 'href' => LaravelLocalization::localizeUrl('/profile/voices')];
+            }
+
+            $profile_children['orders'] = ['title' => Str::title(__('site.orders')), 'href' => LaravelLocalization::localizeUrl('/profile/orders')];
+
+            if (auth()->user()->isClient()) {
+                $profile_children['reviews'] = ['title' => Str::title(__('site.reviews')), 'href' => LaravelLocalization::localizeUrl('/profile/reviews')];
+            }
+
+            $profile_children['favorites'] = ['title' => Str::title(__('site.favorites')), 'href' => LaravelLocalization::localizeUrl('/profile/favorites')];
+            $profile_children['settings'] = ['title' => Str::title(__('site.settings')), 'href' => LaravelLocalization::localizeUrl('/profile/settings')];
+            $profile_children['password'] = ['title' => Str::title(__('site.password')), 'href' => LaravelLocalization::localizeUrl('/profile/password')];
+            $profile_children['avatar'] = ['title' => Str::title(__('site.avatar')), 'href' => LaravelLocalization::localizeUrl('/profile/avatar')];
+            $profile_children['appearance'] = ['title' => Str::title(__('site.appearance')), 'href' => LaravelLocalization::localizeUrl('/profile/appearance')];
+
+
             $res['profile'] = [
                 'title' => 'Profile',
                 'icon' => 'i-user_check',
                 'href' => LaravelLocalization::localizeUrl('/profile/settings'),
-                'children' => [
-                    'orders' => ['title' => Str::title(__('site.orders')), 'href' => LaravelLocalization::localizeUrl('/profile/orders')],
-                    'reviews' => ['title' => Str::title(__('site.reviews')), 'href' => LaravelLocalization::localizeUrl('/profile/reviews')],
-                    'favorites' => ['title' => Str::title(__('site.favorites')), 'href' => LaravelLocalization::localizeUrl('/profile/favorites')],
-                    'settings' => ['title' => Str::title(__('site.settings')), 'href' => LaravelLocalization::localizeUrl('/profile/settings')],
-                    'password' => ['title' => Str::title(__('site.password')), 'href' => LaravelLocalization::localizeUrl('/profile/password')],
-                    'avatar' => ['title' => Str::title(__('site.avatar')), 'href' => LaravelLocalization::localizeUrl('/profile/avatar')],
-                    'appearance' => ['title' => Str::title(__('site.appearance')), 'href' => LaravelLocalization::localizeUrl('/profile/appearance')],
-                ],
+                'children' => $profile_children,
             ];
-            if (auth()->user()->isArtist()) {
-                $res['profile']['children'] = array_merge(
-                    [
-                        'voices' => [
-                            'title' => Str::ucfirst(__('site.my_voices')),
-                            'href' => LaravelLocalization::localizeUrl('/profile/voices'),
-                        ],
-                    ],
-                    $res['profile']['children']
-                );
-            }
+
 
             if (auth()->user()->isImpersonated()) {
                 $res['profile']['icon'] = 'i-ghost';

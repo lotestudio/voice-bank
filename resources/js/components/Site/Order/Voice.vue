@@ -8,6 +8,7 @@ import { router } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import VoiceRate from '@/components/Site/Order/VoiceRate.vue';
 import VoiceReview from '@/components/Site/Order/VoiceReview.vue';
+import { Textarea } from '@/components/ui/textarea';
 
 const props = defineProps({
     voice: {
@@ -90,8 +91,19 @@ const title = computed(() => {
 
             <div v-else class="flex-1 flex items-center rounded border p-2 text-xs text-destructive">{{ T('no available demo file') }}</div>
         </div>
-        <VoiceRate :review="review" :order_id="order_id" :voice_id="voice.id"></VoiceRate>
-        <VoiceReview :review="review" :order_id="order_id" :voice_id="voice.id"></VoiceReview>
+
+<!--        <template v-if="$page.props.auth.user.role==='client'">-->
+            <VoiceRate :review="review" :order_id="order_id" :voice_id="voice.id"></VoiceRate>
+            <VoiceReview :review="review" :order_id="order_id" :voice_id="voice.id"></VoiceReview>
+<!--        </template>-->
+
+
+        <div v-if="voice.pivot.artist_notes">
+            <hr class="my-4">
+            <div>Artis notes: {{voice.pivot.artist_notes}}</div>
+        </div>
+
+
 
     </div>
 </template>

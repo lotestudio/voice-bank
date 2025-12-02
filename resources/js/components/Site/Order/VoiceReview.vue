@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-start gap-2">
             <div>Review:</div>
             <Textarea v-model="form.comment" class="field-sizing-content"/>
         </div>

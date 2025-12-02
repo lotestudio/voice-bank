@@ -171,7 +171,7 @@ class Voice extends Model
      */
     public function orders(): BelongsToMany
     {
-        return $this->belongsToMany(Order::class, 'order_voice')
+        return $this->belongsToMany(Order::class, 'order_voice')->withPivot('artist_notes')
             ->withTimestamps();
     }
 

@@ -11,12 +11,12 @@
         <Toaster />
 
         <LoteAlertDialog
-            :auto-open="!!$page.props.flash.modal"
+            :auto-open="!!$page.props.flash?.modal"
             close-only
             confirm-label="Ok"
             confirm-variant="default"
-            :dialog-description="$page.props.flash.modal?.description"
-            :dialog-title="$page.props.flash.modal?.title"
+            :dialog-description="$page.props.flash?.modal?.description"
+            :dialog-title="$page.props.flash?.modal?.title"
         />
     </SiteShell>
 </template>
@@ -35,7 +35,7 @@ defineProps({
     simple: { Boolean, default: false },
 });
 
-if(usePage().props.flash.clear_cart){
+if(usePage().props.flash?.clear_cart){
     useGlobalCart().clearOrder()
 }
 

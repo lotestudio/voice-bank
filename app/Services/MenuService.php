@@ -41,9 +41,9 @@ class MenuService
 
             if (auth()->user()->isClient()) {
                 $profile_children['reviews'] = ['title' => Str::title(__('site.reviews')), 'href' => LaravelLocalization::localizeUrl('/profile/reviews')];
+                $profile_children['favorites'] = ['title' => Str::title(__('site.favorites')), 'href' => LaravelLocalization::localizeUrl('/profile/favorites')];
             }
 
-            $profile_children['favorites'] = ['title' => Str::title(__('site.favorites')), 'href' => LaravelLocalization::localizeUrl('/profile/favorites')];
             $profile_children['settings'] = ['title' => Str::title(__('site.settings')), 'href' => LaravelLocalization::localizeUrl('/profile/settings')];
             $profile_children['password'] = ['title' => Str::title(__('site.password')), 'href' => LaravelLocalization::localizeUrl('/profile/password')];
             $profile_children['avatar'] = ['title' => Str::title(__('site.avatar')), 'href' => LaravelLocalization::localizeUrl('/profile/avatar')];

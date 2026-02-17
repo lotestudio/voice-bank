@@ -35,7 +35,10 @@ Route::group([
     // reviews
     Route::resource('profile/reviews', ReviewsController::class)->only(['index', 'create', 'store', 'update'])->middleware(['auth', 'can:act_as_client']);
     // favorites
-    Route::resource('profile/favorites', FavoritesController::class)->middleware('auth');
+    Route::resource('profile/favorites', FavoritesController::class)->middleware(['auth', 'can:act_as_client']);
+    //
+    Route::post('favorite_toggle', \App\Http\Controllers\FavoriteToggleController::class)->middleware(['auth', 'can:act_as_client']);
+
 
 });
 

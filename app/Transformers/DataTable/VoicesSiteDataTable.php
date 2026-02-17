@@ -41,7 +41,9 @@ class VoicesSiteDataTable extends DataTableResource
     // prebuild global where, with, etc. Delete if not needed
     public function preBuild(): void
     {
-        $this->builder->withFeatureValues([])->with(['featureValues.feature', 'user', 'samples']);
+        $this->builder
+            ->withFeatureValues([])
+            ->with(['featureValues.feature', 'user', 'samples','favoritedBy']);
     }
 
     protected function transform($item): array
@@ -51,13 +53,24 @@ class VoicesSiteDataTable extends DataTableResource
 
     public static function itemTransform($item): array
     {
-        return ['id' => $item->id, 'title' => $item->title, 'user' => $item->user, 'sample' => $item->featuredSample(), 'favorites_count' => $item->favorites_count, 'orders_count' => $item->orders_count, 'average_rating' => $item->average_rating, 'availability' => $item->user->artist_status->label(), 'features' => $item->featureValues?->groupBy('feature_id')->map(function ($item, $key): array {
-            return [
-                'id' => $key,
-                'name' => $item->first()->feature->display_name,
-                'values' => $item->pluck('display_value')->join(', '),
-            ];
-        })];
+        return [
+            'id' => $item->id,
+            'title' => $item->title,
+            'user' => $item->user,
+            'sample' => $item->featuredSample(),
+            'favorites_count' => $item->favorites_count,
+            'orders_count' => $item->orders_count,
+            'average_rating' => $item->average_rating,
+            'availability' => $item->user->artist_status->label(),
+            'features' => $item->featureValues?->groupBy('feature_id')->map(function ($item, $key): array {
+                return [
+                    'id' => $key,
+                    'name' => $item->first()->feature->display_name,
+                    'values' => $item->pluck('display_value')->join(', '),
+                ];
+            }),
+            'isFavorite'=>(bool) $item->favoritedBy->where('id', auth()->id())->first(),
+        ];
     }
 
     // info or caption comes with data to table

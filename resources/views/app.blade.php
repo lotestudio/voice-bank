@@ -35,7 +35,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://use.typekit.net/" />
-{{--    apparat--}}
+    {{--    apparat--}}
     <link rel="stylesheet" href="https://use.typekit.net/itk2wog.css">
 {{--    neue haas--}}
 {{--    <link rel="stylesheet" href="https://use.typekit.net/irj7vhx.css">--}}

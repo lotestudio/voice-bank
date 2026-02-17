@@ -7,9 +7,11 @@ import { useGlobalAudioPlayer } from '@/composables/useGlobalPlayer';
 import { useLocale } from '@/composables/useLocale';
 import { useGlobalCart } from '@/cartStore';
 import { router } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { toast } from 'vue-sonner';
 import { create } from '@/routes/orders';
+import LoteTooltip from '@/components/LoteTooltip.vue';
+import axios from 'axios';
 
 const props = defineProps({
     voice: {
@@ -48,10 +50,22 @@ const addToCart = (id) => {
     });
 };
 
-
 const title = computed(() => {
     return typeof props.voice.title === 'object' ? props.voice.title[locale] : props.voice.title;
 });
+
+const isFavorite = ref(props.voice.isFavorite);
+const loading = ref(false);
+const favoritesToggle = () => {
+    loading.value = true;
+    isFavorite.value = !isFavorite.value;
+    axios.post('/favorite_toggle',{'voice_id':props.voice.id}).then((response:any)=>{
+        isFavorite.value = response.data.isFavorite;
+        loading.value = false;
+    })
+
+};
+
 
 </script>
 
@@ -104,7 +118,14 @@ const title = computed(() => {
         <div class="flex items-center justify-between">
             <div class="text-xs">{{ T('artist_status') }}: {{ voice.availability }}</div>
 
-            <div>
+            <div class="flex gap-2" v-if="$page.props.auth.user.role === 'client'">
+                <LoteTooltip :tooltip="T('remove_to_favorites')" v-if="isFavorite">
+                    <Button @click="favoritesToggle" :disabled="loading" size="icon" variant="ghost"><span class="i-heart_filled text-destructive"></span></Button>
+                </LoteTooltip>
+                <LoteTooltip :tooltip="T('add_to_favorites')" v-else>
+                    <Button @click="favoritesToggle" :disabled="loading" size="icon" variant="destructive"><span class="i-heart"></span></Button>
+                </LoteTooltip>
+
                 <Button @click="addToCart(voice.id)" :disabled="cart.existsInCard(voice.id)">{{ T('order') }}</Button>
             </div>
         </div>

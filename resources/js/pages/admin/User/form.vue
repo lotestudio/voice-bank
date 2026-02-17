@@ -6,7 +6,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { Label } from '@/components/ui/label';
 import LoteSelect from '@/components/LoteSelect.vue';
-import {useInitialValue} from '@/composables/useInitialFormValue';
+import { useInitialValue } from '@/composables/useInitialFormValue';
 
 const page = usePage();
 const { get, isEdit } = useInitialValue();
@@ -35,47 +35,24 @@ function submit() {
             <form @submit.prevent="submit" class="space-y-6">
                 <div class="grid gap-2">
                     <Label for="name">Name:</Label>
-                    <Input id="name"
-                           required
-                           :tabindex="2"
-                           v-model="form.name"
-                    />
-                <InputError class="mt-2" :message="form.errors.name" />
+                    <Input id="name" required :tabindex="2" v-model="form.name" />
+                    <InputError class="mt-2" :message="form.errors.name" />
                 </div>
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        required
-                        :tabindex="2"
-                        v-model="form.email"
-                        placeholder="email@example.com"
-                    />
+                    <Input id="email" type="email" required :tabindex="2" v-model="form.email" placeholder="email@example.com" />
                     <InputError :message="form.errors.email" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="name">Role</Label>
-                    <LoteSelect
-                        :options="page.props.rolesSelect"
-                        :selected="form.role || ''"
-                        name="role"
-                        width_class="w-full"
-                    />
+                    <LoteSelect :options="page.props.rolesSelect" :selected="form.role || ''" @change="form.role = $event" width_class="w-full" />
                     <InputError :message="form.errors.role" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="password">Password</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        :tabindex="3"
-                        autocomplete="new-password"
-                        v-model="form.password"
-                        placeholder="Password"
-                    />
+                    <Input id="password" type="password" :tabindex="3" autocomplete="new-password" v-model="form.password" placeholder="Password" />
                     <InputError :message="form.errors.password" />
                 </div>
 

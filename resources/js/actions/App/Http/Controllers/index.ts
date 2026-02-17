@@ -4,6 +4,7 @@ import MainController from './MainController'
 import VoicesController from './VoicesController'
 import ArtistController from './ArtistController'
 import Profile from './Profile'
+import FavoriteToggleController from './FavoriteToggleController'
 import SampleDownloaderController from './SampleDownloaderController'
 import Auth from './Auth'
 import Dev from './Dev'
@@ -16,6 +17,7 @@ const Controllers = {
     VoicesController: Object.assign(VoicesController, VoicesController),
     ArtistController: Object.assign(ArtistController, ArtistController),
     Profile: Object.assign(Profile, Profile),
+    FavoriteToggleController: Object.assign(FavoriteToggleController, FavoriteToggleController),
     SampleDownloaderController: Object.assign(SampleDownloaderController, SampleDownloaderController),
     Auth: Object.assign(Auth, Auth),
     Dev: Object.assign(Dev, Dev),

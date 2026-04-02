@@ -118,7 +118,7 @@ const favoritesToggle = () => {
         <div class="flex items-center justify-between">
             <div class="text-xs">{{ T('artist_status') }}: {{ voice.availability }}</div>
 
-            <div class="flex gap-2" v-if="$page.props.auth.user.role === 'client'">
+            <div class="flex gap-2" v-if="$page.props.auth.user?.role === 'client'">
                 <LoteTooltip :tooltip="T('remove_to_favorites')" v-if="isFavorite">
                     <Button @click="favoritesToggle" :disabled="loading" size="icon" variant="ghost"><span class="i-heart_filled text-destructive"></span></Button>
                 </LoteTooltip>

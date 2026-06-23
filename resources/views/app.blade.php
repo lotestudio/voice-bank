@@ -43,19 +43,19 @@
     @vite(['resources/js/app.js', "resources/js/pages/{$page['component']}.vue"])
     @inertiaHead
 </head>
-{{--<!--Start of Tawk.to Script-->--}}
-{{--<script type="text/javascript">--}}
-{{--    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();--}}
-{{--    (function(){--}}
-{{--        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];--}}
-{{--        s1.async=true;--}}
-{{--        s1.src='https://embed.tawk.to/69296004a855431957779cca/1jb4pu4m7';--}}
-{{--        s1.charset='UTF-8';--}}
-{{--        s1.setAttribute('crossorigin','*');--}}
-{{--        s0.parentNode.insertBefore(s1,s0);--}}
-{{--    })();--}}
-{{--</script>--}}
-{{--<!--End of Tawk.to Script-->--}}
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/6a3a6e47d0dd3e1d406c907a/1jrq3tijh';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 <body class="font-sans antialiased">
 @inertia
 </body>

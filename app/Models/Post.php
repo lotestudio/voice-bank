@@ -24,6 +24,9 @@ class Post extends Model
         parent::boot();
 
         static::creating(function ($post): void {
+
+            ray($post->title);
+
             $post->slug = is_null($post->section) ? str($post->title['en'])->slug() : str($post->section)->slug();
 
             $originalSlug = $post->slug;

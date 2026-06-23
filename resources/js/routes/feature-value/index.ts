@@ -126,7 +126,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 * @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
-export const edit = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -141,9 +141,13 @@ edit.definition = {
 * @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
-edit.url = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
+edit.url = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { feature_value: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { feature_value: args.id }
     }
 
     if (Array.isArray(args)) {
@@ -155,7 +159,9 @@ edit.url = (args: { feature_value: string | number } | [feature_value: string | 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        feature_value: args.feature_value,
+        feature_value: typeof args.feature_value === 'object'
+        ? args.feature_value.id
+        : args.feature_value,
     }
 
     return edit.definition.url
@@ -168,7 +174,7 @@ edit.url = (args: { feature_value: string | number } | [feature_value: string | 
 * @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
-edit.get = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -178,7 +184,7 @@ edit.get = (args: { feature_value: string | number } | [feature_value: string | 
 * @see app/Http/Controllers/Admin/FeatureValueController.php:56
 * @route '/admin/feature-value/{feature_value}/edit'
 */
-edit.head = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -188,7 +194,7 @@ edit.head = (args: { feature_value: string | number } | [feature_value: string |
 * @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
-export const update = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -203,9 +209,13 @@ update.definition = {
 * @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
-update.url = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions) => {
+update.url = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { feature_value: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { feature_value: args.id }
     }
 
     if (Array.isArray(args)) {
@@ -217,7 +227,9 @@ update.url = (args: { feature_value: string | number } | [feature_value: string 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        feature_value: args.feature_value,
+        feature_value: typeof args.feature_value === 'object'
+        ? args.feature_value.id
+        : args.feature_value,
     }
 
     return update.definition.url
@@ -230,7 +242,7 @@ update.url = (args: { feature_value: string | number } | [feature_value: string 
 * @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
-update.put = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -240,7 +252,7 @@ update.put = (args: { feature_value: string | number } | [feature_value: string 
 * @see app/Http/Controllers/Admin/FeatureValueController.php:48
 * @route '/admin/feature-value/{feature_value}'
 */
-update.patch = (args: { feature_value: string | number } | [feature_value: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { feature_value: number | { id: number } } | [feature_value: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })

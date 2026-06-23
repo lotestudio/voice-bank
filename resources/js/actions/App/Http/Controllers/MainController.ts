@@ -88,8 +88,96 @@ about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\MainController::contacts
+* @see \App\Http\Controllers\MainController::privacy
 * @see app/Http/Controllers/MainController.php:54
+* @route '/privacy'
+*/
+export const privacy = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: privacy.url(options),
+    method: 'get',
+})
+
+privacy.definition = {
+    methods: ["get","head"],
+    url: '/privacy',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\MainController::privacy
+* @see app/Http/Controllers/MainController.php:54
+* @route '/privacy'
+*/
+privacy.url = (options?: RouteQueryOptions) => {
+    return privacy.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\MainController::privacy
+* @see app/Http/Controllers/MainController.php:54
+* @route '/privacy'
+*/
+privacy.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: privacy.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\MainController::privacy
+* @see app/Http/Controllers/MainController.php:54
+* @route '/privacy'
+*/
+privacy.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: privacy.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\MainController::cookies
+* @see app/Http/Controllers/MainController.php:64
+* @route '/cookies'
+*/
+export const cookies = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: cookies.url(options),
+    method: 'get',
+})
+
+cookies.definition = {
+    methods: ["get","head"],
+    url: '/cookies',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\MainController::cookies
+* @see app/Http/Controllers/MainController.php:64
+* @route '/cookies'
+*/
+cookies.url = (options?: RouteQueryOptions) => {
+    return cookies.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\MainController::cookies
+* @see app/Http/Controllers/MainController.php:64
+* @route '/cookies'
+*/
+cookies.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: cookies.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\MainController::cookies
+* @see app/Http/Controllers/MainController.php:64
+* @route '/cookies'
+*/
+cookies.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: cookies.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\MainController::contacts
+* @see app/Http/Controllers/MainController.php:73
 * @route '/contacts'
 */
 export const contacts = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +192,7 @@ contacts.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:54
+* @see app/Http/Controllers/MainController.php:73
 * @route '/contacts'
 */
 contacts.url = (options?: RouteQueryOptions) => {
@@ -113,7 +201,7 @@ contacts.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:54
+* @see app/Http/Controllers/MainController.php:73
 * @route '/contacts'
 */
 contacts.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -123,7 +211,7 @@ contacts.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::contacts
-* @see app/Http/Controllers/MainController.php:54
+* @see app/Http/Controllers/MainController.php:73
 * @route '/contacts'
 */
 contacts.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -133,7 +221,7 @@ contacts.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MainController::send
-* @see app/Http/Controllers/MainController.php:59
+* @see app/Http/Controllers/MainController.php:78
 * @route '/send'
 */
 export const send = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -148,7 +236,7 @@ send.definition = {
 
 /**
 * @see \App\Http\Controllers\MainController::send
-* @see app/Http/Controllers/MainController.php:59
+* @see app/Http/Controllers/MainController.php:78
 * @route '/send'
 */
 send.url = (options?: RouteQueryOptions) => {
@@ -157,7 +245,7 @@ send.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MainController::send
-* @see app/Http/Controllers/MainController.php:59
+* @see app/Http/Controllers/MainController.php:78
 * @route '/send'
 */
 send.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -165,6 +253,6 @@ send.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
-const MainController = { index, about, contacts, send }
+const MainController = { index, about, privacy, cookies, contacts, send }
 
 export default MainController

@@ -25,9 +25,7 @@ class Post extends Model
 
         static::creating(function ($post): void {
 
-            ray($post->title);
-
-            $post->slug = is_null($post->section) ? str($post->title['en'])->slug() : str($post->section)->slug();
+            $post->slug = is_null($post->section) ? str($post->title)->slug() : str($post->section)->slug();
 
             $originalSlug = $post->slug;
             $counter = 1;

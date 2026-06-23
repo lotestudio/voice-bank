@@ -6,7 +6,10 @@
             <slot />
         </main>
         <footer class="sticky mt-10 bg-gold-400 p-4 text-gold-50" style="top: 100vh; top: 100dvh">
-            <p class="text-center text-xs">Voice Bank {{ new Date().getFullYear() }}</p>
+            <div class="text-center text-xs">
+                <span>Voice Bank {{ new Date().getFullYear() }}</span> - <Link href="/cookies">{{ T('cookies_policy') }}</Link> |
+                <Link href="/privacy">{{ T('privacy_policy') }}</Link>
+            </div>
         </footer>
         <Toaster />
 
@@ -28,16 +31,17 @@ import Header from '@/components/Site/Header.vue';
 import { Toaster } from '@/components/ui/sonner';
 import 'vue-sonner/style.css';
 import LoteAlertDialog from '@/components/LoteAlertDialog.vue';
-import { usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { useGlobalCart } from '@/cartStore'; // vue-sonner v2 requires this import
+import { useLocale } from '@/composables/useLocale';
+
+const { T } = useLocale();
 
 defineProps({
     simple: { Boolean, default: false },
 });
 
-if(usePage().props.flash?.clear_cart){
-    useGlobalCart().clearOrder()
+if (usePage().props.flash?.clear_cart) {
+    useGlobalCart().clearOrder();
 }
-
-
 </script>

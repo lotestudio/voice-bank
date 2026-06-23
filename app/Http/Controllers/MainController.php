@@ -51,6 +51,25 @@ class MainController extends Controller
         ]);
     }
 
+    public function privacy()
+    {
+
+        $privacy = Post::query()->where('section', 'privacy')->first();
+
+        return Inertia::render('Privacy', [
+            'privacy' => $privacy,
+        ]);
+    }
+
+    public function cookies()
+    {
+        $cookies = Post::query()->where('section', 'cookies')->first();
+
+        return Inertia::render('Cookies', [
+            'cookies' => $cookies,
+        ]);
+    }
+
     public function contacts()
     {
         return Inertia::render('Contacts');

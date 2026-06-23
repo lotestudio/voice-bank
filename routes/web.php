@@ -17,6 +17,8 @@ Route::group([
     Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('home');
     Route::get('/voices', [\App\Http\Controllers\VoicesController::class, 'index']);
     Route::get('/about', [\App\Http\Controllers\MainController::class, 'about']);
+    Route::get('/privacy', [\App\Http\Controllers\MainController::class, 'privacy']);
+    Route::get('/cookies', [\App\Http\Controllers\MainController::class, 'cookies']);
     Route::get('/contacts', [\App\Http\Controllers\MainController::class, 'contacts']);
     Route::get('/artist/{id}', [\App\Http\Controllers\ArtistController::class, 'show']);
 

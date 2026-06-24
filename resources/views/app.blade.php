@@ -37,11 +37,14 @@
     <link rel="preconnect" href="https://use.typekit.net/" />
     {{--    apparat--}}
     <link rel="stylesheet" href="https://use.typekit.net/itk2wog.css">
-{{--    neue haas--}}
-{{--    <link rel="stylesheet" href="https://use.typekit.net/irj7vhx.css">--}}
+    {{--    neue haas--}}
+    {{--    <link rel="stylesheet" href="https://use.typekit.net/irj7vhx.css">--}}
     {{--        @routes--}}
     @vite(['resources/js/app.js', "resources/js/pages/{$page['component']}.vue"])
     @inertiaHead
+    <!-- Fathom - beautiful, simple website analytics -->
+    <script src="https://cdn.usefathom.com/script.js" data-spa="auto" data-site="CSAKJJFU" defer></script>
+    <!-- / Fathom -->
 </head>
 @if (!auth()->user()?->isAdmin())
 <!--Start of Tawk.to Script-->

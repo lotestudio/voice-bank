@@ -31,7 +31,7 @@ const {isArtist, isClient,isAdmin} = useAuth();
 
             <template v-else-if="isClient">
                 <Link :href="locale_url(create.url())">
-                <Button variant="default" size="lg">{{ T('order') }}</Button>
+                <Button variant="default" size="lg">{{ T('order_project') }}</Button>
                 </Link>
                 <Link :href="locale_url('/profile/settings')">
                     <Button variant="secondary" size="lg">{{T('Profile')}}</Button>
@@ -46,7 +46,7 @@ const {isArtist, isClient,isAdmin} = useAuth();
 
             <template v-else>
                 <Link :href="login.url() + '?default_role=client'">
-                    <Button variant="default" size="lg">{{ T('order') }}</Button>
+                    <Button variant="default" size="lg">{{ T('order_project') }}</Button>
                 </Link>
                 <Link :href="login.url() + '?default_role=artist'">
                     <Button variant="secondary" size="lg">{{T('become an artist')}}</Button>

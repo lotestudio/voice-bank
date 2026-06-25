@@ -4,6 +4,7 @@ type LocaleStrings = Record<string, Record<string, string>>;
 
 export const locales: LocaleStrings = {
     en: {
+        about: 'About',
         artist_status: 'status',
         all_voices: 'All voices',
         in_development: 'This module is under development!',
@@ -38,14 +39,18 @@ export const locales: LocaleStrings = {
         order_details: 'Order details',
         cookies_policy: 'Cookies policy',
         privacy_policy: 'Privacy policy',
+        order_project: 'Start Your Project ',
+        'become an artist': 'Join Our Voice Bank',
     },
     bg: {
+        about: 'За нас',
         price: 'цена',
         order: 'запази',
         'no available demo dile': 'няма наличен демо файл',
         name: 'Име',
         message: 'Съобщение',
-        'become an artist': 'Стани диктор',
+        order_project: 'Поръчай проект',
+        'become an artist': 'Стани част от Voice Bank',
         'all filters': 'Всички филтри',
         search: 'Търси',
         artist_status: 'наличност',

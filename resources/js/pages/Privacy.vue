@@ -9,12 +9,12 @@ const contents = page.props.privacy;
 <template>
     <Head title="Privacy Policy"> </Head>
     <SiteLayout>
-        <article class="container mx-auto mt-10 px-8">
+        <div class="container mx-auto mt-10 px-8">
             <h1 class="mb-1 text-3xl font-bold">{{ contents.title }}</h1>
             <main class="mt-8 max-w-[65ch] space-y-4">
                 <p v-html="contents.excerpt"></p>
-                <div v-html="contents.body"></div>
+                <article v-html="contents.body"></article>
             </main>
-        </article>
+        </div>
     </SiteLayout>
 </template>

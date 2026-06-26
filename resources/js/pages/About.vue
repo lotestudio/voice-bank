@@ -15,8 +15,8 @@ const contents=page.props.about;
         <div class="container mx-auto mt-10 px-8">
             <h1 class="mb-1 font-bold text-3xl">{{T('about')}}</h1>
             <main class="max-w-[65ch] mt-8 space-y-4">
-                <p v-html="contents.excerpt"></p>
-                <div v-html="contents.body"></div>
+                <div class="text-lg md:text-2xl leading-tight" v-html="contents.excerpt"></div>
+                <article v-html="contents.body"></article>
             </main>
         </div>
     </SiteLayout>
